@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Summary: Data Techniques & EDA - Week 3 Thursday</title>
+    <style>
+        :root {
+            --primary: #004a99;
+            --highlight-bg: #e7f3ff;
+            --warning-bg: #fee2e2;
+            --advice-bg: #fef3c7;
+            --text: #333;
+            --bg: #f4f4f9;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+        .linear-header {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-left: 10px solid var(--primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .bento-container {
+            max-width: 1100px;
+            margin: 0 auto 40px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(150px, auto);
+            gap: 20px;
+            padding: 20px;
+        }
+        .bento-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        .bento-item h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+        .row-2 { grid-row: span 2; }
+
+        .experience { background: var(--highlight-bg); }
+        .advice { background: var(--advice-bg); }
+        .tech { background: #f0fdfa; } /* Light teal for tools */
+
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div class="linear-header">
+    <nav style="margin-bottom: 20px; font-size: 0.9rem;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: bold;">&larr; Home</a>
+    </nav>
+    <p style="font-size: 0.8rem; color: #777; margin-bottom: 10px; font-weight: bold;">Week 3 | Jan 29, 2026 | Session 4</p>
+    <span class="tag">AI Impressions</span>
+    <h1>The Art and Science of Techniques</h1>
+    <p>This lecture marks the transition from "what" to "how," though it remains conceptually grounded. Dr. Pierce emphasized that Data Science is an iterative "art and science"—not just running algorithms, but interpreting histograms like a cartographer and fine-tuning models like an instrument. The introduction of Google Colab lowers the barrier to entry, while the focus on statistical assumptions (QQ plots) ensures technical integrity.</p>
+    <hr>
+    <h3>Quick Summary</h3>
+    <p>The session explored the landscape of data techniques, from fundamental Exploratory Data Analysis (EDA) to advanced Machine Learning. Key topics included visualization strategies for numerical data, validating statistical assumptions, and distinguishing between supervised and unsupervised learning models.</p>
+</div>
+
+<div class="bento-container">
+    
+    <!-- Toolbox -->
+    <div class="bento-item span-2 tech">
+        <h3>💻 The Toolbox: Google Colab & Python</h3>
+        <p>The course is shifting towards implementation using <strong>Google Colab</strong> (Interactive Python Notebooks):</p>
+        <ul>
+            <li><strong>Free & Cloud-Based:</strong> No local installation required; saves directly to Google Drive.</li>
+            <li><strong>AI Integration:</strong> Built-in Google Gemini helps suggest code for histograms or scatter plots.</li>
+            <li><strong>Python vs. R:</strong> Python is the primary focus, but R remains dominant in specialized fields like bioinformatics (though Python is catching up).</li>
+        </ul>
+    </div>
+
+    <!-- Multi-Tool Advice -->
+    <div class="bento-item advice">
+        <h3>📋 Platform Flexibility</h3>
+        <p>Dr. Pierce highlighted that the "How" is flexible. You can succeed with:</p>
+        <ul>
+            <li><strong>Programming:</strong> Python (Pandas/NumPy) or R.</li>
+            <li><strong>Statistical Apps:</strong> SPSS, Jamovi, Jasp, or GNU PSPP.</li>
+            <li><strong>Visuals:</strong> Tableau Community or Excel.</li>
+        </ul>
+        <p><em>Note: UALR students can apply for Google Colab Pro for free!</em></p>
+    </div>
+
+    <!-- EDA Visualizations -->
+    <div class="bento-item span-2 row-2">
+        <h3>📊 EDA: Numerical Visualizations</h3>
+        <p>Exploratory Data Analysis is the starting point for every project to identify patterns and data quality issues.</p>
+        <ul>
+            <li><strong>Histograms:</strong> Show frequency, center, spread, and shape (skewness). Finding the right "granularity" (bin size) is a trial-and-error balance.</li>
+            <li><strong>Box Plots:</strong> Concise view of median and quartiles (middle 50%). Excellent for identifying outliers (anything 1.5x the IQR beyond the box).</li>
+            <li><strong>Cumulative Distribution:</strong> Useful for answering "What % of my data falls below value X?" or finding the value at the 80th percentile.</li>
+        </ul>
+    </div>
+
+    <!-- Statistical Validation -->
+    <div class="bento-item">
+        <h3>📐 Statistical Validation</h3>
+        <p><strong>The Gasoline Analogy:</strong> Just as a gas engine needs gas, statistical tests have "fuel" requirements (assumptions).</p>
+        <ul>
+            <li><strong>QQ Plots:</strong> A visual check for normality. If your data points "hug" the diagonal line, the data is likely normally distributed.</li>
+            <li><strong>Log Transforms:</strong> Can be used to "fix" skewed data to make it fit traditional statistical models.</li>
+        </ul>
+    </div>
+
+    <!-- Relationships -->
+    <div class="bento-item">
+        <h3>🔗 Associations</h3>
+        <p>Techniques to find links between variables:</p>
+        <ul>
+            <li><strong>Scatter Plots:</strong> Reveal linear or curved (non-linear) trends.</li>
+            <li><strong>Correlation:</strong> A numeric value (-1 to 1). Warning: Correlation misses non-linear relationships!</li>
+            <li><strong>Dendrograms:</strong> Trees showing how variables group together (Hierarchical Clustering).</li>
+        </ul>
+    </div>
+
+    <!-- Machine Learning -->
+    <div class="bento-item span-2">
+        <h3>🤖 Machine Learning Overview</h3>
+        <p>Broad categories based on your research question:</p>
+        <ul>
+            <li><strong>Supervised:</strong> You have a target (e.g., predicting house prices, diabetes risk, or salary). Uses input features to map to a known output.</li>
+            <li><strong>Unsupervised:</strong> No target variable. Looking for hidden structures (e.g., clustering customer groups, detecting anomalies/frauds).</li>
+            <li><strong>Fine-Tuning:</strong> Start simple (Linear Regression), then tune "hyperparameters" like volume/bass/treble on a stereo.</li>
+        </ul>
+    </div>
+
+    <!-- Q&A Section -->
+    <div class="bento-item span-3 advice">
+        <h3>🎓 Closing Perspective: The Art of Cutoffs</h3>
+        <p><strong>Student Question (Tim):</strong> "How do you determine the cutoffs for each level? (e.g., Low vs. High risk)"</p>
+        <p><strong>The "Data Art" Answer:</strong> There is rarely a hard rule. Determine cutoffs based on:</p>
+        <ol>
+            <li><strong>Literature/Industry Standards:</strong> What do existing studies use?</li>
+            <li><strong>Trial and Error:</strong> Which cutoff provides the highest predictive accuracy?</li>
+            <li><strong>Justification/Storytelling:</strong> Can you explain and defend your choice logic?</li>
+        </ol>
+    </div>
+
+</div>
+
+<footer>
+    <p>IFSC 77003: Data Science & Technologies | University of Arkansas at Little Rock</p>
+</footer>
+
+</body>
+</html>

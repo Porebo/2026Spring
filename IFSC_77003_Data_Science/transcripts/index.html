@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Repository: IFSC 77003 Data Science</title>
+    <style>
+        :root {
+            --primary: #004a99; /* UALR Blue */
+            --bg: #f4f7f9;
+            --text: #333;
+            --white: #ffffff;
+            --border: #e1e4e8;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .course-info {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 8px solid var(--primary);
+        }
+        .course-info h2 { margin-top: 0; color: var(--primary); }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .status-card {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 20px;
+            border-radius: 12px;
+            color: #856404;
+        }
+        .status-card h3 { margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        .status-card ul { padding-left: 20px; margin: 10px 0; }
+        .status-card li { margin-bottom: 5px; font-size: 0.9rem; }
+        
+        /* Layout for Journey + Bento */
+        .journey-section {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 30px;
+            margin-bottom: 50px;
+            align-items: start;
+        }
+
+        .path-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 0; /* Managed by journey-section */
+        }
+
+        .assignment-bento {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+            border-top: 10px solid #f39c12;
+            position: sticky;
+            top: 20px;
+        }
+
+        .assignment-bento h3 { margin-top: 0; color: #f39c12; font-size: 1.2rem; margin-bottom: 15px; }
+        .assignment-bento h4 { color: var(--primary); font-size: 0.95rem; margin: 15px 0 5px 0; border-bottom: 1px solid #f0f0f0; padding-bottom: 5px; }
+        .assignment-bento ul { padding-left: 20px; margin: 0; }
+        .assignment-bento li { font-size: 0.85rem; margin-bottom: 6px; color: #444; line-height: 1.3; }
+        
+        .bento-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            background: #fdfaf3;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #f9ebd0;
+        }
+        .bento-meta-item { text-align: center; }
+        .bento-meta-label { font-size: 0.65rem; text-transform: uppercase; color: #999; display: block; }
+        .bento-meta-value { font-size: 0.85rem; font-weight: bold; color: #333; }
+
+        /* New Course Path Styles */
+        .path-card {
+            background: var(--bg);
+            border-top: 5px solid var(--primary);
+            padding: 15px;
+            width: 250px;
+            border-radius: 8px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+        .path-card:hover { transform: translateY(-5px); }
+        .path-card h4 { margin: 0 0 10px 0; color: var(--primary); font-size: 1rem; }
+        .path-card p { margin: 0; font-size: 0.85rem; color: #555; line-height: 1.4; flex-grow: 1; }
+        .unit-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        .card-links {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .card-links a {
+            font-size: 0.8rem;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .card-links a:hover { text-decoration: underline; }
+        .card-links a::before { content: "📄"; font-size: 0.8rem; }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .month-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .month-header {
+            background: var(--primary);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        .calendar-table th, .calendar-table td {
+            width: 14.28%;
+            text-align: center;
+            padding: 8px 5px;
+            border: 1px solid #f0f0f0;
+        }
+        .calendar-table th { background: #f8f9fa; color: #777; font-size: 0.7rem; }
+        .week-num { color: var(--primary); font-weight: bold; font-size: 0.7rem; background: #eef2f7; }
+        
+        .lecture-day { background: #e7f3ff; font-weight: bold; position: relative; }
+        .lecture-day a {
+            text-decoration: none;
+            color: var(--primary);
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .lecture-day:hover { background: #cfe7ff; }
+        .other-month { color: #ccc; }
+        
+        .legend {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+            font-size: 0.8rem;
+            justify-content: center;
+        }
+        .legend-item { display: flex; align-items: center; gap: 5px; }
+        .box { width: 15px; height: 15px; border-radius: 3px; }
+
+        footer { text-align: center; padding: 40px; color: #888; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>IFSC 77003: Data Science & Technologies</h1>
+    <p>University of Arkansas at Little Rock | Spring 2026</p>
+</header>
+
+<div class="container">
+    <div class="course-info">
+        <h2>About the Course</h2>
+        <p>This course is a <strong>survey of the many tools used in data science</strong>. It provides a comprehensive introduction to the technologies and methodologies of modern Data Science.</p>
+        <div style="display: flex; gap: 40px; margin-top: 15px;">
+            <div>
+                <strong>Lead Professors:</strong><br>
+                Dr. Elizabeth Pierce<br>
+                Dr. Serhan Dagtas
+            </div>
+            <div>
+                <strong>Co-Instructor:</strong><br>
+                Farah Al Farah
+            </div>
+        </div>
+    </div>
+
+    <h3 class="path-title">🚀 Course Journey</h3>
+    <div class="journey-section">
+        <div class="path-container">
+            <!-- Unit 1 -->
+            <div class="path-card">
+                <span class="unit-tag">Unit 1</span>
+                <h4>Orientation & Welcome</h4>
+                <p>Introductions, tour of the course shell/syllabus, and an overview of fundamental questions in Data Science orientation.</p>
+                <div class="card-links">
+                    <a href="w1Tuesday.html">Course Introduction</a>
+                </div>
+            </div>
+            <!-- Arrow -->
+            <div style="align-self: center; color: #ccc; font-size: 1.5rem;">➜</div>
+            <!-- Unit 2 -->
+            <div class="path-card">
+                <span class="unit-tag">Unit 2</span>
+                <h4>Identifying Questions</h4>
+                <p>Examining ways to identify high-value questions and sources for data. Surveying analytical techniques and data verification.</p>
+                <div class="card-links">
+                    <a href="w1Thursday.html">Data Foundations</a>
+                </div>
+            </div>
+            <!-- Arrow -->
+            <div style="align-self: center; color: #ccc; font-size: 1.5rem;">➜</div>
+            <!-- Unit 3 -->
+            <div class="path-card">
+                <span class="unit-tag">Unit 3</span>
+                <h4>Data Exploration</h4>
+                <p>Essential for understanding patterns and anomalies. Hands-on Python with Google Colab and a quick look at R foundations.</p>
+                <div class="card-links">
+                    <a href="w2Tuesday.html">Data Sourcing</a>
+                    <a href="w3Thursday.html">EDA Techniques</a>
+                    <a href="w3Tuesday.html">Python & Pandas</a>
+                    <a href="w3Thursday_Demo.html">Colab Demo</a>
+                </div>
+            </div>
+            <!-- Arrow -->
+            <div style="align-self: center; color: #ccc; font-size: 1.5rem;">➜</div>
+            <!-- Unit 4 -->
+            <div class="path-card" style="border-top-color: #f39c12;">
+                <span class="unit-tag" style="background: #f39c12;">Active</span>
+                <h4>Text Analytics</h4>
+                <p>Automated extraction of insights from large volumes of text (reviews, social media) using Python and Google Colab.</p>
+                <div class="card-links">
+                    <a href="w4Tuesday.html">Text Mining Session</a>
+                    <a href="https://cognitiveclass.ai" target="_blank" style="color: #e67e22;">🎯 Unit 4 Assignment</a>
+                </div>
+            </div>
+            
+            <!-- Break line for visualization flow -->
+            <div style="width: 100%; height: 0; margin: 10px 0;"></div>
+
+            <!-- Unit 5 -->
+            <div class="path-card">
+                <span class="unit-tag">Unit 5</span>
+                <h4>Multimedia Analytics</h4>
+                <p>Analyzing large-scale collections (images, audio, video) to extract rich info that goes beyond a single data type.</p>
+                <div class="card-links" style="opacity: 0.5;">
+                    <span>Upcoming...</span>
+                </div>
+            </div>
+            <!-- Arrow -->
+            <div style="align-self: center; color: #ccc; font-size: 1.5rem;">➜</div>
+            <!-- Unit 6 -->
+            <div class="path-card">
+                <span class="unit-tag">Unit 6</span>
+                <h4>Image Informatics</h4>
+                <p>Efficiently managing and analyzing digital images. Basics of processing pixels to help computers interpret visual data.</p>
+                <div class="card-links" style="opacity: 0.5;">
+                    <span>Upcoming...</span>
+                </div>
+            </div>
+            <!-- Arrow -->
+            <div style="align-self: center; color: #ccc; font-size: 1.5rem;">➜</div>
+            <!-- Unit 7 -->
+            <div class="path-card">
+                <span class="unit-tag">Unit 7</span>
+                <h4>Social Media Analytics</h4>
+                <p>Gaining insights into user behavior and Performance. Learn about opportunities and research at the COSMOS center.</p>
+                <div class="card-links" style="opacity: 0.5;">
+                    <span>Upcoming...</span>
+                </div>
+            </div>
+            <!-- Arrow -->
+            <div style="align-self: center; color: #ccc; font-size: 1.5rem;">➜</div>
+            <!-- Unit 8 -->
+            <div class="path-card">
+                <span class="unit-tag">Unit 8</span>
+                <h4>Artificial Intelligence</h4>
+                <p>Technologies for automating tasks and solving complex problems. Navigating the ethical challenges of integrated AI.</p>
+                <div class="card-links" style="opacity: 0.5;">
+                    <span>Upcoming...</span>
+                </div>
+            </div>
+
+            <!-- Break line for visualization flow -->
+            <div style="width: 100%; height: 0; margin: 10px 0;"></div>
+
+            <!-- Unit 9 -->
+            <div class="path-card">
+                <span class="unit-tag">Unit 9</span>
+                <h4>Internet of Things</h4>
+                <p>How IoT systems work and the analytical applications built from connected device data for better decision-making.</p>
+                <div class="card-links" style="opacity: 0.5;">
+                    <span>Upcoming...</span>
+                </div>
+            </div>
+            <!-- Arrow -->
+            <div style="align-self: center; color: #ccc; font-size: 1.5rem;">➜</div>
+            <!-- Unit 10 -->
+            <div class="path-card">
+                <span class="unit-tag">Unit 10</span>
+                <h4>Cloud & Big Data</h4>
+                <p>Using infrastructure like Hadoop to store and process massive datasets. Scalability and resilience in real-time.</p>
+                <div class="card-links" style="opacity: 0.5;">
+                    <span>Upcoming...</span>
+                </div>
+            </div>
+            <!-- Arrow -->
+            <div style="align-self: center; color: #ccc; font-size: 1.5rem;">➜</div>
+            <!-- Unit 11 -->
+            <div class="path-card">
+                <span class="unit-tag">Unit 11</span>
+                <h4>Data Ethics & Legal</h4>
+                <p>Mitigating harm, bias, and privacy violations. Legal, ethical, and sustainability challenges in big data.</p>
+                <div class="card-links" style="opacity: 0.5;">
+                    <span>Upcoming...</span>
+                </div>
+            </div>
+            <!-- Arrow -->
+            <div style="align-self: center; color: #ccc; font-size: 1.5rem;">➜</div>
+            <!-- Unit 12 -->
+            <div class="path-card">
+                <span class="unit-tag">Unit 12</span>
+                <h4>Final Project</h4>
+                <p>The course culmination: conducting and communicating your own original data science research project.</p>
+                <div class="card-links" style="opacity: 0.5;">
+                    <span>Upcoming...</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="assignment-bento">
+            <h3>🎯 Unit 4 Assignment</h3>
+            <div class="bento-meta">
+                <div class="bento-meta-item">
+                    <span class="bento-meta-label">Due Date</span>
+                    <span class="bento-meta-value">Feb 19</span>
+                </div>
+                <div class="bento-meta-item">
+                    <span class="bento-meta-label">Points</span>
+                    <span class="bento-meta-value">10 Pts</span>
+                </div>
+                <div class="bento-meta-item">
+                    <span class="bento-meta-label">Attempts</span>
+                    <span class="bento-meta-value">2 Left</span>
+                </div>
+            </div>
+            
+            <p style="font-size: 0.85rem; background: #fff8e1; padding: 10px; border-radius: 5px; border-left: 4px solid #f39c12; margin-bottom: 15px;">
+                <strong>Requirement:</strong> Complete <u>one</u> CognitiveClass.ai course and submit the certificate to Blackboard.
+            </p>
+
+            <h4>Text Analytics</h4>
+            <ul>
+                <li>Text Analytics 101 (Recommended)</li>
+                <li>Learn Recurrent Neural Networks</li>
+            </ul>
+
+            <h4>Chatbots & Applications</h4>
+            <ul>
+                <li>Build Your Own Chatbot</li>
+                <li>Watson AI Mobile Services</li>
+                <li>Node-RED: Basics to Bots</li>
+                <li>Robots are Coming!</li>
+                <li>Building Robots with TJBot</li>
+            </ul>
+
+            <h4>AI & Text</h4>
+            <ul>
+                <li>Prompt Engineering for Everyone</li>
+            </ul>
+
+            <div style="margin-top: 20px; text-align: center;">
+                <a href="https://cognitiveclass.ai" target="_blank" style="display: block; background: #004a99; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9rem; transition: background 0.2s;">Start Course Now →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item"><div class="box" style="background:#e7f3ff; border:1px solid #004a99"></div> Lecture Scheduled</div>
+        <div class="legend-item"><div class="box" style="background:#eef2f7;"></div> Week Indicator</div>
+    </div>
+
+    <div class="calendar-grid">
+        <!-- JANUARY -->
+        <div class="month-card">
+            <div class="month-header">January 2026</div>
+            <table class="calendar-table">
+                <tr><th>Wk</th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+                <tr><td class="week-num">-</td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+                <tr><td class="week-num">-</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+                <tr><td class="week-num">-</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+                <tr><td class="week-num">W1</td><td>19</td><td>20</td><td class="lecture-day"><a href="w1Tuesday.html" title="Course Intro">20</a></td><td>21</td><td class="lecture-day"><a href="w1Thursday.html" title="Data Foundations">22</a></td><td>23</td><td>24</td></tr>
+                <tr><td class="week-num">W2</td><td>25</td><td>26</td><td class="lecture-day"><a href="w2Tuesday.html" title="Data Sourcing">27</a></td><td>28</td><td class="lecture-day"><a href="w3Thursday.html" title="EDA Techniques">29</a></td><td>30</td><td>31</td></tr>
+            </table>
+        </div>
+
+        <!-- FEBRUARY -->
+        <div class="month-card">
+            <div class="month-header">February 2026</div>
+            <table class="calendar-table">
+                <tr><th>Wk</th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+                <tr><td class="week-num">W3</td><td>1</td><td>2</td><td class="lecture-day"><a href="w3Tuesday.html" title="Python Intro">3</a></td><td>4</td><td class="lecture-day"><a href="w3Thursday_Demo.html" title="Python Demo">5</a></td><td>6</td><td>7</td></tr>
+                <tr><td class="week-num">W4</td><td>8</td><td>9</td><td class="lecture-day"><a href="w4Tuesday.html" title="Text Analytics">10</a></td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+                <tr><td class="week-num">W5</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+                <tr><td class="week-num">W6</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+            </table>
+        </div>
+
+        <!-- MARCH -->
+        <div class="month-card">
+            <div class="month-header">March 2026</div>
+            <table class="calendar-table">
+                <tr><th>Wk</th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+                <tr><td class="week-num">W7</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+                <tr><td class="week-num">W8</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+                <tr><td class="week-num">W9</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+                <tr><td class="week-num">W10</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+                <tr><td class="week-num">W11</td><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td><td></td></tr>
+            </table>
+        </div>
+
+        <!-- APRIL -->
+        <div class="month-card">
+            <div class="month-header">April 2026</div>
+            <table class="calendar-table">
+                <tr><th>Wk</th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+                <tr><td class="week-num">W11</td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+                <tr><td class="week-num">W12</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+                <tr><td class="week-num">W13</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+                <tr><td class="week-num">W14</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+                <tr><td class="week-num">W15</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td></tr>
+            </table>
+        </div>
+
+        <!-- MAY -->
+        <div class="month-card">
+            <div class="month-header">May 2026</div>
+            <table class="calendar-table">
+                <tr><th>Wk</th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+                <tr><td class="week-num">W15</td><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
+                <tr><td class="week-num">W16</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+                <tr><td class="week-num">W17</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+                <tr><td class="week-num">W18</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>
+                <tr><td class="week-num">-</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 IFSC 77003 | Department of Information Science | UALR</p>
+</footer>
+
+</body>
+</html>

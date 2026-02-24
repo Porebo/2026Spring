@@ -1,0 +1,30 @@
+Downloaded from the cloud at Tue Feb 17 2026 22:34:07 GMT-0800 (Pacific Standard Time)
+
+IFSC 71003, Homework hw-m3
+Instructions
+
+Learning objectives: At the end of this module, students will be able to do the following.
+1. Make a form.
+2. Make a fishbone diagram.
+
+Please answer the questions below, posting the result on your website, with a link to it from your home page.
+There is normally no need to send an email when done (for on time submittals), because we will go to your home page to find it.
+If submitting a HW late:
+Send an email reminding us to look for it again, so you get credit for doing it. Do that even if there is no score for it on Blackboard yet, because it's evaluation may already be on our internal spreadsheet, but has not been transferred from there to a score on Blackboard yet. That transfer can take a couple of days (or more). In other words, you can't conclude it hasn't been evaluated yet just because there is no score on Blackboard.
+Do not put your name or your ID number on the HW. We have your name and website address, and that's all we need or want.
+
+Using an AI, make a web page that has an HTML sandbox in it. You should be able to use it if you wish to or if w3schools isn't working right. Link to it from the answer page of this HW.
+Click to show question 2.
+
+Note a: This is only a small fraction of all the variations possible. You can use your page as a reference in the future. The previous HWs specified your HTML test page to be in a different web page than the rest of your HW statement, so for this HW you can add more to that same HTML demo page, which is another reason for it to be a standalone web page. An additional reason is that it is intended to be useful for your future reference, so it should not be too closely identified with any one homework.
+Note b: AVOID asking for personal information in your form (password, date of birth, credit card info, ID number, etc.). Why? Because in the past some student websites have been flagged with warnings as potentially dangerous fishing sites (see Example 1 and Example 2 of what happened when the instructor tried to go to actual student web pages from students in this course!). Perhaps asking for that information is what causes these warnings. This is a guess, as it is hard to tell for sure, but what is for sure is that getting flagged is a pain. One thing it can lead to is, if you email someone and the email contains the address of your website, the email might get sent to your spam folder (not necessarily the recipient's spam folder, but that is also a possibility), so if you are not getting a response to your email, you should check your own spam folder to see if it was filtered out and put there instead of sent out. That led to some confusing moments last year, and we'd like it to go more smoothly for you this year.
+
+Recall HW2. HW2 included website evaluation, html editors and html basics.What about it could be improved for next year's class? What about it is good and should be kept for next year's class?
+Consider taking this course or another course you are currently enrolled in, and wanting to get as much out of it as possible. The problem statement, then, is something like "I want to get as much as possible out of taking the course (fill in course number here)." Or perhaps, "Suppose a student wants to get as much as possible out of taking the course (fill in course number here)." Analyze it using a detailed fishbone diagram. Really get into the diagram with lots of detail and branches. Every aspect can be considered, from travel to study habits to life schedules to everything else. Include at least a few sub-sub-branches. You can draw it by hand and take a phone cam shot of it. Or, use a tool or template from the web (however, one problem doing it this way is that most of the free resources don't support sub-sub-branches. If you use a tool, graphics editor, template or any other such resource, state what it is, where you got it, and how you would rate it. Hint: this diagram shows an example (but for a different domain, obviously).
+
+Fishbone diagram
+(Source of image, and more information: https://asq.org/quality-resources/fishbone)
+Identify which possible causes are reasonable and which can be excluded. Use this to give some suggestions about potential improvements. Make sure this is a text answer to this question (and not directly written on the diagram), to prevent the grading process from overlooking it. This happened a few times last year and we don't want it to happen this year.
+(a) Use an AI to provide Socratic questioning to stretch your thinking about the topic of fishbone diagrams.8 short Qs and As Provide the transcript including the questions and your answers.
+(b) Consider your experience getting an AI to provide Socratic questioning about this topic: how well did it help you think and stretch your mind about the topic? How might you change your prompting strategy next time (or have you found a prompting strategy that you don't want to change)?
+Indicate on your homepage, where you give the link to HW3, if your HW3 is ready to be graded. (That way we will know to click the link and go to your HW3 and give you credit for it. Otherwise we won't know your HW3 is ready and won't even click the link to go your HW3 and look at it.)

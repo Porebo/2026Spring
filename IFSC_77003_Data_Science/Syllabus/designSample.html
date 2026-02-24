@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Design Layout Samples</title>
+    <style>
+        :root {
+            --primary: #004a99;
+            --bg: #f4f4f9;
+            --text: #333;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background-color: var(--bg);
+            color: var(--text);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: var(--primary);
+            color: white;
+            margin-bottom: 50px;
+        }
+        h1 { margin: 0; }
+        .sample-label {
+            display: block;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-transform: uppercase;
+            border-top: 2px dashed #ccc;
+            padding-top: 50px;
+        }
+
+        /* 1. CARD-BASED DESIGN (Used in your summaries) */
+        .card-section {
+            background: transparent;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* 2. SINGLE COLUMN (Blog Style) */
+        .single-column {
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* 3. GRID / BENTO BOX DESIGN */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 200px);
+            gap: 15px;
+        }
+        .bento-item {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .bento-1 { grid-column: span 2; grid-row: span 2; background: #e7f3ff; }
+        .bento-2 { grid-column: span 2; }
+        .bento-3 { background: #fee2e2; }
+        .bento-4 { background: #fef3c7; }
+
+        /* 4. SPLIT SCREEN */
+        .split-screen {
+            display: flex;
+            min-height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .split-left {
+            flex: 1;
+            background: #004a99;
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .split-right {
+            flex: 1;
+            background: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* 5. SIDEBAR (Holy Grail Style) */
+        .holy-grail {
+            display: flex;
+            border: 1px solid #ddd;
+            background: white;
+        }
+        .sidebar {
+            width: 200px;
+            background: #f8fafc;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        /* 6. MINIMALIST Typography */
+        .minimalist {
+            background: #fff;
+            padding: 100px 20px;
+            text-align: left;
+        }
+        .minimalist h2 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+        .minimalist p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Design Vocabulary & Samples</h1>
+    <p>Reference this file to request specific layout styles for future documents.</p>
+</header>
+
+<div class="container">
+
+    <!-- 1. Card-based -->
+    <span class="sample-label">1. Card-based Design</span>
+    <div class="card-section">
+        <div class="card">
+            <h3>Card Title A</h3>
+            <p>This is standard for summaries. It groups topics into distinct physical units with elevation.</p>
+        </div>
+        <div class="card">
+            <h3>Card Title B</h3>
+            <p>Great for scannability and modular content that might be moved around.</p>
+        </div>
+    </div>
+
+    <!-- 2. Single Column -->
+    <span class="sample-label">2. Single-Column (Blog Style)</span>
+    <article class="single-column">
+        <h3>The Art of the Long Form</h3>
+        <p>This design focuses entirely on readability. By restricting the line length (usually between 60-80 characters per line), it prevents eye fatigue. It is the gold standard for long articles and storytelling where interruptions (like boxes) are not wanted.</p>
+        <p>It creates a linear flow that encourages the reader to stay focused on the narrative from start to finish.</p>
+    </article>
+
+    <!-- 3. Grid / Bento -->
+    <span class="sample-label">3. Grid / Bento Box Design</span>
+    <div class="bento-grid">
+        <div class="bento-item bento-1"><strong>Main Feature</strong><br>Takes up more space</div>
+        <div class="bento-item bento-2"><strong>Quick Link / Stat</strong></div>
+        <div class="bento-item bento-3"><strong>Icon</strong></div>
+        <div class="bento-item bento-4"><strong>Tags</strong></div>
+    </div>
+
+    <!-- 4. Split Screen -->
+    <span class="sample-label">4. Split Screen</span>
+    <div class="split-screen">
+        <div class="split-left">
+            <h2>The Abstract</h2>
+            <p>This side summarizes the concept in high-level terms.</p>
+        </div>
+        <div class="split-right">
+            <h2>The Data</h2>
+            <p>This side provides the granular details or technical steps.</p>
+        </div>
+    </div>
+
+    <!-- 5. Sidebar -->
+    <span class="sample-label">5. Sidebar (Holy Grail)</span>
+    <div class="holy-grail">
+        <aside class="sidebar">
+            <nav>
+                <p><strong>Navigation</strong></p>
+                <ul style="list-style: none; padding: 0;">
+                    <li>Link 1</li>
+                    <li>Link 2</li>
+                    <li>Link 3</li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <h3>Focus Area</h3>
+            <p>The sidebar remains fixed or persistent while you scroll through the technical documentation. Ideal for complex manuals or software guides.</p>
+        </main>
+    </div>
+
+    <!-- 6. Minimalist -->
+    <span class="sample-label">6. Minimalist / Typography-Focused</span>
+    <div class="minimalist">
+        <h2>LESS IS MORE.</h2>
+        <p>Use this when you want a bold, high-impact statement. It relies on the font size and whitespace to do the talking, with zero decorations.</p>
+    </div>
+
+</div>
+
+</body>
+</html>

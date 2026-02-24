@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f7fa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            max-width: none;
+            width: calc(100% - 40px);
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .hw-status {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-left: 15px;
+        }
+
+        .hw-timestamp {
+            display: block;
+            color: #667eea;
+            font-size: 0.85em;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+
+        .nav {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .nav a {
+            color: #667eea;
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: 500;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .subheading {
+            color: #667eea;
+            font-size: 1.05em;
+            margin-top: 14px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .content-list {
+            margin-left: 20px;
+            margin-top: 6px;
+        }
+
+        .content-list li {
+            margin-bottom: 8px;
+        }
+
+        .diagram-image {
+            width: 100%;
+            border: 1px solid #dfe8ff;
+            border-radius: 8px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .diagram-caption {
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .info-item {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .info-item:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .breadcrumbs {
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #666;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .breadcrumbs a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumbs span {
+            margin: 0 8px;
+            color: #ccc;
+        }
+
+        footer {
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+        /* Card grid styles (match HW2 layout) */
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin: 25px 0 35px 0;
+        }
+
+        .task-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 22px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.25s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            display: block;
+        }
+
+        .task-card:hover { transform: translateY(-6px); border-color: #667eea; }
+
+        .task-number { display:inline-block; background:#667eea; color:#fff; width:36px; height:36px; border-radius:50%; text-align:center; line-height:36px; font-weight:700; margin-bottom:12px; }
+        .task-title { font-size:1.1em; font-weight:700; margin-bottom:8px; color:#2c3e50; }
+        .task-description { color:#444; font-size:0.95em; }
+        .task-status { display:inline-block; margin-top:12px; padding:6px 10px; border-radius:16px; font-size:0.82em; font-weight:700; }
+        .status-completed { background:#d4edda; color:#1e7e34; }
+        .status-in-progress { background:#fff3cd; color:#a67c00; }
+        .status-not-started { background:#f8d7da; color:#a94442; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> <span>&rsaquo;</span> Homework 3
+        </nav>
+
+        <h1>Homework 3<span class="hw-status">Ready for Grading</span></h1>
+        <p class="hw-timestamp">Last Updated: February 17, 2026</p>
+
+        <div class="nav">
+            <a href="index.html">← Back to Portfolio</a>
+        </div>
+
+        <div class="tasks-grid" aria-label="HW3 deliverables">
+            <a href="hw3Sandbox.html" class="task-card">
+                <div class="task-number">1</div>
+                <div class="task-title">Part 1: HTML Sandbox</div>
+                <div class="task-description">Standalone HTML sandbox page for safe form demos and examples.</div>
+                <div class="task-status status-completed">Completed</div>
+            </a>
+
+            <a href="hw3Fishbone.html" class="task-card">
+                <div class="task-number">2</div>
+                <div class="task-title">Part 2: Fishbone Diagram</div>
+                <div class="task-description">Detailed fishbone diagram image and exported file.</div>
+                <div class="task-status status-completed">Completed</div>
+            </a>
+
+            <a href="#analysis" class="task-card">
+                <div class="task-number">3</div>
+                <div class="task-title">Part 3: Diagram Analysis</div>
+                <div class="task-description">Text analysis of reasonable and excluded causes, plus improvement suggestions.</div>
+                <div class="task-status status-completed">Completed</div>
+            </a>
+
+            <a href="hw3Socratic.html" class="task-card">
+                <div class="task-number">4</div>
+                <div class="task-title">Part 4: Socratic AI Transcript</div>
+                <div class="task-description">Generate and paste 8 short Q&A pairs from AI Socratic questioning.</div>
+                <div class="task-status status-completed">Completed</div>
+            </a>
+
+            <a href="hw3Reflection.html" class="task-card">
+                <div class="task-number">5</div>
+                <div class="task-title">Part 5: Reflection</div>
+                <div class="task-description">Reflect on HW2 and the AI Socratic experience; prompting strategy.</div>
+                <div class="task-status status-completed">Completed</div>
+            </a>
+
+            <a href="hw3ToolNotes.html" class="task-card">
+                <div class="task-number">6</div>
+                <div class="task-title">Part 6: Tool / Source Notes</div>
+                <div class="task-description">State tools used, source URLs, and your rating/opinion.</div>
+                <div class="task-status status-completed">Completed</div>
+            </a>
+
+            <!-- Final Checks card removed per user request -->
+        </div>
+
+        <!-- Removed workspace/status summary per user request -->
+
+        <div class="section">
+            <div class="section-title">Fishbone Diagram Problem Statement</div>
+            <p><strong>Problem:</strong> I want to get as much as possible out of taking IFSC 71003.</p>
+            <p style="margin-top: 10px;">My fishbone categories include time management, study habits, resources, motivation, logistics, and health/energy.</p>
+        </div>
+
+        <div id="fishbone" class="section">
+            <div class="section-title">Fishbone Diagram Image</div>
+            <img src="fishboneImage.png" alt="Fishbone diagram for maximizing learning in IFSC 71003" class="diagram-image">
+            <p class="diagram-caption">Final fishbone diagram image used for HW3.</p>
+        </div>
+
+        <div id="analysis" class="section">
+            <div class="section-title">Part 3: Diagram Analysis</div>
+            <p>This analysis reviews which possible causes from the fishbone are reasonable and which can be excluded, and it offers improvement suggestions.</p>
+
+            <p><strong>Reasonable causes:</strong> Time management (irregular shifts, lack of scheduled study blocks), competing paid work (office shifts, driving), study habits (starting work late, low deep-work time), resources (familiarity with tools, use of AI for coding and synthesis), environment (internet quality, workspace ergonomics), and health/energy (sleep patterns and breaks). These all plausibly affect course payoff and are supported by the diagram branches.</p>
+
+            <p><strong>Causes likely to be excluded:</strong> Hardware failure or course content availability — the syllabus, professor materials, and lectures appear sufficient, so lack of course resources is less likely the root cause. Similarly, rare one-off events (isolated technical outages) are less central than ongoing patterns like schedule and energy.</p>
+
+            <p><strong>Improvement suggestions:</strong> 1) Establish fixed weekly study blocks (short, protected deep-work sessions) to reduce schedule fragmentation. 2) Reserve at least one study block immediately after paid shifts or before sleep to avoid skipping study when tired. 3) Use AI as a productivity amplifier (prompt-engineered workflows) but keep short manual checks to preserve understanding. 4) Improve the study environment (stable internet, ergonomics) and minimize live-lecture interruptions by reviewing recordings during focused blocks. 5) Apply simple checklists and a submission checklist 48 hours before due dates to reduce last-minute rushes.</p>
+        </div>
+
+        <!-- Analysis, Socratic transcript, reflection, tool notes, and final checks removed per user request -->
+
+        <footer>
+            <p>&copy; 2026 Lester S. Carcamo. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

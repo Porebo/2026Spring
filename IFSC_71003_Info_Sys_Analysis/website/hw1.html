@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .nav {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .nav a {
+            color: #667eea;
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: 500;
+        }
+        
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        
+        .hw-status {
+            display: inline-block;
+            background-color: #2E8B57;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-left: 15px;
+        }
+        
+        .hw-timestamp {
+            display: block;
+            color: #667eea;
+            font-size: 0.85em;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .section h3 {
+            color: #667eea;
+            font-size: 1.1em;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .section ul {
+            margin-left: 20px;
+        }
+        
+        .section li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight-box {
+            background-color: #f4f7f6;
+            padding: 15px;
+            border-left: 5px solid #667eea;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .blockquote {
+            background: #f9f9f9;
+            border-left: 5px solid #ddd;
+            padding: 15px 20px;
+            font-style: italic;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .question-frame {
+            border: 3px solid #667eea;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            background-color: #fafbfc;
+        }
+        
+        .question-label {
+            background-color: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+        
+        .demo-section {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+        }
+        
+        .demo-title {
+            background-color: #667eea;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 0.85em;
+        }
+        
+        .demo-label {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        
+        .demo-example {
+            background-color: white;
+            padding: 10px 10px 10px 20px;
+            border-left: 1px solid #667eea;
+            margin-top: 8px;
+            border-radius: 4px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #667eea;
+            color: white;
+        }
+
+        .breadcrumbs {
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #666;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .breadcrumbs a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .breadcrumbs span {
+            margin: 0 8px;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> <span>&rsaquo;</span> Homework 1
+        </nav>
+        <h1>Homework 1<span class="hw-status">✓ Ready for Grading</span></h1>
+        <p class="hw-timestamp">Submitted: 1/21/2026 4 PM California Time</p>
+        
+        <div class="nav">
+            <a href="index.html">← Back to Portfolio</a>
+        </div>
+        
+        <div class="question-frame">
+            <div class="question-label">Question 2 Answer</div>
+            
+            <div class="section">
+                <div class="section-title">Why the 50% Minimum is "Based" (Logic & Opinion)</div>
+                <p>In my opinion, the 50-100 scale is a much more accurate way to measure learning. When the scale is 0-100, the "math isn't mathing" because the failing range (0-60) is six times larger than the range for an A (90-100). This creates a <strong>mathematical black hole</strong>.</p>
+                
+                <h3>Key Takeaways:</h3>
+                <ul>
+                    <li><strong>Balancing the Meta:</strong> By setting the floor at 50%, an "F" is now only 10 points wide (50-60), making it equal to an A, B, or C.</li>
+                    <li><strong>No More Griefing:</strong> On a 0-100 scale, a single zero can "grief" your entire GPA. Even with perfect scores elsewhere, a zero acts as a massive anchor. The 50% rule prevents one bad week from ruining a whole semester.</li>
+                    <li><strong>The Redemption Arc:</strong> This system allows for a comeback. It prioritizes what you <em>actually learned</em> by the end of the course rather than just punishing you for early mistakes.</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Personal Experience with Grading</div>
+                <p>I definitely agree with the 50-100 scale because I have seen the "Zero Problem" happen IRL. In almost every class I have taken, the 0-100 scale was the standard. I've experienced the frustration of <strong>missing just one homework assignment</strong> and receiving a 0, which immediately pulled down all my other hard-earned grades. It feels like the math is working against you rather than measuring your actual effort.</p>
+
+                <div class="highlight-box">
+                    <p><strong>A Different Approach:</strong></p>
+                    <p>I once had a class that tried to accommodate this by <strong>dropping the lowest score</strong> within certain categories. While that was helpful, I think the 50-100 scale is even better because it addresses the root of the problem: the disproportionate weight of the failing range. The 50% floor ensures that every assignment—even a failed one—remains within a range that allows for a successful recovery.</p>
+                </div>
+
+                <p><strong>Conclusion:</strong> The 50-100 system is much more "based" because it values the learning process over mathematical punishment.</p>
+            </div>
+        </div>
+        
+        <div class="question-frame">
+            <div class="question-label">Question 3 Answer</div>
+            
+            <div class="section">
+                <div class="section-title">HTML Test & Demo Page</div>
+                <p>Below is a comprehensive HTML demo page that tests various HTML commands and shows how browsers handle them properly. Each example is self-explanatory with clear labels explaining what the command does.</p>
+                <p><strong>Note:</strong> View the <a href="demo.html">HTML Test & Demo Page</a> for interactive examples and demonstrations.</p>
+            </div>
+        </div>
+        
+        <div class="question-frame">
+            <div class="question-label">Question 4 Answer</div>
+            
+            <div class="section">
+                <div class="section-title">Q.4.a: What ChatGPT said that Claude.ai does not</div>
+                <p>ChatGPT explicitly called out <strong>CSS as a separate technology that HTML cannot do on its own</strong>, while Claude.ai was less specific about identifying CSS as the solution.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Key Insight:</strong> ChatGPT was more technically precise in identifying the exact complement technology (CSS) that works alongside HTML. This distinction shows that ChatGPT understood the layered approach to web development, where HTML handles structure and CSS handles presentation.</p>
+                </div>
+                
+                <p>Claude.ai did mention "Customization and Styling" as a limitation, but it didn't specifically highlight CSS by name as the missing tool the way ChatGPT did. This makes ChatGPT's response more actionable and technically informative.</p>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Q.4.b: What Claude.ai says that ChatGPT does not</div>
+                <p>ChatGPT provides light information about data storage and retrieval, but Claude.ai explicitly and clearly indicates that <strong>HTML literally cannot handle data storage or retrieval at all</strong>—Facebook needs backend databases and server-side technologies to manage and retrieve user-generated content, friend lists, and other data efficiently.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Claude.ai's key point (Gen Z style):</strong> HTML can't do the data management thing, no cap. You literally need backend databases and server infrastructure to actually store and pull all that user content and friend data. HTML is just the presentation layer—it has zero ability to handle the storage side.</p>
+                </div>
+                
+                <p>ChatGPT mentioned it as a limitation but didn't break down the specific tech stack needed (backend databases, server-side systems) the way Claude.ai did. Claude.ai was more explicit about the architectural requirements.</p>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Q.4.c: Did either one hallucinate false information?</div>
+                <p>Neither ChatGPT nor Claude.ai outright hallucinated false information. However, Claude.ai was slightly imprecise about form validation scope.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>The Issue:</strong> Claude.ai said HTML "supports basic form inputs and validation," but that's lowkey misleading. HTML5 can validate format (like required fields and email patterns), but that's just cosmetic validation for user experience. The real validation that matters for security happens on the backend/server-side. Claude.ai didn't make up something false, it just understated that actual validation is a server-side thing, not something HTML can actually secure.</p>
+                </div>
+                
+                <p>So no big hallucinations here, just Claude.ai being slightly off on the scope of what HTML form validation actually does. It's giving the impression HTML can validate on its own, when really it's just form checking for better UX.</p>
+            </div>
+        </div>
+        
+        <div class="question-frame">
+            <div class="question-label">Question 5 Answer</div>
+            
+            <div class="section">
+                <div class="section-title">How We Show That Homework is Ready to be Graded</div>
+                <p>I've made it explicit and clear in two places that this homework assignment is ready for grading:</p>
+                
+                <h3>1. On the Homepage (index.html)</h3>
+                <div class="highlight-box">
+                    <p>The Homework 1 button displays two lines:</p>
+                    <ul>
+                        <li><strong>Line 1:</strong> "Homework 1" (white text on blue button)</li>
+                        <li><strong>Line 2:</strong> "✓ Ready for Grading" (white text below, indicating status)</li>
+                    </ul>
+                    <p>This makes it immediately obvious that clicking the link will take you to completed work.</p>
+                </div>
+                
+                <h3>2. On the Homework 1 Page (hw1.html)</h3>
+                <div class="highlight-box">
+                    <p><strong>At the Top of the Page:</strong></p>
+                    <ul>
+                        <li>Green badge reading "✓ Ready for Grading" next to the page title</li>
+                        <li>Timestamp: "Submitted: 1/21/2026 4 PM California Time" directly below</li>
+                    </ul>
+                    <p>These visual indicators make it unmistakable that the work is complete and has been submitted for evaluation.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

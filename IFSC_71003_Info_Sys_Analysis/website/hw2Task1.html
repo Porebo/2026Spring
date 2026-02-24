@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW-M2 Task 1: Bulletin Board / Forum Research</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 4px solid #3498db;
+        }
+        
+        h3 {
+            color: #34495e;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .forum-section {
+            background: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .web-location {
+            background: #e8f4f8;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-style: italic;
+            color: #2c3e50;
+        }
+        
+        .summary {
+            background: #fff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            line-height: 1.8;
+        }
+        
+        .socratic-session {
+            background: #f0f7ff;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .dialogue-entry {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .dialogue-entry:last-child {
+            border-bottom: none;
+        }
+        
+        .speaker {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .speaker.ai {
+            color: #2ecc71;
+        }
+        
+        .speaker.student {
+            color: #3498db;
+        }
+        
+        .speech {
+            padding: 12px;
+            background: white;
+            border-radius: 5px;
+            line-height: 1.7;
+        }
+        
+        .insights {
+            background: #f0fff4;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .insights h4 {
+            color: #27ae60;
+            margin-bottom: 15px;
+        }
+        
+        .insights ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .insights li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .insights li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .back-link:hover {
+            background: #2980b9;
+        }
+
+        .breadcrumbs {
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #666;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .breadcrumbs a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .breadcrumbs span {
+            margin: 0 8px;
+            color: #ccc;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> <span>&rsaquo;</span> <a href="hw2.html">HW2</a> <span>&rsaquo;</span> Task 1
+        </nav>
+        <a href="hw2.html" class="back-link">← Back to HW2 Main</a>
+        
+        <h1>Task 1: Bulletin Board / Forum Research</h1>
+        
+        <!-- Ars Technica -->
+        <div class="forum-section">
+            <h3>1. Ars Technica Forum System: Civis</h3>
+            
+            <div class="web-location">
+                <strong>Web Location for More Information:</strong> The best place to find details on how the system functions is the Ars Technica Civis Help / FAQ section.
+            </div>
+            
+            <div class="summary">
+                <strong>Summary:</strong> Ars Technica's forum system, known as Civis, is a long-standing community platform built on a heavily customized version of the phpBB software. It works by organizing technical and cultural discussions into specific "OpenForum" categories where "Arsians" (registered members) can post threads, reply to news articles, and send private messages. The system is characterized by its strict "Jedi" moderation hierarchy, a custom "Mojo" system that tracks user reputation and seniority, and a focus on high-quality, long-form technical discourse rather than short-form social media interactions.
+            </div>
+        </div>
+        
+        <!-- phpBB -->
+        <div class="forum-section">
+            <h3>2. phpBB</h3>
+            
+            <div class="web-location">
+                <strong>Web Location for More Information:</strong> The most comprehensive resource is the official phpBB About Page and their extensive Documentation and User Guide.
+            </div>
+            
+            <div class="summary">
+                <strong>Summary:</strong> phpBB (PHP Bulletin Board) is a world-renowned, open-source forum software package written in the PHP scripting language that allows anyone to create and manage their own online community. It works on a client-server architecture where the software is installed on a web server (using a database like MySQL or PostgreSQL) to store and organize user-generated discussions into a "flat" message structure. Key characteristics include its massive library of user-created "extensions" and "styles" for customization, a powerful permission-based system that allows for granular control over user roles, and a robust set of security features like built-in anti-spam tools and 2-factor authentication.
+            </div>
+        </div>
+        
+        <!-- Discourse -->
+        <div class="forum-section">
+            <h3>3. Discourse</h3>
+            
+            <div class="web-location">
+                <strong>Web Location for More Information:</strong> The most detailed technical and community information can be found at Discourse.org Features and the Discourse Meta community (their official documentation and support hub).
+            </div>
+            
+            <div class="summary">
+                <strong>Summary:</strong> Discourse is a modern, 100% open-source forum platform reimagined for the smartphone era, moving away from traditional "pages" in favor of a dynamic, infinite-scrolling interface. It works as a Single Page Application (SPA) built with Ruby on Rails and Ember.js, featuring real-time updates that allow conversations to feel more like a live chat than a static message board. Its standout characteristics include a "Trust Level" system that automatically grants users more permissions as they participate positively, a mobile-first design that works natively in any browser, and "Just-In-Time" (JIT) loading that expands links and previews media automatically within the discussion flow.
+            </div>
+        </div>
+        
+        <!-- Socratic Session -->
+        <h2>Socratic Questioning Session Transcript</h2>
+        
+        <div class="socratic-session">
+            <p><strong>Topic:</strong> Similarities and differences between Ars Technica Civis, phpBB, and Discourse forums</p>
+            
+            <div class="dialogue-entry">
+                <div class="speaker ai">AI (Teacher):</div>
+                <div class="speech">
+                    You've read that Ars Technica's Civis is built on a "heavily customized version of phpBB," while Discourse is built on Ruby on Rails and Ember.js with an "infinite-scrolling interface" instead of traditional pages. What do you think is the significance of this technical difference? In other words, when you're scrolling through a forum conversation, how might the way the software is built (page-based vs. infinite-scroll) affect your experience as a user differently?
+                </div>
+            </div>
+            
+            <div class="dialogue-entry">
+                <div class="speaker student">Student:</div>
+                <div class="speech">
+                    I like infinite scroll with newest on top.
+                </div>
+            </div>
+            
+            <div class="dialogue-entry">
+                <div class="speaker ai">AI (Teacher):</div>
+                <div class="speech">
+                    That's a practical preference. But here's something to think about: If you were researching a technical problem and wanted to find a discussion from 3 years ago, would having the newest posts "on top" with infinite scrolling make that easier or harder compared to phpBB's traditional page structure (Page 1, 2, 3, etc.)? There's a difference between what feels smooth <em>right now</em> (newest on top, infinite scroll) and what helps you <em>find something specific from the past</em>. How do you think those two goals might conflict with each other?
+                </div>
+            </div>
+            
+            <div class="dialogue-entry">
+                <div class="speaker student">Student:</div>
+                <div class="speech">
+                    Some forums stop the post ability after the question has been answered with satisfaction while others may accumulate all the answers. I prefer those with an end because I have found others that an answer is just an emoji or something else that does not add value to the discussion.
+                </div>
+            </div>
+            
+            <div class="dialogue-entry">
+                <div class="speaker ai">AI (Teacher):</div>
+                <div class="speech">
+                    Excellent observation! You've just identified something really important - it's not just about the <em>technology</em>, it's about <em>content quality and management</em>. This is crucial because you're touching on <strong>moderation philosophy</strong>. Now look at what you learned about each system:
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li><strong>Ars Technica Civis</strong> has a strict <strong>"Jedi" moderation hierarchy</strong></li>
+                        <li><strong>phpBB</strong> has a <strong>permission-based system</strong> for granular control</li>
+                        <li><strong>Discourse</strong> has a <strong>"Trust Level" system</strong> that automatically grants permissions</li>
+                    </ul>
+                    <br>Which of these three systems do you think would be BEST at preventing the problem you described - where an answer gets diluted by emoji spam and low-value posts? And more importantly - why do you think that system's approach would work better?
+                </div>
+            </div>
+            
+            <div class="dialogue-entry">
+                <div class="speaker student">Student:</div>
+                <div class="speech">
+                    I like the Jedi moderation to keep it without distractions as in many others I had seen not just emojis but adds. When there is moderation then those are not possible or are under some control.
+                </div>
+            </div>
+            
+            <div class="dialogue-entry">
+                <div class="speaker ai">AI (Teacher):</div>
+                <div class="speech">
+                    Excellent reasoning! You've identified something important: <strong>active human moderation creates a controlled environment</strong>. But here's the challenge: If Ars Technica requires strict Jedi moderation to maintain quality, what does that suggest about why they <em>need</em> that level of control in the first place? And then consider this: If Discourse relies on a "Trust Level" system instead of active Jedi moderators, do you think Discourse communities end up with more emoji spam and ads than Ars Technica - or do you think the Trust Level system actually prevents that problem differently? In other words - is strict <em>human</em> moderation (Ars Technica's approach) the <em>only</em> way to keep a forum clean, or could an <em>automated permission system</em> (Discourse) achieve similar results through a different method?
+                </div>
+            </div>
+            
+            <div class="dialogue-entry">
+                <div class="speaker student">Student:</div>
+                <div class="speech">
+                    (Session concludes)
+                </div>
+            </div>
+        </div>
+        
+        <!-- Key Insights -->
+        <div class="insights">
+            <h4>Key Insights from Socratic Session:</h4>
+            <ul>
+                <li><strong>User Experience vs. Discoverability:</strong> Infinite scrolling prioritizes current engagement but may sacrifice historical accessibility</li>
+                <li><strong>Quality Control Philosophies:</strong> Different systems use different strategies - active human moderation (Jedi) vs. automated reputation systems (Trust Level)</li>
+                <li><strong>Content Integrity:</strong> Moderation (whether human or automated) is essential to maintaining discussion quality and preventing low-value contributions</li>
+                <li><strong>Design Philosophy Differences:</strong> The choice between active moderation and algorithmic control reflects different assumptions about community behavior</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>IFSC 7310 - Homework HW-M2 | Task 1</p>
+        </footer>
+    </div>
+</body>
+</html>

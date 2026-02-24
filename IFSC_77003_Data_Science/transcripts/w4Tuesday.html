@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Summary: Text Analytics - Week 4 Tuesday</title>
+    <style>
+        :root {
+            --primary: #004a99;
+            --highlight-bg: #e7f3ff;
+            --warning-bg: #fee2e2;
+            --advice-bg: #fef3c7;
+            --text: #333;
+            --bg: #f4f4f9;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+        .linear-header {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-left: 10px solid var(--primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .bento-container {
+            max-width: 1100px;
+            margin: 0 auto 40px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(150px, auto);
+            gap: 20px;
+            padding: 20px;
+        }
+        .bento-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        .bento-item h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+        .row-2 { grid-row: span 2; }
+
+        .experience { background: var(--highlight-bg); }
+        .advice { background: var(--advice-bg); }
+        .warning { background: var(--warning-bg); }
+        .tech { background: #f0fdfa; }
+
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div class="linear-header">
+    <nav style="margin-bottom: 20px; font-size: 0.9rem;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: bold;">&larr; Home</a>
+    </nav>
+    <p style="font-size: 0.8rem; color: #777; margin-bottom: 10px; font-weight: bold;">Week 4 | Feb 10, 2026 | Session 7</p>
+    <span class="tag">AI Impressions</span>
+    <h1>The Evolution of Text Analytics</h1>
+    <p>This session officially transitioned the course into <strong>Unstructured Data Analysis</strong>. Dr. Pierce highlighted a critical shift: while structured data is easy to manage, it only represents a small fraction of the world's information. The move toward Text Analytics marks the transition from purely numerical computation to understanding human language at scale.</p>
+    <hr>
+    <h3>Quick Summary</h3>
+    <p>The lecture provided a recap of structured data analysis and introduced the "unstructured reality" of text. We explored the nuances between Text Mining and Text Analytics, covered essential pre-processing techniques (tokenization, stemming, lemmatization), and looked at real-world applications across healthcare, finance, and legal sectors.</p>
+</div>
+
+<div class="bento-container">
+    <div class="bento-item span-2 experience">
+        <h3>📊 Recap: Structured Data Analysis</h3>
+        <p>A look back at what we've covered in the first three weeks:</p>
+        <ul>
+            <li><strong>Diabetes Prevention:</strong> Using biomedical indicators to predict risk.</li>
+            <li><strong>Data Cleaning:</strong> Handling astronomical outliers and missing values.</li>
+            <li><strong>Decision Trees:</strong> Visualizing logic for complex predictions.</li>
+        </ul>
+    </div>
+
+    <div class="bento-item">
+        <h3>🌍 The Unstructured Reality</h3>
+        <p>Why text matters:</p>
+        <ul>
+            <li>Structured data is only <strong>20-30%</strong> of available data.</li>
+            <li>The majority is unstructured: images, sound, DNA, and <strong>text</strong>.</li>
+        </ul>
+    </div>
+
+    <div class="bento-item">
+        <h3>🔍 Mining vs. Analytics</h3>
+        <p>A subtle but important difference:</p>
+        <ul>
+            <li><strong>Text Mining:</strong> Focuses on <em>extraction</em>.</li>
+            <li><strong>Text Analytics:</strong> Focuses on <em>deriving insights</em>.</li>
+        </ul>
+    </div>
+
+    <div class="bento-item span-2">
+        <h3>🧹 Text Pre-processing Techniques</h3>
+        <p>The "cleaning" phase for language data:</p>
+        <ul>
+            <li><strong>Tokenization:</strong> Breaking text into words.</li>
+            <li><strong>Stop Words:</strong> Removing low-value words (a, the, and).</li>
+            <li><strong>Stemming/Lemmatization:</strong> Finding the base form of words.</li>
+            <li><strong>NER:</strong> Identifying names, places, and organizations.</li>
+        </ul>
+    </div>
+
+    <div class="bento-item span-3 advice">
+        <h3>🚀 Major Applications in 2025</h3>
+        <ul>
+            <li><strong>Healthcare:</strong> Clinical notes + records = better predictions.</li>
+            <li><strong>Finance:</strong> Fraud detection in transaction logs.</li>
+            <li><strong>Sentiment:</strong> Social media mood tracking.</li>
+            <li><strong>Legal:</strong> Smart contract and case file searching.</li>
+        </ul>
+    </div>
+
+    <div class="bento-item span-2 warning">
+        <h3>⚠️ AI & Hallucinations</h3>
+        <p>While LLMs (ChatGPT, Claude) have revolutionized this field, they are not infallible:</p>
+        <p><em>"LLMs can still 'hallucinate' facts... Human fact-checking remains critical for academic research and high-stakes summaries."</em></p>
+    </div>
+
+    <div class="bento-item tech">
+        <h3>🛠️ Technical Tools</h3>
+        <ul>
+            <li><strong>NLTK & spaCy:</strong> Python text analysis.</li>
+            <li><strong>Regex:</strong> Pattern matching for text.</li>
+            <li><strong>Ngram Viewer:</strong> Low-code word frequency analysis.</li>
+        </ul>
+    </div>
+
+    <!-- Unit Assignment Section -->
+    <div class="bento-item" style="grid-column: span 2; background: #fff3cd; border: 2px solid #ffeeba; color: #856404;">
+        <h3 style="margin-top: 0; color: #856404;">🎯 Unit 4 Assignment: Text Analytics</h3>
+        <p>Complete one of the following training courses on <strong>CognitiveClass.ai</strong> and submit your certificate to the assignment folder:</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px;">
+            <ul style="margin: 0;">
+                <li><strong>Text Analytics 101</strong> (Recommended)</li>
+                <li><strong>Build Your Own Chatbot</strong></li>
+                <li><strong>Prompt Engineering for Everyone</strong></li>
+            </ul>
+            <ul style="margin: 0; list-style: none;">
+                <li><strong>Due:</strong> 2/19/26, 9:59 PM</li>
+                <li><a href="https://cognitiveclass.ai" target="_blank" style="color: #004a99; font-weight: bold; text-decoration: underline;">Launch CognitiveClass.ai →</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 IFSC 77003 - Data Science & Technologies
+</footer>
+
+</body>
+</html>

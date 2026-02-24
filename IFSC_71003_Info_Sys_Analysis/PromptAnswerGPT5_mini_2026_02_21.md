@@ -1,0 +1,118 @@
+# NOVA Team Response — Spotfire 14.6.0 Performance Problem-Solving
+
+## A) Executive Summary
+Use a hybrid, filter-gated, on-demand architecture: keep Spotfire calculations in-analysis, but stop loading the full 2.6M×50 dataset at Web Player open. Instead, open with a small default slice (for fast, stable startup), then trigger parameterized on-demand loads after required cascading filters are selected. This directly targets Web Player session-memory pressure and per-user duplication, preserves row-level fidelity, keeps logic traceable in Spotfire (not Oracle objects), and fits Library-first development and audit defensibility requirements.
+
+## B) Target Architecture
+- **Strategy:** Hybrid — small initial import + parameterized on-demand reload for row-level detail.
+- **What changes:**
+  - Add required pre-load filter gates (Date + Reservoir + Field + Pipe/Network minimum).
+  - Switch full-detail retrieval to on-demand query execution after gates are satisfied.
+  - Convert high-footprint text dimensions to coded/decoded pattern in Spotfire where feasible (display label table + key columns).
+- **What remains:**
+  - Oracle remains read-only `SELECT` only.
+  - Business calculations remain in Spotfire calculated columns.
+  - Library-first iterative development and versioning.
+- **Why this satisfies rigor/audit:**
+  - Transformation locations are explicit (DB extract only; Spotfire calc logic).
+  - Filter gating is deterministic and documented.
+  - Output remains row-level and reproducible against the reporting warehouse.
+- **Root-cause mapping:**
+  - Addresses root cause: Web Player per-session memory ceiling.
+  - Addresses root cause: memory duplication across concurrent sessions.
+  - Addresses root cause: string-cardinality footprint from 40 dimensions.
+
+## C) Step-by-Step Implementation Plan (Numbered)
+1. **Create a baseline copy in Library**
+   - In Analyst: `File > Save As > Library` (new working version/folder naming with date stamp).
+   - Transformation location note: none (governance/versioning only).
+   - Audit note: log Library item ID/version and change reason.
+
+2. **Run mandatory failure characterization**
+   - Test 3 opens in Web Player: (a) full 6-month, (b) 1-month, (c) 6-month with only one reservoir.
+   - Record open time, crash/no-crash, and max memory from node monitoring logs.
+   - If full fails but 1-month passes, classify memory-bound as HIGH-likelihood.
+   - Audit note: capture evidence table (scenario, timestamp, user count, outcome).
+
+3. **Apply hypothesis matrix and non-cause elimination**
+   - Likelihood marks (initial):
+     1) Session memory ceiling = HIGH
+     2) Per-user duplication = HIGH
+     3) High-cardinality strings = HIGH
+     4) Inefficient types = MEDIUM
+     5) Network bottleneck = LOW/MEDIUM
+     6) Calculation overhead = MEDIUM
+     7) Filter indexing overhead = MEDIUM
+     8) Full in-memory duplication due to imported model = HIGH
+   - Eliminate non-causes where evidence contradicts.
+   - Audit note: store matrix in project documentation.
+
+4. **Parameterize load gates in the data connection**
+   - In Analyst: `Data > Data Table Properties > Data Source` and open the managed Oracle connection query.
+   - Add parameters for Date range, Reservoir, Field, Pipe/Network, Engineering String, Completion/Well.
+   - Require prompts for Date + Reservoir + Field + Pipe/Network before query execution.
+   - Transformation location note: DB performs extraction filter only; no business calcs.
+
+5. **Set safe default open behavior**
+   - Configure default parameter values to a minimal window (e.g., last 3–7 days).
+   - In `Data > Data Table Properties > Data Loading`, ensure table does not auto-expand to full 6 months at open.
+   - If analysis opens with no selections, only default slice loads.
+   - Audit note: document default parameters and rationale.
+
+6. **Implement explicit “Load Detail” interaction**
+   - Add UI guidance: users must select filters in cascade order, then trigger reload.
+   - If required upstream filters are missing, block detail load (instruction text + disabled action path).
+   - If gates satisfied, execute on-demand query and load row-level detail.
+   - Transformation location note: still extract-only in DB.
+
+7. **Reduce dimensional memory footprint without DB object changes**
+   - Use numeric keys where available; map labels via a compact lookup table in Spotfire.
+   - Prefer integer/date types; avoid duplicating free-text columns in the main fact table when coded fields exist.
+   - If a display label is needed, map it from the compact dimension table in Spotfire.
+   - Audit note: include field lineage map (source column → Spotfire field).
+
+8. **Optimize calculated columns execution order**
+   - Move heavy expressions from always-on visuals to conditional visuals (only shown after filters applied).
+   - If a calc requires full-table context, defer until gated load completes.
+   - Maintain a formula catalog (name, formula, owner, business meaning, test case).
+
+9. **Publish and validate via Library-first workflow**
+   - Save iterative versions to Library only.
+   - Test in Web Player with 1, 2, and 3 concurrent sessions.
+   - Promote only after benchmarks and checklist pass.
+   - Audit note: retain version comparison notes and test evidence.
+
+## D) Performance Validation
+- **Load-time method:** measure Web Player open-to-interactive for default slice and gated detail load separately (3 runs each; report median).
+- **Memory validation:** capture Web Player node/session memory during 1/2/3 concurrent sessions.
+- **Benchmarks (targets):**
+  - Default open (3–7 day slice): ≤ 20 seconds.
+  - Gated detail load (typical filtered scope): ≤ 30 seconds.
+  - Filter response after load: ≤ 2 seconds for Date/Reservoir/Field; ≤ 4 seconds for downstream wells.
+  - Zero Web Player crashes at 3 concurrent sessions in test window.
+- **Traceability validation:** reconcile sampled rows/aggregates to warehouse for at least 3 filter scenarios.
+- **Documentation validation:** confirm hypothesis matrix, lineage, formulas, test logs, and Library version history are complete and signed.
+
+## E) Risks and Mitigations
+- **Risk 1 (audit):** undocumented parameter defaults can be challenged in review.
+  - Mitigation: maintain a controlled parameter register and include defaults in release notes.
+- **Risk 2 (performance):** users may attempt broad filters, causing large loads.
+  - Mitigation: enforce required upstream filters and maximum date window unless explicitly overridden.
+- **Risk 3 (data trust):** label/key remapping errors may break confidence.
+  - Mitigation: add automated reconciliation checks per release (row counts + key-label consistency).
+- **Risk 4 (operations):** no Automation Services means no pre-warming.
+  - Mitigation: optimize first-open defaults and provide usage guidance for load sequence.
+
+## F) Spotfire Administration Scope
+- Core solution **does not require** server memory tuning, node config changes, or hardware expansion.
+- Any admin-level scaling actions are **out of scope** and treated as future enhancement only.
+
+## G) Scripting and Advanced Extensions
+- Primary solution is configuration-first (no IronPython, no R/Python data functions required).
+- Scripts are unnecessary unless a later requirement cannot be met through parameterized loading and standard configuration.
+
+## H) Final Checklist
+- **Accuracy:** warehouse reconciliation passed for defined scenarios.
+- **Performance:** load and responsiveness targets met with 1–3 concurrent sessions.
+- **Traceability:** transformation locations, formulas, and lineage documented.
+- **Documentation completeness:** hypothesis matrix, test evidence, Library version trail, and release notes complete.

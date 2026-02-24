@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Summary: Python Intro & Colab - Week 3 Tuesday</title>
+    <style>
+        :root {
+            --primary: #004a99;
+            --highlight-bg: #e7f3ff;
+            --warning-bg: #fee2e2;
+            --advice-bg: #fef3c7;
+            --text: #333;
+            --bg: #f4f4f9;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+        .linear-header {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-left: 10px solid var(--primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .bento-container {
+            max-width: 1100px;
+            margin: 0 auto 40px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(150px, auto);
+            gap: 20px;
+            padding: 20px;
+        }
+        .bento-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        .bento-item h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+        .row-2 { grid-row: span 2; }
+
+        .experience { background: var(--highlight-bg); }
+        .advice { background: var(--advice-bg); }
+        .python { background: #fffbeb; } /* Soft yellow for Python theme */
+
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div class="linear-header">
+    <nav style="margin-bottom: 20px; font-size: 0.9rem;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: bold;">&larr; Home</a>
+    </nav>
+    <p style="font-size: 0.8rem; color: #777; margin-bottom: 10px; font-weight: bold;">Week 3 | Feb 3, 2026 | Session 5</p>
+    <span class="tag">AI Impressions</span>
+    <h1>The Python Pivot</h1>
+    <p>This session officially transitioned the course into "Unit 3: Data Science Tools." Dr. Dagtas focused heavily on the accessibility of Python, framing it as a "data-centric" language that mirrors human logic. The emphasis on Google Colab highlights a modern shift in pedagogy: removing "tedious setup steps" (like local environment configuration) so students can focus immediately on logic and data storytelling. The discussion on "Duck Typing" and indentation-based syntax marks the move from theoretical DS to applied programming.</p>
+    <hr>
+    <h3>Quick Summary</h3>
+    <p>The class introduced Python programming fundamentals and the Google Colab environment. Dr. Dagtas covered basic syntax, variable management (global vs. local), and data types, utilizing W3Schools as a live lab. This acts as the foundation for upcoming work with the Diabetes dataset.</p>
+</div>
+
+<div class="bento-container">
+    
+    <!-- Design Philosophy -->
+    <div class="bento-item span-2 python">
+        <h3>🐍 Why Python for Data Science?</h3>
+        <p>Python has become one of the top 10 most popular languages due to its unique philosophy:</p>
+        <ul>
+            <li><strong>Concise conversion:</strong> Minimizes curly braces and semicolons to focus on functionality.</li>
+            <li><strong>Interpreted System:</strong> Allows for rapid "prototyping" and testing without waiting for long compile times.</li>
+            <li><strong>Data-Centric:</strong> Built to handle big data, mathematical operations, and complex statistical analysis through powerful libraries.</li>
+        </ul>
+    </div>
+
+    <!-- The Environment -->
+    <div class="bento-item experience">
+        <h3>🚀 Google Colab</h3>
+        <p>The primary tool for the unit:</p>
+        <ul>
+            <li>Excecute code directly in the browser.</li>
+            <li>No installation required.</li>
+            <li>Supports "Notebooks" (Code + Text + Visuals combined).</li>
+        </ul>
+    </div>
+
+    <!-- Syntax Basics -->
+    <div class="bento-item span-2">
+        <h3>📏 Key Syntax Rules</h3>
+        <p>Python differs from many C-based languages in critical ways:</p>
+        <ul>
+            <li><strong>Indentation Matters:</strong> Whitespace is not just for looks; it defines command blocks (e.g., inside an <code>if</code> statement). Incorrect spacing causes errors.</li>
+            <li><strong>Duck Typing:</strong> You don't need to declare if a variable is an Integer or String; Python "infers" the type based on the value assigned.</li>
+            <li><strong>Comments:</strong> Use <code>#</code> for single lines or <code>'''</code> triple quotes for multi-line documentation.</li>
+        </ul>
+    </div>
+
+    <!-- Variables & Scope -->
+    <div class="bento-item advice">
+        <h3>⚖️ Scope: Global vs. Local</h3>
+        <p>Understanding where data "lives":</p>
+        <ul>
+            <li><strong>Global:</strong> Valid throughout the entire program.</li>
+            <li><strong>Local:</strong> Restricted to a specific part (like a function).</li>
+            <li><strong>The "Global" Keyword:</strong> You can force a variable created inside a function to be global so the rest of the program can see it.</li>
+        </ul>
+    </div>
+
+    <!-- Data Types -->
+    <div class="bento-item">
+        <h3>📦 Python Data Types</h3>
+        <p>Standard types used in analysis:</p>
+        <ul>
+            <li><strong>Numeric:</strong> int, float, and complex numbers (using `j`).</li>
+            <li><strong>Collections:</strong> Lists, Tuples, Dictionaries, and Sets.</li>
+            <li><strong>The "None" Type:</strong> Used to represent the absence of a value (similar to Null).</li>
+        </ul>
+    </div>
+
+    <!-- Learning Resources -->
+    <div class="bento-item row-2 advice">
+        <h3>📚 Key Learning Resources</h3>
+        <p>Dr. Dagtas recommended these for the week:</p>
+        <ul>
+            <li><strong>W3Schools Python Tutorial:</strong> The best interactive for practicing basic commands.</li>
+            <li><strong>R vs Python:</strong> R is built purely for math/stats, while Python is general-purpose (Web + Apps + Data).</li>
+            <li><strong>Video Recordings:</strong> Watch the recordings on Blackboard covering the "Car Dataset" from last year as a baseline.</li>
+        </ul>
+    </div>
+
+    <!-- Upcoming Work -->
+    <div class="bento-item span-2">
+        <h3>📅 Next Steps: Diabetes Dataset</h3>
+        <p>The upcoming lab will involve:</p>
+        <ol>
+            <li>Importing <code>diabetes.csv</code> into Google Colab.</li>
+            <li>Executing analysis notebooks to predict outcomes.</li>
+            <li>Comparing simple regression vs. other models.</li>
+        </ol>
+    </div>
+
+</div>
+
+<footer>
+    <p>IFSC 77003: Data Science & Technologies | University of Arkansas at Little Rock</p>
+</footer>
+
+</body>
+</html>

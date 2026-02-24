@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW-M2 Task 2: University Website Evaluation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #3498db; margin-top: 30px; }
+        .metric-box {
+            background: #f8f9fa;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .score {
+            font-size: 2em;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .nav-links {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover { background: #2980b9; }
+        ul { margin-left: 20px; }
+        li { margin-bottom: 10px; }
+
+        .breadcrumbs {
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #666;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .breadcrumbs a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .breadcrumbs span {
+            margin: 0 8px;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> <span>&rsaquo;</span> <a href="hw2.html">HW2</a> <span>&rsaquo;</span> Task 2
+        </nav>
+        <h1>Task 2: Quantitative Website Evaluation</h1>
+        
+        <div class="metric-box">
+            <p><strong>University:</strong> <a href="https://www.uvg.edu.gt/" target="_blank">Universidad del Valle de Guatemala (UVG)</a></p>
+            <p><strong>Dimension:</strong> Credibility (Method 2: Breadcrumb Structure Analysis)</p>
+            <p><strong>Quantitative Score:</strong> <span class="score">0%</span></p>
+        </div>
+
+        <h2>Methodology</h2>
+        <p>This evaluation utilized the "Information Quality" framework discussed in the Jan 27 lecture. Specifically, I performed a structural audit of 5 core navigational hubs on the UVG domain to check for the presence of hierarchical breadcrumb trails.</p>
+        <ul>
+            <li><strong>Admissions:</strong> No breadcrumbs found.</li>
+            <li><strong>Academic Faculties:</strong> No breadcrumbs found.</li>
+            <li><strong>Student Wellness:</strong> No breadcrumbs found.</li>
+            <li><strong>Research Centers:</strong> No breadcrumbs found.</li>
+            <li><strong>Campus Information:</strong> No breadcrumbs found.</li>
+        </ul>
+
+        <h2>Analysis</h2>
+        <p>The 0% score highlights UVG's modern "flat" design philosophy. While the site is highly professional and visually engaging, the lack of visible navigational paths makes it difficult for external users to verify the institutional hierarchy of a page at a glance. This can impact the <strong>Authoritativeness</strong> component of credibility for users arriving from external search engines.</p>
+
+        <h2>Critique of Method</h2>
+        <p>Testing for breadcrumbs is a strong measure of <strong>structural transparency</strong>, but it is a flawed measure of <strong>overall credibility</strong>. Modern web design often replaces text-based trails with "Mega Menus" or sticky navigation to improve experience on mobile devices. This metric penalizes innovation and rewards "old-school" library-style architectures, regardless of whether the content itself is believable or accurate.</p>
+
+        <div class="nav-links">
+            <a href="hw2.html" class="btn">← Back to HW2 Overview</a>
+        </div>
+    </div>
+</body>
+</html>

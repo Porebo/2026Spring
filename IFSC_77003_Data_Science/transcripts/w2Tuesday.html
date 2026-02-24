@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Summary: Data Sourcing & Cleaning - Week 2 Tuesday</title>
+    <style>
+        :root {
+            --primary: #004a99;
+            --highlight-bg: #e7f3ff;
+            --warning-bg: #fee2e2;
+            --advice-bg: #fef3c7;
+            --text: #333;
+            --bg: #f4f4f9;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+        .linear-header {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-left: 10px solid var(--primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .bento-container {
+            max-width: 1100px;
+            margin: 0 auto 40px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(150px, auto);
+            gap: 20px;
+            padding: 20px;
+        }
+        .bento-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        .bento-item h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+        .row-2 { grid-row: span 2; }
+
+        .experience { background: var(--highlight-bg); }
+        .advice { background: var(--advice-bg); }
+        .data-cleaning { background: #f0fdf4; } /* Light green for cleaning */
+
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div class="linear-header">
+    <nav style="margin-bottom: 20px; font-size: 0.9rem;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: bold;">&larr; Home</a>
+    </nav>
+    <p style="font-size: 0.8rem; color: #777; margin-bottom: 10px; font-weight: bold;">Week 2 | Jan 27, 2026 | Session 3</p>
+    <span class="tag">AI Impressions</span>
+    <h1>The Narrative of Data</h1>
+    <p>This session humanized the technical reporting process by framing a Data Science project as a **story**. Dr. Pierce's "movie analogy"—setting the stage and developing characters (questions)—is a brilliant way to make documentation engaging. The lecture also displayed high empathy for privacy constraints, suggesting sophisticated workarounds like data simulation when real data is locked behind regulations like FERPA.</p>
+    <hr>
+    <h3>Quick Summary</h3>
+    <p>The lecture focused on "project shopping" (finding ideas and data), navigating Data Use Agreements (DUA), and the rigorous "50% effort" phase of Data Cleaning. Students were encouraged to explore diverse datasets from local hubs to global APIs (YouTube, Netflix) and learned recipes for handling missingness, duplicates, and outliers.</p>
+</div>
+
+<div class="bento-container">
+    <!-- Project Strategy -->
+    <div class="bento-item span-2">
+        <h3>🎬 The Movie Analogy: Telling your Data Story</h3>
+        <p>A good data report is not a dry log; it’s a narrative:</p>
+        <ul>
+            <li><strong>Set the Stage:</strong> Define the context (e.g., Old West vs. Future). Why does this problem matter?</li>
+            <li><strong>Develop the Characters:</strong> Your characters are your <em>Questions</em>. Show their motivations and why investigating them is worthwhile.</li>
+        </ul>
+    </div>
+
+    <!-- Data Shopping -->
+    <div class="bento-item">
+        <h3>🛒 "Project Shopping"</h3>
+        <p>Don't have an idea? Start with the data! Explore:</p>
+        <ul>
+            <li><strong>Kaggle/Challenges:</strong> See what others are solving.</li>
+            <li><strong>Little Rock Data Hub:</strong> Local stats on crime, parks, and zoo admissions.</li>
+            <li><strong>Gov/Global:</strong> Data.gov, World Bank, UNICEF, and US Census.</li>
+        </ul>
+    </div>
+
+    <!-- Non-Tabular Data -->
+    <div class="bento-item">
+        <h3>🌐 APIs & Unstructured Data</h3>
+        <p>Push the envelope beyond spreadsheets:</p>
+        <ul>
+            <li><strong>Media:</strong> YouTube, Netflix, and Music APIs.</li>
+            <li><strong>Text:</strong> Project Gutenberg (75k books).</li>
+            <li><strong>IoT:</strong> Live sensor feeds and webcam images.</li>
+        </ul>
+    </div>
+
+    <!-- Data Cleaning Section -->
+    <div class="bento-item data-cleaning span-2 row-2">
+        <h3>🧹 The 50% Rule: Data Cleaning Recipes</h3>
+        <p>Data is rarely perfect. Common "wrangling" tasks include:</p>
+        <ul>
+            <li><strong>Missing Data:</strong> Decide to <em>remove</em> or <em>impute</em> (fill with mean/median/best guess).</li>
+            <li><strong>Duplicates:</strong> Look for "Elizabeth Pierce" vs. "Liz Pierce" inconsistencies.</li>
+            <li><strong>Normalization:</strong> Standardize units (kg vs lbs) and formats (01/22/26 vs Jan 22).</li>
+            <li><strong>Outliers:</strong> Use Box Plots to find values more than 1.5x the Interquartile Range (IQR).</li>
+            <li><strong>Integrity:</strong> Check for "Data Entry Errors" (e.g., birth dates in the future).</li>
+        </ul>
+    </div>
+
+    <!-- Data Use Agreements -->
+    <div class="bento-item">
+        <h3>⚖️ Data Use Agreements (DUA)</h3>
+        <p>Understand the rules of the data you find:</p>
+        <ul>
+            <li><strong>Education:</strong> Most APIs allow free "fair use" for learning.</li>
+            <li><strong>Commercial:</strong> Licensing is required if you plan to sell an app using the data.</li>
+            <li><strong>Acknowledgement:</strong> Always cite your source!</li>
+        </ul>
+    </div>
+
+    <!-- Simulation -->
+    <div class="bento-item advice">
+        <h3>🧪 Privacy Workaround</h3>
+        <p>If data is protected (like student FERPA records) or certain conditions are rare, use <strong>Mockaroo</strong> to simulate realistic datasets for testing your models.</p>
+    </div>
+</div>
+
+<!-- Humanizing Section -->
+<div class="bento-container">
+    <div class="bento-item experience span-1">
+        <span class="tag">Professional Perspective</span>
+        <h3>Info Science vs. Info Quality</h3>
+        <p>Dr. Pierce explains that our department is split into Analysis (Science) and Fitness-for-use (Quality). A great data scientist must master both: you can't have reliable insights without "clean" data.</p>
+    </div>
+
+    <div class="bento-item advice span-2">
+        <span class="tag">Career Advice</span>
+        <h3>Domain Knowledge Matters</h3>
+        <div style="display: flex; gap: 15px;">
+            <div style="flex: 1;">
+                <p>Pick a project area where you have "subject matter expertise." It’s hard to tell a story about the Old West if you've never seen a horse.</p>
+            </div>
+            <div style="flex: 1; border-left: 2px solid #ccc; padding-left: 15px;">
+                <p><strong>The "Team" Approach:</strong> In industry, data science is a team sport. One person knows stats, one knows the domain, and one knows the tech. Together, they find the "Bun & Hot Dog" associations that matter.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    IFSC 77003-H02 | Data Science & Technologies | Dr. Liz Pierce
+</footer>
+
+</body>
+</html>

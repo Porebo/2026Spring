@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW3 | Professional Fishbone Analysis</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --accent: #8b5cf6;
+            --bg: #0f172a;
+            --sidebar-bg: rgba(30, 41, 59, 0.7);
+            --text-light: #f8fafc;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body {
+            background: var(--bg);
+            color: var(--text-light);
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 380px;
+            background: var(--sidebar-bg);
+            backdrop-filter: blur(12px);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            z-index: 10;
+        }
+
+        .breadcrumbs {
+            margin-bottom: 14px;
+            font-size: 0.9rem;
+            color: #cbd5e0;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        .breadcrumbs a {
+            color: #a5b4fc;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .breadcrumbs a:hover,
+        .top-nav a:hover {
+            text-decoration: underline;
+        }
+
+        .top-nav {
+            margin-bottom: 16px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .top-nav a {
+            color: #a5b4fc;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        h2 { font-size: 1.2rem; margin-bottom: 15px; color: var(--primary); }
+
+        .scroll-area {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .cat-group {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--accent);
+        }
+
+        input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border);
+            color: white;
+            padding: 8px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .btn {
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-add { background: var(--primary); color: white; margin-top: 10px; width: 100%; }
+        .btn-remove { background: #ef4444; color: white; font-size: 0.7rem; padding: 4px 8px; }
+
+        .diagram-container {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+        }
+
+        svg { width: 95%; height: 95%; filter: drop-shadow(0 0 20px rgba(0,0,0,0.5)); }
+
+        .label-effect { font-weight: 700; font-size: 20px; fill: white; }
+        .label-cat { font-weight: 700; font-size: 16px; fill: #a5b4fc; }
+        .label-sub { font-size: 12px; fill: #cbd5e0; }
+        .label-subsub { font-size: 11px; fill: #94a3b8; font-style: italic; }
+
+        @media (max-width: 920px) {
+            body {
+                flex-direction: column;
+                height: auto;
+                min-height: 100vh;
+                overflow: auto;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .diagram-container {
+                min-height: 70vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<aside class="sidebar">
+    <nav class="breadcrumbs">
+        <a href="index.html">Home</a> <span>›</span> <a href="hw3.html">Homework 3</a> <span>›</span> Fishbone Diagram
+    </nav>
+
+    <div class="top-nav">
+        <a href="hw3.html">← Back to HW3</a>
+        <a href="index.html">Back to Home</a>
+    </div>
+
+    <h2>Data Input</h2>
+    <div class="control-group">
+        <label style="font-size: 0.8rem; opacity: 0.7;">PROBLEM STATEMENT</label>
+        <input type="text" id="effect-in" placeholder="What is the problem?">
+    </div>
+    
+    <div class="scroll-area" id="cat-list"></div>
+    
+    <button class="btn btn-add" id="add-btn">+ Add Category</button>
+    <button class="btn btn-add" style="background: #334155; margin-top: 5px;" id="reset-btn">Reload Defaults</button>
+</aside>
+
+<main class="diagram-container">
+    <svg id="canvas" viewBox="0 0 1200 800"></svg>
+</main>
+
+<script>
+    const catList = document.getElementById('cat-list');
+    const effectIn = document.getElementById('effect-in');
+    const svg = document.getElementById('canvas');
+
+    const defaultData = {
+        effect: "Maximize Course Value (IFSC 71003)",
+        cats: [
+            { name: "Time Management", sub: "Weekly blocks, Early starts", subsub: "Deep Work" },
+            { name: "Resources", sub: "AI Transcripts, Rubrics", subsub: "Active Recalls" },
+            { name: "Environment", sub: "Fast Web, Dual Screens", subsub: "Ergonomics" },
+            { name: "Motivation", sub: "Goal Setting, Peer Groups", subsub: "Resilience" }
+        ]
+    };
+
+    function createUI(data) {
+        const div = document.createElement('div');
+        div.className = 'cat-group';
+        div.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+                <span style="font-size:0.7rem; color:var(--accent); font-weight:bold;">CATEGORY</span>
+                <button class="btn btn-remove">DEL</button>
+            </div>
+            <input type="text" class="in-name" value="${data.name}" placeholder="Category Name">
+            <input type="text" class="in-sub" value="${data.sub}" placeholder="Sub-causes (comma separated)">
+            <input type="text" class="in-subsub" value="${data.subsub}" placeholder="Sub-sub branch (PhD requirement)">
+        `;
+        div.querySelector('.btn-remove').onclick = () => { div.remove(); draw(); };
+        div.querySelectorAll('input').forEach(i => i.oninput = draw);
+        return div;
+    }
+
+    function draw() {
+        svg.innerHTML = '';
+        const effect = effectIn.value || "Effect";
+        const categories = Array.from(catList.querySelectorAll('.cat-group')).map(g => ({
+            name: g.querySelector('.in-name').value,
+            sub: g.querySelector('.in-sub').value.split(',').map(s => s.trim()).filter(Boolean),
+            subsub: g.querySelector('.in-subsub').value.trim()
+        }));
+
+        const midY = 400;
+        const spineStart = 100;
+        const spineEnd = 900;
+
+        function wrapEffectText(text, maxCharsPerLine = 22, maxLines = 4) {
+            const words = String(text).trim().split(/\s+/).filter(Boolean);
+            if (words.length === 0) {
+                return ["Effect"];
+            }
+
+            const lines = [];
+            let currentLine = "";
+
+            words.forEach((word) => {
+                const candidate = currentLine ? `${currentLine} ${word}` : word;
+                if (candidate.length <= maxCharsPerLine) {
+                    currentLine = candidate;
+                } else {
+                    if (currentLine) {
+                        lines.push(currentLine);
+                    }
+                    currentLine = word;
+                }
+            });
+
+            if (currentLine) {
+                lines.push(currentLine);
+            }
+
+            if (lines.length > maxLines) {
+                const visible = lines.slice(0, maxLines);
+                visible[maxLines - 1] = `${visible[maxLines - 1]}…`;
+                return visible;
+            }
+
+            return lines;
+        }
+
+        const wrappedEffectLines = wrapEffectText(effect);
+        const effectText = wrappedEffectLines
+            .map((line, index) => `<tspan x="${spineEnd + 70}" dy="${index === 0 ? 0 : 24}">${line}</tspan>`)
+            .join('');
+
+        svg.innerHTML += `
+            <line x1="${spineStart}" y1="${midY}" x2="${spineEnd}" y2="${midY}" stroke="white" stroke-width="4" />
+            <polygon points="${spineEnd},${midY-20} ${spineEnd+60},${midY} ${spineEnd},${midY+20}" fill="var(--primary)" />
+            <text x="${spineEnd+70}" y="${midY-20}" class="label-effect">${effectText}</text>
+        `;
+
+        categories.forEach((c, i) => {
+            const isTop = i % 2 === 0;
+            const xBase = spineStart + 100 + (i * 180);
+            const yEnd = isTop ? midY - 250 : midY + 250;
+            const xEnd = xBase - 100;
+
+            svg.innerHTML += `<line x1="${xBase}" y1="${midY}" x2="${xEnd}" y2="${yEnd}" stroke="var(--accent)" stroke-width="3" />`;
+            svg.innerHTML += `<text x="${xEnd}" y="${isTop ? yEnd - 15 : yEnd + 25}" class="label-cat" text-anchor="middle">${c.name}</text>`;
+
+            c.sub.forEach((s, j) => {
+                const subY = isTop ? midY - 60 - (j * 50) : midY + 60 + (j * 50);
+                const subXStart = xBase - ((subY - midY) / (yEnd - midY) * 100);
+                svg.innerHTML += `
+                    <line x1="${subXStart}" y1="${subY}" x2="${subXStart + 60}" y2="${subY}" stroke="#475569" stroke-width="1.5" />
+                    <text x="${subXStart + 65}" y="${subY + 4}" class="label-sub">${s}</text>
+                `;
+            });
+
+            if (c.subsub) {
+                const ssY = isTop ? yEnd + 40 : yEnd - 40;
+                svg.innerHTML += `<text x="${xEnd}" y="${ssY}" class="label-subsub" text-anchor="middle">↳ ${c.subsub}</text>`;
+            }
+        });
+    }
+
+    document.getElementById('add-btn').onclick = () => {
+        catList.appendChild(createUI({ name: "New", sub: "", subsub: "" }));
+        draw();
+    };
+
+    document.getElementById('reset-btn').onclick = () => {
+        effectIn.value = defaultData.effect;
+        catList.innerHTML = '';
+        defaultData.cats.forEach(c => catList.appendChild(createUI(c)));
+        draw();
+    };
+
+    document.getElementById('reset-btn').click();
+    effectIn.oninput = draw;
+</script>
+</body>
+</html>

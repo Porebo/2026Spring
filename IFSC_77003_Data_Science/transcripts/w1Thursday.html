@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Summary: Data Science Evolution - Week 1 Thursday</title>
+    <style>
+        :root {
+            --primary: #004a99;
+            --highlight-bg: #e7f3ff;
+            --warning-bg: #fee2e2;
+            --advice-bg: #fef3c7;
+            --text: #333;
+            --bg: #f4f4f9;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+        .linear-header {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-left: 10px solid var(--primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .bento-container {
+            max-width: 1100px;
+            margin: 0 auto 40px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(150px, auto);
+            gap: 20px;
+            padding: 20px;
+        }
+        .bento-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        .bento-item h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        /* Bento Layout Spanning */
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+        .row-2 { grid-row: span 2; }
+
+        /* Specific Colors */
+        .weather { background: var(--warning-bg); }
+        .experience { background: var(--highlight-bg); }
+        .advice { background: var(--advice-bg); }
+
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div class="linear-header">
+    <nav style="margin-bottom: 20px; font-size: 0.9rem;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: bold;">&larr; Home</a>
+    </nav>
+    <p style="font-size: 0.8rem; color: #777; margin-bottom: 10px; font-weight: bold;">Week 1 | Jan 22, 2026 | Session 2</p>
+    <span class="tag">AI Impressions</span>
+    <h1>Practical Foundations & Preparedness</h1>
+    <p>This session reinforced the "student-first" mentality seen in Tuesday's class while diving deeper into the technical vocabulary of the field. What stands out is Dr. Pierce's **operational realism**—addressing winter storms and cloud loading times with as much priority as data science theory. It humanizes the learning process by acknowledging the real-world friction students face.</p>
+    <hr>
+    <h3>Quick Summary</h3>
+    <p>The lecture focused on operational logistics (recordings and weather), the first assignment (CognitiveClass.ai), and a fundamental breakdown of data types (Nominal, Ordinal, Discrete, Continuous). It concluded with the lifecycle of a Data Science project and a case study on how passion-driven projects lead to career breakthroughs.</p>
+</div>
+
+<div class="bento-container">
+    <!-- Logistics & Weather -->
+    <div class="bento-item weather span-2">
+        <h3>❄️ Winter Weather Preparedness</h3>
+        <p>Expect sleet and snow (4-8 inches) starting Friday afternoon. Dr. Pierce advises:</p>
+        <ul>
+            <li>Stock up on food/supplies now.</li>
+            <li>Charge devices and do laundry before the storm.</li>
+            <li>Class will be webcast Tuesday at 1:30 PM *if* power/internet holds; otherwise, look for asynchronous recordings.</li>
+        </ul>
+    </div>
+
+    <div class="bento-item">
+        <h3>🎥 Accessing Recordings</h3>
+        <p>Recordings are found under the <strong>Recording Tab</strong> in Blackboard (not the 'upcoming' tab). Due to cloud traffic, files might load slowly—download the MP4 for offline viewing if needed.</p>
+    </div>
+
+    <!-- Assignment -->
+    <div class="bento-item span-1">
+        <h3>🎓 Assignment #1</h3>
+        <p>Complete a tutorial on <a href="https://cognitiveclass.ai">CognitiveClass.ai</a> (IBM sponsored).</p>
+        <ul>
+            <li>Options: Big Data 101, Data Science 101, or Methodology.</li>
+            <li>Submit the **Certificate of Completion** to Blackboard.</li>
+        </ul>
+    </div>
+
+    <!-- Technical Section -->
+    <div class="bento-item span-2">
+        <h3>🔢 The 4 Traditional Data Types</h3>
+        <p>The foundation of structured data analysis:</p>
+        <ol>
+            <li><strong>Nominal:</strong> Labels (Gender, Manufacturer).</li>
+            <li><strong>Ordinal:</strong> Ordered categories (Class ranking, Satisfaction).</li>
+            <li><strong>Discrete:</strong> Countable whole numbers (Number of cars).</li>
+            <li><strong>Continuous:</strong> Measured values with decimals (Weight, Length).</li>
+        </ol>
+    </div>
+
+    <!-- Data Evolution -->
+    <div class="bento-item row-2">
+        <h3>📈 Data Evolution</h3>
+        <p><strong>20% Structured:</strong> Traditional database data.</p>
+        <p><strong>80% Unstructured:</strong> Video, audio, DNA, sensors, and social media.</p>
+        <p><em>Data Analyst:</em> Focuses on historical/past data.</p>
+        <p><em>Data Scientist:</em> Forward-looking, future predictions, and ML models.</p>
+    </div>
+
+    <!-- Project Pipeline -->
+    <div class="bento-item span-2">
+        <h3>🔄 The Project Pipeline</h3>
+        <p>1. <strong>Discovery:</strong> Finding the question (50% of the work).<br>
+        2. <strong>Data Collection:</strong> Use existing datasets (Kaggle/data.gov) to save time.<br>
+        3. <strong>Modeling:</strong> Start simple (Regression) before going complex.<br>
+        4. <strong>Fine-tuning:</strong> Optimizing for accuracy.<br>
+        5. <strong>Operationalizing:</strong> Putting models into production (e.g., Target pregnancy alerts or Kroger inventory).</p>
+    </div>
+</div>
+
+<!-- Professional Experience & Advice Section -->
+<div class="bento-container">
+    <div class="bento-item experience span-1">
+        <span class="tag">Professional Background</span>
+        <h3>Dr. Liz Pierce</h3>
+        <p>Chair of the Department of Information Science. She teaches across both Information Science and Information Quality programs. Her approach combines academic leadership with a deep specialty in data quality.</p>
+    </div>
+
+    <div class="bento-item advice span-2">
+        <span class="tag">Career Advice</span>
+        <h3>The "Walmart" Success Story</h3>
+        <div style="display: flex; gap: 15px;">
+            <div style="flex: 1;">
+                <p>A former student leveraged his passion for <strong>college football</strong> to bridge the gap into professional analysis. Instead of just "wins and losses," he analyzed recruiting efficacy and yardage patterns.</p>
+            </div>
+            <div style="flex: 1; border-left: 2px solid #ccc; padding-left: 15px;">
+                <p><strong>Key Insight:</strong> You don't need a "sledgehammer" (complex ML) if a "small hammer" (basic stats) solves the problem thoughtfully. This project helped him land a job as an analyst at Walmart.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    IFSC 77003-H02 | Data Science & Technologies | Dr. Liz Pierce
+</footer>
+
+</body>
+</html>

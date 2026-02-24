@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW3 — Tool / Source Notes</title>
+    <style>
+        body{font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background:#f5f7fa;color:#333;padding:20px}
+        .container{width:calc(100% - 40px);margin:0 auto;padding:18px}
+        .breadcrumbs{margin-bottom:18px;font-size:0.95em;color:#666}
+        .breadcrumbs a{color:#667eea;text-decoration:none}
+        h1{color:#667eea;margin-bottom:6px}
+        .subtitle{color:#666;margin-bottom:18px}
+        .back-link{display:inline-block;margin-bottom:14px;padding:8px 12px;background:#667eea;color:#fff;text-decoration:none;border-radius:5px}
+        .card{background:#fff;border:1px solid #e6ecf8;padding:18px;border-radius:8px;color:#444;margin-top:12px}
+        .field-label{font-weight:700;color:#2c3e50;margin-bottom:6px}
+        .field{margin-bottom:12px}
+        .small{font-size:0.9em;color:#666}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> <span>&rsaquo;</span> <a href="hw3.html">Homework 3</a> <span>&rsaquo;</span> Tool / Source Notes
+        </nav>
+
+        <a href="hw3.html" class="back-link">← Back to HW3</a>
+
+        <h1>Part 6: Tool / Source Notes</h1>
+        <p class="subtitle">Placeholder for listing tools used to build the fishbone diagram, source URLs, and brief ratings/opinions.</p>
+
+        <div class="card">
+            <p>In the past I have used several tools for diagrams. My favorite was Visio. I also tried draw.io and Lucidchart, and I experimented with a code-based tool that generates diagrams programmatically. Each of these tools has a learning curve: they require practice and repeated use to remember the exact steps.</p>
+
+            <p>For this fishbone task I approached it differently. I used AI and iterated through three different versions across three sessions until I arrived at the final product. The process depended heavily on prompt engineering. I follow a technique I call creating a "nova team" inside the prompt: I tell the AI to act as a group of specialists — in this case, a computer-science professor, a UX designer, and a master web coder. The trio is given the same assignment: build a fishbone diagram in a single HTML page using basic resources like JavaScript, with no server-side tools required. The specialists must discuss their code; when one is clearly wrong, that specialist leaves the conversation. I learned this prompting technique in a course at UALR.</p>
+
+            <p>I asked that the final product be pure HTML (client-side), and I allowed the AI to ask clarifying questions. I ran the prompt in ChatGPT, Grok, and VS Code Copilot (auto mode). I then fed the versions from Grok and ChatGPT into VS Code and iterated on the combined result. In VS Code I requested cosmetic adjustments and small code tweaks, but the majority of the work — structure and interactivity — came from the three AI-generated versions.</p>
+
+            <p>Why not use Visio (my old favorite)? Visio provides a visual canvas and reusable shapes, but it does not produce interactive HTML you can copy into a website. For this assignment I wanted a self-contained, editable web page that draws the diagram in-browser. Classic diagram tools are useful for static artwork, but they lack the interactivity and portability of HTML+JS.</p>
+
+            <p>My view is that authoring tools like Visio are evolving as AI grows more capable. The real skill now lies in crafting effective prompts and engineering the AI interaction. In the future, tools such as Tableau or Spotfire may also change as AI takes on more of the workflow, but prompt engineering will remain essential.</p>
+
+            <p>This note was written in February 2026. Ask me again in a year and I may well choose a different technique, but for now I find AI-assisted, prompt-driven development to be a powerful way to produce interactive, web-friendly diagrams.</p>
+        </div>
+
+        <footer style="margin-top:22px;color:#999;font-size:0.9em">&copy; 2026 Lester S. Carcamo</footer>
+    </div>
+</body>
+</html>

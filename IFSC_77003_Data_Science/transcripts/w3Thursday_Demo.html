@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Summary: Python Data Demo - Week 3 Thursday (Feb 5)</title>
+    <style>
+        :root {
+            --primary: #004a99;
+            --highlight-bg: #e7f3ff;
+            --warning-bg: #fee2e2;
+            --advice-bg: #fef3c7;
+            --text: #333;
+            --bg: #f4f4f9;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+        .linear-header {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-left: 10px solid var(--primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .bento-container {
+            max-width: 1100px;
+            margin: 0 auto 40px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(150px, auto);
+            gap: 20px;
+            padding: 20px;
+        }
+        .bento-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        .bento-item h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+        .row-2 { grid-row: span 2; }
+
+        .experience { background: var(--highlight-bg); }
+        .advice { background: var(--advice-bg); }
+        .model-results { background: #f0fdf4; } /* Light green for success/results */
+
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="linear-header">
+    <nav style="margin-bottom: 20px; font-size: 0.9rem;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: bold;">&larr; Home</a>
+    </nav>
+    <p style="font-size: 0.8rem; color: #777; margin-bottom: 10px; font-weight: bold;">Week 3 | Feb 5, 2026 | Session 6</p>
+    <span class="tag">AI Impressions</span>
+    <h1>The Power of Pandas</h1>
+    <p>This session moved from the "vocabulary" of Python to the "literacy" of Data Science. Dr. Dagtas demonstrated how a few lines of <strong>Pandas</strong> code can replace hours of manual data labor—cleaning duplicates, fixing formats, and visualizing heat maps of correlations. The most impactful takeaway was the 30/70 training-to-testing split, which teaches that a model’s value isn’t just in its performance on known data, but its predictive honesty on the unknown.</p>
+    <hr>
+    <h3>Quick Summary</h3>
+    <p>Today was a hands-on deep dive into the <strong>Diabetes Dataset</strong> using Google Colab. The class explored the Pandas and NumPy libraries, data cleaning maneuvers (replacing invalid '0' values with medians), and concluded by comparing 7 different machine learning models to see which best predicts a diabetes diagnosis.</p>
+</div>
+
+<div class="bento-container">
+    
+    <!-- Libraries -->
+    <div class="bento-item span-2 experience">
+        <h3>📦 The Core Libraries</h3>
+        <p>Two major Python "add-ons" were analyzed for their specific roles in the project:</p>
+        <ul>
+            <li><strong>Pandas:</strong> The "Swiss Army Knife" for data analysis. Used for loading CSVs, cleaning empty cells, and indexing data frames (<code>df.head()</code>, <code>df.tail()</code>).</li>
+            <li><strong>NumPy:</strong> Focused on performance and advanced math. Essential for working with large arrays and random distribution functions.</li>
+            <li><strong>Seaborn:</strong> Specifically used for statistical visualizations like **Heat Maps**.</li>
+        </ul>
+    </div>
+
+    <!-- Data Cleaning -->
+    <div class="bento-item advice">
+        <h3>🧹 Data Cleaning Tactics</h3>
+        <p>Real-world data is rarely perfect. Dr. Dagtas highlighted:</p>
+        <ul>
+            <li><strong>Duplicate Removal:</strong> Using <code>duplicated()</code> to ensure entities don't repeat.</li>
+            <li><strong>Imputation:</strong> Replacing erroneous '0' values (e.g., zero blood pressure) with the **Median** to maintain statistical balance.</li>
+            <li><strong>Aliasing:</strong> Using shortcuts like <code>import pandas as pd</code> to save time.</li>
+        </ul>
+    </div>
+
+    <!-- Machine Learning Workflow -->
+    <div class="bento-item span-3 model-results">
+        <h3>🤖 The Machine Learning Pipeline (30/70)</h3>
+        <p>The class performed a complete predictive model workflow:</p>
+        <ul>
+            <li><strong>Training Split (30%):</strong> A random subset of data used to "teach" the algorithms.</li>
+            <li><strong>Testing Split (70%):</strong> The objective data used to evaluate how well the model actually works.</li>
+            <li><strong>Evaluation Metrics:</strong> Moving beyond simple "Accuracy" to understand <strong>Recall</strong> and <strong>Precision</strong> (finding the truth vs. avoiding false alarms).</li>
+        </ul>
+    </div>
+
+    <!-- Visualization -->
+    <div class="bento-item span-2">
+        <h3>🖼️ Advanced Visualization</h3>
+        <p>Plots used to find hidden stories in the Diabetes data:</p>
+        <ul>
+            <li><strong>Heat Maps:</strong> Blue/Dark color indicators showing which risk factors (Age, BMI, Glucose) are most strongly correlated with the outcome.</li>
+            <li><strong>Histograms:</strong> Showing the "Age distribution" of the patient population.</li>
+            <li><strong>Subplots:</strong> Comparing two diagrams side-by-side (e.g., a Bar chart vs. a Pie chart) to see proportions.</li>
+        </ul>
+    </div>
+
+    <!-- Technical Tips -->
+    <div class="bento-item advice">
+        <h3>📝 Python Pro-Tips</h3>
+        <ul>
+            <li><strong>Negative Indexing:</strong> Python arrays allow you to count backwards from the end (starting at -1).</li>
+            <li><strong>Recursive Calls:</strong> Using functions that call themselves for complex math like Fibonacci series.</li>
+            <li><strong>In-Place Updates:</strong> Correcting data directly in the variable memory to save space.</li>
+        </ul>
+    </div>
+
+    <!-- The 7 Models -->
+    <div class="bento-item span-3">
+        <h3>⚖️ Model Comparison Results</h3>
+        <p>The summary ended with comparing 7 models simultaneously in the notebook. Key takeaway: There is no "perfect" algorithm; some have higher precision, while others have better recall. The goal is to compare them and pick the one that fits the "Story" you are trying to tell with the data.</p>
+    </div>
+
+</div>
+
+<footer>
+    <p>IFSC 77003: Data Science & Technologies | University of Arkansas at Little Rock</p>
+</footer>
+
+</body>
+</html>
