@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW4 | Task 1: Form Creation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f7fa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: transparent;
+            max-width: none;
+            width: calc(100% - 40px);
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 { color: #667eea; margin-bottom: 10px; }
+
+        .description {
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .breadcrumbs {
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #666;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .breadcrumbs a { color: #667eea; text-decoration: none; font-weight: 500; }
+        .breadcrumbs span { margin: 0 8px; color: #ccc; }
+
+        .nav {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .nav a { color: #667eea; text-decoration: none; margin-right: 15px; font-weight: 500; }
+        .nav a:hover { text-decoration: underline; }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+            max-width: 650px;
+        }
+
+        .form-container h2 {
+            color: #764ba2;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.95em;
+        }
+
+        .form-group .hint {
+            display: block;
+            font-size: 0.82em;
+            color: #888;
+            margin-bottom: 4px;
+            font-weight: 400;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="date"],
+        .form-group input[type="time"],
+        .form-group input[type="number"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 0.95em;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 4px;
+        }
+
+        .radio-group label, .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .form-actions {
+            margin-top: 22px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-submit {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 11px 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-submit:hover { background-color: #764ba2; }
+
+        .btn-view {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .btn-view:hover { text-decoration: underline; }
+
+        .component-note {
+            display: inline-block;
+            background: #eef1ff;
+            color: #667eea;
+            font-size: 0.75em;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 6px;
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> <span>&rsaquo;</span> <a href="hw4.html">Homework 4</a> <span>&rsaquo;</span> Task 1: Form Creation
+        </nav>
+
+        <h1>Task 1: Form Creation</h1>
+        <p class="description">A rideshare driver shift log using 8 different HTML form components. Data is submitted to a PHP handler and saved for later retrieval.</p>
+
+        <div class="nav">
+            <a href="hw4.html">&larr; Back to Homework 4</a>
+        </div>
+
+        <div class="form-container">
+            <h2>🚗 Rideshare Driver Log</h2>
+
+            <form action="hw4FormHandler.php" method="post">
+
+                <!-- Component 1: date -->
+                <div class="form-group">
+                    <label>Shift Date <span class="component-note">date</span></label>
+                    <input type="date" name="shift_date" required>
+                </div>
+
+                <!-- Component 2: time -->
+                <div class="form-group">
+                    <label>Start Time <span class="component-note">time</span></label>
+                    <input type="time" name="start_time" required>
+                </div>
+
+                <!-- Component 3: select -->
+                <div class="form-group">
+                    <label>Platform <span class="component-note">select</span></label>
+                    <select name="platform" required>
+                        <option value="" disabled selected>-- Choose platform --</option>
+                        <option value="Uber">Uber</option>
+                        <option value="Lyft">Lyft</option>
+                        <option value="Both">Both</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Component 4: text -->
+                <div class="form-group">
+                    <label>Area Driven <span class="component-note">text</span></label>
+                    <span class="hint">General area or zone (e.g., Downtown, Airport, Suburbs)</span>
+                    <input type="text" name="area" placeholder="e.g., Downtown Bakersfield" required>
+                </div>
+
+                <!-- Component 5: number -->
+                <div class="form-group">
+                    <label>Number of Rides <span class="component-note">number</span></label>
+                    <input type="number" name="ride_count" min="0" max="100" placeholder="0" required>
+                </div>
+
+                <!-- Component 6: radio -->
+                <div class="form-group">
+                    <label>Shift Type <span class="component-note">radio</span></label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="shift_type" value="Morning" required> Morning</label>
+                        <label><input type="radio" name="shift_type" value="Afternoon"> Afternoon</label>
+                        <label><input type="radio" name="shift_type" value="Evening"> Evening</label>
+                        <label><input type="radio" name="shift_type" value="Late Night"> Late Night</label>
+                    </div>
+                </div>
+
+                <!-- Component 7: checkbox -->
+                <div class="form-group">
+                    <label>Extras <span class="component-note">checkbox</span></label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="cash_tips" value="yes"> Cash tips received</label>
+                        <label><input type="checkbox" name="long_ride" value="yes"> Had a long ride (30+ min)</label>
+                        <label><input type="checkbox" name="surge" value="yes"> Surge pricing active</label>
+                    </div>
+                </div>
+
+                <!-- Component 8: textarea -->
+                <div class="form-group">
+                    <label>Notes <span class="component-note">textarea</span></label>
+                    <textarea name="notes" placeholder="Any observations, memorable rides, issues..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <input type="submit" value="Log Shift" class="btn-submit">
+                    <a href="hw4FormResults.php" class="btn-view">📋 View Past Entries</a>
+                </div>
+            </form>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Lester S. Carcamo. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

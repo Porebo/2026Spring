@@ -15,21 +15,11 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #e5e5e5;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             max-width: 900px;
-            width: 100%;
-            padding: 40px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
         
         h1 {
@@ -99,6 +89,9 @@
         }
         
         .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 10px;
             margin-bottom: 30px;
             padding-bottom: 20px;
             border-bottom: 2px solid #f0f0f0;
@@ -106,13 +99,13 @@
         
         .nav a {
             display: inline-block;
+            flex: 1;
             background-color: #667eea;
             color: white;
             text-decoration: none;
             padding: 12px 16px;
             border-radius: 5px;
             font-weight: 500;
-            margin-right: 10px;
             transition: background-color 0.3s ease;
             line-height: 1.4;
         }
@@ -169,7 +162,6 @@
     </style>
 </head>
 <body>
-    <div class="container">
         <nav class="breadcrumbs">
             Home
         </nav>
@@ -181,7 +173,7 @@
             <a href="hw1.html">Homework 1<span class="status" style="color: #2ecc71;">✓ Ready for Grading</span></a>
             <a href="hw2.html">Homework 2<span class="status" style="color: #2ecc71;">✓ Ready for Grading</span></a>
             <a href="hw3.html">Homework 3<span class="status" style="color: #2ecc71;">✓ Ready for Grading</span></a>
-            <a href="hw4.html">Homework 4<span class="status" style="color: #2ecc71;">✓ Ready for Grading</span></a>
+            <a href="hw4.html">Homework 4<span class="status" style="color: #f39c12;">⏳ In Progress</span></a>
         </div>
         
         <div class="section">
@@ -231,6 +223,5 @@
         <footer>
             <p>&copy; 2026 Lester S. Carcamo. All rights reserved.</p>
         </footer>
-    </div>
 </body>
 </html>
