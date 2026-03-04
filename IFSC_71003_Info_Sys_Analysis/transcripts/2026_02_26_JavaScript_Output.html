@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feb 26: JavaScript Output & Debugging</title>
+    <style>
+        :root {
+            --primary: #0c4f91;
+            --accent: #f39c12;
+            --bg: #f4f7fb;
+            --text: #1f2a37;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+        }
+        header {
+            background: linear-gradient(135deg, #0c4f91, #062647);
+            color: white;
+            text-align: center;
+            padding: 36px 20px;
+        }
+        header a {
+            color: #cfe6ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        header a:hover { text-decoration: underline; }
+        section {
+            max-width: 980px;
+            margin: 30px auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 24px 50px rgba(6,38,71,0.08);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid rgba(12,79,145,0.2);
+            padding-bottom: 10px;
+        }
+        h3 { margin-top: 1.3rem; color: #13385c; }
+        ul, ol { line-height: 1.75; }
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            margin-bottom: 12px;
+        }
+        .highlight {
+            background: #e9f3ff;
+            border-left: 5px solid var(--primary);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        .warning {
+            background: #fff4e5;
+            border-left: 5px solid var(--accent);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        .code-block {
+            background: #111827;
+            color: #f1f5f9;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+            font-size: 0.95rem;
+        }
+        th, td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+        }
+        th { background: rgba(12,79,145,0.08); }
+        footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+            padding: 40px 20px 60px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>JavaScript Output &amp; Debugging</h1>
+    <p>February 26, 2026 &bull; 3:55&ndash;5:07 PM</p>
+    <p class="tag">Module 6 &mdash; JavaScript Deep Dive</p>
+    <a href="index.html">&larr; Back to Transcript Hub</a>
+</header>
+
+<section>
+    <h2>1. Setup &amp; Screen Share Fix</h2>
+    <span class="tag">00:00&ndash;09:30</span>
+    <ul>
+        <li>Daniel highlighted the difference between the W3Schools JavaScript tutorial (`/js/`) and the JS Reference (`/jsref/`). The reference contains the full API catalog for later lookups.</li>
+        <li>Addressed a projection vs. Zoom desync; after closing stray tabs and confirming with remote students, the sandbox view matched for everyone.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>2. DOM Output Methods</h2>
+    <span class="tag">JavaScript Output</span>
+    <h3>innerHTML vs. innerText</h3>
+    <ul>
+        <li><code>innerHTML</code> injects markup (e.g., `<code>&lt;h2&gt;</code>` renders as a header).</li>
+        <li><code>innerText</code> treats strings literally, showing the tags themselves.</li>
+    </ul>
+    <h3>document.write()</h3>
+    <ul>
+        <li>During initial page load, acts like a quick print helper.</li>
+        <li>After load (e.g., inside an onClick), it overwrites the entire document—dangerous for production.</li>
+    </ul>
+    <div class="code-block">
+&lt;button onclick="document.write(50 + 60)"&gt;Overwrite Page&lt;/button&gt;
+    </div>
+</section>
+
+<section>
+    <h2>3. Browser Dialog APIs</h2>
+    <table>
+        <tr><th>API</th><th>Behavior</th><th>Return Value</th><th>Use Case</th></tr>
+        <tr><td><code>alert(msg)</code></td><td>Modal message + OK button</td><td><code>undefined</code></td><td>Quick debugging notice</td></tr>
+        <tr><td><code>confirm(msg)</code></td><td>OK / Cancel choice</td><td><code>true</code> or <code>false</code></td><td>Branching confirmation</td></tr>
+        <tr><td><code>prompt(msg, default)</code></td><td>Text input + OK/Cancel</td><td>String (or <code>null</code>)</td><td>Ad-hoc input for demos</td></tr>
+        <tr><td><code>window.print()</code></td><td>Opens browser print dialog</td><td>None</td><td>Printing the page/PDF</td></tr>
+    </table>
+    <div class="warning">
+        <strong>Production tip:</strong> Alerts/prompts halt execution and can’t be styled. Keep them for homework demos or debugging; build custom modals for user-facing apps.</div>
+</section>
+
+<section>
+    <h2>4. Console Logging &amp; DevTools</h2>
+    <ul>
+        <li>Right-click ? “Inspect” to open Chrome/Edge devtools; switch to the Console tab to view logs, warnings, and errors.</li>
+        <li><code>console.log()</code> outputs to the console even when the page shows nothing; repeated runs append additional entries.</li>
+        <li>Students observed security/cookie warnings in the console—valuable clues when debugging homework.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>5. Variables, Types &amp; Coercion</h2>
+    <span class="tag">Statements &amp; Data</span>
+    <ul>
+        <li><code>let</code> declares mutable variables; <code>const</code> declares read-only bindings (reassignment throws an error).</li>
+        <li>The <code>+</code> operator is overloaded:
+            <ul>
+                <li>Number + number ? arithmetic sum.</li>
+                <li>String + anything ? concatenation (numbers become strings).</li>
+                <li>Boolean + number ? coerces booleans to 1 (true) or 0 (false).</li>
+            </ul>
+        </li>
+        <li>Multiplication (<code>*</code>) doesn’t coerce strings; invalid operations yield <code>NaN</code>.</li>
+        <li>Explored Boolean math and logical operators (`&&`, `||`) plus how prompts return strings by default.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>6. Comments &amp; Inline Events</h2>
+    <p>JavaScript supports <code>//</code> (single line) and <code>/* ... */</code> (multi-line) comments. HTML uses <code>&lt;!-- ... --&gt;</code>. Daniel demonstrated:</p>
+    <ul>
+        <li>Comments inside tag attribute lists (e.g., inside <code>&lt;body onmousedown="..."&gt;</code>) break the element; keep comments outside tags or within the JavaScript string.</li>
+        <li>Reviewed the color-changing table cell that relies on inline events (<code>onmousedown</code>, <code>onmouseup</code>, <code>ondblclick</code>, <code>onmousemove</code>).</li>
+        <li>Suggested placing explanations above the tag or embedding them as JavaScript comments inside the event handler.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>7. Action Items</h2>
+    <ul>
+        <li>Practice each output method (`innerHTML`, `innerText`, `document.write`, alerts, prompt, console.log, window.print`).</li>
+        <li>Use the browser console while building Homework 6 JavaScript features—log variables instead of relying only on alerts.</li>
+        <li>Avoid `document.write` after load unless the goal is to replace the entire page.</li>
+        <li>Limit alerts/prompts to debugging; design custom UI for graded projects.</li>
+        <li>Keep inline event attributes comment-free; move notes outside the tag or into the script.</li>
+    </ul>
+</section>
+
+<footer>
+    <p>Prepared by Lester Carcamo &bull; Last updated March 3, 2026</p>
+</footer>
+
+</body>
+</html>
