@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jan 29: HTML Links, Images & Socratic Practice</title>
+    <style>
+        :root {
+            --primary: #0c5d8b;
+            --accent: #f39c12;
+            --bg: #f6f8fb;
+            --text: #1f2a37;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), #082f4b);
+            color: white;
+            padding: 32px 20px;
+            text-align: center;
+        }
+        header a {
+            color: #bfe0ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        header a:hover { text-decoration: underline; }
+        section {
+            max-width: 950px;
+            margin: 28px auto;
+            background: var(--white);
+            padding: 28px;
+            border-radius: 14px;
+            box-shadow: 0 18px 35px rgba(12,93,139,0.08);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid rgba(12,93,139,0.15);
+            padding-bottom: 10px;
+        }
+        h3 { margin-top: 1.5rem; color: #0d3550; }
+        ul, ol { line-height: 1.75; }
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+        }
+        .highlight {
+            background: #eef6ff;
+            border-left: 5px solid var(--primary);
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin: 16px 0;
+        }
+        .warning {
+            background: #fff7e6;
+            border-left: 5px solid var(--accent);
+            padding: 14px 18px;
+            border-radius: 6px;
+            margin: 16px 0;
+        }
+        .code-block {
+            background: #0f172a;
+            color: #e0e7ff;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+        th, td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+        }
+        th {
+            background: rgba(12,93,139,0.08);
+            color: var(--primary);
+        }
+        footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+            padding: 40px 20px 60px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>HTML Links, Images &amp; Socratic Practice</h1>
+    <p>January 29, 2026 &bull; 4:22&ndash;5:29 PM (two Zoom recordings)</p>
+    <p class="tag">Module 2 &mdash; HTML Links &amp; Images</p>
+    <a href="index.html">&larr; Back to Transcript Hub</a>
+</header>
+
+<section>
+    <h2>1. Homework 2: Socratic Questioning Workflow</h2>
+    <span class="tag">Recording 1 &mdash; 00:00&ndash;08:08</span>
+    <p>Daniel previewed Homework 2, emphasizing that Question 1 requires students to <strong>practice Socratic questioning with AI</strong> and turn in the full chat transcript.</p>
+    <h3>Required Pieces</h3>
+    <ul>
+        <li>Copy/paste the Socratic dialogue you have with an AI tutor; demonstrate iterative prompting to fix issues like leading questions or overly long prompts.</li>
+        <li>Perform the <strong>quantitative website evaluation</strong> exercise using the six-dimension rubric introduced earlier.</li>
+        <li>Enhance the HTML practice page by adding HTML commands #16&ndash;30 (all numbered) without relying heavily on AI autogeneration.</li>
+    </ul>
+    <div class="warning">
+        <strong>AI dependency caution:</strong> Once pages contain 30+ commands, generic AI completions tend to break layouts. Understand each element so you can debug manually.</div>
+    <h3>Logistics &amp; Tools</h3>
+    <ul>
+        <li>Homework 2 is due <strong>Tuesday, February 4, 2026</strong>. Mark your homepage when it is ready to grade.</li>
+        <li>Rewatch the <strong>January 22 Socratic demo</strong> for examples of what can go wrong (too-long prompts, unclear roles, etc.).</li>
+        <li>Blackboard now includes a built-in Socratic tool; learn it for future use, but you should be able to recreate good prompts yourself.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>2. Hyperlinks 101: Anatomy, Targets &amp; Security</h2>
+    <span class="tag">Recording 2 &mdash; HTML Linking Basics</span>
+    <p>The main session revisited <strong>W3Schools sandboxes</strong> to explore anchor tags in depth.</p>
+    <div class="highlight">
+        Links make the Web the Web: the ability to connect documents (or media) through clickable anchors is what differentiated the WWW from earlier systems like Gopher.</div>
+    <h3>Absolute vs. Relative URLs</h3>
+    <table>
+        <tr><th>Use Case</th><th>Syntax</th><th>Notes</th></tr>
+        <tr><td>Go anywhere on the internet</td><td><code>&lt;a href="https://example.com/page"&gt;</code></td><td>Full protocol + domain; required for off-site jumps.</td></tr>
+        <tr><td>Link within the same site/path</td><td><code>&lt;a href="html_images.asp"&gt;</code></td><td>Browser replaces only the file portion if the host/path match.</td></tr>
+    </table>
+    <h3>Target Attribute &amp; Sandboxed Security</h3>
+    <ul>
+        <li><code>target="_blank"</code> opens links in a new tab or window; W3Schools enforces this in its sandbox for certain URLs.</li>
+        <li>The sandbox blocks inline loading of some file types (like standalone JPEGs) to avoid script injection. Using <code>target="_blank"</code> bypasses that restriction.</li>
+        <li>Email links use the <code>mailto:</code> protocol, which triggers the user&rsquo;s default mail client.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>3. Images, Alt Text &amp; Responsive Dimensions</h2>
+    <p>Daniel used the W3Schools smiley face image to demonstrate <code>&lt;img&gt;</code> attributes and accessibility best practices.</p>
+    <h3>Key Attributes</h3>
+    <ul>
+        <li><code>src</code>: points to the actual asset. Broken sources display a placeholder icon.</li>
+        <li><code>alt</code>: doubles as a fallback caption <em>and</em> the text read by assistive technologies for visually impaired users. Universities are tightening enforcement of meaningful alt text.</li>
+        <li><code>width</code> / <code>height</code>: accept numeric pixel values; stretching non-proportionally can intentionally create banners or dividers.</li>
+    </ul>
+    <div class="code-block">
+&lt;a href="default.asp"&gt;
+    &lt;img src="img_girl.jpg" alt="HTML tutorial" width="148" height="148"&gt;
+&lt;/a&gt;
+    </div>
+    <p>Images themselves can act as hyperlinks (the image is the &ldquo;link text&rdquo;). Daniel also showcased how the same rainbow image is reused as a thin 10px divider by heavily stretching its width.</p>
+</section>
+
+<section>
+    <h2>4. Tooltips, Titles &amp; Overlays</h2>
+    <p>Hovering on anchors that include a <code>title</code> attribute displays a native browser tooltip.</p>
+    <ul>
+        <li>Tooltips can be lengthy, but browsers may truncate them (often with an ellipsis) after an internal character limit.</li>
+        <li>Titles are helpful for giving extra context like &ldquo;Opens W3Schools in a new tab&rdquo; without cluttering visible text.</li>
+        <li>Daniel noted W3Schools&rsquo; interface quirks: side navigation disappears at large zoom levels and inline ads can obscure the sandbox output pane.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>5. Comment Syntax &amp; Inline JavaScript Handlers</h2>
+    <p>The class compared HTML and JavaScript comments and debugged a real mistake from Daniel&rsquo;s homepage logo script.</p>
+    <h3>Three Comment Styles</h3>
+    <ol>
+        <li><strong>HTML:</strong> <code>&lt;!-- comment --&gt;</code> &mdash; valid only in normal markup flow, not inside tag attribute lists.</li>
+        <li><strong>JavaScript block:</strong> <code>/* comment */</code> &mdash; works inside inline event handlers.</li>
+        <li><strong>JavaScript line:</strong> <code>// comment</code> &mdash; also allowed inside inline handlers.</li>
+    </ol>
+    <div class="warning">
+        Placing <code>&lt;!-- --&gt;</code> inside a tag&rsquo;s attribute list (e.g., between <code>onmousedown</code> and <code>onmouseup</code>) corrupts the element because the browser interprets the comment characters as literal attributes.</div>
+    <h3>Debugging Exercise</h3>
+    <ul>
+        <li>Daniel intentionally inserted an extra <code>&lt;</code> inside an HTML comment to highlight how malformed syntax can surface in the rendered page.</li>
+        <li>Thomas suggested adding explanatory notes inside event handlers using JS comments instead &mdash; e.g., <code>onmousedown="/* turn rectangle red */ this.style.background='red';"</code>.</li>
+        <li>The class also looked at a JavaScript snippet that prints the current time when a button is clicked; using HTML comments there caused the script to fail silently.</li>
+    </ul>
+</section>
+
+<footer>
+    <p>Prepared by Lester Carcamo • Last updated March 3, 2026</p>
+</footer>
+
+</body>
+</html>
