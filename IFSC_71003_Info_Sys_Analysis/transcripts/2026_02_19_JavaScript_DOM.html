@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Summary: JavaScript Fundamentals &amp; DOM - Feb 19</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #004a99;
+            color: white;
+            padding: 20px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+        }
+        section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #004a99;
+            border-bottom: 2px solid #004a99;
+            padding-bottom: 10px;
+        }
+        h3 { color: #004a99; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        .highlight {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-left: 5px solid #004a99;
+            font-style: italic;
+            margin: 10px 0;
+        }
+        .warning {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-left: 5px solid #f39c12;
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th { background-color: #004a99; color: white; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.9em;
+        }
+        pre .kw { color: #569cd6; }
+        pre .str { color: #ce9178; }
+        pre .fn { color: #dcdcaa; }
+        pre .cm { color: #6a9955; }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav style="margin-bottom: 15px; font-size: 0.9rem; text-align: left;">
+        <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">&larr; Home</a>
+    </nav>
+    <h1>Lecture Summary: JavaScript Fundamentals &amp; DOM Manipulation</h1>
+    <p style="font-size: 0.8rem; color: #ccc; margin-bottom: 10px; font-weight: bold;">Module 3 | Feb 19, 2026 | 2:33 PM &ndash; 3:46 PM (two recordings)</p>
+</header>
+
+<section>
+    <h2>Preamble (2:33 PM &ndash; 2:37 PM)</h2>
+    <p>Daniel transitioned the course from HTML to JavaScript. He explained that JavaScript's unique strength is its ability to be <strong>embedded directly into web pages</strong> and run in any browser without special software. Unlike Python, C, and other languages that must be run separately, JavaScript code is sent over the web and executed on the client's browser &mdash; the browser already contains everything needed to run it.</p>
+    <ul>
+        <li>JavaScript is unique: you can put programs <strong>right in a web page</strong></li>
+        <li>No downloads needed &mdash; any browser can run JavaScript</li>
+        <li>Makes it <strong>easy to get started</strong> programming</li>
+        <li>Course will cover JavaScript for the next few Thursdays before moving to PHP</li>
+    </ul>
+    <p>He also checked for questions on <strong>Homework 5</strong> (due next Tuesday), which involves more Socratic dialogue with a provided prompt. No questions were raised.</p>
+</section>
+
+<section>
+    <h2>1. Summary</h2>
+    <p>Daniel taught JavaScript fundamentals, explaining how JavaScript interacts with HTML through the <strong>Document Object Model (DOM)</strong>. He demonstrated modifying webpage content using <code>document.getElementById()</code> and the <code>innerHTML</code> property, showing examples that change text, display dates, and swap images. He also covered <code>document.write()</code>, <code>alert()</code>, and <code>window.print()</code> as alternative output methods. The session included extensive Socratic questioning with students using ChatGPT, and concluded with the distinction between JavaScript and Java.</p>
+</section>
+
+<section>
+    <h2>2. JavaScript Is a Dialect of ECMAScript</h2>
+    <ul>
+        <li>JavaScript is technically a <strong>dialect</strong> of <strong>ECMAScript</strong> (European Computer Manufacturers Association)</li>
+        <li>The official language standard is called ECMAScript, not JavaScript</li>
+        <li>JavaScript is like "Coca-Cola" &mdash; a brand name everyone uses for the generic thing</li>
+        <li>Microsoft has <strong>JScript</strong>, a slightly different dialect of the same language</li>
+        <li>All dialects are very similar in practice</li>
+        <li>If you want official language specs, look up <strong>ECMAScript</strong>, not JavaScript</li>
+    </ul>
+</section>
+
+<section>
+    <h2>3. The Document Object Model (DOM)</h2>
+    <ul>
+        <li>The browser stores a web page as a <strong>JavaScript data structure</strong> (not raw HTML text)</li>
+        <li>This data structure is stored in a predefined variable called <code>document</code></li>
+        <li><code>document</code> is an <strong>object</strong> &mdash; a complicated variable with many sub-parts</li>
+        <li>Just like an array has elements, an object has unique named parts</li>
+        <li>To modify a webpage, you modify portions of the <code>document</code> object</li>
+    </ul>
+    <div class="highlight">
+        <p>The browser doesn't store the webpage looking like raw HTML text &mdash; it stores it as an actual computer data structure, meaning a complicated variable with lots of pieces in it.</p>
+    </div>
+</section>
+
+<section>
+    <h2>4. Breaking Down <code>document.getElementById()</code></h2>
+    <p>Daniel broke down the following line token by token:</p>
+    <pre>document.<span class="fn">getElementById</span>(<span class="str">"demo"</span>).innerHTML = <span class="fn">Date</span>();</pre>
+
+    <table>
+        <tr><th>Token</th><th>What It Does</th></tr>
+        <tr><td><code>document</code></td><td>The variable containing the entire webpage as a data structure</td></tr>
+        <tr><td><code>.</code> (dot operator)</td><td>Goes into an object and gets a part of it</td></tr>
+        <tr><td><code>getElementById</code></td><td>A <strong>function</strong> stored inside the document object</td></tr>
+        <tr><td><code>("demo")</code></td><td>Passes the string "demo" as argument; runs the function</td></tr>
+        <tr><td>The function call</td><td>Searches the document for an HTML element with <code>id="demo"</code> and returns it</td></tr>
+        <tr><td><code>.innerHTML</code></td><td>Accesses a sub-variable of the returned element &mdash; its inner HTML content</td></tr>
+        <tr><td><code>=</code></td><td>The <strong>assignment operator</strong> &mdash; sets a variable to a new value</td></tr>
+        <tr><td><code>Date()</code></td><td>A function call (no arguments) that returns the current date and time</td></tr>
+    </table>
+
+    <div class="warning">
+        <p><strong>Key insight:</strong> This is NOT a print statement. It <strong>modifies the HTML document</strong> by changing the value of a sub-variable within the document object. The browser then re-renders the changed content.</p>
+    </div>
+</section>
+
+<section>
+    <h2>5. The <code>onclick</code> Attribute</h2>
+    <ul>
+        <li>HTML buttons can have an <code>onclick</code> attribute</li>
+        <li>The value of <code>onclick</code> contains <strong>JavaScript code</strong> that runs when the button is clicked</li>
+        <li>The button's visible text is everything between the opening <code>&lt;button ...&gt;</code> and closing <code>&lt;/button&gt;</code> tags</li>
+        <li>The <code>onclick</code> attribute is part of the <strong>opening tag</strong>, not the displayed content</li>
+    </ul>
+</section>
+
+<section>
+    <h2>6. Moving the ID Around</h2>
+    <p>Daniel demonstrated that moving the <code>id</code> attribute to different HTML elements changes what gets replaced:</p>
+    <table>
+        <tr><th>ID Placed On</th><th>Result When Button Clicked</th></tr>
+        <tr><td><code>&lt;p id="demo"&gt;</code></td><td>Replaces paragraph content only</td></tr>
+        <tr><td><code>&lt;body id="demo"&gt;</code></td><td>Replaces the <strong>entire body</strong> (everything disappears)</td></tr>
+        <tr><td><code>&lt;!DOCTYPE id="demo"&gt;</code></td><td>Doesn't work &mdash; not an HTML element</td></tr>
+    </table>
+</section>
+
+<section>
+    <h2>7. Exploring Variable Values</h2>
+    <p>What if you assign different things to <code>innerHTML</code>?</p>
+    <table>
+        <tr><th>Assignment</th><th>Result Displayed</th></tr>
+        <tr><td><code>= 5</code></td><td>Displays the number 5</td></tr>
+        <tr><td><code>= document</code></td><td><code>[object HTMLDocument]</code> (too complex to print)</td></tr>
+        <tr><td><code>= document.getElementById</code></td><td>Shows function code (<code>native code</code>)</td></tr>
+        <tr><td><code>= document.getElementById("demo")</code></td><td><code>[object HTMLParagraphElement]</code></td></tr>
+        <tr><td><code>= document.getElementById("demo").innerHTML</code></td><td>Replaces content with itself (no visible change)</td></tr>
+    </table>
+</section>
+
+<section>
+    <h2>8. Image Swapping with <code>src</code></h2>
+    <p>The lightbulb example demonstrated swapping images:</p>
+    <ul>
+        <li>An <code>&lt;img&gt;</code> element has a <code>src</code> attribute instead of <code>innerHTML</code></li>
+        <li>Two buttons: "Turn on" sets <code>src</code> to <code>pic_bulbon.gif</code>, "Turn off" sets it to <code>pic_bulboff.gif</code></li>
+        <li>Daniel replaced the bulb images with <strong>UALR website images</strong> to prove the concept works with any URL</li>
+    </ul>
+    <div class="highlight">
+        <p>You're not modifying an image &mdash; you're <strong>replacing one image source with another</strong>.</p>
+    </div>
+</section>
+
+<section>
+    <h2>9. Alternative Output Methods</h2>
+
+    <h3><code>document.write()</code></h3>
+    <ul>
+        <li>Another function stored in the <code>document</code> object</li>
+        <li>Writes content directly to the page</li>
+        <li>Must be wrapped in <code>&lt;script&gt;</code> tags so the browser knows it's JavaScript</li>
+        <li>Without <code>&lt;script&gt;</code> tags, the browser treats the code as plain HTML text</li>
+    </ul>
+
+    <h3><code>alert()</code></h3>
+    <ul>
+        <li>Creates a <strong>pop-up dialog box</strong> (lightbox effect) with an OK button</li>
+        <li>Not recommended for production code</li>
+    </ul>
+
+    <h3><code>window.print()</code></h3>
+    <ul>
+        <li>Opens the browser's <strong>print dialog</strong> (same as Ctrl+P)</li>
+        <li>Triggered by a button click in the example</li>
+    </ul>
+</section>
+
+<section>
+    <h2>10. The <code>&lt;script&gt;</code> Tag</h2>
+    <ul>
+        <li>Tells the browser that enclosed content is <strong>JavaScript code</strong>, not HTML</li>
+        <li>Without it, JavaScript code is rendered as plain text on the page</li>
+        <li>The browser processes <code>&lt;script&gt;</code> tags by <strong>evaluating</strong> the JavaScript, not displaying it</li>
+        <li>Works inline alongside regular HTML elements</li>
+    </ul>
+</section>
+
+<section>
+    <h2>11. Java vs. JavaScript</h2>
+    <div class="warning">
+        <p><strong>Java is NOT short for JavaScript</strong> &mdash; they are completely different languages!</p>
+    </div>
+    <ul>
+        <li>Java is more like a modernized C</li>
+        <li>Java does <strong>not</strong> run in web pages; JavaScript does</li>
+        <li>They are always confused with each other but have no real relationship</li>
+    </ul>
+</section>
+
+<section>
+    <h2>12. Socratic Learning Demo</h2>
+    <p>Daniel used ChatGPT to demonstrate Socratic questioning on the JavaScript code snippet with student Linda:</p>
+    <ul>
+        <li><strong>"Is the displayed button text everything between <code>&lt;button&gt;</code> and <code>&lt;/button&gt;</code>?"</strong><br>
+            &rarr; True, but must distinguish opening tag (with attributes) from displayed content</li>
+        <li><strong>"Is <code>onclick</code> an attribute of the button tag?"</strong><br>
+            &rarr; <strong>True</strong> &mdash; it's an attribute-value pair in the opening tag</li>
+        <li><strong>"Java is short for JavaScript?"</strong><br>
+            &rarr; <strong>False</strong> &mdash; completely different languages</li>
+    </ul>
+
+    <div class="highlight">
+        <p>"The AI didn't just speed up my learning of this stuff, it made it possible from essentially impossible." &mdash; Daniel on using Socratic AI dialogue to understand dense academic papers</p>
+    </div>
+
+    <h3>AI Learning Tips Reinforced</h3>
+    <ul>
+        <li>Guide the AI: "break things down with simpler questions"</li>
+        <li>You can answer with another question instead of true/false</li>
+        <li>If questions are too easy, ask it to go deeper</li>
+        <li>If it asks too many questions at once, ask for just one at a time</li>
+        <li>The AI adapts to your level like a human tutor</li>
+    </ul>
+</section>
+
+</body>
+</html>

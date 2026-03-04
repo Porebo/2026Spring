@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feb 17: Process Modeling &amp; Data Flow Diagrams</title>
+    <style>
+        :root {
+            --primary: #004a99;
+            --bg: #f4f7f9;
+            --text: #333;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0; padding: 0;
+        }
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        header a { color: #aad4ff; font-size: 0.85rem; text-decoration: none; }
+        header a:hover { text-decoration: underline; }
+        section {
+            max-width: 900px;
+            margin: 30px auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        th { background: var(--primary); color: white; padding: 10px; text-align: left; }
+        td { padding: 10px; border-bottom: 1px solid #eee; }
+        tr:hover { background: #f9f9f9; }
+        .highlight {
+            background: #eef5ff;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-style: italic;
+        }
+        .warning {
+            background: #fff8e1;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        ul, ol { line-height: 1.8; }
+        code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html">&larr; Back to All Transcripts</a>
+    <h1>Lecture Summary: Process Modeling &amp; Data Flow Diagrams</h1>
+    <p style="font-size: 0.8rem; color: #ccc; margin-bottom: 10px; font-weight: bold;">Module 2.5 / M5 | Feb 17, 2026 | 2:32 PM &ndash; 3:46 PM (two recordings)</p>
+</header>
+
+<section>
+    <h2>Preamble: Module M5 Intro &amp; Homework 5 (2:32 PM &ndash; 2:56 PM)</h2>
+    <p>Daniel announced the start of <strong>Module M5</strong>, transitioning from root cause analysis to process modeling. Thursday's session would shift from HTML to <strong>JavaScript</strong> &mdash; a general-purpose programming language that can be embedded in web pages, unlike HTML which is "very special purpose" for formatting text.</p>
+
+    <h3>AI &amp; Learning Guidelines</h3>
+    <div class="highlight">
+        "You want to combine AI and learning so that AI enhances learning instead of substituting for it." &mdash; The key technique: read source material, <strong>look away</strong>, then type your own understanding. "Feel the brain strain &mdash; that's good, that's what we want."
+    </div>
+
+    <h3>Homework 5 Tasks</h3>
+    <table>
+        <tr><th>Question</th><th>Task</th></tr>
+        <tr><td>Q0 (not graded)</td><td><strong>Security check</strong> &mdash; remove names, passwords, credit cards, DOB, PINs from web forms to avoid site blocking</td></tr>
+        <tr><td>Q1</td><td>Make <strong>3 manual (non-AI) changes</strong> to your sandbox HTML code</td></tr>
+        <tr><td>Q2</td><td>Use the provided <strong>Socratic questioning prompt</strong> with an AI to analyze a JavaScript code snippet; submit transcript</td></tr>
+        <tr><td>Q3</td><td><em>Skipped</em></td></tr>
+        <tr><td>Q4</td><td><strong>Alphabetize &amp; number</strong> all HTML commands; add a new JavaScript section with 4 output-type buttons</td></tr>
+        <tr><td>Q5</td><td>Design a sport-themed website, explain it, and create a <strong>data flow diagram</strong> (+ level one process into a second DFD)</td></tr>
+    </table>
+
+    <h3>Socratic Questioning Approach</h3>
+    <ul>
+        <li>The provided prompt tells the AI it&rsquo;s an &ldquo;expert at Socratic dialogue and questioning&rdquo;</li>
+        <li>AI gives hints/snippets, then asks <strong>multiple-choice questions</strong> that make students think</li>
+        <li>If answered incorrectly, AI follows up with more hints until understanding is reached</li>
+        <li>Students can customize: switch to true/false, adjust difficulty, change snippet length</li>
+        <li>Graded on <strong>effort</strong>, not correctness of answers</li>
+    </ul>
+
+    <div class="warning">
+        <strong>Security concern (Thomas Wallace):</strong> Thomas raised a concern about malware attack vectors via shared AI chat log links. Daniel acknowledged the risk and suggested <strong>copy-pasting the full transcript</strong> instead of using share links until the issue is investigated further.
+    </div>
+</section>
+
+<section>
+    <h2>1. Summary</h2>
+    <p>Daniel introduced <strong>process modeling</strong> as a distinct systems analysis technique — separate from root cause analysis — for visualizing and understanding information and business processes. He surveyed several modeling methods (flowcharts, swim lane diagrams, Gantt charts, BPMN) before deep-diving into <strong>Data Flow Diagrams (DFDs)</strong>. DFDs use just four symbol types to model data movement inside IT systems. He walked through a student registration example, demonstrated leveling (decomposition), and live-edited Wikipedia's DFD article during class.</p>
+</section>
+
+<section>
+    <h2>2. Process Modeling in Systems Analysis</h2>
+    <p>Process modeling fits within a broader toolkit of systems analysis techniques:</p>
+
+    <table>
+        <tr><th>Technique</th><th>Purpose</th></tr>
+        <tr><td>Root Cause Analysis</td><td>Identify why problems occur</td></tr>
+        <tr><td><strong>Process Modeling</strong></td><td>Visualize &amp; formalize information/business processes</td></tr>
+        <tr><td>Benchmarking</td><td>Measure how well organizational processes work</td></tr>
+        <tr><td>Test Solutions / Prototyping</td><td>Build throwaway solutions to learn, then build the real system</td></tr>
+        <tr><td>Cost-Benefit Analysis</td><td>Ensure benefits merit the costs</td></tr>
+        <tr><td>Automation</td><td>Decide what to automate (emerging: AI vs. human decision)</td></tr>
+        <tr><td>Lean Six Sigma</td><td>Toolbox for various systems analysis activities</td></tr>
+        <tr><td>User Involvement</td><td>Get end users involved in design (contrast: Blackboard)</td></tr>
+    </table>
+
+    <div class="highlight">
+        "Systems analysis is about specifying and designing improved IT activities in an organization." Process modeling helps you visualize those processes so you can communicate about them, identify improvements, and understand them better.
+    </div>
+
+    <div class="warning">
+        <strong>Emerging question:</strong> Daniel noted that the AI-vs-human decision for business processes parallels the traditional automation question. He suggested updating the course to address when to use AI vs. people for information system processes.
+    </div>
+</section>
+
+<section>
+    <h2>3. Flowcharts</h2>
+    <p>The earliest formalized process modeling method.</p>
+
+    <h3>History</h3>
+    <ul>
+        <li><strong>First standardization:</strong> "Operation and Flow Process Charts" (1947)</li>
+        <li>Published by the <strong>American Society of Mechanical Engineers</strong> — not computer engineers</li>
+        <li>Flowcharts were invented in a world <em>not even thinking about computers</em></li>
+    </ul>
+
+    <h3>Standard Symbols</h3>
+    <table>
+        <tr><th>Shape</th><th>Meaning</th></tr>
+        <tr><td>Oval</td><td>Start / End</td></tr>
+        <tr><td>Rectangle</td><td>Processing</td></tr>
+        <tr><td>Parallelogram</td><td>Input / Output</td></tr>
+        <tr><td>Diamond</td><td>Decision (if/else branching)</td></tr>
+    </table>
+
+    <h3>Example: Robotic Vacuum Cleaner</h3>
+    <ol>
+        <li>Check: Has the vacuum <strong>finished its route</strong>? (diamond)</li>
+        <li>If <strong>yes</strong> → turn off</li>
+        <li>If <strong>no</strong> → check: Is the <strong>battery low</strong>? (diamond)</li>
+        <li>If battery low → turn off (even though route is unfinished)</li>
+        <li>If battery OK → continue vacuuming</li>
+    </ol>
+</section>
+
+<section>
+    <h2>4. Swim Lane Diagrams</h2>
+    <p>Named because they look like a <strong>swimming pool with lanes</strong>. Each lane (column or row) represents a different <strong>role</strong> in the process.</p>
+
+    <h3>Medical Setting Example</h3>
+    <table>
+        <tr><th>Lane</th><th>Activities</th></tr>
+        <tr><td>Patient</td><td>Arrives at hospital</td></tr>
+        <tr><td>Nurse</td><td>Prepare patient → Instruct patient → Discharge patient</td></tr>
+        <tr><td>Doctor</td><td>Treats the patient</td></tr>
+    </table>
+    <p>Arrows show flow of control between lanes.</p>
+
+    <div class="highlight">
+        <strong>Best practice:</strong> Limit swim lane diagrams to <strong>4–6 lanes</strong>. More than that becomes too complex to understand. Two classification approaches: by <em>domain</em> (who does what) and by <em>task</em> (what gets done).
+    </div>
+
+    <p><strong>Fun moment:</strong> Daniel displayed a swim lane diagram written in <strong>Telugu</strong> script and had an AI translate it.</p>
+</section>
+
+<section>
+    <h2>5. Gantt Charts</h2>
+    <p>Horizontal bar charts showing <strong>timelines</strong> of different project sub-parts.</p>
+    <ul>
+        <li>Show when tasks <strong>start</strong> and <strong>end</strong></li>
+        <li>Reveal <strong>dependencies</strong> — e.g., Task B can't begin until Task A completes</li>
+        <li>Some tasks may <strong>overlap</strong> slightly</li>
+        <li>Different colors can indicate categories</li>
+        <li>Most students had seen Gantt charts before, even if not by name</li>
+    </ul>
+    <p><em>Will be covered in more depth later in the course.</em></p>
+</section>
+
+<section>
+    <h2>6. BPMN (Business Process Model and Notation)</h2>
+    <p>A standardized set of graphical symbols for modeling business processes, with free and paid drag-and-drop tools available.</p>
+
+    <div class="highlight">
+        <strong>Daniel's anecdote:</strong> He and a PhD student submitted a paper with a custom block model. A reviewer said: "Block models are great, but you should use a standard method like BPMN." Since Daniel teaches BPMN in this class, he went and converted it — proving the value of using <strong>standard languages</strong> that communicate well with others rather than inventing your own notation.
+    </div>
+
+    <p><strong>Fun moment:</strong> Daniel showed a BPMN description in <strong>Arabic</strong>, and a student who could partially read it helped translate the technical terms.</p>
+</section>
+
+<section>
+    <h2>7. Data Flow Diagrams (DFDs) — Main Topic</h2>
+    <p>A DFD is a <strong>visual, graphical model</strong> of how data flows, is transformed, and is stored within an IT system (or even objects in a factory).</p>
+
+    <h3>The Four Symbol Types</h3>
+    <table>
+        <tr><th>Symbol</th><th>Shape</th><th>Purpose</th><th>Examples</th></tr>
+        <tr>
+            <td><strong>External Entity</strong></td>
+            <td>Sharp-cornered rectangle</td>
+            <td>Inputs &amp; outputs — <em>not</em> part of the system</td>
+            <td>Customers, students, faculty, suppliers, outside IT systems (e.g., banking system at a retail store)</td>
+        </tr>
+        <tr>
+            <td><strong>Process</strong></td>
+            <td>Rounded-corner rectangle (or circle)</td>
+            <td>Transforms / processes data — "where the action happens"</td>
+            <td>Enroll student, build schedule, produce class list</td>
+        </tr>
+        <tr>
+            <td><strong>Data Store</strong></td>
+            <td>Parallel lines (open or closed on one end)</td>
+            <td>Any data repository</td>
+            <td>Database, file, data warehouse</td>
+        </tr>
+        <tr>
+            <td><strong>Data Flow</strong></td>
+            <td>Labeled arrow</td>
+            <td>Shows movement of data between components</td>
+            <td>"Enrollment request," "class list," "schedule"</td>
+        </tr>
+    </table>
+
+    <div class="warning">
+        <strong>Key limitation:</strong> DFDs <strong>cannot express decisions</strong> (no diamond/if-else symbol). If decision-making is central to what you're modeling, use <strong>flowcharts</strong> instead. DFDs constrain how you think about the system — they focus purely on data movement and transformation.
+    </div>
+
+    <p><strong>"You can do an awful lot with four symbols, believe it or not."</strong></p>
+</section>
+
+<section>
+    <h2>8. Student Registration DFD Example</h2>
+    <p>Daniel walked through a complete data flow diagram for <strong>registering a student in a course</strong>.</p>
+
+    <h3>External Entities (rectangles)</h3>
+    <ul>
+        <li><strong>Academic Department</strong> (input) — provides offered courses</li>
+        <li><strong>Faculty Member</strong> (output) — receives class list</li>
+        <li><strong>Student</strong> (input &amp; output) — sends enrollment requests, receives schedule</li>
+    </ul>
+
+    <h3>Data Stores</h3>
+    <ul>
+        <li>Offered courses (for the semester)</li>
+        <li>Course enrollment records</li>
+        <li>Student database</li>
+    </ul>
+
+    <h3>Processes (numbered)</h3>
+    <table>
+        <tr><th>#</th><th>Process</th><th>What It Does</th></tr>
+        <tr><td>1</td><td>Build Course Schedule</td><td>Takes offered courses → determines classroom, times, etc.</td></tr>
+        <tr><td>2</td><td>Enroll Students</td><td>Takes enrollment requests, course info, student data → produces schedules and enrollment records. <strong>Most complex</strong> — prime candidate for leveling.</td></tr>
+        <tr><td>3</td><td>Produce Class List</td><td>Combines data from all 3 stores → sends class list to faculty</td></tr>
+    </table>
+</section>
+
+<section>
+    <h2>9. Leveling (Decomposition)</h2>
+    <p><strong>Leveling</strong> means taking a single process from a DFD and creating a <em>new, more detailed DFD</em> showing its internal sub-processes.</p>
+
+    <h3>The Hierarchy</h3>
+    <table>
+        <tr><th>Level</th><th>Name</th><th>Description</th></tr>
+        <tr><td>Level 0</td><td><strong>Context Diagram</strong></td><td>One single process representing the entire system, with all external entities and data stores connected to it</td></tr>
+        <tr><td>Level 1</td><td>Main DFD</td><td>The context process is broken into numbered sub-processes (1, 2, 3…)</td></tr>
+        <tr><td>Level 2</td><td>Detailed DFD</td><td>A single process (e.g., Process 2) is decomposed into 2.1, 2.2, 2.3…</td></tr>
+        <tr><td>Level 3+</td><td>Further detail</td><td>Process 2.3 can be decomposed into 2.3.1, 2.3.2, 2.3.3…</td></tr>
+    </table>
+
+    <div class="highlight">
+        "You can take a data flow diagram and treat it like a node in a tree, and then below that, you'll have detailed diagrams for each of the processes."
+    </div>
+
+    <h3>Context Diagram for Student Registration</h3>
+    <p>At the top level, a single process called <strong>"Register Students"</strong> would receive input from the Academic Department and produce outputs to Students and Faculty — all the internal processes (scheduling, enrollment, class lists) are bundled inside.</p>
+
+    <div class="warning">
+        <strong>Homework connection:</strong> The homework asks you to (1) create a DFD, then (2) pick one process and <strong>level it</strong> by creating a second, more detailed DFD for that process's internals.
+    </div>
+</section>
+
+<section>
+    <h2>10. Wikipedia Live Edit</h2>
+    <p>Daniel edited the <strong>Wikipedia article on Data Flow Diagrams</strong> during class to fix awkward phrasing:</p>
+
+    <table>
+        <tr><th>Before</th><th>After</th></tr>
+        <tr><td>"DFD is a system created by analysts based on interviews"</td><td>"A DFD is a graphical modeling method often based on interviews with system users"</td></tr>
+        <tr><td>Unclear entity naming guidance</td><td>Entity names should be comprehensible to modelers, experts, non-experts, users, and system analysts</td></tr>
+    </table>
+
+    <ul>
+        <li>Edit reason: "clarify some awkward phrasing" — added 24 characters</li>
+        <li>Showed the <strong>article edit history</strong>: edited infrequently (months between edits, some by bots)</li>
+        <li><strong>"You can edit Wikipedia too"</strong> — vandalism gets reversed by editors, but good-faith improvements stick</li>
+    </ul>
+</section>
+
+<section>
+    <h2>11. Class Q&amp;A Review</h2>
+    <p>Daniel quizzed the class on DFD components at the end:</p>
+    <ul>
+        <li><strong>Arrows</strong> — show steps in the flow of data</li>
+        <li>Data flows <strong>to</strong>: processes, data stores, or external entities</li>
+        <li><strong>Student mentioned "decisions"</strong> → Daniel clarified that DFDs do <em>not</em> have a decision symbol; that's a flowchart concept</li>
+        <li>External entities (sources/destinations) are <strong>not part of the system</strong> — they're inputs and outputs</li>
+    </ul>
+</section>
+
+<section>
+    <h2>12. Key Takeaways</h2>
+    <ol>
+        <li>Process modeling formalizes system understanding through <strong>visual diagrams</strong></li>
+        <li>Multiple methods exist (flowcharts, swim lanes, Gantt, BPMN, DFDs) — each with trade-offs</li>
+        <li>DFDs are deliberately <strong>simple</strong> (4 symbols) but powerful for modeling data movement</li>
+        <li><strong>Leveling</strong> lets you zoom into any process for more detail, creating a hierarchy</li>
+        <li>The <strong>context diagram</strong> is the highest-level view (one process, all I/O)</li>
+        <li>DFDs <strong>cannot model decisions</strong> — use flowcharts for that</li>
+        <li>Always use <strong>standard notations</strong> rather than inventing your own</li>
+    </ol>
+</section>
+
+<footer>
+    <p>&copy; 2026 IFSC 71003 | UALR</p>
+</footer>
+
+</body>
+</html>

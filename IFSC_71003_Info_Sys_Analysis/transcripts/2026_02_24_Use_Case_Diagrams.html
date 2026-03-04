@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Summary: Use Case Diagrams - Feb 24</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #004a99;
+            color: white;
+            padding: 20px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+        }
+        section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #004a99;
+            border-bottom: 2px solid #004a99;
+            padding-bottom: 10px;
+        }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        .highlight {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-left: 5px solid #004a99;
+            font-style: italic;
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th { background-color: #004a99; color: white; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav style="margin-bottom: 15px; font-size: 0.9rem; text-align: left;">
+        <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">&larr; Home</a>
+    </nav>
+    <h1>Lecture Summary: Use Case Diagrams</h1>
+    <p style="font-size: 0.8rem; color: #ccc; margin-bottom: 10px; font-weight: bold;">Module 3 | Feb 24, 2026 | 2:54 PM &ndash; 3:47 PM</p>
+</header>
+
+<section>
+    <h2>1. Narrative of Activities</h2>
+    <p>Professor Daniel Berleant introduced <strong>use case diagrams</strong> and their role in software engineering. The lecture built on prior discussions of process modeling (data flow diagrams, BPMN) and shifted focus to how systems are described from the user's perspective. The class worked through examples &mdash; elevators, text editors, and restaurants &mdash; to develop intuition about use case granularity. The session concluded with AI-generated true/false and multiple-choice questions that the class answered together.</p>
+</section>
+
+<section>
+    <h2>2. What Is a Use Case?</h2>
+    <ul>
+        <li>A <strong>use case</strong> is a description of how a user interacts with a system &mdash; an example of how a system is used.</li>
+        <li>It is <strong>not</strong> inherently a diagram. A use case is a <strong>concept</strong> that can be expressed as a diagram or as written text.</li>
+        <li>A <strong>use case diagram</strong> is the visual representation using UML-style notation (stick figures for actors, ovals for use cases, a rectangle for the system boundary).</li>
+    </ul>
+
+    <h3>Systems That Use Cases Can Describe</h3>
+    <ul>
+        <li>Software applications, websites, business processes</li>
+        <li>Physical systems like cars, elevators</li>
+        <li>Entire businesses (e.g., an online store's checkout flow)</li>
+        <li>Originally a <strong>software engineering technique</strong> (translated from "usage case")</li>
+    </ul>
+</section>
+
+<section>
+    <h2>3. Sea Level vs. Fish Level (Cockburn's Framework)</h2>
+    <div class="highlight">
+        <p><strong>Alistair Cockburn</strong> is widely regarded as the top authority on use cases.</p>
+    </div>
+
+    <table>
+        <tr><th>Level</th><th>Name</th><th>Meaning</th><th>Focus</th></tr>
+        <tr><td>High</td><td><strong>Sea level</strong></td><td>Holistic, goal-oriented</td><td>What the user wants to accomplish</td></tr>
+        <tr><td>Low</td><td><strong>Fish level</strong></td><td>Granular, step-by-step</td><td>Individual interactions with the system</td></tr>
+    </table>
+
+    <ul>
+        <li><strong>Sea level</strong> = the system boundary (the box); views the entire interaction as one purpose</li>
+        <li><strong>Fish level</strong> = the individual ovals inside the box; each step is its own use case</li>
+        <li><strong>Granularity is a design decision</strong> &mdash; neither level is inherently correct</li>
+    </ul>
+
+    <h3>When to Use Each</h3>
+    <ul>
+        <li><strong>Sea level</strong> &rarr; Communicating with users/stakeholders about what they want</li>
+        <li><strong>Fish level</strong> &rarr; Designing the internal structure of a system</li>
+    </ul>
+</section>
+
+<section>
+    <h2>4. The Elevator Example</h2>
+    <p>The class examined a use case diagram for an elevator with two ovals: "Press Outside Button" and "Press Floor Button."</p>
+    <p><strong>Key question:</strong> Is this one use case or two?</p>
+    <ul>
+        <li><strong>Two use cases (fish level):</strong> Each button press is a separate interaction with the system</li>
+        <li><strong>One use case (sea level):</strong> The user's goal is simply to get from one floor to another; pressing buttons are steps within that single goal</li>
+    </ul>
+    <p>Both interpretations are valid &mdash; it depends on the chosen level of granularity.</p>
+</section>
+
+<section>
+    <h2>5. The Restaurant Example</h2>
+    <p>A more complex use case diagram with multiple actors (waiter, client, cashier, chef) and ~9 use cases (order food, serve food, cook food, eat food, order wine, serve wine, drink wine, pay for food, pay for wine).</p>
+    <ul>
+        <li>Even at sea level, this system still has <strong>multiple use cases</strong></li>
+        <li>Example groupings: wine-related actions together, food-related actions together, payment actions together</li>
+    </ul>
+</section>
+
+<section>
+    <h2>6. Use Case Diagrams Do NOT Show Sequence</h2>
+    <ul>
+        <li>The restaurant diagram doesn't indicate that food must be ordered &rarr; cooked &rarr; served &rarr; eaten &rarr; paid for</li>
+        <li>Top-to-bottom reading is <strong>not reliable</strong> for determining order</li>
+        <li>If you need sequence, use a <strong>written use case</strong> (textual description listing steps in order)</li>
+        <li>A use case diagram is <strong>higher level and more abstract</strong> &mdash; it intentionally omits sequence information</li>
+    </ul>
+</section>
+
+<section>
+    <h2>7. Written Use Cases vs. Diagrams</h2>
+    <table>
+        <tr><th>Aspect</th><th>Use Case Diagram</th><th>Written Use Case</th></tr>
+        <tr><td>Sequence</td><td>Not shown</td><td>Explicitly listed</td></tr>
+        <tr><td>Detail level</td><td>High-level overview</td><td>Can be very detailed</td></tr>
+        <tr><td>Information</td><td>Less (removes sequence)</td><td>More (includes steps, conditions)</td></tr>
+        <tr><td>Best for</td><td>Bird's-eye view, brainstorming</td><td>Precise specifications</td></tr>
+    </table>
+</section>
+
+<section>
+    <h2>8. In-Class Practice: True/False Questions</h2>
+    <ul>
+        <li><strong>"A use case describes how a user interacts with a system to achieve a goal."</strong><br>
+            &rarr; Debatable. True for sea-level use cases, but fish-level ones may not be goal-oriented. <strong>Not strictly true in all cases.</strong></li>
+        <li><strong>"A use case diagram shows the exact sequence of steps performed."</strong><br>
+            &rarr; <strong>False.</strong> Diagrams show actors, goals, and relationships &mdash; not step-by-step order.</li>
+        <li><strong>"Sea-level use cases are more granular and detailed than fish-level use cases."</strong><br>
+            &rarr; <strong>False.</strong> Fish level is more granular. Sea level is goal-oriented.</li>
+        <li><strong>"A written use case typically includes a sequence of actions."</strong><br>
+            &rarr; <strong>True.</strong> Writing them down allows you to capture sequence.</li>
+        <li><strong>"Choosing the granularity of a use case is a design decision."</strong><br>
+            &rarr; <strong>True.</strong> It's a modeling choice made by the designer.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>9. Key Authorities</h2>
+    <ul>
+        <li><strong>Alistair Cockburn</strong> &mdash; Top authority on use cases; sea level vs. fish level framework</li>
+        <li><strong>Stephen Schach</strong> &mdash; Software engineering textbook author; advocates for single (goal-oriented) use cases</li>
+    </ul>
+</section>
+
+<section>
+    <h2>10. Key Takeaways</h2>
+    <ul>
+        <li>A use case is a <strong>concept</strong>, not just a diagram</li>
+        <li>Granularity (sea vs. fish) is a <strong>design choice</strong> with no single correct answer</li>
+        <li>Use case diagrams are great for <strong>brainstorming</strong> and high-level understanding</li>
+        <li>For <strong>sequence and detail</strong>, use written use cases</li>
+        <li>Real systems require thinking about <strong>missing elements</strong> (alternative paths, other actors, edge cases)</li>
+    </ul>
+</section>
+
+</body>
+</html>

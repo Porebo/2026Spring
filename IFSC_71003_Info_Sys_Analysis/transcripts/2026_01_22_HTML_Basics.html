@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jan 22: HTML Basics &amp; W3Schools</title>
+    <style>
+        :root {
+            --primary: #004a99;
+            --bg: #f4f7f9;
+            --text: #333;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0; padding: 0;
+        }
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        header a { color: #aad4ff; font-size: 0.85rem; text-decoration: none; }
+        header a:hover { text-decoration: underline; }
+        section {
+            max-width: 900px;
+            margin: 30px auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        th { background: var(--primary); color: white; padding: 10px; text-align: left; }
+        td { padding: 10px; border-bottom: 1px solid #eee; }
+        tr:hover { background: #f9f9f9; }
+        .highlight {
+            background: #eef5ff;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-style: italic;
+        }
+        .warning {
+            background: #fff8e1;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .danger {
+            background: #fdecea;
+            border-left: 4px solid #c0392b;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        ul, ol { line-height: 1.8; }
+        code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.85em;
+        }
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-size: 0.8rem;
+        }
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>HTML Basics &amp; W3Schools</h1>
+    <p>January 22, 2026 &bull; 2:31 PM &ndash; 3:47 PM (two recordings)</p>
+    <a href="index.html">&larr; Back to Transcript Hub</a>
+</header>
+
+<!-- 1. Web Cache Issues & Solutions -->
+<section>
+    <h2>1. Web Cache Issues &amp; Solutions</h2>
+    <span class="tag">Recording 1</span>
+    <p>Daniel explained a technical problem from last year: some students saw <strong>old versions of homework</strong> because their browsers cached the pages instead of fetching updated copies from InfinityFree.</p>
+
+    <h3>How Browser Caching Works</h3>
+    <ul>
+        <li>When you visit a web page, your browser <strong>stores a local copy</strong></li>
+        <li>The next time you visit, it may serve the stored copy instead of checking for updates</li>
+        <li>CSS caches <strong>even more aggressively</strong> than HTML (Thomas noted this)</li>
+        <li>This caused some students to see outdated homework even after Daniel updated it</li>
+    </ul>
+
+    <h3>Daniel&rsquo;s Cache-Busting Fix</h3>
+    <ul>
+        <li>Added JavaScript code to homework pages to <strong>force a one-time reload</strong></li>
+        <li>Each homework page shows a <strong>timestamp banner</strong> confirming when it was last downloaded from the server</li>
+        <li>There&rsquo;s a simple meta tag to reload every N seconds, but a one-time reload was harder to implement</li>
+    </ul>
+
+    <div class="highlight">
+        <strong>Pro Tip:</strong> Right-click on a page &rarr; open the <strong>Inspector</strong> &rarr; <strong>press and hold</strong> the refresh button &rarr; select &ldquo;Empty Cache and Hard Reload.&rdquo; This forces the browser to re-download everything.
+    </div>
+</section>
+
+<!-- 2. Homework 1 Reminders & AI Warning -->
+<section>
+    <h2>2. Homework 1 Reminders &amp; AI Warning</h2>
+    <span class="tag">Recording 1</span>
+
+    <h3>Key Deadlines &amp; Requirements</h3>
+    <ul>
+        <li><strong>HW1 due:</strong> Next Tuesday (January 27)</li>
+        <li>Get your InfinityFree website set up <strong>now</strong> &mdash; don&rsquo;t wait until the last minute</li>
+        <li><strong>Do NOT put your ID number</strong> on your website &mdash; it&rsquo;s visible to anyone in the world</li>
+        <li>When finished, <strong>indicate on your homepage</strong> that the homework is ready to be graded</li>
+    </ul>
+
+    <div class="danger">
+        <strong>AI Warning:</strong> It&rsquo;s easy to feed Q3 into an AI and get a test page, but later homeworks add to it. Last year, AIs <strong>couldn&rsquo;t keep up</strong> with the growing list of commands, and students who over-relied on AI got confused. Best to understand what you&rsquo;re doing now.
+    </div>
+
+    <h3>15 HTML Elements Clarified</h3>
+    <p>A student asked whether H1 through H6 count as one element or six. Daniel confirmed: <strong>each heading level counts individually</strong> &mdash; that&rsquo;s why the requirement is 15 instead of 10.</p>
+
+    <h3>Build from Scratch</h3>
+    <div class="warning">
+        <strong>Don&rsquo;t use a website-building app.</strong> Code the HTML yourself from scratch. You&rsquo;ll learn what those tools are doing under the hood.
+    </div>
+</section>
+
+<!-- 3. W3Schools.com Overview -->
+<section>
+    <h2>3. W3Schools.com Overview</h2>
+    <span class="tag">Recording 2</span>
+    <p>Daniel introduced <strong>W3Schools.com</strong> as the primary tutorial site for learning HTML:</p>
+    <ul>
+        <li>Full of <strong>sandboxes</strong> (&ldquo;Try It Yourself&rdquo;) where you can edit HTML and see results instantly</li>
+        <li>The sandboxes provide a ready-made starting template &mdash; &ldquo;here&rsquo;s half your homepage already&rdquo;</li>
+        <li>Also covers CSS, JavaScript, PHP, and more</li>
+    </ul>
+
+    <div class="highlight">
+        Students were instructed to go to <strong>W3Schools.com &rarr; HTML Home &rarr; Try It Yourself</strong> and experiment with making changes.
+    </div>
+</section>
+
+<!-- 4. HTML Document Structure -->
+<section>
+    <h2>4. HTML Document Structure</h2>
+    <span class="tag">Recording 2</span>
+    <p>Every HTML document follows a standard structure:</p>
+
+    <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;!-- Metadata goes here --&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- Visible content goes here --&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+
+    <table>
+        <tr><th>Element</th><th>Purpose</th><th>Required?</th></tr>
+        <tr><td><code>&lt;!DOCTYPE html&gt;</code></td><td>Tells the browser this is an HTML5 file</td><td>Technically no, but always include it</td></tr>
+        <tr><td><code>&lt;html&gt;</code></td><td>Wraps the entire document</td><td>Yes</td></tr>
+        <tr><td><code>&lt;head&gt;</code></td><td>Metadata, title, styles</td><td>Can be omitted; page still works</td></tr>
+        <tr><td><code>&lt;body&gt;</code></td><td>Everything visible on screen</td><td>Yes</td></tr>
+    </table>
+
+    <div class="highlight">
+        Thomas: &ldquo;HTML5 will be around for good now. Before this we had XHTML and HTML4 &mdash; they were a lot longer. It&rsquo;s been a decade and a half.&rdquo;
+    </div>
+
+    <h3>Heading Levels</h3>
+    <ul>
+        <li><code>&lt;h1&gt;</code> through <code>&lt;h6&gt;</code> &mdash; six levels of headings</li>
+        <li><code>&lt;h1&gt;</code> is the largest and boldest; <code>&lt;h6&gt;</code> is the smallest</li>
+        <li>Daniel demonstrated live: changing <code>&lt;h1&gt;</code> to <code>&lt;h5&gt;</code> made the text smaller</li>
+    </ul>
+</section>
+
+<!-- 5. HTML Lists -->
+<section>
+    <h2>5. HTML Lists</h2>
+    <span class="tag">Recording 2</span>
+    <p>Three types of lists in HTML:</p>
+    <table>
+        <tr><th>Type</th><th>Tag</th><th>Description</th></tr>
+        <tr><td>Unordered List</td><td><code>&lt;ul&gt;</code></td><td>Bullet points</td></tr>
+        <tr><td>Ordered List</td><td><code>&lt;ol&gt;</code></td><td>Numbered items</td></tr>
+        <tr><td>Definition List</td><td><code>&lt;dl&gt;</code></td><td>Term-definition pairs (less common)</td></tr>
+    </table>
+    <p>UL and OL are much more commonly used. DL (definition list) is rarely seen but &ldquo;actually pretty good.&rdquo;</p>
+</section>
+
+<!-- 6. Fieldset & Legend -->
+<section>
+    <h2>6. The <code>&lt;fieldset&gt;</code> &amp; <code>&lt;legend&gt;</code> Commands</h2>
+    <span class="tag">Recording 2</span>
+    <p>Daniel showed one of the most visually appealing out-of-the-box HTML elements:</p>
+
+    <pre>&lt;fieldset&gt;
+  &lt;legend&gt;Learning Objectives&lt;/legend&gt;
+  &lt;u&gt;At the end of this module, students will do the following:&lt;/u&gt;
+  &lt;br&gt;1. First objective
+  &lt;br&gt;2. Second objective
+&lt;/fieldset&gt;</pre>
+
+    <ul>
+        <li><code>&lt;fieldset&gt;</code> creates a <strong>boxed container</strong> with a border</li>
+        <li><code>&lt;legend&gt;</code> creates a <strong>label</strong> that sits on the border of the fieldset</li>
+        <li>Originally designed for grouping form fields, but useful for any grouped content</li>
+        <li><code>&lt;u&gt;</code> underlines text; <code>&lt;br&gt;</code> creates a line break</li>
+    </ul>
+
+    <div class="highlight">
+        Thomas: &ldquo;One of the most aesthetic, right-out-of-the-box HTML elements with no CSS, for sure.&rdquo;
+    </div>
+
+    <h3>XHTML Throwback: <code>&lt;br /&gt;</code> vs <code>&lt;br&gt;</code></h3>
+    <p>Daniel&rsquo;s HW1 used <code>&lt;br /&gt;</code> (with a trailing slash). Thomas explained:</p>
+    <div class="warning">
+        &ldquo;That&rsquo;s a throwback to XHTML, when we had to close all elements, like the void element.&rdquo; In HTML5, just <code>&lt;br&gt;</code> is sufficient.
+    </div>
+</section>
+
+<!-- 7. Bug Discovery & Live Editing -->
+<section>
+    <h2>7. Bug Discovery &amp; Live Editing on InfinityFree</h2>
+    <span class="tag">Recording 2</span>
+    <p>While showing HW1&rsquo;s source code, Daniel discovered two bugs live in class:</p>
+
+    <table>
+        <tr><th>Bug</th><th>Issue</th><th>Fix</th></tr>
+        <tr><td><code>&lt;html&gt;</code> placement</td><td>Was after <code>&lt;head&gt;</code> instead of before it</td><td>Moved to line 2, right after <code>&lt;!DOCTYPE&gt;</code></td></tr>
+        <tr><td><code>&lt;br /&gt;</code> syntax</td><td>Unnecessary XHTML-style self-closing slash</td><td>Changed to plain <code>&lt;br&gt;</code></td></tr>
+    </table>
+
+    <h3>InfinityFree File Manager Demo</h3>
+    <ol>
+        <li>Log in to <strong>InfinityFree.com</strong></li>
+        <li>Click <strong>File Manager</strong> (not Website Builder &mdash; use File Manager for learning)</li>
+        <li>Navigate to the <strong>htdocs</strong> folder (all HTML files go here)</li>
+        <li>Click the edit icon on a file to open the built-in editor</li>
+        <li>Use <strong>Ctrl+F</strong> to Find, <strong>Ctrl+H</strong> for Find &amp; Replace</li>
+        <li>Click <strong>Save</strong> when done (may be slow)</li>
+    </ol>
+</section>
+
+<!-- 8. Bold, Strong & Highlighting -->
+<section>
+    <h2>8. Bold, Strong &amp; Highlighting</h2>
+    <span class="tag">Recording 2</span>
+
+    <h3><code>&lt;b&gt;</code> vs. <code>&lt;strong&gt;</code></h3>
+    <table>
+        <tr><th>Tag</th><th>Type</th><th>Meaning</th></tr>
+        <tr><td><code>&lt;b&gt;</code></td><td>Presentational</td><td>Tells browser to make text visually bold</td></tr>
+        <tr><td><code>&lt;strong&gt;</code></td><td>Semantic</td><td>Indicates emphasis/importance (browser decides how to render)</td></tr>
+    </table>
+    <p>Thomas: &ldquo;Strong is semantically meaningful, bold is typesetting meaningful.&rdquo; Purists prefer <code>&lt;strong&gt;</code>.</p>
+
+    <h3>The <code>&lt;mark&gt;</code> Tag</h3>
+    <ul>
+        <li><code>&lt;mark&gt;</code> highlights text with a <strong>yellow background</strong> by default</li>
+        <li>Thomas: &ldquo;If you ever Google a term and then visit a website, sometimes it&rsquo;ll be highlighted &mdash; that&rsquo;s what they use. Mark is the tag for that.&rdquo;</li>
+        <li>Semantically: visually offsets content <strong>without adding meaning</strong></li>
+        <li>CSS can customize the highlight color to anything you want</li>
+    </ul>
+
+    <h3>Quick ChatGPT Lookup</h3>
+    <p>Daniel typed into ChatGPT: <em>&ldquo;How to make my HTML passage have a green background&rdquo;</em></p>
+    <pre>&lt;p style="background-color: green;"&gt;This is green.&lt;/p&gt;</pre>
+    <p>Tested it live &mdash; worked immediately. Shows how AI is practical for quick HTML reference questions.</p>
+</section>
+
+<!-- 9. View Page Source -->
+<section>
+    <h2>9. View Page Source &amp; Course Homepage Structure</h2>
+    <span class="tag">Recording 2</span>
+    <p>To see the HTML behind any web page:</p>
+    <div class="highlight">
+        <strong>Right-click &rarr; View Page Source</strong> &mdash; the quickest and easiest method.
+    </div>
+
+    <p>Daniel showed the course homepage source code to demonstrate real-world HTML structure:</p>
+    <ul>
+        <li>Proper <code>&lt;!DOCTYPE html&gt;</code> and <code>&lt;html&gt;</code> placement</li>
+        <li>CSS styles in the <code>&lt;head&gt;</code> for table widths (90% of window, columns adding to 100%)</li>
+        <li>Each module is a <strong>separate table</strong> (explains the double-line borders between modules)</li>
+        <li>Spacing adjusts automatically based on content size &mdash; columns with longer text get wider</li>
+    </ul>
+</section>
+
+<!-- 10. Internal Links & Anchors -->
+<section>
+    <h2>10. Internal Links &amp; Anchors</h2>
+    <span class="tag">Recording 2</span>
+    <p>The course homepage has a &ldquo;jump to week&rdquo; navigation bar. These are <strong>internal links</strong> (same-page navigation):</p>
+
+    <h3>How It Works</h3>
+    <pre>&lt;!-- The link (at the top of the page) --&gt;
+&lt;a href="#1"&gt;1&lt;/a&gt;  &lt;a href="#2"&gt;2&lt;/a&gt;  &lt;a href="#8"&gt;8&lt;/a&gt;
+
+&lt;!-- The anchor target (further down the page) --&gt;
+&lt;a name="1"&gt;&lt;/a&gt;
+&lt;table&gt;...Module 1 content...&lt;/table&gt;</pre>
+
+    <ul>
+        <li><strong>Link:</strong> <code>&lt;a href="#identifier"&gt;</code> &mdash; uses the <code>#</code> prefix</li>
+        <li><strong>Anchor:</strong> <code>&lt;a name="identifier"&gt;</code> &mdash; no <code>#</code> prefix (just the name attribute)</li>
+        <li>Same <code>&lt;a href&gt;</code> syntax as external links, but <code>#</code> means &ldquo;within this document&rdquo;</li>
+    </ul>
+</section>
+
+<!-- 11. Tables & the TR/TD Anchor Problem -->
+<section>
+    <h2>11. Tables &amp; the TR/TD Anchor Problem</h2>
+    <span class="tag">Recording 2</span>
+
+    <h3>Table Structure</h3>
+    <table>
+        <tr><th>Element</th><th>Purpose</th></tr>
+        <tr><td><code>&lt;table&gt;</code></td><td>Defines the table</td></tr>
+        <tr><td><code>&lt;tr&gt;</code></td><td>Table row</td></tr>
+        <tr><td><code>&lt;td&gt;</code></td><td>Table data cell (content)</td></tr>
+        <tr><td><code>&lt;th&gt;</code></td><td>Table header cell</td></tr>
+    </table>
+
+    <div class="warning">
+        Thomas: <code>cellpadding</code> and <code>cellspacing</code> attributes are <strong>deprecated in HTML5</strong> &mdash; use CSS for spacing instead. HTML5 is backwards compatible, so they still work, but validators will flag them.
+    </div>
+
+    <h3>Why Can&rsquo;t You Anchor to a <code>&lt;tr&gt;</code>?</h3>
+    <p>Daniel wanted internal links to jump to specific rows inside a single large table. It didn&rsquo;t work:</p>
+    <ul>
+        <li><code>&lt;tr&gt;</code> doesn&rsquo;t reserve <strong>layout space</strong> &mdash; it only contains <code>&lt;td&gt;</code> elements, not content directly</li>
+        <li><code>&lt;td&gt;</code> <em>does</em> reserve space (it holds actual content), so anchors work on cells</li>
+        <li>Daniel&rsquo;s workaround: made each module a <strong>separate table</strong> so links could target individual tables</li>
+    </ul>
+
+    <h3>Better Approach: The <code>id</code> Attribute</h3>
+    <p>Thomas suggested a cleaner solution:</p>
+    <pre>&lt;!-- Put an id on any element --&gt;
+&lt;table id="module3"&gt;...&lt;/table&gt;
+
+&lt;!-- Link to it with # --&gt;
+&lt;a href="#module3"&gt;Module 3&lt;/a&gt;</pre>
+
+    <ul>
+        <li><code>id</code> is a <strong>unique identifier</strong> &mdash; only one element per page can have a given id</li>
+        <li><code>class</code> can be <strong>shared</strong> by many elements</li>
+        <li>Built-in shortcut: <code>&lt;a href="#top"&gt;</code> jumps to the top of any page without declaring it</li>
+    </ul>
+</section>
+
+<!-- 12. The <span> Tag -->
+<section>
+    <h2>12. The <code>&lt;span&gt;</code> Tag</h2>
+    <span class="tag">Recording 2</span>
+    <p><code>&lt;span&gt;</code> is an <strong>inline grouping element</strong> that does nothing by itself:</p>
+
+    <pre>&lt;p&gt;This is &lt;span&gt;part of it&lt;/span&gt;.&lt;/p&gt;
+&lt;!-- No visual change --&gt;
+
+&lt;p&gt;This is &lt;span style="background-color:lightgreen; color:green;"&gt;styled green&lt;/span&gt;.&lt;/p&gt;
+&lt;!-- Green background + green text --&gt;</pre>
+
+    <ul>
+        <li>Thomas: &ldquo;It&rsquo;s the inline counterpart to <code>&lt;div&gt;</code>.&rdquo;</li>
+        <li><code>&lt;span&gt;</code> lets you target a chunk of text for styling, IDs, or JavaScript</li>
+        <li>Without any attributes, it has <strong>zero visual effect</strong></li>
+    </ul>
+</section>
+
+<!-- 13. Interactive Mouse Events -->
+<section>
+    <h2>13. Interactive Mouse Events Demo</h2>
+    <span class="tag">Recording 2</span>
+    <p>Daniel demonstrated fine-grained mouse control on the course homepage&rsquo;s &ldquo;You Are Here&rdquo; box:</p>
+
+    <table>
+        <tr><th>Action</th><th>HTML Attribute</th><th>Color Result</th></tr>
+        <tr><td>Mouse over</td><td><code>onmouseover</code></td><td style="background: orange; color: white; font-weight: bold;">Orange</td></tr>
+        <tr><td>Mouse out</td><td><code>onmouseout</code></td><td style="background: lightblue; font-weight: bold;">Light Blue</td></tr>
+        <tr><td>Left click</td><td><code>onclick</code></td><td style="background: #3498db; color: white; font-weight: bold;">Bright Blue</td></tr>
+        <tr><td>Double click</td><td><code>ondblclick</code></td><td style="background: violet; font-weight: bold;">Violet</td></tr>
+        <tr><td>Right click</td><td><code>oncontextmenu</code></td><td style="background: purple; color: white; font-weight: bold;">Purple</td></tr>
+        <tr><td>Mouse down (hold)</td><td><code>onmousedown</code></td><td style="background: red; color: white; font-weight: bold;">Red</td></tr>
+        <tr><td>Mouse up (release)</td><td><code>onmouseup</code></td><td style="background: cyan; font-weight: bold;">Cyan</td></tr>
+    </table>
+
+    <h3>How It Works</h3>
+    <pre>&lt;td id="header" style="text-align:center; background-color:yellow;"
+    onmousedown="document.getElementById('header').style.background='red'"
+    onmouseup="document.getElementById('header').style.background='cyan'"
+    onclick="document.getElementById('header').style.background='blue'"
+    ...&gt;
+  &lt;h2 style="color:darkviolet;"&gt;You Are Here&lt;/h2&gt;
+&lt;/td&gt;</pre>
+
+    <ul>
+        <li>The box is a table with <strong>one row, one TD</strong> for visual framing</li>
+        <li>The TD has <code>id="header"</code> and each event handler targets that same ID via <code>document.getElementById()</code></li>
+        <li>Right-click also triggers the browser&rsquo;s context menu (which Daniel couldn&rsquo;t disable)</li>
+        <li>Shows that you have <strong>very fine control</strong> over different types of mouse interactions</li>
+    </ul>
+</section>
+
+<!-- 14. Key Takeaways -->
+<section>
+    <h2>14. Key Takeaways</h2>
+    <ol>
+        <li><strong>W3Schools.com</strong> is the primary learning resource &mdash; use its sandboxes to practice</li>
+        <li>Every HTML document needs <code>&lt;!DOCTYPE html&gt;</code>, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, and <code>&lt;body&gt;</code></li>
+        <li><code>&lt;fieldset&gt;</code> + <code>&lt;legend&gt;</code> = one of the most attractive out-of-the-box HTML constructs</li>
+        <li><code>&lt;strong&gt;</code> is semantic (meaning), <code>&lt;b&gt;</code> is presentational (appearance) &mdash; prefer <code>&lt;strong&gt;</code></li>
+        <li><code>&lt;mark&gt;</code> highlights text with yellow default; CSS can change the color</li>
+        <li><strong>View Page Source</strong> (right-click) lets you learn from any website</li>
+        <li>Internal links use <code>&lt;a href="#id"&gt;</code>; use <code>id</code> attributes on target elements (cleaner than <code>name</code>)</li>
+        <li><code>&lt;span&gt;</code> = inline grouping (no formatting); <code>&lt;div&gt;</code> = block grouping</li>
+        <li>HTML5 is backwards compatible &mdash; old code works but deprecated attributes get flagged by validators</li>
+        <li>Don&rsquo;t over-rely on AI for the test page &mdash; understand each HTML command yourself</li>
+    </ol>
+</section>
+
+<footer>
+    <p>&copy; 2026 IFSC 71003 | Department of Information Science | UALR</p>
+</footer>
+
+</body>
+</html>
