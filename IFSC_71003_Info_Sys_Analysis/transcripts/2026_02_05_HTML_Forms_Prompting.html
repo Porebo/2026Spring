@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feb 5: HTML Forms & Prompt Engineering</title>
+    <style>
+        :root {
+            --primary: #0a4d78;
+            --accent: #c0392b;
+            --bg: #f4f7fb;
+            --text: #1f2a37;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), #06263c);
+            color: white;
+            text-align: center;
+            padding: 36px 20px;
+        }
+        header a {
+            color: #cfe6ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        header a:hover { text-decoration: underline; }
+        section {
+            max-width: 960px;
+            margin: 28px auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 20px 40px rgba(6,38,60,0.09);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid rgba(10,77,120,0.2);
+            padding-bottom: 10px;
+        }
+        h3 { margin-top: 1.4rem; color: #0f2f47; }
+        ul, ol { line-height: 1.75; }
+        .tag {
+            display: inline-block;
+            background: rgba(10,77,120,0.12);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            margin-bottom: 12px;
+        }
+        .highlight {
+            background: #e9f4ff;
+            border-left: 5px solid var(--primary);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        .warning {
+            background: #fff6ec;
+            border-left: 5px solid var(--accent);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        .code-block {
+            background: #0f172a;
+            color: #e0e7ff;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+            font-size: 0.95rem;
+        }
+        th, td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+        }
+        th { background: rgba(10,77,120,0.08); }
+        footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+            padding: 40px 20px 60px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>HTML Forms &amp; Prompt Engineering</h1>
+    <p>February 5, 2026 &bull; 4:12&ndash;5:16 PM (two recordings)</p>
+    <p class="tag">Module 3 &mdash; HTML Forms I</p>
+    <a href="index.html">&larr; Back to Transcript Hub</a>
+</header>
+
+<section>
+    <h2>1. Homework 3 Walkthrough</h2>
+    <span class="tag">Recording 1 &mdash; 00:00&ndash;07:25</span>
+    <h3>Question Highlights</h3>
+    <ul>
+        <li><strong>Q2:</strong> Add a 10+ component form to the HTML-command dictionary page; hints (Notes A &amp; B) appear via buttons and can be replayed.</li>
+        <li><strong>Distinct tasks:</strong> Q1 and Q2 are separate builds; Q3 collects feedback on previous homework, Q4 covers fishbone diagrams, Q5 focuses on Socratic questioning.</li>
+        <li>Daniel may slightly slow the embedded hint audio/video pace based on class feedback.</li>
+    </ul>
+    <div class="warning">
+        <strong>Reminder:</strong> Indicate when Homework 3 is ready on your homepage. Forms will be graded on variety (e.g., sliders, selects, inputs) and integration into the running command dictionary.</div>
+</section>
+
+<section>
+    <h2>2. Prompt Engineering Emphasis</h2>
+    <p>Daniel reiterated that prompt writing is the semester-long skill: Blackboard now advertises a Socratic helper, but students can craft better flows themselves.</p>
+    <ul>
+        <li>Effective prompts stretch your thinking without overwhelming you; iterate until the AI produces “just-right” challenges.</li>
+        <li>AI can help you draft prompts: ask it to include elements A/B/C, or to produce multiple-choice questions or hints.</li>
+        <li>Lester suggested asking AI to co-design prompts; Daniel will add that suggestion into HW3 Q5 instructions.</li>
+        <li>Prompting is likened to reading/study strategies—practice and metacognition make it a lifelong learning tool.</li>
+    </ul>
+    <div class="highlight">
+        <strong>Goal:</strong> Use the Socratic session transcript you submit for HW3/Q5 to showcase iterative prompting (clarifying roles, adjusting difficulty, requesting hints, etc.).</div>
+</section>
+
+<section>
+    <h2>3. HTML Form Lifecycle</h2>
+    <h3>Form ? PHP Round Trip</h3>
+    <p>Using the W3Schools sandbox, Daniel dissected:</p>
+    <ul>
+        <li><code>&lt;form action="/html/action_page.php"&gt;</code> &mdash; the <code>action</code> attribute sends data to a PHP program on the server.</li>
+        <li>Query-string output: submitting <code>firstname=John</code>, <code>lastname=Doe</code> produces <code>?firstname=John&amp;lastname=Doe</code>.</li>
+        <li>Manually visiting <code>https://www.w3schools.com/action_page.php</code> shows the PHP response; appending <code>?foo=bar</code> echoes arbitrary parameters.</li>
+        <li>Security constraints block submissions from outside W3Schools (e.g., InfinityFree), illustrating cross-origin protections.</li>
+    </ul>
+    <div class="code-block">
+&lt;form action="/html/action_page.php">
+  &lt;label for="fname">First name:&lt;/label>
+  &lt;input type="text" id="fname" name="firstname" value="John"&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;label for="lname">Last name:&lt;/label>
+  &lt;input type="text" id="lname" name="lastname" value="Doe"&gt;
+  &lt;br&gt;&lt;br&gt;
+  &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;
+    </div>
+</section>
+
+<section>
+    <h2>4. Labels, Inputs &amp; Accessibility</h2>
+    <ul>
+        <li><code>label</code> elements use <code>for</code> to bind to inputs with matching <code>id</code>; clicking the label focuses the input.</li>
+        <li>Inputs send <strong>name-value</strong> pairs to the server; <code>name</code> controls what appears in the query string.</li>
+        <li>Thomas emphasized that labels are crucial for screen readers and legal accessibility compliance.</li>
+        <li>HTML should carry semantics (e.g., <code>&lt;strong&gt;</code>) while CSS handles presentation &mdash; an evolution from early web practices.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>5. Input Types &amp; Sandbox Experiments</h2>
+    <table>
+        <tr><th>Type</th><th>Use Case</th><th>Notes</th></tr>
+        <tr><td><code>text</code></td><td>Single-line entry</td><td>Works with labels; `name` is used server-side.</td></tr>
+        <tr><td><code>submit</code></td><td>Form submission</td><td>Must stay inside `<form>` or the action is never triggered.</td></tr>
+        <tr><td><code>button</code></td><td>Custom actions/UI</td><td>Value is simply the label text; needs JS to do more.</td></tr>
+        <tr><td><code>radio</code></td><td>Exclusive choice</td><td>Inputs sharing a `name` allow only one selection.</td></tr>
+        <tr><td><code>checkbox</code></td><td>Multiple toggles</td><td>Each checkbox posts as its own name-value pair.</td></tr>
+    </table>
+    <div class="highlight">
+        Class exercise: everyone modified W3Schools “Try It” forms (adding reset buttons, experimenting with `<br>`, checking URL encoding quirks like <code>+</code> ? space) to reinforce concepts.</div>
+</section>
+
+<section>
+    <h2>6. Troubleshooting &amp; Tips</h2>
+    <ul>
+        <li>Broken <code>action</code> paths yield 404s; debug by copying the URL into the browser and ensuring the PHP file exists.</li>
+        <li>Special characters require URL encoding; otherwise the server may misinterpret them.</li>
+        <li>Submit buttons outside `<form>` detach from actions; labels can live outside but still point in via <code>for</code>/<code>id</code>.</li>
+        <li>When multiple forms exist, each should have its own submit button inside the correct form block.</li>
+    </ul>
+</section>
+
+<footer>
+    <p>Prepared by Lester Carcamo &bull; Last updated March 3, 2026</p>
+</footer>
+
+</body>
+</html>
