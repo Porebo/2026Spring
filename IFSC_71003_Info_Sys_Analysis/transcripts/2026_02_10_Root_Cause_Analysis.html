@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feb 10: Form Enhancements & Root Cause Analysis</title>
+    <style>
+        :root {
+            --primary: #0b5a7d;
+            --accent: #f39c12;
+            --bg: #f5f7fa;
+            --text: #1f2a37;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+        }
+        header {
+            background: linear-gradient(135deg, #0b5a7d, #07283c);
+            color: white;
+            text-align: center;
+            padding: 36px 20px;
+        }
+        header a {
+            color: #cfe6ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        header a:hover { text-decoration: underline; }
+        section {
+            max-width: 970px;
+            margin: 30px auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 24px 45px rgba(7,40,60,0.08);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid rgba(11,90,125,0.18);
+            padding-bottom: 10px;
+        }
+        h3 { margin-top: 1.3rem; color: #0f334d; }
+        ul, ol { line-height: 1.75; }
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            margin-bottom: 12px;
+        }
+        .highlight {
+            background: #e9f4ff;
+            border-left: 5px solid var(--primary);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        .warning {
+            background: #fff4e5;
+            border-left: 5px solid var(--accent);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        .code-block {
+            background: #0f172a;
+            color: #e0e7ff;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+            font-size: 0.95rem;
+        }
+        th, td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+        }
+        th { background: rgba(11,90,125,0.08); }
+        footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+            padding: 40px 20px 60px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Form Enhancements &amp; Root Cause Analysis</h1>
+    <p>February 10, 2026 &bull; 4:19&ndash;5:18 PM (two Zoom recordings)</p>
+    <p class="tag">Module 4 &mdash; Root Cause Analysis</p>
+    <a href="index.html">&larr; Back to Transcript Hub</a>
+</header>
+
+<section>
+    <h2>1. Homework 3 Wrap-Up &amp; Homework 4 Preview</h2>
+    <span class="tag">Recording 1 &mdash; 00:00&ndash;07:30</span>
+    <h3>Immediate Reminders</h3>
+    <ul>
+        <li>Add the first form <strong>directly to the HTML test page</strong> (no new page). Avoid sensitive prompts such as passwords or dates of birth.</li>
+        <li>Correct course-number typos were fixed; report any additional broken links or issues so Daniel can patch them quickly.</li>
+        <li>Mark your homepage when Homework 3 is ready to grade.</li>
+    </ul>
+    <h3>Homework 4 Requirements (Due Feb 17)</h3>
+    <ul>
+        <li>Enhance the existing form with <strong>8 new components or attribute variations</strong> (e.g., placeholders, sliders, select + option groups).</li>
+        <li>Include a working <code>action</code> handler; Daniel recommends mirroring the W3Schools example so submissions hit <code>action_page.php</code>.</li>
+        <li>Create an expressive submit button (multi-line example shown) to reinforce instructions.</li>
+        <li>Read the cautionary note about political-data prompts, reflect in Homework 4, and keep user safety in mind.</li>
+    </ul>
+    <div class="warning">
+        <strong>Privacy reminder:</strong> Forms on public InfinityFree pages must not request private identity data. Stick with harmless demo inputs (favorite color, slider ranges, etc.).</div>
+</section>
+
+<section>
+    <h2>2. Form UX Enhancements</h2>
+    <p>Daniel demoed two attribute-driven upgrades for the homework form:</p>
+    <ul>
+        <li><strong>Placeholder hints:</strong> Use the <code>placeholder</code> attribute to display gray instructional text inside inputs. The hint disappears once users type.</li>
+        <li><strong>Statement-style submit button:</strong> Long instructional copy can be inserted into the submit button’s <code>value</code>, producing a multi-line CTA that spans the form width.</li>
+    </ul>
+    <div class="code-block">
+&lt;input type="text" name="fullname" placeholder="Type your name here (no sensitive data)"&gt;
+&lt;input type="submit" value="Submit the form\nOnly after reviewing all fields"&gt;
+    </div>
+</section>
+
+<section>
+    <h2>3. HTML Self-Study Course &amp; Quiz</h2>
+    <p>To reinforce fundamentals, Daniel built an 8-lesson HTML mini-course (via Claude) with embedded true/false quizzes and optional hints.</p>
+    <div class="highlight">
+        <strong>Deliverable:</strong> Complete all lessons, finish the quiz, and upload a screenshot of the final score as Homework 4 Question 2.</div>
+    <p>Daniel hinted that future homework might ask students to build their own review game, so note how lessons link to quizzes and how scoring summaries are presented.</p>
+</section>
+
+<section>
+    <h2>4. Root Cause Analysis Overview</h2>
+    <p>The lecture transitioned from HTML into broader analysis methods:</p>
+    <ul>
+        <li>Importance of fixing <em>root</em> problems (square-root bug anecdote) instead of plastering “if input=25 return 5” patches.</li>
+        <li>Survey of RCA tools: fishbone diagrams, fault tree analysis, causal factor trees, Pareto charts, statistical process control.</li>
+        <li>Discussion about when AI can help (e.g., generating CSS themes) vs. when human reasoning is required (e.g., identifying flawed processes).</li>
+    </ul>
+</section>
+
+<section>
+    <h2>5. Five Whys Deep Dive</h2>
+    <p>Daniel walked through a disappearing-form-data example:</p>
+    <ol>
+        <li><strong>Problem:</strong> Users submit a form but no data appears.</li>
+        <li>Why? Server never stored it.</li>
+        <li>Why? Submit button miswired / typo in <code>action</code>.</li>
+        <li>Why? Deployment/caching or QA gaps.</li>
+        <li>Why? Process doesn’t enforce post-deploy validation.</li>
+    </ol>
+    <p>Class debate weighed user error vs. design responsibility; consensus was to keep digging until the organization can correct both the immediate issue (typo) and the systemic cause (testing standards).</p>
+</section>
+
+<section>
+    <h2>6. Failure Modes &amp; Effects Analysis (FMEA)</h2>
+    <span class="tag">Recording 2 &mdash; 00:21&ndash;59:34</span>
+    <p>The class used a coffee maker scenario (drip arm not over grounds) to practice AIAG-style FMEA scoring.</p>
+    <table>
+        <tr><th>Step</th><th>Details</th></tr>
+        <tr><td>Function</td><td>Hot water must drip over coffee grounds.</td></tr>
+        <tr><td>Failure mode</td><td>Arm not positioned over grounds.</td></tr>
+        <tr><td>Effects</td><td>No coffee produced; potential mess.</td></tr>
+        <tr><td>Causes</td><td>User forgets to swing arm; design doesn’t enforce position.</td></tr>
+        <tr><td>Severity vote</td><td>Class ran a Delphi-style poll; mean ˜ 5.8 (later re-vote showed same average but higher variance).</td></tr>
+        <tr><td>Occurrence vote</td><td>Average ˜ 5.5.</td></tr>
+        <tr><td>Detection vote</td><td>Average ˜ 4.8 (hard to detect automatically).</td></tr>
+    </table>
+    <p>Resulting RPN ˜ <strong>153</strong>, highlighting a medium-high risk. Daniel referenced AIAG tables for consistent scoring and noted that improved lid design (forcing the arm into place) could dramatically cut occurrence.</p>
+</section>
+
+<section>
+    <h2>7. Action Items</h2>
+    <ul>
+        <li>Submit Homework 3 today; ensure the form lives on the HTML test page.</li>
+        <li>Start Homework 4 enhancements: placeholders, additional input types, working action URL, stylized submit.</li>
+        <li>Complete the HTML lesson/quiz and capture the final score screenshot.</li>
+        <li>Prepare FMEA + Five Whys analysis for a UA Little Rock IT process (registration, data transfer, etc.).</li>
+        <li>Update personal homepage once Homework 4 artifacts are in place.</li>
+    </ul>
+</section>
+
+<footer>
+    <p>Prepared by Lester Carcamo &bull; Last updated March 3, 2026</p>
+</footer>
+
+</body>
+</html>
