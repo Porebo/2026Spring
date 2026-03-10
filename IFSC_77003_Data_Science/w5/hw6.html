@@ -163,8 +163,12 @@ Output: images/processed/black_and_white.png (736×1308)
     G(x, y) = (1 / (2πσ²)) · exp(-(x² + y²) / (2σ²)), sampled over x, y ∈ [-3, 3] so the 7×7 matrix sums to 1.
   </p>
   <figure>
+    <img src="images/originals/image 2.png" alt="Image 2 original" width="320">
+    <figcaption>Figure 3a: Original grayscale input for the Gaussian filter.</figcaption>
+  </figure>
+  <figure>
     <img src="images/processed/gaussian_filtered.png" alt="Gaussian filtered result" width="320">
-    <figcaption>Figure 3: Output of the 7×7 Gaussian smoothing applied to <code>image 2.png</code>.</figcaption>
+    <figcaption>Figure 3b: Output of the 7×7 Gaussian smoothing applied to <code>image 2.png</code>.</figcaption>
   </figure>
   <h3>Console evidence</h3>
   <pre>
@@ -183,12 +187,16 @@ Task 3 - Gaussian samples
     secondary bump above intensity 150, so I manually selected a threshold of 140 to separate background from highlights.
   </p>
   <figure>
+    <img src="images/originals/image 3.png" alt="Image 3 original" width="360">
+    <figcaption>Figure 4a: Original grayscale image prior to histogram analysis.</figcaption>
+  </figure>
+  <figure>
     <img src="images/processed/image3_histogram.png" alt="Histogram for image 3" width="360">
-    <figcaption>Figure 4: Grayscale histogram of <code>image 3.png</code> used to pick the threshold.</figcaption>
+    <figcaption>Figure 4b: Grayscale histogram of <code>image 3.png</code> used to pick the threshold.</figcaption>
   </figure>
   <figure>
     <img src="images/processed/thresholded.png" alt="Thresholded binary image" width="360">
-    <figcaption>Figure 5: Pixels > 140 become white; everything else becomes black.</figcaption>
+    <figcaption>Figure 4c: Pixels > 140 become white; everything else becomes black.</figcaption>
   </figure>
   <h3>Console evidence</h3>
   <pre>
@@ -202,10 +210,35 @@ Task 4 - Threshold samples (threshold = 140)
 <section>
   <h2>Task 5 – Prewitt Derivative Estimates</h2>
   <p>
-    The program applies the horizontal and vertical Prewitt kernels to the same grayscale version of
-    <code>image 3.png</code>, performs integer math, and records the absolute value of each response. I also derive the edge
-    magnitude via √(H² + V²) for visualization.
+    The Prewitt operator is a simple way to approximate the first derivative of an image. It highlights areas where intensity
+    changes quickly—those are the edges. By using two small kernels oriented horizontally and vertically, we can detect
+    directional changes: the horizontal kernel responds strongly to vertical edges (columns of contrasting pixels), while the
+    vertical kernel responds to horizontal edges (rows of contrasting pixels). Looking at the outputs:
   </p>
+  <ul>
+    <li><strong>Horizontal response (|H|):</strong> bright regions indicate strong vertical edges—look for vertical lines or
+    shape boundaries standing out against the background.</li>
+    <li><strong>Vertical response (|V|):</strong> bright areas point to horizontal edges—band-like structures or top/bottom
+    boundaries become clearer here.</li>
+    <li><strong>Magnitude √(H² + V²):</strong> combines both directions, so the brightest pixels represent the strongest edges
+    regardless of orientation. This is the version that most closely resembles a typical edge-map overlay.</li>
+  </ul>
+  <p>
+    Because the source image contains many smooth gradients, the variations may look subtle; focus on how architectural lines
+    and geometric shapes brighten up differently in each map to interpret the direction of change.
+  </p>
+  <p>
+    <strong>What is intensity?</strong> In a grayscale image, every pixel stores a single number between 0 and 255; 0 means pure
+    black, 255 means pure white, and mid-range values (e.g., 128) look like medium gray. When Prewitt talks about “intensity
+    changes,” it simply measures how quickly these numbers shift from one pixel to the next. For example, a transition from 20
+    to 220 over one pixel step is a strong change (edge), whereas 120 to 130 is a gentle change (smooth gradient). The operator
+    scans the image row by row and column by column, computing how steep those numeric differences are—brighter Prewitt pixels
+    indicate larger jumps in intensity.
+  </p>
+  <figure>
+    <img src="images/originals/image 3.png" alt="Image 3 original for Prewitt" width="320">
+    <figcaption>Figure 6: Original grayscale reference for edge detection.</figcaption>
+  </figure>
   <pre>
 Horizontal kernel:
 -1  0  1
@@ -256,6 +289,13 @@ Task 5 - Prewitt magnitude
     <li>Issues encountered: convolution speed was acceptable for 7×7 kernels, but I noted that thresholding on this dataset pushed everything to black, so future iterations might lower the threshold if more white detail is desired.</li>
     <li>Next step before submission: proofread captions, ensure figures render correctly in the browser, then use your preferred HTML→PDF workflow (e.g., print-to-PDF) on <code>hw6.html</code>.</li>
   </ul>
+</section>
+
+<section>
+  <h2>Lessons Learned and Next Steps</h2>
+  <p><strong>Pipeline overview:</strong> The full workflow now follows a predictable sequence—select inputs → organize originals → run scripted filters (black-and-white, Gaussian, thresholding, Prewitt) → capture console/visual evidence → document results in <code>hw6.html</code> → export to PDF. Future experiments can plug into this pipeline with minimal prep.</p>
+  <p><strong>Challenges overcome:</strong> Handling JPEG decoding, managing pixel addressing, tuning the Gaussian σ, and deciding on a meaningful threshold required iterative trials; logging sample pixels and histograms inside the scripts gave concrete feedback that guided those decisions.</p>
+  <p><strong>Potential enhancements:</strong> A small flowchart or diagram of the pipeline could complement the textual description, and future iterations could add a short subsection describing issues encountered per task with resolutions to deepen the learning narrative.</p>
 </section>
 
 </body>
