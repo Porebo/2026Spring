@@ -1,0 +1,31 @@
+[x] Tasks for Project_ImageProcessing assignment:
+[x] 1. Select source images
+[x] 1.1 Identify at least one high-resolution color image suitable for showcasing the black-and-white filter. (image 1.jpg selected)
+[x] 1.2 Locate two or more candidate images for the grayscale tasks; ensure they have clear contrast and interesting textures.
+[x] 1.3 Convert the grayscale candidates to PNG format using GIMP (or similar) and verify dimensions/bit depth.
+[x] 1.4 Organize all originals inside an `images/originals/` folder for consistent referencing in hw6.html.
+[x] 2. Implement black-and-white filter
+[x] 2.1 Load the chosen color image into the processing environment (Matlab/Python/etc.).
+[x] 2.2 For each pixel, compute `(R + G + B) / 3` and assign the result back into the R, G, and B channels.
+[x] 2.3 Save the converted image into `images/processed/black_and_white.png` and capture a paired before/after screenshot for the report.
+[x] 2.4 Draft the hw6.html section explaining the algorithm, formula, and observed visual changes.
+[x] 3. Build a 7x7 Gaussian filter
+[x] 3.1 Derive or copy a normalized 7x7 Gaussian kernel (sum = 1); store the coefficients in code or a config table.
+[x] 3.2 Apply convolution to the selected grayscale image, skipping the outermost rows/columns as instructed.
+[x] 3.3 Export the filtered output (`gaussian_filtered.png`) and note parameter details (sigma, normalization) for documentation.
+[x] 3.4 Add narrative and sample images to hw6.html, highlighting smoothing observations.
+[x] 4. Perform histogram-based thresholding
+[x] 4.1 Open the grayscale image in GIMP and generate its histogram; export or screenshot the histogram for reference.
+[x] 4.2 Choose a threshold value based on the histogram peaks/valleys; record the rationale.
+[x] 4.3 Apply the threshold so pixels above it become white and below become black; save as `thresholded.png`.
+[x] 4.4 Update hw6.html with the histogram graphic, chosen threshold, and before/after comparisons.
+[x] 5. Implement Prewitt derivative estimates
+[x] 5.1 Set up the horizontal and vertical 3x3 kernels exactly as specified (H and V matrices).
+[x] 5.2 Convolve the grayscale image with each kernel using integer math, taking absolute values of the results.
+[x] 5.3 Combine or visualize the horizontal/vertical responses (edge magnitude or separate panels) and save outputs.
+[x] 5.4 Document the method, formulas, and sample edge images in hw6.html.
+[x] 6. Maintain hw6.html report
+[x] 6.1 For every task above, insert text explaining objectives, formulas, and parameter choices.
+[x] 6.2 Embed original vs. processed images, labeling them clearly for each section.
+[x] 6.3 Keep notes on any issues or insights to include in the final write-up.
+[x] 6.4 Once all sections are complete, review for clarity and be ready to convert the HTML to PDF for submission.

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<h1>IFSC 77003 – Image Processing Project</h1>
+<p>
+  Source material: three photographs were selected via Pinterest searches that emphasized
+  geometric patterns rendered in distinct colors. Each file was downloaded locally as a JPG
+  and saved under <code>image 1.jpg</code>, <code>image 2.jpg</code>, and <code>image 3.jpg</code> inside
+  <code>images/originals/</code>. For downstream grayscale work, <code>image 2</code> and <code>image 3</code> were
+  opened in Snagit and exported as PNGs while retaining their base names. This set forms the
+  input library for all subsequent image-processing tasks.
+</p>
+
+<section>
+  <h2>Task 2 – Black-and-White Filter</h2>
+
+  <h3>Objective</h3>
+  <p>
+    Convert the selected color photograph (<code>images/originals/image 1.jpg</code>)
+    into a black-and-white (grayscale-looking) RGB image that can be reused in later
+    tasks and inserted into the final report.
+  </p>
+
+  <h3>Methodology</h3>
+  <p>
+    I wrote <code>task2program.py</code> (Python 3, Pillow, NumPy) to read the source image,
+    ensure it is in RGB mode, and compute the arithmetic mean of the three color channels
+    for every pixel. The averaged value is then replicated back into the R, G, and B
+    channels so the output remains an RGB file while visually appearing in black and white.
+    The script also logs input/output dimensions for easy verification and stores the
+    result under <code>images/processed/black_and_white.png</code>.
+  </p>
+  <p>
+    Breaking that workflow down:
+  </p>
+  <ol>
+    <li>
+      <strong>Step 0 – Decoding an image: from pixels to Python</strong> – Think of <code>image 1.jpg</code> as a colorful spreadsheet: 736 columns and 1308 rows,
+      totaling 962,688 cells. Python (via NumPy) loads it as an array with exactly that shape. Because every cell stores three color channels—Red, Green,
+      and Blue—each “cell” is a tiny bundle of three numbers. JPEG files arrange these bundles row by row, from the top-left corner down to the bottom-right.
+      <p>
+        Each pixel also has a unique home address described by its column (<em>x</em>) and row (<em>y</em>) coordinate. For instance, the first pixel sits at (0, 0),
+        while the last one is at (735, 1307). The table shows how four corner pixels translate into numeric data:
+      </p>
+      and color are paired:
+      <table border="1" cellpadding="4" cellspacing="0">
+        <tr>
+          <th>Position</th>
+          <th>Pixel Address (x, y)</th>
+          <th>RGB Value</th>
+          <th>Hex (RRGGBB)</th>
+          <th>Binary (R / G / B)</th>
+        </tr>
+        <tr>
+          <td>Top-left</td>
+          <td>(0, 0)</td>
+          <td>[3, 23, 58]</td>
+          <td>0x03173A</td>
+          <td>00000011 / 00010111 / 00111010</td>
+        </tr>
+        <tr>
+          <td>Top-right</td>
+          <td>(735, 0)</td>
+          <td>[132, 63, 182]</td>
+          <td>0x843FB6</td>
+          <td>10000100 / 00111111 / 10110110</td>
+        </tr>
+        <tr>
+          <td>Bottom-left</td>
+          <td>(0, 1307)</td>
+          <td>[0, 85, 89]</td>
+          <td>0x005559</td>
+          <td>00000000 / 01010101 / 01011001</td>
+        </tr>
+        <tr>
+          <td>Bottom-right</td>
+          <td>(735, 1307)</td>
+          <td>[8, 49, 79]</td>
+          <td>0x08314F</td>
+          <td>00001000 / 00110001 / 01001111</td>
+        </tr>
+      </table>
+      <p>
+        Notice how computers “see” colors as raw numbers, not descriptive names. That’s where libraries help. JPEG is a compressed binary format; trying to
+        decode it yourself would mean writing thousands of lines of math-heavy code. Pillow (PIL) acts as the translator: it reads the binary stream, decompresses
+        it, and hands Python a clean array of RGB numbers. Once PIL has done that heavy lifting, we can freely manipulate the pixels—such as averaging R, G, and B
+        to produce the black-and-white image in the next steps.
+      </p>
+      When we later average the channels, we collapse those three pieces of information into a single brightness value per pixel while preserving each pixel’s address.
+    </li>
+    <li>
+      <strong>Read the source image</strong> – <code>Image.open()</code> loads the pixels from disk into memory so they can be manipulated programmatically.
+      <pre>
+Sample RGB pixels:
+  (0, 0) -> [3, 23, 58]
+  (368, 654) -> [247, 112, 142]
+  (735, 1307) -> [8, 49, 79]
+      </pre>
+    </li>
+    <li>
+      <strong>Normalize to RGB</strong> – <code>img.convert("RGB")</code> guarantees every pixel has exactly three channels (Red, Green, Blue), which simplifies the math regardless of the original file format.
+    </li>
+    <li>
+      <strong>Average the channels</strong> – each pixel’s triple <code>(R, G, B)</code> is reduced to one brightness value via <code>(R + G + B) / 3</code>. That scalar is then copied back into the R, G, and B slots, producing a black-and-white version that still uses an RGB container.
+      <pre>
+Sample averaged intensities:
+  (0, 0) -> [28]
+  (368, 654) -> [167]
+  (735, 1307) -> [45]
+
+Sample replicated RGB grayscale pixels:
+  (0, 0) -> [28, 28, 28]
+  (368, 654) -> [167, 167, 167]
+  (735, 1307) -> [45, 45, 45]
+      </pre>
+    </li>
+  </ol>
+
+  <h3>Mathematical Formula</h3>
+  <p>
+    For a pixel located at coordinates (x, y):
+  </p>
+  <p><strong>I(x, y) = (R(x, y) + G(x, y) + B(x, y)) / 3</strong></p>
+  <p>
+    and the grayscale intensity <strong>I</strong> is assigned to each color channel:
+    R<sub>out</sub> = G<sub>out</sub> = B<sub>out</sub> = I.
+  </p>
+
+  <h3>Results</h3>
+  <figure>
+    <img src="images/originals/image 1.jpg" alt="Original color image" width="320">
+    <figcaption>Figure 1: Original RGB photograph (736 × 1308).</figcaption>
+  </figure>
+  <figure>
+    <img src="images/processed/black_and_white.png" alt="Black and white result" width="320">
+    <figcaption>Figure 2: Output from <code>task2program.py</code>; tonal details preserved while color is removed.</figcaption>
+  </figure>
+  <h3>Console Evidence</h3>
+  <p><strong>Completion log:</strong></p>
+  <pre>
+Black-and-white conversion complete.
+Input : images/originals/image 1.jpg (736×1308)
+Output: images/processed/black_and_white.png (736×1308)
+  </pre>
+  <p>
+    Visually, the conversion preserved the overall luminance contrast—bright regions remain bright,
+    and shadow details are still discernible—making this version a solid baseline for the upcoming
+    Gaussian, thresholding, and edge-detection experiments.
+  </p>
+</section>
+
+<section>
+  <h2>Task 3 – 7x7 Gaussian Filter</h2>
+  <p>
+    Script: <code>task3_to_5_program.py</code> (Python, Pillow, NumPy, Matplotlib).
+    I converted <code>image 2.png</code> to grayscale and convolved it with a normalized 7x7 Gaussian kernel
+    (σ = 1.25). Boundary rows/columns were left unchanged to respect the assignment's constraint of ignoring
+    the outer frame.
+  </p>
+  <h3>Kernel equation</h3>
+  <p>
+    G(x, y) = (1 / (2πσ²)) · exp(-(x² + y²) / (2σ²)), sampled over x, y ∈ [-3, 3] so the 7×7 matrix sums to 1.
+  </p>
+  <figure>
+    <img src="images/processed/gaussian_filtered.png" alt="Gaussian filtered result" width="320">
+    <figcaption>Figure 3: Output of the 7×7 Gaussian smoothing applied to <code>image 2.png</code>.</figcaption>
+  </figure>
+  <h3>Console evidence</h3>
+  <pre>
+Task 3 - Gaussian samples
+  (100, 200) -> 173
+  (200, 400) -> 33
+  (300, 600) -> 141
+  </pre>
+</section>
+
+<section>
+  <h2>Task 4 – Histogram-Based Thresholding</h2>
+  <p>
+    Using the same script, I generated the grayscale histogram for <code>image 3.png</code> and saved it as
+    <code>images/processed/image3_histogram.png</code>. The histogram shows a clear concentration of darker tones with a
+    secondary bump above intensity 150, so I manually selected a threshold of 140 to separate background from highlights.
+  </p>
+  <figure>
+    <img src="images/processed/image3_histogram.png" alt="Histogram for image 3" width="360">
+    <figcaption>Figure 4: Grayscale histogram of <code>image 3.png</code> used to pick the threshold.</figcaption>
+  </figure>
+  <figure>
+    <img src="images/processed/thresholded.png" alt="Thresholded binary image" width="360">
+    <figcaption>Figure 5: Pixels > 140 become white; everything else becomes black.</figcaption>
+  </figure>
+  <h3>Console evidence</h3>
+  <pre>
+Task 4 - Threshold samples (threshold = 140)
+  (214, 300) -> 0
+  (428, 600) -> 0
+  (642, 900) -> 0
+  </pre>
+</section>
+
+<section>
+  <h2>Task 5 – Prewitt Derivative Estimates</h2>
+  <p>
+    The program applies the horizontal and vertical Prewitt kernels to the same grayscale version of
+    <code>image 3.png</code>, performs integer math, and records the absolute value of each response. I also derive the edge
+    magnitude via √(H² + V²) for visualization.
+  </p>
+  <pre>
+Horizontal kernel:
+-1  0  1
+-1  0  1
+-1  0  1
+
+Vertical kernel:
+-1 -1 -1
+ 0  0  0
+ 1  1  1
+  </pre>
+  <figure>
+    <img src="images/processed/prewitt_horizontal.png" alt="Prewitt horizontal response" width="320">
+    <figcaption>Figure 6a: Horizontal derivative response (|H|).</figcaption>
+  </figure>
+  <figure>
+    <img src="images/processed/prewitt_vertical.png" alt="Prewitt vertical response" width="320">
+    <figcaption>Figure 6b: Vertical derivative response (|V|).</figcaption>
+  </figure>
+  <figure>
+    <img src="images/processed/prewitt_magnitude.png" alt="Prewitt magnitude" width="320">
+    <figcaption>Figure 6c: Combined magnitude map √(H² + V²).</figcaption>
+  </figure>
+  <h3>Console evidence</h3>
+  <pre>
+Task 5 - Prewitt horizontal
+  (214, 300) -> 0
+  (428, 600) -> 12
+  (642, 900) -> 119
+
+Task 5 - Prewitt vertical
+  (214, 300) -> 6
+  (428, 600) -> 6
+  (642, 900) -> 220
+
+Task 5 - Prewitt magnitude
+  (214, 300) -> 6
+  (428, 600) -> 13
+  (642, 900) -> 250
+  </pre>
+</section>
+
+<section>
+  <h2>Task 6 – Report Maintenance and Notes</h2>
+  <ul>
+    <li>Each task section now documents objectives, formulas, methods, console evidence, and before/after imagery so this HTML can be exported directly to PDF.</li>
+    <li>Image organization: originals live in <code>images/originals/</code>, while every generated artifact lands in <code>images/processed/</code> for easy linking.</li>
+    <li>Issues encountered: convolution speed was acceptable for 7×7 kernels, but I noted that thresholding on this dataset pushed everything to black, so future iterations might lower the threshold if more white detail is desired.</li>
+    <li>Next step before submission: proofread captions, ensure figures render correctly in the browser, then use your preferred HTML→PDF workflow (e.g., print-to-PDF) on <code>hw6.html</code>.</li>
+  </ul>
+</section>
+
+</body>
+</html>
