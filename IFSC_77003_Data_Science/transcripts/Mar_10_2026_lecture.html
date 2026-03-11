@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mar 10, 2026 Lecture Highlights</title>
+  <style>
+    body { font-family: "Segoe UI", Arial, sans-serif; margin: 2rem; background: #f5f7fb; color: #1f2a37; }
+    header { border-bottom: 3px solid #0b6dda; margin-bottom: 1.5rem; padding-bottom: 0.5rem; }
+    h1 { margin: 0; font-size: 1.8rem; }
+    h2 { color: #0b6dda; margin-top: 2rem; }
+    .meta { font-size: 0.95rem; color: #4b5563; }
+    ul { line-height: 1.5; }
+    .timeline { border-collapse: collapse; width: 100%; margin-top: 0.75rem; }
+    .timeline th, .timeline td { border: 1px solid #d1d5db; padding: 0.5rem; text-align: left; }
+    .card { background: #fff; border-radius: 10px; padding: 1rem 1.25rem; box-shadow: 0 6px 18px rgba(15,23,42,0.08); margin-bottom: 1rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+    .chip { background: #e0efff; color: #0f4c81; padding: 0.3rem 0.6rem; border-radius: 999px; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Lecture Highlights: Social Media Analytics & Web Scraping</h1>
+    <p class="meta">IFSC 77003 – Data Science & Technologies | Instructor: Dr. Elizabeth Pierce | March 10, 2026</p>
+    <p class="meta" style="margin-top:0.3rem"><a href="index.html" style="color:#0b6dda;text-decoration:underline">&larr; Back to Transcripts Home</a></p>
+  </header>
+
+  <section class="card">
+    <h2>Session Snapshot</h2>
+    <ul>
+      <li>Positioned social media analytics as a multimedia discipline spanning text, images, video, APIs, and streaming telemetry.</li>
+      <li>Connected IBM’s business definition with government-scale missions at the COSMOS center, funded by multiple DoD agencies.</li>
+      <li>Walked through a question-to-data workflow: define goals → scope time range → choose sources → acquire, cleanse, and enrich data → analyze & visualize.</li>
+      <li>Highlighted practical hurdles (403 errors, dynamic pages) and emphasized understanding HTML/CSS/JS before scraping.</li>
+    </ul>
+    <div class="chips">
+      <span class="chip">Trend Tracking</span>
+      <span class="chip">Sentiment & Emotion</span>
+      <span class="chip">Competitive Intel</span>
+      <span class="chip">Operational Alerts</span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Smart Chapter Timeline</h2>
+    <table class="timeline">
+      <tr><th>Time</th><th>Chapter</th><th>Focus</th></tr>
+      <tr><td>00:00</td><td>Social Media Analytics Evolution</td><td>From text-heavy roots to multimedia data streams.</td></tr>
+      <tr><td>05:59</td><td>Applications</td><td>Trend detection, sentiment tracking, competitive monitoring.</td></tr>
+      <tr><td>11:53</td><td>Customer Experience Evolution</td><td>360° CX thinking (Toyota example) and loyalty levers.</td></tr>
+      <tr><td>16:04</td><td>Benefits</td><td>Strategic vs. tactical decisions, proactive issue handling.</td></tr>
+      <tr><td>30:10</td><td>Funding Sources</td><td>COSMOS tools + DoD/NSF/ARA sponsorship.</td></tr>
+      <tr><td>39:09</td><td>Web Scraping Demo</td><td>Requests workflows & HTTP status troubleshooting.</td></tr>
+      <tr><td>48:58</td><td>Beautiful Soup</td><td>Parsing, container targeting, cleaner HTML outputs.</td></tr>
+      <tr><td>55:46</td><td>Selenium in Colab</td><td>Headless/browser-driver constraints in cloud notebooks.</td></tr>
+      <tr><td>60:00</td><td>Extended Demo</td><td>lxml, urllib, automation & scheduling tips.</td></tr>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Technical Highlights</h2>
+    <ul>
+      <li><strong>Requests + Status Codes:</strong> Shows why some sites (GeeksForGeeks, UALR) block generic traffic and how to pivot to friendlier domains like Census.gov.</li>
+      <li><strong>Beautiful Soup:</strong> Pretty-prints HTML, locates div/class containers, and enables selective extraction rather than dumping the entire DOM.</li>
+      <li><strong>Selenium:</strong> Necessary for JS-heavy pages but tricky inside Google Colab without custom drivers; easier via local .py execution.</li>
+      <li><strong>lxml / urllib:</strong> Offer XPath querying and URL handling; success rates vary by target, reinforcing the need for experimentation.</li>
+      <li><strong>Automation:</strong> Demonstrated scheduling libraries and GUI automation to run scrapers overnight or on recurring intervals.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Action Items</h2>
+    <ol>
+      <li>Implement at least one scraping technique from the December 8, 2025 tutorial (or an equivalent reputable source).</li>
+      <li>Capture screenshots of both the code and resulting output for submission.</li>
+      <li>Document HTTP responses, site permissions, and any workarounds (user-agents, alternate targets, Selenium setup).</li>
+    </ol>
+  </section>
+</body>
+</html>

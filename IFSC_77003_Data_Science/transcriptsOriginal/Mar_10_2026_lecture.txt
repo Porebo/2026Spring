@@ -1,0 +1,469 @@
+﻿------------Skip to Main Content
+Accessibility Overview
+Zoom Logo
+SPRING_2026 IFSC 77003-H02 - Data Science & Technologies- Shared screen with speaker view
+Mar 10, 2026 01:21 PM
+Download (4 files)
+
+00:00:00/01:11:44
+
+Speed
+
+
+Only play highlights
+
+Summary
+Elizabeth conducted a learning module on social media analytics, covering its evolution from text-based analysis to multimedia analytics, and discussed various applications including trend identification, sentiment analysis, and competitive monitoring. She presented examples from IBM's approach to social media analytics and introduced the Cosmos center's tools for analyzing social media data, noting government funding sources including the Department of Defense. The session included a practical demonstration of web scraping techniques using Python libraries and Google Colab, with Elizabeth showing how to implement different scraping methods while encountering various technical challenges like 403 forbidden errors and dynamic content issues. She emphasized that web scraping requires understanding HTML, CSS, and JavaScript structures, and discussed the limitations of different tools like Beautiful Soup and Selenium in Google Colab environments.
+Elizabeth conducted a learning module on social media analytics, covering its evolution from text-based analysis to multimedia analytics, and discussed various applications including trend identification, sentiment analysis, and competitive monitoring. She presented examples from IBM's approach to social media analytics and introduced the Cosmos center's tools for analyzing social media data, noting government funding sources including the Department of Defense. The session included a practical demonstration of web scraping techniques using Python libraries and Google Colab, with Elizabeth showing how to implement different scraping methods while encountering various technical challenges like 403 forbidden errors and dynamic content issues. She emphasized that web scraping requires understanding HTML, CSS, and JavaScript structures, and discussed the limitations of different tools like Beautiful Soup and Selenium in Google Colab environments.
+Smart Chapters
+Playing...
+From 00:00
+Social Media Analytics Evolution
+From 05:59
+Social Media Analytics Applications
+From 11:53
+Customer Experience Measurement Evolution
+From 16:04
+Social Media Analytics Benefits
+From 30:10
+Social Media Analytics Funding Sources
+From 39:09
+Web Scraping Techniques Demonstration
+From 48:58
+Web Scraping with Beautiful Soup
+From 55:46
+Selenium in Google Colab Challenges
+From 01:00:00
+Web Scraping Techniques Demonstration
+Social Media Analytics Evolution
+Elizabeth led a discussion on social media analytics, highlighting its evolution from text-based analysis to a multimedia analytics approach incorporating various data types. She explained that the focus would be on techniques for gathering data from the web, including web scraping methods, and discussed the importance of understanding different implementation approaches. The session began with an overview of social media analytics, referencing IBM's definition of gathering and finding meaning in social media data to support business decisions, and concluded with plans to explore various purposes companies use social media analytics for.
+Audio Transcript
+Search transcript
+Elizabeth Pierce
+Elizabeth Pierce
+00:00:03
+Well, thank you, everyone, for being here this afternoon. And, this week, we are going to take a look at
+social media analytics. And I was thinking about this because,
+Social media analytics has been around pretty much, you know, since the start of the internet. So it's starting to have about a 30-year history.
+Social media analytics has started to look a lot like multimedia analytics. So when the internet first started, you know, if you had,
+a, some of the early web browsers, in the 1990s, very much text-based. And that's really how social media analytics started, looking at text.
+But over time, as you may notice, the internet became filled with graphics.
+Images, pictures, sound files, video, and now, a host of,
+APIs and, other, sources of data.
+And so, social media analytics has now become very rich, very… really, I almost think it has now become, an example of multimedia analytics, but with a focus on,
+Information that is, generated, and posted, to the web.
+Okay, so, what I wanted to talk about, today, and, we'll… I've got a little, as always, I try to have, with each learning module, a little bit of an overview, a little bit of some of the, the different
+objectives we'll be covering in this unit, and how they tie to the main objectives of the Information Science Graduate Program, and, some of the things that,
+you should be able to, learn, and, just notice here, I should… I, I noticed, I was copying and pasting… here we go. This should be, social, media analytics,
+Techniques, and, There we go, and
+Okay, here we go. And, there we go, and in the area of very good
+Can we send tools like this?
+And what was that?
+Just how to use tools for good scaffolding. Yes, yes!
+And, very good. So let me make sure I have my
+My stuff, yes. So yeah, we're going to talk a little bit about how we get data, off of the web. We'll also be talking about some of the changes and challenges, and we'll see that when we do the web scraping tutorial, about some of the future directions of, of web scraping. So,
+Okay, very good. Okay, I think I've got… I'm so glad, looked at the overview, and then, we've got,
+at the end, I've got my, next steps. But let's, go ahead, and so the question is, yeah, wanting to see tools for web scraping?
+You have mentioned there how to use tools like web scrapping. Yes. But I think web scrapping needs a better idea. Well, that's right. we can, find, how to use… how about techniques?
+Yep, I agree with you. Let's do, techniques, because you're quite right. Web scraping is a technique that can be implemented in several different ways, from raw coding, to libraries, to tools, to services. So, I agree with you.
+That is a better way of expressing those ideas, so thank you for that.
+Okay, so let's start off with the,
+First thing is, this is a nice introduction to social media analytics, and it is… comes from IBM.
+But what I like about it is, gives you a general definition. It's the,
+The definition they like to use is the ability to gather and find meaning and data gathered from social channels to support… now, they talk about business decisions.
+and measure the performance of actions based on those decisions through social media. And that's a pretty good business view of social media. What we're going to see is that there are some other audiences for social media, and so they may be looking for, I want to say.
+other, purposes, for using, social media analytics. And,
+And so let's just kind of scroll down and, let's take a look at, what at least some companies, what sort of questions or purposes, do they want to use
+social media analytics, for. So, some of the things
+from a business perspective is being able to spot trends related to offerings and brands. Another thing that they would like to do is understand the conversations
+that are out there on the web.
+What is being said, for example, about IBM, and how is it being received? Is it negative? Is it positive?
+Another thing that companies may want to know from social media analytics is what is the sentiment, towards our products and services? So,
+being able to understand what's going on in reviews is something that companies, are very curious about. Sometimes it's just simply to know, hey, is there a problem with our products? And so can we get, you know.
+You know, before we get to the point of having a recall, can we be proactive, identify issues, and kind of get ahead of that in the marketplace?
+Gauge response to social media and other, communications. So, for example, if IBM makes a big announcement, how did that impact impressions? You know, how did people feel about that?
+It could be used to, identify, high-value features for a product or a service. It could be used to figure out what competitors are saying and its effectiveness.
+And, trying to understand how third-party partners and channels may affect, performance.
+So, if you are IBM, you may be working with groups like Best Buy, you may be working through vendors like Walmart, and so maybe you're trying to understand, hey, when people buy directly from IBM, is that a different sentiment experience than when they go through one of the retailers through which we sell items?
+PM.
+And so, this can be used,
+First of all, for just tactical adjustments, so day-to-day operations, you know, there's, maybe an angry tweet, how can we get out there to, you often see that, by the way, when you look at, reviews. If somebody posts a complaint.
+One thing that I look for is how soon did the owner or business
+respond to the complaint, and how did they respond? You know, did they say, oh, we'll send out a rep, or, you know, we're going to follow up with you to make sure you're satisfied?
+And then the other thing is just, driving, strategic, decisions.
+And, let me just go ahead, and I noticed a little bit of feedback. Oh, Pavon, I noticed your mic is open. You may want to just mute.
+That may just, take care of, any, any, any feedback.
+Oh, perfect! Thank you very much!
+The other thing, though, is social media analytics can be used to help drive,
+Strategic decisions, like, what might be new markets, new products, new services, new upgrades, new types of campaigns. And so, these strategies, just some example,
+Of how they're making use
+of, social media analytics for strategic decisions. So there you see, product development, so looking at Facebook posts, tweets.
+Amazon product reviews, trying to understand what customers like, what they dislike, how their needs may be changing over time, how their, list of desired features is changing over time.
+And so, particularly if you're tracking this over time, you can see if there are any trends emerging that will help provide, you know, market research information that can be used to help it keep growing and improving your product lines.
+Customer experience. So, trying to figure out, what are things that make customers really happy, how can we increase loyalty, how can we, reduce, churn, and,
+trying to understand that, and I've often heard this, for example, the way Toyota approaches, their business, it's not just that they are
+Offering their customer a car experience, but it's… it's the whole,
+full 360 view of car ownership. So, if you look at Toyota, it's not just about building great cars, it's about, well, what's your experience when you go to the dealership?
+What's your experience when it comes to getting parts for your Toyota? What is your experience in terms of buying, reselling? What is your experience with the Toyota app?
+So many companies are now, and same thing with education, saying, look, it's not just about what goes on in the classes, but what about the advising experience? What about the,
+financial aid experience. What about the cafeteria experience? Or, just the campus life experience?
+So, many organizations are really going from just looking at a specific product to saying, well, let's look at the whole 360 customer experience.
+Another thing is, really, gauging your brand health. This is where you're very interested in
+Knowing how people think about your company, is that
+sentiment improving? Is it staying the same? Is it getting worse? Do they think of you as an economy brand? Do they think of you as a luxury brand? So how do people perceive you?
+And then, competitive analysis. So this is a way, for example, if you're IBM, and, you know, you're identifying certain markets that… and you want to know, well, how do we compare to our competitors? So companies are using social media analytics to figure out,
+How their customers are responding to their competitors, or are there indications that a competitor is getting into a new market, leaving a market?
+Or has a competitor, launched a new product that is receiving rave reviews? You know, so this is something, how quickly can we identify and respond to that?
+And then, operational efficiency. So, understanding, for example, are people complaining about
+things being out of stock. Are they, complaining about difficulties in ordering or the ordering experience? So, are they complaining about,
+challenges in returning a product. Are they, complaining about how they're being invoiced and billed? So these are things that the social media can really help with, because I think compared to saying, well, what about sending out a survey?
+a lot of times, you know, you know how surveys are, they, you know, if you send them out in the mail, they get… I mean, most of my surveys go right to the recycle bin, you know, they're paper, you know, gotta turn that stuff back into trees.
+And if you think, well, what about email? Oh, I mean, how many times have, you know, you set that right to spam? So when you think about it, email,
+regular mail, trying to catch people as they go about their business, you know, people really, you know, trying to have folks, you know, taking surveys at a mall. I mean, a lot of times we don't go to the mall anymore. We're shopping online.
+So you can see how, traditional ways of trying to identify with our customers
+has become a lot more expensive, much slower, very hard to get people. And the idea that, well, if everybody's out on the web, and it's an opportunity to really
+See a lot of everybody, and to be able to
+really see how they're thinking, what they're saying. And of course, it's not perfect, because I will say this, when it comes to reviews, generally, it's either really positive or really negative. Usually when people are so-so.
+Maybe they have less, you know, they have less emotional motivation, versus if they're really pleased or really pissed off.
+But even so, that's a lot better than, when it comes to, the surveys. And in fact, I can tell you as a department chair, keeping track of our alumni.
+a number of years ago, I was using alumni services, and I think I was only getting less than a 5% response rate from our alumni from the BS in Information Science.
+And then, one year, I said, you know what? I'm going to search for our alumni on LinkedIn, and I was able to find almost 80%
+of our alumni, and most of the LinkedIn profiles were fairly complete. Were they currently working, if they had gotten additional degrees, what sort of activities they were involved in, what kinds of badges.
+or skills they had picked up, whether they were working in management, or whether they had switched industries. And so I can really understand there's often a wealth of information that you can get
+Through social media that you really can't get, you know, through a traditional survey.
+Okay.
+And, so typically what we're seeing, just so you know, for many folks, there's typically a goal, and that's something to think about in your data science
+projects. It's really helpful if you have set a goal, or a challenge, or a question that you would like to, answer. And so, so it could be anything, in the case of social media, you may have a question, or our…
+you know, how satisfied are our customers with this product? Or we may be wanting to say, you know, what complaint… what are our top complaints when it comes to service? Maybe we're interested in maybe just general, what opportunities
+Can we identify for increasing revenue?
+And then, we can start kind of framing, maybe more specific topics, issues, keywords, parameters, like, for example, a date range. Okay, are we talking about the last
+5 years, 3 years, 1 year, 6 months. So this is kind of, scoping out and putting some more, I want to say, manageable boundaries on that question, goal, and challenge.
+And again, for your data science project, that may be very useful. You know, just framing it, I have this question, but I'm going to be just looking at what I can learn from, let's say, activity.
+Over the last 3 months.
+So,
+And then, again, once you've kind of identified some parameters, some scope, maybe some more specifics as to what you want to find out about that issue or challenge, or question, or set of questions that you've identified, then it's trying to figure out, so where would I get that information?
+Off.
+from the web. So, am I looking at YouTube videos, Facebook, am I looking at X? Am I looking at Amazon product reviews? Am I looking at news sites?
+Okay.
+And then, once you… and we'll talk a little bit about how you then get the information.
+But once you have the information, what are some of the techniques, used in social media analytics? Well, as I mentioned, a lot of text, so we're talking natural language processing.
+And then, machine, learning, techniques. So we may be, looking to take this information and, you know, maybe we're wanting to develop decision trees, cluster analysis,
+And, we also know that we're going to be, while some of the data may come in a structured format, there's a lot of unstructured data.
+And so…
+typically, one of the things that we'll need to do is often when, you know, you'll see this with web scraping, often the data that you get from web scraping, you then have to process to kind of extract, well, am I, you know, looking for titles, or am I looking, for comments, you know, trying to, get things
+And to maybe something more manageable that you could then organize, maybe into a spreadsheet.
+Another thing, and you can imagine this is big for companies who are wanting to really work with their demographics, this is, trying to identify, you know.
+the folks who are posting, what… what part of the country are they coming from? Can we get a handle on their age, their gender, their marital status, their parent… parental status?
+other demographics. So, this is a kind of a hot topic, meaning, you know, it's one thing to just be analyzing comments, but you can imagine if you can tie their comments
+to a demographic profile, that becomes very powerful. And by the way, that's one of the reasons why many retail stores, want you to get a Kroger Plus card. And they want you to use your Kroger Plus card, and they're willing to give you shopper discounts.
+For using your Kroger Plus card. And you can earn fuel points! And, and, you can get 10 cents off for, you know, save up your fuel points and get 40 or 50 cents off.
+And you might say, oh, are they really good-hearted people? And it's like, well, no, when you filled out your shopper's card, you know, you put in your information, and a little bit about your gender, and
+and enough information that even if you didn't give them your full demographic profile, you gave them enough that they could go to, third-party data resellers, like Axiom.
+who, you know, just having your name and a zip code is enough for them to, you know, pretty much identify, who you are, and provide a very rich set of demographic information that Kroger can tie, to that shopper's ID card.
+And again, that…
+that gives them a wealth of information. So you can imagine, if you're able, to get some of that information, from what people are providing about themselves on the web, that's very popular, or, you know, very important.
+Okay.
+Okay, looking at behavior analysis.
+So this is trying to understand, is someone, a user, a recommender, a prospective user? Are they a detractor? Other roles could be, to what extent, they are an influencer.
+Or are they just a viewer? Or, you know, trying to understand their behaviors. And so, this is a…
+We'll take a look at what Cosmos is looking at, but that's a big deal for Cosmos, trying to understand the activity levels. Who are sort of the ones driving a lot of this messaging? Who are the folks who are retweeting or distributing these messages? Who's… who might be actually acting on these messages?
+Versus just looking at it and say, whatever, and moving on.
+Another area is the sentiment analysis. So, this is everything from positive, negative, neutral, but this can also be looking at the emotions.
+So, is it negative, but is it negative as in angry, or is it negative in terms of sad?
+Is it, another area, and I'm not sure if they have it here, but
+Oh, this is interesting. This is kind of what Dr. Agarwal, it would share a voice is the influence, because, he looks at… analyzes the prevalence and intensity in conversations.
+regarding, brand, product, services, reputation. It helps determine key issues and important topics. It also helps classify, the discussions as positive, negative, neutral, or ambivalent. So, notice here, you could be looking at the,
+You know, the…
+the focus of the social media comments, like their focus on a product and service, and you can also be looking at what is the general tone of the conversation, and I know other things you might look at is, is there toxicity?
+How toxic is, is that conversation? Many companies might be, looking at things like, we kind of saw that with Google Images. What is racy? What might be adult language? What might be inappropriate? So,
+Okay, clustering analysis, often making associations between keywords or phrases that appear together frequently.
+So, this, for example, could be useful if you notice a new cluster for baking soda. Maybe somebody has, a group has kind of spreading the word about a new use and opportunity.
+So maybe they've discovered, you know, baking soda is wonderful for,
+putting it in your pets' weekly bath to reduce odors, so now it's being targeted as a terrific product for cleaning your pets, so things like that.
+And then, dashboards and visualizations. So, you know, you're getting all this information and, trying to
+Be able to spot the trends, the patterns, to get your insights more quickly, so the charts, the graphs, tables, other, presentation tools.
+Okay, so this is a nice article, just gives you a nice overview of social media analytics.
+And then the, second,
+item in our instructional materials is sharing with you the Cosmos,
+center, website. So, Cosmos is up on the sixth floor of this building, and Dr. Nitin Agarwal is the, director. And, their research involves,
+Developing better tools, so that
+for folks who want to do social media analytics, it would be nice if you had a nice GUI interface, versus having to, you know, write the web scrapers, write the routines for extracting, cleansing them.
+The data, writing the routines for analyzing the data, writing the routines for visualizing the data.
+So, over the years, Dr. Agarwal and his team have developed, the tools, as well as the, putting together a set of computer, servers, so that people can get an account and log in and, you know, analyze blogs. That was their first, product.
+And then, they're now, YouTube, video trackers. That has been,
+A lot of the conversations have… are moving from blogs to, video, so… And,
+And if you look at, Some of their,
+Other, tools. This one was specifically designed for COVID-19, misinformation, and, this one is a new one, vocal Structure Analysis. That's a new tool,
+This is looking to, allow people to,
+Oh, try to identify key sets of individuals in a social network. So, this is trying to figure out who is organizing events, movements, and campaigns. So, again, this is very much into the behavioral, aspects.
+And if you take a look at their, projects, and who is funding, their, their research, let me just see if they have their,
+Let me just see if they…
+See, that's maybe on their homepage.
+I think it's… thank you, I think it is their homepage. Yay! Let's go down to the bottom here. If you take a look at who is,
+off.
+funding them. Let me just open image in a new tab so we can see. Yeah, so we're talking Army Research Office.
+And, yeah, these are tiny, but, let's… when we open up in a new tab, we can, get a better sense of,
+who they are. Office of Naval, Research is another one. There's DARPA. This one is… who's this guy here? this is the Air Force Research Lab, and so you're kind of getting the feeling, this is the,
+Who's this guy?
+Oh, Secretary of Defense for, Research and Engineering. So you'll notice a National Science Foundation.
+Arkansas Research Alliance, let me see, who's this little guy here?
+is that… Oh, is that Entergy?
+a little cropped off there. But some of their projects have been, with, NATO. They've done, projects with,
+I know Dr. Agarwalz has done consulting, for, countries. And if you take a look at some of their,
+projects, so why are governments? You know, we saw how companies want to use social media analytics, but a number of countries
+are now actively looking at social media analytics because, in a way, that, social media can be weaponized. So, if you are a country, and you want to disrupt somebody's elections.
+Or if you want to create dissent, or create dissatisfaction, or create fear, or in any other way,
+negatively influence, and it's true you can positively influence. It's a two-edged sword, but, you know, most often, if you're going to do a social media campaign against another country, usually it's because, you want to make
+the other country weaker, and you want to make yourself, you know, stronger in comparison. So, a lot of,
+interest in understanding, how people are using, social media to, organize, how people are using social media to maybe plan,
+Whether it's attacks or demonstrations,
+How they might be spreading misinformation, how they might be trying to influence an election,
+How are they, you know, just,
+How do, mobs form on, on the internet, looking at,
+you know, who are driving, these propaganda campaigns, and so you can kind of get a taste of
+What are some of the things that…
+countries are very interested in, and you can see by the interest from the U.S. Department of Defense, how, being able to see what's going on in social media can be tied into, you know, homeland, security.
+I'm going to close some of these tabs.
+And,
+One other thing I'll show you, and then we'll take a look at some of the challenges when you want to get data from the web, is this article, Social Media Analytics.
+It is basically a, a chapter
+That was published… now, it's… it's in 2014, which is, 12… 12 years ago.
+But, it is, I think, a really nice, article, and, let me see if I can download the, the full PDF so you can really see this.
+And, let me just see if I can open this up. Yeah, just so you can see it.
+So…
+we don't really have a textbook in this class, but this particular, article, I thought, in terms of, you know, as of 2014, just giving a really good understanding of social media analytics, and then, you know, you…
+we'll talk a little later in the course about things that have changed or been, added on. But this does a nice job of talking about,
+Very similar to our introductory article, what social media is, how it's being used, and what are some of the research challenges, what are some of the applications.
+And it does a really nice job of kind of explaining, you know, how you take the data, the challenges with the data.
+How do you, prepare the data? And then some of the types of, of analytics.
+And it also talks about, some of the things, when… and we'll see this when you… when we do some web scraping. When you scrape, you not only get the content of the page, but if you're looking at the… the source of the page, you know, any HTML, XML, JSON,
+That is… is getting, scraped as well. And so, it's… this is part of,
+Being able to work with this data is understanding some of these different formats, and so that you're able to then write routines to be able to pick out, you know, what part of that source you're interested in.
+And then it, it talks a little bit about the, providers, and, let's see, and then, as I say, talks about,
+In addition to different sources, they talk about some of the, the,
+Different, tools available for, for visualizing and, and, presenting your results.
+So, and as you can see, this is a pretty extensive… it's 28 pages, but it is a great, overview of, essentially.
+social media analytics and the process. And in looking through this article, I mean, yes, Twitter has become X,
+But, it gives up.
+a nice, I think, foundation of…
+the basic techniques that I think are still relevant today, you know, when you're trying to work with social media data. And they have some nice examples of visualizations.
+And, I think a nice, description of essentially,
+the environment, if you wanted to create, you know, an ongoing social media analytics engine, what would be involved in building that out, so that you could have a real-time dashboard, tracking certain things?
+So definitely, recommend that for your reading, of this week.
+Okay.
+So, we'll talk about some of these other topics on,
+on, Thursday. But I wanted to, show some examples
+of web scraping. And of course, as… very good point made, web scraping is really a technique.
+And you can… you could, you know.
+code a web scraper from scratch, for example, using Python.
+You could use a Python library to help you with web scraping. There are a number of web scraping tools that are out there that you can use, and there are certainly some web scraping services. So, it runs the whole gamut.
+for your, assignment for this week, what I wanted you to do is take a look at, this particular,
+tutorial, and not too bad. It was last updated December 8th, 2025. So as tutorials go, this is pretty good. That's just a couple months ago. And, this has, it's a very nice overview of some of the different libraries out there.
+And, and what, what you can, do. And,
+I went ahead and said, well, let me try this out in Google Colab. You can certainly also run this from a PI file, you know, from, you know, just if you have a computer with an internet.
+And, for this assignment, what I'd like you to do is just really Fry…
+implementing, I say one of the techniques, there's…
+This tutorial has about 6 or 7 of the techniques, but as we're going to demonstrate, not all the techniques are easy to run in Google Colab.
+And we'll talk about that.
+But,
+But this is just, just trying out one of the techniques, just so you can say, hey, I went ahead and I did some web scraping, and then you can submit your, you know, a screenshot of the code that you used, along with your screenshot of your output.
+So some of the things that, as I went through, and what's nice is, you can go and click on just copy the code, which is very useful. That'll give you, like, the, the whole, code.
+Okay.
+So, some of the things that you will run into, and I'll give you an example.
+Okay?
+I'm going to take, one of the first things they ask you in this tutorial
+Is they, say,
+is you may need to install the request library, which is used for making HTTP requests to a specific URL and returns the response.
+And you're going to need that because, let's suppose you want to do what's known as a GET request to a web page, then resp…
+print the response status code and the page contents returned by the server. So, as I say, this, you might say, oh, okay, I want to copy the code and see if I can get the same type of output that they did.
+Well, let's go ahead and, let's try that.
+And I'm gonna start off with their original code.
+Okay.
+And so their original code said, let's go to this,
+GeeksForgeeks.org, Python, Python Programming Language Tutorial. So let's, let's go ahead and say, oh, okay, can we, can we get that page?
+Okay, let me, let me get out that little extra…
+comment, okay? Alright, so… so this is, this is the page, okay? So we can bring it up, Python tutorial, and now let me see what happens when I use the… my little web scraping.
+I'm going to try to scrape that paint.
+And I'm gonna run this code.
+And I say, well, wait a second.
+In the tutorial here, They get this wonderful page of output!
+And I'm not getting that wonderful page of outcode… output.
+I'm getting this, A 403!
+And so, what I did is I asked, you know,
+what is, Code 403? What, what is that? Because, you know, I was asking for it to give me, it, you know, print for me, the, the.
+The response, status code, and print me the, the response content.
+So…
+I got a little bit of insight here. So, if you get a 403, it means a forbidden status code, means that the web server understood the request
+But is refusing to authorize access to the requested resource.
+This is a client-side error indicating that the client does not have the, necessary, permissions, to access the content, even if their credentials are valid.
+And, there's a bunch of these status codes. There's a 401, which is, unauthorized,
+error. And let me just see,
+What are the, most, common
+Let me see if I can figure out, maybe they'll tell me what are the most common status codes? Okay.
+So, some of these you may be familiar with. Have you ever gotten a 404?
+That means, yeah, sometimes UALR website, 404, yeah, cannot find that webpage.
+200 is what we're shooting for. 200 means it's okay. If you ever get a 500, it means there was an internal server error, server failure. A 400 is a bad request.
+401, unauthorized, 403, forbidden, 301 slash 302 are redirects, and 503, 504 are service, gateway timeout.
+So this is one thing that is happening a lot, because
+And it may be, the fact that this request is coming from Google Colab, versus you may not get this problem if you're doing it, from your home machine.
+But how do you, fix this? Well, the way I fixed it is, before class, I was kind of scrambling to say, wait a second, can I get something else that is available? So let me just comment this out.
+And so, I tried UALR, and UALR was, you know, was not friendly to Google Colab web scraping. But I said, what about…
+the U.S. Census. So let me go ahead and see what happens when I run that.
+Oh!
+days.
+I'm getting a, a 200.
+And, you might say, so what is actually getting scraped here? Well, this is what's getting scraped, and you'll notice, oh my goodness, this is…
+This is very, long here. And, but, we can kind of… here is that, website. This is what it looks like when you go there. And, if you do a,
+Right-click and say, let me view the page source.
+This is… this is the HTML, you know, code, behind that… that website. And so let's just see, if we go, I see doc type HTML per CMS3223, we need the line below to have a 301 redirect capability. Let's see what happens,
+When we take a look at what we're… yes, so notice here, that's what it's starting to scrape, okay? So you see, you know, per CMS,
+3223, we need the line below to have a 301 redirect capability. Well, when you go to the U.S. Census Bureau, and you look at the raw HTML, oh, you say, oh, that's the first two lines of the HTML source code.
+So, yeah, that's… that's what it's scraping, okay?
+So you… this is, you can see, oh, so if I'm going to do web scraping, I really do need to know something about HTML and CSS and JavaScript and JSON and XML, and the language…
+behind…
+a website construction, so I can kind of make sense of what all this information is in here, so that I'll be able to go through and parse it out.
+Okay.
+There are some things, though, to help make it, useful.
+Okay, so there is something called Beautiful Soup.
+And you'll notice here, again, I'm getting a 403 error. That's because geeks for geeks.
+Yeah, they publish a tutorial on web scraping, but then they don't let me web scrape them, so that's a little cheeky, you know, but anyway, but that's okay. The U.S. Census Bureau, and make sure you copy the selection.
+They're a little bit more open.
+Okay, so let's, let's see what happens when I do it this way.
+Oh, okay All right. So, notice when you add beautiful soup.
+It makes it, rather than returning the output… the web scrape as one giant
+blob of HTML,
+you'll notice that what this is doing is actually retrieving it pretty much in the same format as when you do a, you know, I want to see the page source, and I want to see it. And you'll notice there's quite a bit here.
+Yeah, let's see if I can get to the top.
+Okay.
+Okay, let me just see if I can… you can hear me moving the mouse up and up and up and up and up and up and up and up and up and up. Okay.
+Is there a… something?
+Okay, this gets me up.
+Okay, so… but you get the picture here,
+Beautiful soup, gives you the whole,
+Basically, it's, it's like, you know, give me, give me the page source.
+So,
+So, in the tutorial, the first two demonstrations, it will work, but you may find you're going to have to play around to find a website that allows you to scrape.
+Oh, wait a second, here's that little… I was looking and looking for it. Yep, there, there we go.
+Okay.
+Okay, the next, oh, demonst…
+Oh, yeah, and then, there's also some things you can do, with, a beautiful soup.
+And again, let me see… One thing that Beautiful Soup, allows you to… let's see, what else does it do?
+Oh, some of the things you can do, when you have beautiful soup, and it's not working on this page, because,
+I don't have it set up as a,
+Don't have it set up as an article, but let's take a look. Let's see, it's looking for a div and a class. Let me just see something here.
+Let's see, do they have a class here?
+Let's see, can I play around here?
+Oh, let me try this.
+Beautiful Soup allows you, among many things, is to be able to say, well, I… there are particular,
+Let's see if this helps me out. Just see… oh, okay. So, what Beautiful Soup allows you to do is, of course, you can get the whole page source, which we saw was ginormous.
+And then you might say, but…
+I'm looking at a bunch of websites that have the same structure, and I'm looking for certain information. I'm looking for the author tag, or I'm looking for a time-date stamp.
+or I'm looking for certain content that has maybe been organized into comments, or have been organized into an article section. So, here I said, well, I looked at the page source, and they had a class that was the main conta-
+container, and
+And so here's how I was able to just pull out, that section of the, of, of the, of the page.
+So that's… so Beautiful Soup is definitely, you know, one of the tools you might want to check out.
+Now, Selenium is a really,
+I was going to say why beautiful soup helps to get things into a readable structure. Another, a tool is to,
+is, selenium.
+So, some websites load their content dynamically using JavaScript.
+And what that means is when you're trying to scrape, it may not be present in the initial HTML force. So in that case, Beautiful Soup alone isn't going to work because it only reads static HTML. So there is a product called Selenium.
+that can automate browsers like Chrome or Firefox.
+Wait for content to load, click buttons, scroll, and extract fully rendered web pages, just like it was a real user visiting the website.
+Now, here's the interesting thing. When I tried to get Selenium to run in Google Colab, just could not get it, to work. And I even did a search, you know,
+running Selenium in Google Colab.
+And basically, there is, yeah, there's some…
+kitchens, you have to configure it to run in a headless environment, and, you know, I tried this code, I tried to use this code, I tried to use this code, I tried to use, this code, and
+basically,
+tried to run this code, and it did not work. Now, I have had some students already submit this assignment, and they were able to run Selenium, but I noticed they weren't trying to run it in a notebook. They were running it as a .py, a py file. So.
+I think…
+Haven't quite figured it out if I'm using outdated code, because, you know, one of the issues you have when you use, like, Google to handle your responses
+Did you get the latest, greatest information, or did you get…
+some information that somebody had posted on Reddit that's not exactly right, or has Google put in, you know, some additional restrictions, because maybe they don't want you using Selenium?
+But, but in any case,
+a lot of discussions, you can see a bunch of people are asking, how can I use Selenium WebDriver in, collab, research? And, and so notice, there's a bunch at YouTube. I can understand,
+Let me put it this way, I always… misery loves company, so I felt badly I couldn't get Selenium to work in Google Colab, but when I saw the list of all the other people who were having issues getting, Selenium to run in Google Colab, I didn't feel, quite so bad.
+So, I just will tell you that already, that, hey, if you can, figure out how to,
+use Google Selenium, sorry, Selenium and Google Colab, I'd love to be able to see your… your solution.
+Okay, so we, we, we'll just take a look, though,
+But they have some nice examples in this tutorial, if you just want to see, oh, you know, what would Selenium do if I'm able to install it? So…
+Okay.
+Okay, so there's another tool, LXMLXML Library, and it supports XPath.
+me, and I'm like, so what does that mean? And so it helps convert raw HTML into a structured tree, so that you can, you know, better, you know, fetch elements, than just
+regular, parsing. And that, I did, try out, and that seems to, work. Now, again, when I go,
+Now, this is very interesting, oh, I guess this is the, this was the, here's…
+Let's just copy the selection. So this is… Okay.
+So that's interesting. That seemed to,
+That seemed to work. Let me just see what happens if I change it into a,
+A different, And again, I found,
+The copy works very well. Notice, though, their example.com, you know, did not seem to work at all.
+So, I always find that interesting, you know, since they published it.
+always interesting to see what works and does not work. Let me see what happens if I run,
+Bye.
+So notice I, you know, notice in some cases, the code is working, it's just, hey, it's just not,
+But this is a good illustration as to, you know, with web scraping, what can you scrape and what can you not scrape? And you can see that,
+Yeah, it's very interesting to see, you know, what works and what does not work.
+Yeah.
+So you can see with web scraping, it… it's not a simple, oh, let me just do,
+A blind, a web scrape, you can see that, you end up really needing to know, the structure of what you're looking for, and identifying which websites will allow you to scrape.
+So this one is very interesting. Let me see, this says here, click here, and feedback. So this is saying, extract all linked text. Okay, so let's just see,
+If we're, taking a look at, this particular a website.
+If we're searching, geeks for geeks.
+And, it's looking for,
+It is looking for various, links here.
+And again, you may have to just look at the page source, and, you know, we can see it's, returning here, click here in feedback, so we can kind of double check. We can then say, oh yeah.
+Let's just see.
+Yeah, so this is an interesting one. In this case, it certainly is finding something, it's, extracting something, extract all link text, and it has here, click here, and, feedback.
+A little hard to see what,
+Though, well, what they match up to.
+Another,
+Okay.
+And notice even they had, when they… even when they went to this one, the link text was Learn More, so…
+So this is what it's supposed… just so you know, this is what it's supposed to be doing.
+So this, this was their example domain, and notice, this was an example of link text, learn more, and that's what it, extracted here. So, apparently, what we're looking for is,
+Somewhere in here is some link text, that, it's picking up on.
+Just close some of these, because…
+I'm getting too much stuff on the page.
+Let's see, let's take a look at a few more before we wrap up.
+Another module is this URL live module. It helps you open web pages, read their data, parse ULR, and handle URL-related errors. And so,
+This one, let's just take a look. I believe I was able to get this to run,
+So, for, Geeks for Geeks, which is,
+Actually, it's available for web scraping, so we can actually, we can,
+We can find some of that, and then let me just double check,
+Let me just go back.
+Let's try.
+as I say, that one was kind of a search request.
+Let me see one that, I can play around here.
+And, oh, just to,
+And again, what's nice about this is you can just, do a, a, a, a,
+a quick copy, and it's kind of nice, and then you can just do, put this right in, and then… here, let me see if I can do this without,
+Would be helpful to get into my codebook, wouldn't it?
+Okay, let's just take a quick look at this.
+Yeah.
+Oh, and it's interesting. In some cases, you know, I didn't have a problem before, but that's an interesting thing, that certain types of requests, might… might not… might not work.
+But we'll take a quick look. I think, oh, one other thing is, you can imagine with web scraping, you'd probably, would like to set up a web scraper, so you can kind of set it up to run, and then you go out, have dinner, a movie.
+good night's sleep, and then maybe check what your results are in the morning. And,
+Maybe you'd just like to schedule a run to, you know, kick off at midnight, you know.
+every night.
+Well, they've got a library, with that. I'm sure they have a number of different libraries. And, what you can do is,
+be able, to give it scripts
+For example, in this case, maybe you want to move the mouse to specific screen positions and performs clicks.
+So you can imagine, if you could set up that type of job, you could set it up to run, so you don't have to be physically there, doing those mouse clicks. And then I mentioned, yeah, maybe you'd like to have a job that runs on a regular basis, and so there's, there's a,
+a function called schedule, I guess it's a schedule module, and what it allows you to do is basically… here's a simple example, it's just printing a message, but if you let this run every minute, it'll print out Geeks for Geeks, just kind of
+Describing, just a simple way that you could set up a… set up a schedule.
+Okay, we are out of time, but, definitely, feel free, and by the way, if you have a different
+web scraping routine that you'd like to demonstrate, you are free to, you don't feel restricted that you have to use that particular tutorial, because as you can see, depending on
+But you're using,
+You may need to change things up a bit, to be able to demonstrate that you could get a good, good web scrape.
+So, feel free,
+to kind of explore, you know, Reddit, the blogs, other, web scraping tutorials, to find a tool, that works with your machine, and definitely, play around, seeing, can you find a website that you can scrape?
+So, with that tool.
+Okay!
+Any, any other questions, concerns?
+Okay, well, thank you very much. Thank you for helping me to clean up my instructions, for this unit. So, that's looking, now that's looking much, much better.
+And on Thursday, we'll just continue looking at some of the issues, some of the tools, and some of the future directions, and I even have a very interesting conference presentation
+On how companies, are actually…
+Interested, if somebody's interested in web scraping their data, they're actually
+probably should think about, hey, if I'm going to allow them to web scrape.
+Maybe what I should do is set up an API, so that I can make some money, rather than people scraping my stuff for free. So, some interesting changes, coming, this way.
+Next Steps
+1. All students: Complete the web scraping assignment by trying out at least one web scraping technique from the provided tutorial (or an alternative), run the code (providing a screenshot of the code and output), and submit as instructed.
