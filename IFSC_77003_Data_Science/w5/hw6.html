@@ -2,18 +2,34 @@
 <html lang="en">
 <body>
 
-<h1>IFSC 77003 – Image Processing Project</h1>
-<p>
-  Source material: three photographs were selected via Pinterest searches that emphasized
-  geometric patterns rendered in distinct colors. Each file was downloaded locally as a JPG
-  and saved under <code>image 1.jpg</code>, <code>image 2.jpg</code>, and <code>image 3.jpg</code> inside
-  <code>images/originals/</code>. For downstream grayscale work, <code>image 2</code> and <code>image 3</code> were
-  opened in Snagit and exported as PNGs while retaining their base names. This set forms the
-  input library for all subsequent image-processing tasks.
-</p>
+
+<header>
+  <h1>Lester S. Carcamo - HW6</h1>
+  <p><strong>Course:</strong> IFSC 777003 Data Science Intro</p>
+  <p><strong>Date:</strong> March 10, 2026</p>
+  <h2>Implementation of Image Processing Operations</h2>
+</header>
 
 <section>
-  <h2>Task 2 – Black-and-White Filter</h2>
+  <h2>Preparation – Image Library Setup</h2>
+
+  <h3>Objective</h3>
+  <p>Follow the project direction to prepare one color photograph for the black-and-white filter and grayscale sources for the remaining filters before any coding begins.</p>
+
+  <h3>Methodology</h3>
+  <p>Source material: three photographs were selected via Pinterest searches that emphasized geometric patterns rendered in distinct colors.</p>
+  <ol>
+    <li>Downloaded each file locally as JPG and named them <code>image 1.jpg</code>, <code>image 2.jpg</code>, and <code>image 3.jpg</code> under <code>images/originals/</code>.</li>
+    <li>Preserved <code>image 1.jpg</code> as the color input required for the Task 1 black-and-white conversion.</li>
+    <li>Opened <code>image 2.jpg</code> and <code>image 3.jpg</code> in Snagit to export grayscale-ready PNG versions, fulfilling the brief's request that Tasks 2-4 operate on greyscale data.</li>
+  </ol>
+
+  <h3>Results</h3>
+  <p>This preparation step produces a curated image library: <code>images/originals/</code> holds the untouched JPG sources, and <code>images/processed/</code> receives derivative PNGs that subsequent Gaussian, thresholding, and Prewitt operations can load without additional setup.</p>
+</section>
+
+<section>
+  <h2>Task 1 – Black and White (RGB Averaging Filter)</h2>
 
   <h3>Objective</h3>
   <p>
@@ -151,7 +167,7 @@ Output: images/processed/black_and_white.png (736×1308)
 </section>
 
 <section>
-  <h2>Task 3 – 7x7 Gaussian Filter</h2>
+  <h2>Task 2 – Gaussian Filter (7x7 Kernel)</h2>
   <p>
     Script: <code>task3_to_5_program.py</code> (Python, Pillow, NumPy, Matplotlib).
     I converted <code>image 2.png</code> to grayscale and convolved it with a normalized 7x7 Gaussian kernel
@@ -172,7 +188,7 @@ Output: images/processed/black_and_white.png (736×1308)
   </figure>
   <h3>Console evidence</h3>
   <pre>
-Task 3 - Gaussian samples
+Task 2 - Gaussian samples
   (100, 200) -> 173
   (200, 400) -> 33
   (300, 600) -> 141
@@ -180,7 +196,7 @@ Task 3 - Gaussian samples
 </section>
 
 <section>
-  <h2>Task 4 – Histogram-Based Thresholding</h2>
+  <h2>Task 3 – Histogram-Based Thresholding</h2>
   <p>
     Using the same script, I generated the grayscale histogram for <code>image 3.png</code> and saved it as
     <code>images/processed/image3_histogram.png</code>. The histogram shows a clear concentration of darker tones with a
@@ -200,7 +216,7 @@ Task 3 - Gaussian samples
   </figure>
   <h3>Console evidence</h3>
   <pre>
-Task 4 - Threshold samples (threshold = 140)
+Task 3 - Threshold samples (threshold = 140)
   (214, 300) -> 0
   (428, 600) -> 0
   (642, 900) -> 0
@@ -208,7 +224,7 @@ Task 4 - Threshold samples (threshold = 140)
 </section>
 
 <section>
-  <h2>Task 5 – Prewitt Derivative Estimates</h2>
+  <h2>Task 4 – Prewitt Derivative Estimate</h2>
   <p>
     The Prewitt operator is a simple way to approximate the first derivative of an image. It highlights areas where intensity
     changes quickly—those are the edges. By using two small kernels oriented horizontally and vertically, we can detect
@@ -264,17 +280,17 @@ Vertical kernel:
   </figure>
   <h3>Console evidence</h3>
   <pre>
-Task 5 - Prewitt horizontal
+Task 4 - Prewitt horizontal
   (214, 300) -> 0
   (428, 600) -> 12
   (642, 900) -> 119
 
-Task 5 - Prewitt vertical
+Task 4 - Prewitt vertical
   (214, 300) -> 6
   (428, 600) -> 6
   (642, 900) -> 220
 
-Task 5 - Prewitt magnitude
+Task 4 - Prewitt magnitude
   (214, 300) -> 6
   (428, 600) -> 13
   (642, 900) -> 250
