@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mar 10: Spaghetti Diagrams &amp; Workflow Traces</title>
+    <style>
+        :root {
+            --primary: #0d4d63;
+            --accent: #c0392b;
+            --bg: #f5f7fb;
+            --text: #1f2a37;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+        }
+        header {
+            background: linear-gradient(135deg, #0d4d63, #051d29);
+            color: white;
+            text-align: center;
+            padding: 36px 20px;
+        }
+        header a {
+            color: #cfe6ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        header a:hover { text-decoration: underline; }
+        section {
+            max-width: 980px;
+            margin: 30px auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 24px 48px rgba(5,29,41,0.1);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid rgba(13,77,99,0.2);
+            padding-bottom: 10px;
+        }
+        h3 { margin-top: 1.3rem; color: #12374a; }
+        ul, ol { line-height: 1.75; }
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            margin-bottom: 12px;
+        }
+        .highlight {
+            background: #e7f4ff;
+            border-left: 5px solid var(--primary);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        .warning {
+            background: #fff4e7;
+            border-left: 5px solid var(--accent);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+            padding: 40px 20px 60px;
+        }
+        code {
+            background: rgba(13,77,99,0.08);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Spaghetti Diagrams &amp; Workflow Traces</h1>
+    <p>March 10, 2026 &bull; 4:23&ndash;5:11 PM</p>
+    <p class="tag">Module 8 &mdash; Process Mapping</p>
+    <a href="index.html">&larr; Back to Transcript Hub</a>
+</header>
+
+<section>
+    <h2>1. Systems Analysis Context</h2>
+    <span class="tag">00:00&ndash;06:45</span>
+    <ul>
+        <li>Reaffirmed that spaghetti diagrams sit inside our systems analysis toolkit as bare-bones process maps built from rectangles (rooms/stations) plus directional arrows for movement.</li>
+        <li>Minimalist symbol rules: keep arrowheads for every path, annotate start/stop points, and reserve rectangles strictly for physical or logical zones to limit ambiguity.</li>
+        <li>Daniel emphasized that insight arises from the density of crossings, so legibility depends on disciplined layering instead of adding extra icons.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>2. Mailroom &amp; Factory Case Study</h2>
+    <span class="tag">06:45&ndash;24:00</span>
+    <h3>Mailroom Tangles</h3>
+    <ul>
+        <li>Walked through the legacy mailroom spaghetti map: overlapping courier paths make the wasted motion obvious, yet Block 7 still lacks its outbound arrow, proving that one missing edge can invalidate throughput counts.</li>
+        <li>Class debated whether aggressively shortening paths always helps—workers sometimes rely on longer loops for circulation and joint health, so analysts must capture both efficiency and ergonomic intent.</li>
+    </ul>
+    <h3>Battery Factory Metrics</h3>
+    <ul>
+        <li>Before the layout change, the battery plant’s operator traveled 113 ft taking roughly 440 minutes per cycle; moving stations cut the trace to 33 ft and 130 minutes, showcasing how diagrams quantify distance + time payoffs.</li>
+        <li>Students annotated both the tangled “before” and the streamlined “after” to practice storytelling with the same minimalist palette.</li>
+    </ul>
+    <div class="warning">
+        <strong>Insight vs. prescription:</strong> Spaghetti diagrams expose pain points but never guarantee the fix—pair every proposed shortcut with a worker health check so “fewer feet” does not quietly increase strain.</div>
+</section>
+
+<section>
+    <h2>3. Research Facts &amp; Gemba Insights</h2>
+    <span class="tag">24:00&ndash;32:00</span>
+    <ul>
+        <li>Student research pulled the ASQ definition of a flow line (“the visual trace of an item across stations”) to reinforce why every arrow needs a clear direction.</li>
+        <li>Reviewed the roots of Gemba walks—analysts physically observe the real place before freezing traces into the diagram, ensuring annotations match lived motion.</li>
+        <li>Shared a butterfly migration vignette showing how wildlife scientists map seasonal paths with the same spaghetti aesthetic, proving the method travels beyond factories.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>4. Weather &amp; Migration Spaghetti Models</h2>
+    <span class="tag">32:00&ndash;41:00</span>
+    <ul>
+        <li>Compared hurricane ensemble plots where each forecast model becomes a thin arrow; divergence vs. overlap mirrors tangled vs. clean mailroom paths.</li>
+        <li>Extended the analogy to wildlife telemetry—multi-season migration trails layer like weather models, so color-coding cohorts prevents visual overload.</li>
+        <li>Mapped website navigation as “digital spaghetti”: rectangles become pages, arrows become click paths, making bounce loops as obvious as conveyor detours.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>5. Terminology &amp; Homework Updates</h2>
+    <span class="tag">41:00&ndash;48:25</span>
+    <ul>
+        <li>Terminology roundup: manufacturing teams keep “spaghetti diagram,” meteorologists swap in “spaghetti plot/model,” while UX groups say “navigation chart”—label choices matter when comparing research across domains.</li>
+        <li>Daniel requested volunteers to refresh the 2023 terminology dataset with 2024–2026 sources, documenting how each field names the technique.</li>
+        <li>Assignment reminder: Block 7 and every other node in your homework trace must show matching inbound/outbound arrows before critique.</li>
+    </ul>
+    <div class="highlight">
+        <strong>Homework shift:</strong> Build the spaghetti diagram editor (rectangles + directional arrows, basic path metrics) by March 17, 2026. You may optionally substitute the terminology dataset refresh, but Daniel still needs helpers to extend the shared table.</div>
+</section>
+
+<footer>
+    <p>Prepared by Lester Carcamo &bull; Last updated March 13, 2026</p>
+</footer>
+
+</body>
+</html>
