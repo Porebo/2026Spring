@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mar 12: JavaScript Functions &amp; Loops</title>
+    <style>
+        :root {
+            --primary: #0d4d63;
+            --accent: #c0392b;
+            --bg: #f5f7fb;
+            --text: #1f2a37;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+        }
+        header {
+            background: linear-gradient(135deg, #0d4d63, #051d29);
+            color: white;
+            text-align: center;
+            padding: 36px 20px;
+        }
+        header a {
+            color: #cfe6ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        header a:hover { text-decoration: underline; }
+        section {
+            max-width: 980px;
+            margin: 30px auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 24px 48px rgba(5,29,41,0.1);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid rgba(13,77,99,0.2);
+            padding-bottom: 10px;
+        }
+        h3 { margin-top: 1.3rem; color: #12374a; }
+        ul, ol { line-height: 1.75; }
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            margin-bottom: 12px;
+        }
+        .highlight {
+            background: #e7f4ff;
+            border-left: 5px solid var(--primary);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        .warning {
+            background: #fff4e7;
+            border-left: 5px solid var(--accent);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+            padding: 40px 20px 60px;
+        }
+        code {
+            background: rgba(13,77,99,0.08);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>JavaScript Functions &amp; Loops</h1>
+    <p>March 12, 2026 &bull; 4:25&ndash;5:34 PM</p>
+    <p class="tag">Module 8 &mdash; JavaScript Practice</p>
+    <a href="index.html">&larr; Back to Transcript Hub</a>
+</header>
+
+<section>
+    <h2>1. HW8 Reminder &amp; Screenshot Policy</h2>
+    <span class="tag">00:00&ndash;06:00</span>
+    <ul>
+        <li>HW8 remains on track for Tuesday, March 17, 2026; no new questions surfaced in class.</li>
+        <li>Submissions must include full-screen evidence so reviewers can see the browser, taskbar, and timestamp.</li>
+        <li>Daniel reiterated that sandbox edits are welcome for prototyping before committing changes to the live site.</li>
+    </ul>
+    <div class="highlight">
+        <strong>Screenshot requirement:</strong> Capture the entire desktop (not cropped windows) before uploading progress for HW8 or any sandbox proof.
+    </div>
+</section>
+
+<section>
+    <h2>2. Functions Under the Hood</h2>
+    <span class="tag">06:00&ndash;32:00</span>
+    <h3>Functions as Values</h3>
+    <ul>
+        <li>Reviewed how functions live inside variables, whether anonymous expressions or named declarations.</li>
+        <li>Compared referencing the variable name (yields the function definition) vs. invoking it with parentheses to execute behavior.</li>
+    </ul>
+    <h3>Return Flow</h3>
+    <ul>
+        <li>Return statements tie directly to if/else branches, enabling early exits once criteria are met.</li>
+        <li>Class experimented with toggling parentheses around <code>sayHello</code> to show the difference between returning a function vs. its output.</li>
+    </ul>
+    <div class="warning">
+        <strong>Watch the stack:</strong> Calling a function that calls itself (directly or via another reference) will keep stacking frames until a base condition returns control.
+    </div>
+</section>
+
+<section>
+    <h2>3. Recursion Demonstration</h2>
+    <span class="tag">32:00&ndash;48:00</span>
+    <ul>
+        <li>Prompt loop asked the student to enter the number <strong>5</strong>; the function re-invoked itself until that base case passed.</li>
+        <li>Daniel drew the call stack to show why recursion is considered the “hard way” for this scenario—each call waits for the next resolution.</li>
+        <li>Discussion highlighted how failing to return the recursive call’s result can leave the stack unresolved.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>4. Loop Techniques</h2>
+    <span class="tag">48:00&ndash;65:00</span>
+    <h3>While vs. For</h3>
+    <ul>
+        <li>While loops emphasize condition-first thinking; for loops bundle initialization, test, and increment in one header.</li>
+        <li>Students converted a simple <code>while</code> into a <code>for</code> by pulling the counter setup and increment into the new clause.</li>
+    </ul>
+    <h3>Syntax Hygiene</h3>
+    <ul>
+        <li>Keep braces aligned, semicolons intentional, and clause commas out of loop headers.</li>
+        <li>Daniel recommended W3Schools Function and Loop quizzes as immediate practice once the sandbox felt comfortable.</li>
+    </ul>
+    <div class="highlight">
+        <strong>Exercise stack:</strong> Rebuild class examples in the sandbox, then run the matching W3Schools quizzes to confirm clause-by-clause mastery.
+    </div>
+</section>
+
+<section>
+    <h2>5. Sandbox &amp; Next Steps</h2>
+    <span class="tag">65:00&ndash;68:00</span>
+    <ul>
+        <li>Keep prototype work inside the sandbox until the flow feels solid; take clean full-screen captures before pushing to the live site.</li>
+        <li>Action items: finish HW8 with proper evidence, rebuild the recursion prompt, swap between loop types, and log W3Schools quiz results.</li>
+        <li>Use the sandbox output plus quiz feedback as documentation for Tuesday’s deliverable check.</li>
+    </ul>
+</section>
+
+<footer>
+    <p>Prepared by Lester Carcamo &bull; Last updated March 13, 2026</p>
+</footer>
+
+</body>
+</html>
