@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mar 5: JavaScript Operators &amp; HW7 Submission</title>
+    <style>
+        :root {
+            --primary: #0d4d63;
+            --accent: #c0392b;
+            --bg: #f5f7fb;
+            --text: #1f2a37;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+        }
+        header {
+            background: linear-gradient(135deg, #0d4d63, #051d29);
+            color: white;
+            text-align: center;
+            padding: 36px 20px;
+        }
+        header a {
+            color: #cfe6ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        header a:hover { text-decoration: underline; }
+        section {
+            max-width: 980px;
+            margin: 30px auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 24px 48px rgba(5,29,41,0.1);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid rgba(13,77,99,0.2);
+            padding-bottom: 10px;
+        }
+        h3 { margin-top: 1.3rem; color: #12374a; }
+        ul, ol { line-height: 1.75; }
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            margin-bottom: 12px;
+        }
+        .highlight {
+            background: #e7f4ff;
+            border-left: 5px solid var(--primary);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        .warning {
+            background: #fff4e7;
+            border-left: 5px solid var(--accent);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+            padding: 40px 20px 60px;
+        }
+        code {
+            background: rgba(13,77,99,0.08);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>JavaScript Operators &amp; HW7 Submission</h1>
+    <p>March 5, 2026 &bull; 4:06&ndash;5:11 PM</p>
+    <p class="tag">Module 7 &mdash; JavaScript Foundations</p>
+    <a href="index.html">&larr; Back to Transcript Hub</a>
+</header>
+
+<section>
+    <h2>1. HW7 Submission Workflow</h2>
+    <span class="tag">00:00&ndash;05:30</span>
+    <ul>
+        <li>Homework 7 (4,000 words) is due next class on Tuesday, March 10, 2026.</li>
+        <li>Publish the assignment as an HTML page on your personal site and share the link—no PDFs or printouts.</li>
+        <li>Embed headings, subsections, and navigation; avoid dumping raw text into a `<pre>` tag unless absolutely necessary.</li>
+    </ul>
+    <div class="highlight">
+        <strong>Submission tip:</strong> Build the base HTML document yourself, then weave in AI-generated paragraphs so the structure stays consistent and accessible.
+    </div>
+</section>
+
+<section>
+    <h2>2. Managing AI for Long Documents</h2>
+    <span class="tag">05:30&ndash;15:00</span>
+    <h3>Coaching Strategies</h3>
+    <ul>
+        <li>Break HW7 into sections and prompt the AI for each chunk; request extensions when the model stops early.</li>
+        <li>Plan to merge outputs manually and enforce an outline with headings and subheadings.</li>
+        <li>Expect to edit for repetition and flow—Daniel compared the effort to supervising a master&rsquo;s project.</li>
+    </ul>
+    <div class="warning">
+        <strong>Hands-on requirement:</strong> Relying on a paid AI tier doesn&rsquo;t remove the human responsibility to structure and proofread the assignment.
+    </div>
+</section>
+
+<section>
+    <h2>3. JavaScript Operator Tour</h2>
+    <span class="tag">15:00&ndash;35:00</span>
+    <h3>Arithmetic &amp; Assignment</h3>
+    <ul>
+        <li>Reviewed the arithmetic family (`+`, `-`, `*`, `/`, `%`, `**`) and compound assignments like `+=`, `-=`, `*=`, `/=`, and `%=`.</li>
+        <li>Demonstrated how the browser evaluates multi-step expressions, emphasizing operator precedence.</li>
+    </ul>
+    <h3>Increment Patterns</h3>
+    <ul>
+        <li>Explained the difference between pre-increment (`++count`) and post-increment (`count++`).</li>
+        <li>Students traced variable values through console logs to feel the timing nuances.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>4. Logical Operators &amp; Truth Tables</h2>
+    <span class="tag">35:00&ndash;48:00</span>
+    <ul>
+        <li>Mapped boolean combinations for `&&`, `||`, and `!`, showing when short-circuiting stops evaluation.</li>
+        <li>Contrasted loose (`==`, `!=`) and strict (`===`, `!==`) comparisons to highlight coercion pitfalls.</li>
+        <li>Discussed how chaining comparisons (e.g., `score >= 70 && attendance === 'good'`) guides homework grading logic.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>5. Types, Conversion, and Data Structures</h2>
+    <span class="tag">48:00&ndash;64:51</span>
+    <h3>Type Tools</h3>
+    <ul>
+        <li>`typeof` helps confirm whether the sandbox treats a value as a number, string, or boolean.</li>
+        <li>`parseInt()` and `parseFloat()` convert textual input into numeric types instead of hoping implicit coercion does the right thing.</li>
+    </ul>
+    <h3>Objects &amp; Arrays</h3>
+    <ul>
+        <li>Everything in JavaScript stems from objects; arrays inherit object behavior while keeping ordered indexes.</li>
+        <li>Sandbox hiccups cut short the `Array.isArray()` demo, but Daniel reiterated checking types before branching.</li>
+    </ul>
+    <div class="highlight">
+        <strong>Practice set:</strong> Rebuild today&rsquo;s examples in the sandbox, then capture clean console output for your HW7 appendix if needed.
+    </div>
+</section>
+
+<footer>
+    <p>Prepared by Codex Manager &bull; Last updated March 14, 2026</p>
+</footer>
+
+</body>
+</html>
