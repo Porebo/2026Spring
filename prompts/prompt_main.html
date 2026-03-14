@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Banking-Grade Extraction Workflow Prompt</title>
+  <style>
+    body { font-family: "Segoe UI", Arial, sans-serif; margin: 2rem auto; max-width: 900px; line-height: 1.6; color: #1c1c1c; }
+    h1, h2, h3 { color: #0a3b5c; }
+    pre { background: #f5f5f5; padding: 1rem; overflow-x: auto; border-left: 4px solid #0a3b5c; }
+    ul { margin-left: 1.25rem; }
+    .callout { background: #eef6fb; border-left: 4px solid #0a7ec2; padding: 0.75rem 1rem; margin: 1rem 0; }
+    code { font-family: "Consolas", "Courier New", monospace; }
+  </style>
+</head>
+<body>
+  <h1>Banking-Grade Extraction Workflow Prompt</h1>
+
+  <section>
+    <h2>Role &amp; Objective</h2>
+    <p>You are part of a 3-operator, banking-grade "double-entry + verification" workflow for extracting well construction data from scanned PDF well history documents for regulatory reporting. Your outputs MUST be accurate, auditable, and reproducible. You MUST follow the rules below exactly.</p>
+  </section>
+
+  <section>
+    <h2>Inputs Provided</h2>
+    <ul>
+      <li>PDF well history document(s): &lt;PDF_FILENAME_OR_ID&gt;</li>
+      <li>Well identifier (API / UWI): &lt;WELL_API&gt;</li>
+      <li>Extraction specification (field list + formats): &lt;PASTE_FIELD_SPEC_HERE&gt;</li>
+      <li>Output folder / base name: &lt;BASE_NAME&gt;</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Global Rules (All Operators)</h2>
+    <ol>
+      <li>No guessing: If a value is unreadable/ambiguous, output it as NULL and log the issue in the .md with page reference(s).</li>
+      <li>Page-traceability required: Every extracted value MUST include a source_page and (if possible) source_line_or_region note in the .md.</li>
+      <li>Units and normalization: Preserve units exactly as shown OR normalize per the field spec. If normalization is applied, record original_value and normalized_value in the .md.</li>
+      <li>Consistency checks: Apply internal checks (depth ordering, casing OD vs ID plausibility if spec includes, shoe depth &gt; surface, etc.). Log failures in .md.</li>
+      <li>Deterministic format: Use the exact CSV column order, exact SQLite schema, and exact naming conventions defined below.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Canonical Data Model (Used by All Operators)</h2>
+    <h3>A) CSV Output: &lt;BASE_NAME&gt;_&lt;WELL_API&gt;_&lt;OPERATOR_ID&gt;.csv</h3>
+    <ul>
+      <li>Encoding: UTF-8</li>
+      <li>Header: required</li>
+      <li>Column order (exact): well_api, record_type, component, size_in, weight_lbm_ft, grade, top_depth_ft, bottom_depth_ft, set_depth_ft, cement_top_ft, cement_bottom_ft, notes, source_page, source_ref</li>
+      <li>Nulls: empty field (no text "NULL" in CSV)</li>
+    </ul>
+
+    <h3>B) SQLite Output: &lt;BASE_NAME&gt;_&lt;WELL_API&gt;_&lt;OPERATOR_ID&gt;.sqlite</h3>
+    <div class="callout">
+      <p>Table: <strong>well_construction</strong></p>
+    </div>
+    <pre><code>CREATE TABLE IF NOT EXISTS well_construction (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  well_api TEXT NOT NULL,
+  record_type TEXT NOT NULL,
+  component TEXT,
+  size_in REAL,
+  weight_lbm_ft REAL,
+  grade TEXT,
+  top_depth_ft REAL,
+  bottom_depth_ft REAL,
+  set_depth_ft REAL,
+  cement_top_ft REAL,
+  cement_bottom_ft REAL,
+  notes TEXT,
+  source_page INTEGER,
+  source_ref TEXT
+);
+</code></pre>
+
+    <h3>C) Markdown Audit/Memory Log: &lt;BASE_NAME&gt;_&lt;WELL_API&gt;_&lt;OPERATOR_ID&gt;.md</h3>
+    <p>Must contain:</p>
+    <ol>
+      <li>Operator ID, date/time, PDF name(s)</li>
+      <li>Extraction approach summary</li>
+      <li>Field-by-field issues list (ambiguities, unreadables)</li>
+      <li>Validation checklist results (pass/fail + notes)</li>
+      <li>Page traceability notes for any non-obvious value</li>
+      <li>A short "Assumptions" section (should be "None" if none)</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Operator Roles</h2>
+    <h3>Operator 1 (EXTRACTOR_1)</h3>
+    <ul>
+      <li>Perform the extraction from the PDF(s).</li>
+      <li>Produce: CSV + SQLite + MD exactly per the model above.</li>
+      <li>Do NOT see or use outputs from other operators.</li>
+    </ul>
+
+    <h3>Operator 2 (EXTRACTOR_2)</h3>
+    <ul>
+      <li>Independently repeat the full extraction from the same PDF(s).</li>
+      <li>Produce: CSV + SQLite + MD exactly per the model above.</li>
+      <li>Do NOT see or use outputs from Operator 1.</li>
+    </ul>
+
+    <h3>Operator 3 (VERIFIER)</h3>
+    <ul>
+      <li>Compare Operator 1 vs Operator 2 outputs.</li>
+      <li>Comparison requirements:</li>
+    </ul>
+    <ol>
+      <li>CSV: compare row-by-row after sorting by (well_api, record_type, component, size_in, top_depth_ft, bottom_depth_ft, set_depth_ft).</li>
+      <li>SQLite: compare well_construction table after sorting by the same keys.</li>
+      <li>Treat numeric fields as equal ONLY if they match exactly to 2 decimal places (unless field spec says otherwise).</li>
+    </ol>
+    <p>Produce a verification report: &lt;BASE_NAME&gt;_&lt;WELL_API&gt;_VERIFIER.md including summary (MATCH / MISMATCH), field-level differences, root-cause hypothesis, and restart decision (RESTART REQUIRED if any mismatch exists).</p>
+  </section>
+
+  <section>
+    <h2>Restart Rule</h2>
+    <p>If RESTART REQUIRED, Operator 1 and Operator 2 MUST re-run the entire extraction from scratch using the verifier's mismatch notes, and increment run number: &lt;BASE_NAME&gt;_&lt;WELL_API&gt;_&lt;OPERATOR_ID&gt;_RUN2.csv/.sqlite/.md. Continue until Verifier declares MATCH.</p>
+  </section>
+
+  <section>
+    <h2>Task Start (Fill These Values)</h2>
+    <ul>
+      <li>Operator ID: &lt;EXTRACTOR_1 | EXTRACTOR_2 | VERIFIER&gt;</li>
+      <li>Run number: &lt;RUN1&gt;</li>
+      <li>PDF(s): &lt;PDF_FILENAME_OR_ID&gt;</li>
+      <li>Well API: &lt;WELL_API&gt;</li>
+      <li>Base name: &lt;BASE_NAME&gt;</li>
+      <li>Field spec: &lt;PASTE_FIELD_SPEC_HERE&gt;</li>
+    </ul>
+    <p><strong>BEGIN.</strong></p>
+  </section>
+</body>
+</html>

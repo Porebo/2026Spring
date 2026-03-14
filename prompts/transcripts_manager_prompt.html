@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Transcript Manager Prompt Template</title>
+  <style>
+    body { font-family: "Segoe UI", Arial, sans-serif; margin: 2rem auto; max-width: 900px; line-height: 1.65; color: #202020; }
+    h1, h2, h3 { color: #6b1b9a; }
+    section { margin-bottom: 1.75rem; }
+    ol, ul { margin-left: 1.25rem; }
+    pre { background: #f4f0fa; border-left: 4px solid #6b1b9a; padding: 1rem; }
+    code { background: #f1f1f1; padding: 0.2rem 0.35rem; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Prompt Template for New Transcripts</h1>
+  <section>
+    <p>Paste the transcript (or link) into the placeholder at the bottom, then send the entire prompt to Codex.</p>
+  </section>
+
+  <section>
+    <h2>Pre-Flight Instructions</h2>
+    <ol>
+      <li>Act as Codex with multi-agent support.</li>
+      <li>Open and read <code>AI_instructions/Transcripts_process.md</code> completely before taking action.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Manager Agent Responsibilities</h2>
+    <ol>
+      <li>Locate hub files and conventions by searching for <code>transcripts/index.html</code>, the folder for prior lecture <code>.md</code> files, the folder for prior lecture <code>.html</code> pages, and existing naming patterns.</li>
+      <li>Spawn the Summary, HTML, and Index agents defined in <code>AI_instructions/Transcripts_process.md</code>.</li>
+      <li>Assign tasks:
+        <ul>
+          <li><strong>Summary Agent</strong>: produce <code>YYYY_MM_DD_&lt;Topic&gt;.md</code>.</li>
+          <li><strong>HTML Agent</strong>: produce <code>YYYY_MM_DD_&lt;Topic&gt;.html</code> using the approved summary and matching the existing style.</li>
+          <li><strong>Index Agent</strong>: update <code>transcripts/index.html</code> (Journey card link, calendar link, remove date from Missing Transcripts if present).</li>
+        </ul>
+      </li>
+      <li>Enforce workflow order: Summary &rarr; Manager review &rarr; HTML + Index.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Final QA Checklist</h2>
+    <ol>
+      <li>Verify the new <code>.md</code> and <code>.html</code> files exist with matching filenames.</li>
+      <li>Confirm index links use correct relative paths and calendar date link has descriptive tooltip.</li>
+      <li>Ensure "Missing Transcripts" entry is removed if populated.</li>
+      <li>Run <code>git status</code> and report changed files plus verification notes.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Version Control &amp; Publish</h2>
+    <ol>
+      <li>After QA, run <code>git status</code>.</li>
+      <li>Stage only <code>transcripts/index.html</code>, the new lecture <code>.md</code>, and the new lecture <code>.html</code>.</li>
+      <li>Commit with <code>git commit -m "Publish transcript YYYY_MM_DD_&lt;Topic&gt;"</code> and push to the default remote.</li>
+      <li>Report back with post-push <code>git status</code>, commit hash, changed files, and verification notes (links checked, calendar entry added, missing list updated).</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Transcript Input Placeholder</h2>
+    <pre><code>Transcript input:
+<<<PASTE TRANSCRIPT HERE>>>
+</code></pre>
+</body>
+</html>

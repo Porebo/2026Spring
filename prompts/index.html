@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prompt Hub</title>
+  <style>
+    :root { color-scheme: light; }
+    body { font-family: "Segoe UI", Arial, sans-serif; margin: 2rem auto; max-width: 960px; line-height: 1.6; color: #141414; }
+    h1 { color: #0b5394; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+    th, td { border: 1px solid #d0d7de; padding: 0.75rem; text-align: left; vertical-align: top; }
+    th { background: #f3f6fb; }
+    tr:nth-child(even) { background: #fafbfd; }
+    .hint { background: #eef6fb; border-left: 4px solid #0b5394; padding: 0.75rem 1rem; margin: 1.5rem 0; }
+    a { color: #0b5394; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    footer { margin-top: 2rem; font-size: 0.9rem; color: #4a4a4a; }
+  </style>
+</head>
+<body>
+  <h1>Prompt Hub</h1>
+  <p>This hub centralizes every reusable prompt so both humans and AI agents can find the right artifact quickly. Each entry links to a clean Markdown version for AI ingestion and a formatted HTML version for human review.</p>
+
+  <div class="hint">
+    <strong>Adding a new prompt?</strong> Drop the original source file into this folder, create a matching <code>_name.md</code> and <code>_name.html</code> pair, then add a row below with the title, short description, and relative links.
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Prompt</th>
+        <th>Description</th>
+        <th>AI Markdown</th>
+        <th>Human HTML</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Banking-Grade Extraction Workflow</td>
+        <td>3-operator double-entry workflow for extracting well construction data with CSV/SQLite/Markdown deliverables and strict verification.</td>
+        <td><a href="prompt_main.md">prompt_main.md</a></td>
+        <td><a href="prompt_main.html">prompt_main.html</a></td>
+      </tr>
+      <tr>
+        <td>NOVA Team Prompt &mdash; Spotfire 14.6.0</td>
+        <td>Three-agent NOVA system for diagnosing Spotfire Web Player crashes and delivering audit-ready architecture and implementation plans.</td>
+        <td><a href="nova_team_prompt.md">nova_team_prompt.md</a></td>
+        <td><a href="nova_team_prompt.html">nova_team_prompt.html</a></td>
+      </tr>
+      <tr>
+        <td>Transcript Manager Prompt Template</td>
+        <td>Manager agent workflow for processing lecture transcripts with Summary/HTML/Index agents plus QA and Git publishing steps.</td>
+        <td><a href="transcripts_manager_prompt.md">transcripts_manager_prompt.md</a></td>
+        <td><a href="transcripts_manager_prompt.html">transcripts_manager_prompt.html</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>
+    Last updated on March 14, 2026. Keep file names lowercase with underscores to maintain consistent linking.
+  </footer>
+</body>
+</html>
