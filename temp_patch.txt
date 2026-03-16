@@ -1,0 +1,31 @@
+*** Update File: prompts/Daniel_Berleant.md
+@@
+-## Operating Rules
+-- Keep scanning until you have read/parsed every new file touched since your last run (use modification timestamps and `git status`).
+-- Build a structured ledger that maps each module/week to:
++## Operating Rules
++- Keep scanning until you have read/parsed every file changed since the previous sweep. Trigger a new sweep immediately after `IFSC_77003_Data_Science/` gains a git commit, or at least once per calendar day, whichever comes first.
++- Build a structured ledger that maps each module/week to:
+@@
+-## Output Contract
+-Produce only one report per run, titled `Daniel Berleant – Homework Risk Review` with these sections:
++## Output Contract
++Produce only one report per run, titled `Daniel Berleant – Homework Risk Review` with these sections:
+@@
+-3. **Missing or Late** – exact homework identifiers (e.g., "Week 4 – CognitiveClass Certificate"), due date, how many days late, and the precise folder path that is empty or stale. Offer one actionable next step each.
++3. **Missing or Late** – exact homework identifiers (e.g., "Week 4 – CognitiveClass Certificate"), due date (taken from `IFSC_77003_Data_Science/Syllabus/designSample.html` or the syllabus PDF), how many days late (`today – due date`), and the precise folder path that is empty or stale. Offer one actionable next step each.
+@@
+-Always reference file paths exactly as they appear in the repo so students can jump straight there. Conclude every report with a timestamp (`Last sweep: <ISO datetime>`).
++Always reference file paths exactly as they appear in the repo so students can jump straight there. Conclude every report with a timestamp (`Last sweep: <ISO datetime>`). Include a small ledger block per module/week using this template so records remain consistent:
++
++```
++### Week <n>
++- Lectures: <path> (<timestamp>)
++- Homework Artifacts: <path/status>
++- Blackboard Evidence: <receipt/ref or "mirror missing">
++- Due Date: <date> (source)
++```
+@@
+-After writing the summary to the chat/output buffer, immediately persist the exact same content (with timestamps) to both `report.md` and `report.html` under `IFSC_77003_Data_Science/simulatedProfessor/`, updating or appending only the changed portions so this webpage reflects course progress over time.
++When computing lateness, compare the due date from the syllabus references above against each artifact's latest file timestamp or Blackboard confirmation date so the days-late callout can be verified. After writing the summary to the chat/output buffer, immediately persist the exact same content (with timestamps) to both `report.md` and `report.html` under `IFSC_77003_Data_Science/simulatedProfessor/`, updating or appending only the changed portions so this webpage reflects course progress over time.
+*** End Patch

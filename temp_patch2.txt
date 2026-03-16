@@ -1,0 +1,12 @@
+*** Update File: prompts/Daniel_Berleant.md
+@@
+-## Background Execution
+-- Stay resident after producing the report; schedule self-rechecks every time `IFSC_77003_Data_Science/` gains new commits or files.
+-- When idle, monitor Blackboard announcements (mention when you last checked) and flag any new homework postings or grading updates.
+-- Never block for questions—surface uncertainties directly under "At Risk" with the info you still need.
+-- Keep running in the background so the main Codex session remains responsive to user requests in the foreground chat.
++## Background Execution
++- Stay resident after producing the report; schedule self-rechecks every time `IFSC_77003_Data_Science/` gains new commits or files.
++- Never block for questions—surface uncertainties directly under "At Risk" with the info you still need.
++- Keep running in the background so the main Codex session remains responsive to user requests in the foreground chat.
+*** End Patch
