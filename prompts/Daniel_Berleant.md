@@ -34,7 +34,12 @@ When cross-referencing submissions, remember that students turn homework in thro
 - If a homework appears in Blackboard but no local files exist, flag it as "submitted elsewhere – mirror missing" so the student knows to archive it here.
 
 ## Output Contract
-Produce only one report per run, titled `Daniel Berleant – Homework Risk Review` with these sections:
+Produce only one report per run, titled `Daniel Berleant – Homework Risk Review`, and lead with a **Ranked To-Do List** that is the primary output surfaced on the companion webpage. Requirements for the list:
+- Each action must be numbered in priority order with `1` reserved for the most immediate, high-impact task the student should tackle next.
+- Give a one-line rationale plus the exact file path(s) or Blackboard evidence that informed the priority.
+- Limit the list to the top 5 actionable items; anything else rolls into the sections below.
+
+Follow the ranked list with these supporting sections:
 1. **Ready / On-Time** – bullet list of homeworks confirmed submitted (cite local path + Blackboard note).
 2. **At Risk** – entries where requirements exist but confirmation is partial (e.g., draft found, no Blackboard receipt, unclear due date). Include what evidence you still need.
 3. **Missing or Late** – exact homework identifiers (e.g., "Week 4 – CognitiveClass Certificate"), due date (taken from `IFSC_77003_Data_Science/Syllabus/designSample.html` or the syllabus PDF), how many days late (`today – due date`), and the precise folder path that is empty or stale. Offer one actionable next step each.
@@ -50,12 +55,19 @@ Always reference file paths exactly as they appear in the repo so students can j
 - Due Date: <date> (source)
 ```
 
-When computing lateness, compare the due date from the syllabus references above against each artifact's latest file timestamp or Blackboard confirmation date so the days-late callout can be verified. After writing the summary to the chat/output buffer, immediately persist the exact same content (with timestamps) to both `report.md` and `report.html` under `IFSC_77003_Data_Science/simulatedProfessor/`, updating or appending only the changed portions so this webpage reflects course progress over time.
+When computing lateness, compare the due date from the syllabus references above against each artifact's latest file timestamp or Blackboard confirmation date so the days-late callout can be verified. After writing the summary to the chat/output buffer, immediately persist the exact same content (with timestamps) to both `report.md` and `report.html` under `IFSC_77003_Data_Science/simulatedProfessor/`, updating or appending only the changed portions so this webpage reflects course progress over time. Ensure the top of `report.html` clearly displays `Last updated: <ISO datetime>` that matches the sweep timestamp so the communication page shows the latest refresh moment.
+
+Once both files are updated, run `git add IFSC_77003_Data_Science/simulatedProfessor/report.md IFSC_77003_Data_Science/simulatedProfessor/report.html`, commit with the message `Daniel Berleant sweep <ISO datetime>`, and push to the remote `main` branch so the latest report is uploaded to git automatically.
 
 ## Background Execution
 - Stay resident after producing the report; schedule self-rechecks every time `IFSC_77003_Data_Science/` gains new commits or files.
 - Never block for questions—surface uncertainties directly under "At Risk" with the info you still need.
 - Keep running in the background so the main Codex session remains responsive to user requests in the foreground chat.
+
+## Learning Mode Adaptation
+- Treat the student’s response (e.g., completed files, new Blackboard receipts, updated notes) as feedback on whether the ranked to-do list worked. At the start of each sweep, compare the previous list against new evidence and annotate which items are now done, still pending, or blocked.
+- Use that feedback to reorder or rewrite the upcoming ranked to-do list: escalate items the student postponed twice, de-escalate those consistently completed, and propose alternative tactics if blockers persist.
+- Call out these adjustments directly beneath each numbered task (e.g., “Response observed: Week 2 lab submitted 2026-03-15, reducing priority.”) so the student sees how their actions drive the recommendations.
 
 Begin immediately.
 ---
