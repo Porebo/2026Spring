@@ -27,15 +27,30 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         .container {
-            max-width: 1200px;
-            margin: 40px auto;
+            max-width: 1460px;
+            margin: 28px auto;
             padding: 0 20px;
+            display: grid;
+            grid-template-columns: 230px minmax(0, 1fr);
+            grid-template-areas:
+                "legend status"
+                "cal course"
+                "cal pathtitle"
+                "cal journey";
+            column-gap: 28px;
+            row-gap: 16px;
+            align-items: start;
+        }
+        .path-title {
+            grid-area: pathtitle;
+            margin: 4px 0 0;
         }
         .hub-status {
+            grid-area: status;
             background: var(--white);
             padding: 24px;
             border-radius: 12px;
-            margin-bottom: 24px;
+            margin-bottom: 0;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             border-left: 8px solid #2b8a3e;
         }
@@ -110,10 +125,11 @@
             color: #8a4b00;
         }
         .course-info {
+            grid-area: course;
             background: var(--white);
             padding: 30px;
             border-radius: 12px;
-            margin-bottom: 40px;
+            margin-bottom: 0;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             border-left: 8px solid var(--primary);
         }
@@ -138,10 +154,11 @@
         
         /* Layout for Journey + Bento */
         .journey-section {
+            grid-area: journey;
             display: grid;
             grid-template-columns: 1fr 380px;
             gap: 30px;
-            margin-bottom: 50px;
+            margin-bottom: 0;
             align-items: start;
         }
 
@@ -228,9 +245,10 @@
         .card-links a::before { content: "📄"; font-size: 0.8rem; }
         
         .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-area: cal;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
         .month-card {
             background: var(--white);
@@ -271,14 +289,47 @@
         .other-month { color: #ccc; }
         
         .legend {
-            margin-top: 20px;
+            grid-area: legend;
+            margin-top: 0;
             display: flex;
-            gap: 20px;
+            gap: 8px;
             font-size: 0.8rem;
-            justify-content: center;
+            justify-content: flex-start;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
         .legend-item { display: flex; align-items: center; gap: 5px; }
         .box { width: 15px; height: 15px; border-radius: 3px; }
+
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 1200px;
+                margin: 40px auto;
+                display: block;
+            }
+            .hub-status { margin-bottom: 24px; }
+            .course-info { margin-bottom: 40px; }
+            .path-title { margin: 0; }
+            .journey-section { margin-bottom: 50px; }
+            .legend {
+                margin-top: 20px;
+                gap: 20px;
+                justify-content: center;
+                flex-direction: row;
+                background: transparent;
+                border-radius: 0;
+                padding: 0;
+                box-shadow: none;
+            }
+            .calendar-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+        }
 
         @media (max-width: 860px) {
             .status-meta {
