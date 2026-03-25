@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Summary: AI, Deep Learning & LLMs - March 17, 2026</title>
+    <style>
+        :root {
+            --primary: #004a99;
+            --highlight-bg: #e7f3ff;
+            --warning-bg: #fee2e2;
+            --advice-bg: #fef3c7;
+            --tech-bg: #f0fdfa;
+            --strategy-bg: #eef2ff;
+            --text: #333;
+            --bg: #f4f4f9;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+        .linear-header {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-left: 10px solid var(--primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .bento-container {
+            max-width: 1100px;
+            margin: 0 auto 40px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(150px, auto);
+            gap: 20px;
+            padding: 20px;
+        }
+        .bento-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        .bento-item h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        .experience { background: var(--highlight-bg); }
+        .warning { background: var(--warning-bg); }
+        .advice { background: var(--advice-bg); }
+        .tech { background: var(--tech-bg); }
+        .strategy { background: var(--strategy-bg); }
+
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+        .tag.alt {
+            background: #7c2d12;
+        }
+        .tag.soft {
+            background: #4338ca;
+        }
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .chip {
+            background: #ffffff;
+            border: 1px solid rgba(0, 74, 153, 0.15);
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        @media (max-width: 900px) {
+            .bento-container {
+                grid-template-columns: 1fr;
+            }
+            .span-2,
+            .span-3 {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="linear-header">
+    <nav style="margin-bottom: 20px; font-size: 0.9rem;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: bold;">&larr; Home</a>
+    </nav>
+    <p style="font-size: 0.8rem; color: #777; margin-bottom: 10px; font-weight: bold;">Week 9 | Mar 17, 2026</p>
+    <span class="tag">Artificial Intelligence</span>
+    <span class="tag alt">Deep Learning</span>
+    <span class="tag soft">LLMs</span>
+    <h1>AI, Deep Learning, and Large Language Model Foundations</h1>
+    <p>This lecture connected the course’s earlier machine-learning content to modern AI systems, showing how deep neural networks, embeddings, transformers, and prompting strategies fit into the broader data science landscape.</p>
+    <hr>
+    <h3>Quick Summary</h3>
+    <p>Dr. Pierce moved from program reminders into an overview of AI, deep learning, and large language models. The session explained how traditional classification problems scale into neural-network and deep-learning settings, how LLMs perform next-word prediction, why embeddings matter for text, where legal disputes over training data are emerging, and how prompting techniques and grounding methods improve practical use.</p>
+</div>
+
+<div class="bento-container">
+    <div class="bento-item span-2 experience">
+        <h3>Administrative Deadlines and Opportunities</h3>
+        <ul>
+            <li>Students planning to graduate this spring were reminded to complete the Workday Student program completion request by Friday, March 20 at 5:00 PM.</li>
+            <li>The Research and Creative Works Expo deadline and mentoring nomination deadline were highlighted as immediate opportunities.</li>
+            <li>Scholarship options were discussed, and graduate assistantship status was clarified as not preventing additional scholarship applications.</li>
+            <li>Students missing the weekly student-services email were told to contact Erin Flowers to be added to the list.</li>
+        </ul>
+    </div>
+
+    <div class="bento-item tech">
+        <h3>Where LLMs Fit</h3>
+        <p>The lecture framed data science, AI, machine learning, deep learning, and large language models as overlapping layers. LLMs were presented as one specialized outcome of deeper neural-network advances rather than as a completely separate discipline.</p>
+    </div>
+
+    <div class="bento-item span-3 warning">
+        <h3>From Simple Classification to Deep Learning</h3>
+        <ul>
+            <li>A music-classification example used tempo and energy to separate reggae and R&amp;B songs.</li>
+            <li>The example showed why some problems can use simple linear boundaries while others need nonlinear decision boundaries.</li>
+            <li>As the number of variables, classes, and relationships grows, neural networks become more useful than simpler models.</li>
+            <li>Deep learning was explained as the extension from shallow neural networks to architectures with many hidden layers and much greater representational power.</li>
+        </ul>
+    </div>
+
+    <div class="bento-item tech">
+        <h3>Images and Text as Inputs</h3>
+        <ul>
+            <li>Images can be converted to pixel data and classified with neural-network architectures.</li>
+            <li>The lecture referenced CNN and RNN style models in the context of image and sequential data processing.</li>
+            <li>For text, sentiment analysis was used to show how sentences can be turned into numeric inputs and mapped to positive or negative labels.</li>
+        </ul>
+    </div>
+
+    <div class="bento-item span-2 advice">
+        <h3>Large Language Models and GPT</h3>
+        <ul>
+            <li>LLMs were described as systems trained to predict the next word in a sequence.</li>
+            <li>GPT was unpacked as <strong>Generative Pre-Trained Transformer</strong>.</li>
+            <li>The lecture connected transformer architecture, large-scale pretraining, instruction tuning, and reinforcement learning from human feedback.</li>
+            <li>Dr. Pierce emphasized that LLM output can be fluent and convincing without necessarily being correct.</li>
+        </ul>
+        <div class="chip-row">
+            <span class="chip">Next-word prediction</span>
+            <span class="chip">Transformers</span>
+            <span class="chip">RLHF</span>
+            <span class="chip">Alignment</span>
+        </div>
+    </div>
+
+    <div class="bento-item span-3 strategy">
+        <h3>Limits, Grounding, and Legal Tensions</h3>
+        <ul>
+            <li>One limitation of LLMs is currency: model training takes time, so newly emerging events may not be in the model’s built-in knowledge.</li>
+            <li>Search-augmented systems such as Bing Chat were used to illustrate how web search can ground answers with fresher information.</li>
+            <li>The lecture referenced the Encyclopedia Britannica and Merriam-Webster lawsuit against OpenAI as an example of copyright and training-data conflicts.</li>
+            <li>Students were reminded that LLMs generate plausible language, not guaranteed truth, which explains hallucination risk.</li>
+        </ul>
+    </div>
+
+    <div class="bento-item span-2 experience">
+        <h3>Embeddings and Prompt Engineering</h3>
+        <ul>
+            <li>Embeddings were introduced as numeric vector representations that let machine learning systems work with words, categories, and context.</li>
+            <li>One-hot encoding was presented as a simple baseline, but richer embeddings were emphasized because they preserve more useful relationships.</li>
+            <li>Zero-shot, few-shot, and chain-of-thought prompting were highlighted as practical ways to improve model responses.</li>
+            <li>Prompt structure, examples, and stepwise decomposition were framed as essential user-side skills.</li>
+        </ul>
+    </div>
+
+    <div class="bento-item advice">
+        <h3>Enterprise Applications</h3>
+        <p>Examples included clinical documentation support, cybersecurity policy mapping, claims processing, customer-service automation, troubleshooting, market research, developer productivity, literature curation, and internal knowledge-base work.</p>
+    </div>
+
+    <div class="bento-item span-3 warning">
+        <h3>Next Class Preview</h3>
+        <ol>
+            <li>Student-centered guidance on what AI is genuinely useful for in coursework and what to avoid.</li>
+            <li>Differences among generative AI, agentic AI, and AGI.</li>
+            <li>Ethical dilemmas and enterprise investment in AI productivity suites.</li>
+        </ol>
+    </div>
+</div>
+
+<footer>
+    <p>IFSC 77003: Data Science & Technologies | University of Arkansas at Little Rock</p>
+    <p>Last updated March 24, 2026</p>
+</footer>
+
+</body>
+</html>
