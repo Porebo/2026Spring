@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture: Generative AI, Citizen Development, Agentic AI &amp; AGI — March 19, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ── Reset & Base ─────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #1a1a1a;
+            background-color: #fafaf8;
+        }
+
+        /* ── Navigation Bar ───────────────────────────────────── */
+        .top-nav {
+            background: #004a99;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .top-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+        .top-nav a:hover { opacity: 1; text-decoration: underline; }
+        .top-nav .sep { color: rgba(255,255,255,0.4); }
+
+        /* ── Article Wrapper ──────────────────────────────────── */
+        article {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+
+        /* ── Masthead ─────────────────────────────────────────── */
+        .masthead {
+            border-bottom: 3px solid #004a99;
+            padding-bottom: 28px;
+            margin-bottom: 40px;
+        }
+        .masthead .kicker {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #004a99;
+            margin-bottom: 14px;
+        }
+        .masthead h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #0d0d0d;
+            margin-bottom: 16px;
+        }
+        .masthead .byline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #666;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .masthead .byline span { display: flex; align-items: center; gap: 5px; }
+
+        /* ── Chip Tags ────────────────────────────────────────── */
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+        .chip {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: #e7f0fb;
+            color: #004a99;
+            border: 1px solid #b8d0f0;
+            border-radius: 20px;
+            padding: 3px 12px;
+        }
+
+        /* ── Section Headings ─────────────────────────────────── */
+        h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0d0d0d;
+            margin: 52px 0 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #ddd;
+        }
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #004a99;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin: 32px 0 10px;
+        }
+
+        /* ── Body Typography ──────────────────────────────────── */
+        p { margin-bottom: 1.4em; }
+
+        /* ── Pull Quotes ──────────────────────────────────────── */
+        blockquote.pull-quote {
+            border: none;
+            margin: 44px 0;
+            padding: 0 32px;
+            text-align: center;
+        }
+        blockquote.pull-quote p {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.5;
+            color: #004a99;
+            margin-bottom: 0;
+        }
+        blockquote.pull-quote footer {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* ── Section Divider ──────────────────────────────────── */
+        .section-rule {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 48px 0;
+        }
+
+        /* ── Callout Box (minimal, single-column) ─────────────── */
+        .callout {
+            border-left: 4px solid #004a99;
+            background: #f0f5fc;
+            padding: 18px 22px;
+            margin: 28px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .callout.alert {
+            border-left-color: #c0392b;
+            background: #fdf2f1;
+        }
+        .callout.tip {
+            border-left-color: #27ae60;
+            background: #f0faf4;
+        }
+        .callout p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 0;
+        }
+        .callout strong {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
+            color: #004a99;
+        }
+        .callout.alert strong { color: #c0392b; }
+        .callout.tip strong { color: #27ae60; }
+
+        /* ── Data Tables ──────────────────────────────────────── */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.87rem;
+            margin: 24px 0 36px;
+        }
+        .data-table th {
+            background: #004a99;
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+        .data-table td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #e8e8e8;
+            vertical-align: top;
+            color: #333;
+        }
+        .data-table tr:nth-child(even) td { background: #f7f7f5; }
+
+        /* ── Bullet Lists ─────────────────────────────────────── */
+        ul {
+            padding-left: 1.4em;
+            margin-bottom: 1.4em;
+        }
+        ul li { margin-bottom: 0.5em; }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        footer.page-footer {
+            border-top: 1px solid #ddd;
+            padding: 28px 24px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+            background: #fff;
+        }
+        footer.page-footer a {
+            color: #004a99;
+            text-decoration: none;
+        }
+        footer.page-footer a:hover { text-decoration: underline; }
+
+        /* ── Print / Narrow ───────────────────────────────────── */
+        @media (max-width: 600px) {
+            .masthead h1 { font-size: 1.8rem; }
+            blockquote.pull-quote p { font-size: 1.2rem; }
+            article { padding: 40px 16px 60px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="top-nav">
+    <a href="../index.html">← IFSC 77003 Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Transcript Hub</a>
+    <span class="sep">/</span>
+    <a href="#">March 19, 2026</a>
+</nav>
+
+<!-- Article -->
+<article>
+
+    <!-- Masthead -->
+    <header class="masthead">
+        <p class="kicker">IFSC 77003 · Data Science &amp; Technologies · Week 9</p>
+        <h1>Generative AI, Citizen Development, Agentic AI &amp; AGI</h1>
+        <div class="byline">
+            <span>📅 March 19, 2026</span>
+            <span>👩‍🏫 Dr. Elizabeth Pierce</span>
+            <span>🏫 UALR</span>
+        </div>
+        <div class="chip-row">
+            <span class="chip">Generative AI</span>
+            <span class="chip">Agentic AI</span>
+            <span class="chip">AGI</span>
+            <span class="chip">Citizen Development</span>
+            <span class="chip">AI Ethics</span>
+            <span class="chip">LLMs</span>
+        </div>
+    </header>
+
+    <!-- Opening summary -->
+    <p>
+        This session picked up where Tuesday's foundation lecture left off, moving from the mechanics of large language models into the practical landscape of how generative AI is reshaping workplaces, classrooms, and long-range technology forecasts. Dr. Pierce covered UALR's AI resources, guided students on using AI responsibly, presented Tom Davenport's research on citizen development inside major corporations, and surveyed the spectrum from today's generative AI to the theoretical horizon of artificial general intelligence.
+    </p>
+
+    <hr class="section-rule">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <h2>Generative AI — A Closer Look at the Risks</h2>
+
+    <p>
+        Generative AI — the technology behind ChatGPT, Google Gemini, and Microsoft Copilot — creates <em>original content</em> (text, images, music, code) by learning statistical patterns from massive datasets. Unlike traditional AI that analyzes existing data, generative models produce new material that mimics human output. The 2017 Google Transformer paper remains the foundational advance that made this possible.
+    </p>
+
+    <h3>Data Privacy</h3>
+    <p>
+        When employees use public generative AI tools, their prompts become part of the model's training corpus. Sensitive information — trade secrets, client details, personnel data — can inadvertently leak outward. On the flip side, one company discovered that their internal ChatGPT deployment had been trained on HR files, allowing anyone to prompt it for individual salaries. Scoping what a model "knows" is a critical and often underestimated deployment challenge.
+    </p>
+
+    <h3>Hallucinations &amp; Misinformation</h3>
+    <p>
+        Because large language models generate content probabilistically — selecting likely next tokens rather than retrieving verified facts — they can produce responses that look authoritative while being entirely fabricated. This is the AI hallucination problem, and it has real consequences.
+    </p>
+
+    <h3>Intellectual Property</h3>
+    <p>
+        Traditional copyright law requires human authorship. Content generated by AI currently sits in a legal gray zone: who, if anyone, owns an image produced by Gemini? The company that built Gemini? The user who wrote the prompt? The artists whose work was ingested in training? Courts and regulators worldwide are still working through these questions.
+    </p>
+
+    <blockquote class="pull-quote">
+        <p>"We want students to be in the driver's seat with AI — doing the thinking, with AI as the assistant."</p>
+        <footer>— Dr. Elizabeth Pierce</footer>
+    </blockquote>
+
+    <hr class="section-rule">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <h2>UALR AI Resources &amp; Google Gemini Demo</h2>
+
+    <p>
+        UALR has developed an AI policy page that includes student resources and links to institutional guidelines. Two tools are available at no cost through university accounts: <strong>Google Gemini</strong> and <strong>Microsoft Copilot</strong>. Dr. Pierce also recommended <strong>Grammarly</strong> as a practical writing companion that catches spelling errors, suggests punctuation improvements, and proposes more concise phrasing — useful for the kind of rapid email drafting that department chairs do constantly.
+    </p>
+
+    <p>
+        During a live demo, Google Gemini generated an image of a gray tabby cat climbing an oak tree from a plain text description. Dr. Pierce noted how dramatically image quality has improved over the past 18 months and walked through how prompt engineering adjustments (style: "oil painting," "watercolor," "Dr. Seuss") can shift the output significantly. Students interested in web design may find AI image generation useful for creating original graphics without copyright concerns from stock photography.
+    </p>
+
+    <hr class="section-rule">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <h2>How Students Should (and Shouldn't) Use AI</h2>
+
+    <p>
+        The course is walking a deliberate line: students need to understand AI tools and feel comfortable prompting, brainstorming, and iterating with them — while simultaneously developing their own expertise in their subject domain, which AI currently cannot replace.
+    </p>
+
+    <div class="callout tip">
+        <strong>Recommended uses</strong>
+        <p>Brainstorming project ideas · Outlining reports · Getting explanations of complex concepts (gradient descent, agentic AI) · Debugging code · Proofreading drafts · Practicing for quizzes via AI-generated questions</p>
+    </div>
+
+    <div class="callout alert">
+        <strong>Where students get into trouble</strong>
+        <p>Asking AI to write entire assignments without review. Two years ago, a cohort of research-methods students submitted AI-generated research proposals that looked structurally correct but contained hallucinated references — articles that did not exist, or that didn't say what the AI claimed. The proposals were unimplementable. Dr. Wu and Dr. Pierce could not grade them as credible work.</p>
+    </div>
+
+    <p>
+        The lesson from the <strong>Tilly Norwood</strong> case is instructive: she is a fully AI-generated model/influencer who sings, talks, and acts. Creating her required over six months of development and 18 human specialists managing costumes, prompts, editing, movements, and voice. Even at the cutting edge, meaningful AI output demands significant human direction and quality control.
+    </p>
+
+    <blockquote class="pull-quote">
+        <p>"AI is great at producing things that look like work. Your job is to make sure it actually <em>is</em> work — verified, understood, and defensible."</p>
+        <footer>— lecture paraphrase</footer>
+    </blockquote>
+
+    <hr class="section-rule">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <h2>Tom Davenport on Citizen Development</h2>
+
+    <p>
+        Tom Davenport — professor at Babson College and author of more than 200 articles in <em>Harvard Business Review</em> — presented at the Chief Data Officer &amp; Information Quality (CDO IQ) Conference in Boston last summer. Dr. Pierce obtained the session materials through her professional network and shared the highlights.
+    </p>
+
+    <p>
+        Davenport's central thesis is the rise of <strong>citizen development</strong>: AI-powered, low-code tools are enabling non-IT business staff to build applications, automate workflows, and perform data analysis that previously required a dedicated development team.
+    </p>
+
+    <h3>How Citizen Development Changes the IT Relationship</h3>
+    <p>
+        Historically, a business team with an idea for a new report or application had to schedule time with IT liaisons, explain requirements, wait for development, and iterate slowly. Now, business users can generate a working prototype using low-code tools — letting IT move from requirements-gathering to code review and production hardening. The business user shows up with a blueprint; IT ensures security, privacy, and performance.
+    </p>
+
+    <table class="data-table">
+        <thead>
+            <tr><th>Category</th><th>Tools</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>App Development</td><td>Power Platform, Airtable, Mendix, OutSystems</td></tr>
+            <tr><td>Workflow Automation</td><td>AI-driven automation suites (rule-based process mapping)</td></tr>
+            <tr><td>Data Analysis / BI</td><td>Tableau Business Science, H2O.ai, Data Robot, ChatGPT, Alteryx, Qlik, Power BI</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Risks of Citizen Development</h3>
+    <p>
+        Citizen tools are not failsafe. Business users may work with stale or inconsistent data, incorrectly transform variables, or encode bad rules into automated decisions. Data scientists and IT specialists remain essential — their role shifts from building everything from scratch to providing governance, quality assurance, and oversight.
+    </p>
+
+    <h3>Corporate Case Studies</h3>
+
+    <table class="data-table">
+        <thead>
+            <tr><th>Company</th><th>Program</th><th>Results</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Dow Chemical</strong></td>
+                <td>Citizen data science (R&amp;D &amp; technical services); upskilling 3,000+ staff</td>
+                <td>1,200 active users; 600+ apps built; 50–100 hrs saved/app/year; 21,000 person-hours of training at Level 1</td>
+            </tr>
+            <tr>
+                <td><strong>AT&amp;T</strong></td>
+                <td>Citizen automation + citizen data science communities; 575 online courses; 40+ hr certificate; ML Ops program</td>
+                <td>3,000+ bots deployed; 92% built by non-IT staff; 16M minutes of labor saved/year; 20× ROI</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        AT&amp;T's <strong>ML Ops</strong> program addresses a specific technical challenge: machine learning models degrade over time ("like a gallon of milk — good for two weeks") and must be updated continuously in live, 24/7 production environments without downtime. This is a new and growing career specialty analogous to the DevOps movement that Amazon pioneered for continuous software deployment.
+    </p>
+
+    <blockquote class="pull-quote">
+        <p>"I'd rather have someone who truly understands my customers and my business using automated machine learning than a brilliant data scientist who doesn't know my domain."</p>
+        <footer>— Head of Credit Risk, Canadian bank (quoted by Tom Davenport)</footer>
+    </blockquote>
+
+    <div class="callout">
+        <strong>Career takeaway</strong>
+        <p>Pair your data science and statistics skills with deep expertise in a specific domain — healthcare, sports analytics, HR, finance, supply chain. That combination is what companies are willing to pay a premium for.</p>
+    </div>
+
+    <hr class="section-rule">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <h2>Agentic AI — From Reactive to Proactive</h2>
+
+    <p>
+        Generative AI is <em>reactive</em>: you prompt it, it responds. <strong>Agentic AI</strong> is the next step — proactive systems that are given goals and tool access, then independently plan and execute multi-step tasks without a human handling each step.
+    </p>
+
+    <p>
+        A February 2026 article in <em>MIT Management Sloan Review</em> offered concrete examples: an AI travel agent that reads a traveler's preferences, queries flight and hotel APIs, communicates via Slack, and with credit card authorization, books the complete itinerary. A warehouse monitoring agent that watches multiple camera feeds and alerts security to anomalies — intruders, water leaks, smoke — without requiring a person to stare at screens. Cybersecurity agents that handle first-level network monitoring, freeing analysts for complex escalations.
+    </p>
+
+    <h3>The Entry-Level Pipeline Problem</h3>
+    <p>
+        If AI takes over junior-level roles (the entry analyst, the junior banker handling routine loan reviews), how will the next generation develop the experience needed for mid and senior positions? Dr. Pierce proposed one solution: mandate human-AI pairing at entry level — ensuring humans do the work <em>alongside</em> the AI, developing genuine expertise, before advancing.
+    </p>
+
+    <hr class="section-rule">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <h2>Artificial General Intelligence — The Theoretical Horizon</h2>
+
+    <p>
+        Artificial General Intelligence (AGI) — AI that is autonomous, highly adaptive, capable of teaching itself, and equal to or exceeding human cognitive ability across domains — remains theoretical. It is distinct from narrow AI (chatbots, image generators) and from agentic AI (task-specific multi-step systems).
+    </p>
+
+    <h3>How Far Away?</h3>
+    <p>
+        Predictions span a remarkable range. Elon Musk has suggested AGI could arrive within a year — the same source who forecast fully autonomous vehicles by now (still not realized). The mainstream research consensus is 5–10 years. Some researchers say 50–60 years. Dr. Pierce's personal view is that AGI will follow a trajectory similar to autonomous vehicles.
+    </p>
+
+    <table class="data-table">
+        <thead>
+            <tr><th>Autonomy Level</th><th>Status (Cars)</th><th>Analogy for AI</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Level 2+ (Driver Assistance, hands-free)</td><td>✅ Available now</td><td>Generative AI, Agentic AI tools — available now</td></tr>
+            <tr><td>Level 3 (Eyes-off in specific conditions)</td><td>⚠️ Emerging, limited</td><td>Narrow agentic systems — emerging</td></tr>
+            <tr><td>Level 4–5 (Full autonomy)</td><td>🔭 2030–2035+, likely 20+ years for ownership</td><td>AGI — timeline genuinely uncertain</td></tr>
+        </tbody>
+    </table>
+
+    <h3>What Makes AGI Hard</h3>
+    <p>
+        Current LLMs predict the next token; AGI would need to <em>reason</em>. Some researchers argue true AGI also requires embodied intelligence: human cognition is shaped by sight, hearing, smell, touch, and taste — inputs that ground our reasoning in physical reality. Until machines can integrate those sensory streams, matching human-level general intelligence may be structurally out of reach.
+    </p>
+
+    <blockquote class="pull-quote">
+        <p>"We're probably not going to have to worry about the Terminator scenario in our lifetimes."</p>
+        <footer>— Dr. Elizabeth Pierce</footer>
+    </blockquote>
+
+    <hr class="section-rule">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <h2>AI Ethics — A Rapid Survey</h2>
+
+    <ul>
+        <li><strong>Historical bias:</strong> Models trained on historically biased data will reproduce and scale those biases. Synthetic data generation is one research avenue to build fairer training sets.</li>
+        <li><strong>Explainability:</strong> Regulators require explanations for consequential AI decisions. "We don't know" is categorically unacceptable for loan denials or medical guidance.</li>
+        <li><strong>Autonomy &amp; control:</strong> As AI systems take more actions independently, accountability frameworks become critical.</li>
+        <li><strong>Job displacement:</strong> Still unfolding; highly dependent on sector and role type.</li>
+        <li><strong>Security &amp; misuse:</strong> Deepfakes, disinformation, adversarial attacks on AI systems.</li>
+        <li><strong>High-stakes domains:</strong> Healthcare, criminal justice, banking, and housing demand far stronger safeguards than, say, deciding how many widgets to stock.</li>
+        <li><strong>Environmental impact:</strong> Training and running large models consumes significant energy; sustainability is a growing focus.</li>
+        <li><strong>Education:</strong> How do we ensure students develop genuine expertise when AI can shortcut the learning process? The answer matters for long-term workforce health.</li>
+    </ul>
+
+    <hr class="section-rule">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <h2>Tools &amp; Resources Referenced</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr><th>Tool / Resource</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Google Gemini / Microsoft Copilot</td><td>Generative AI (text, image, code) — free via UALR university accounts</td></tr>
+            <tr><td>Grammarly</td><td>Writing assistant for emails and long-form prose</td></tr>
+            <tr><td>Cognitive Class</td><td>Free prompt engineering tutorials (&lt; 1 hr each); also AI ethics and concepts modules</td></tr>
+            <tr><td>Langchain</td><td>Pioneer AI application development framework (Python/JS); good for building agentic apps</td></tr>
+            <tr><td>Power Platform, Mendix, OutSystems, Airtable</td><td>Low-code citizen app development</td></tr>
+            <tr><td>Tableau Business Science, H2O.ai, Alteryx, Qlik, Data Robot</td><td>Low-code citizen data science and visualization</td></tr>
+            <tr><td>YouTube: "Tilly Norwood"</td><td>Example of a fully AI-generated model/influencer</td></tr>
+            <tr><td>Tom Davenport CDO IQ keynote (45 min)</td><td>Recommended spring break viewing — enterprise AI adoption trends</td></tr>
+        </tbody>
+    </table>
+
+    <hr class="section-rule">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <h2>Summary &amp; Next Steps</h2>
+
+    <p>
+        This lecture completed the core AI unit, moving from the mechanics of large language models (March 17) through the practical world of generative AI use, citizen development at scale, agentic AI, and the long-view question of artificial general intelligence. The theme throughout: <em>humans must remain the experts, the reviewers, and the decision-makers.</em> AI is a powerful accelerant — for the competent.
+    </p>
+
+    <div class="callout tip">
+        <strong>Before next class</strong>
+        <p>Watch Tom Davenport's 45-minute CDO IQ Conference presentation on how companies are deploying AI. Consider which domain you want to apply your data science skills to — the combination of domain knowledge + analytical ability is what employers value most.</p>
+    </div>
+
+    <p>
+        Spring break follows this session. Use the time to explore one Cognitive Class module, experiment with Google Gemini or Copilot via your UALR account, or — if you're feeling ambitious — try building a simple agentic AI app or chatbot using a free-tier platform like Langchain.
+    </p>
+
+</article>
+
+<!-- Footer -->
+<footer class="page-footer">
+    <p>
+        <a href="index.html">← Back to Transcript Hub</a> &nbsp;|&nbsp;
+        IFSC 77003 Data Science &amp; Technologies &nbsp;|&nbsp; UALR Department of Information Science
+    </p>
+    <p style="margin-top: 8px;">Last updated March 24, 2026</p>
+</footer>
+
+</body>
+</html>
