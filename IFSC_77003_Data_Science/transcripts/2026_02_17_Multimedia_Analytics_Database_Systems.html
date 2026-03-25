@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture: Multimedia Analytics and Database Systems - February 17, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(0.98rem, 0.94rem + 0.12vw, 1.08rem);
+            line-height: 1.68;
+            color: #1a1a1a;
+            background: #f7f7f5;
+        }
+
+        .top-nav {
+            background: #004a99;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .top-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.88;
+        }
+        .top-nav a:hover { opacity: 1; text-decoration: underline; }
+        .top-nav .sep { color: rgba(255,255,255,0.45); }
+
+        article {
+            width: clamp(1120px, 93vw, 1720px);
+            margin: 0 auto;
+            padding: clamp(28px, 2.8vw, 44px) clamp(16px, 2.4vw, 36px) clamp(38px, 4vw, 64px);
+            background: #fff;
+        }
+
+        .masthead {
+            border-bottom: 3px solid #004a99;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .kicker {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #004a99;
+            margin-bottom: 12px;
+        }
+        h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2rem, 1.55rem + 1.5vw, 2.85rem);
+            font-weight: 700;
+            line-height: 1.18;
+            color: #111;
+            margin-bottom: 14px;
+        }
+        .byline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.86rem;
+            color: #666;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .chip {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: #e7f0fb;
+            color: #004a99;
+            border: 1px solid #b8d0f0;
+            border-radius: 999px;
+            padding: 4px 12px;
+            text-decoration: none;
+        }
+        .chip:hover { background: #dceafd; border-color: #9fc2ea; }
+
+        h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.35rem, 1.16rem + 0.65vw, 1.85rem);
+            font-weight: 700;
+            color: #111;
+            margin: 34px 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #ddd;
+            scroll-margin-top: 16px;
+        }
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #004a99;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin: 22px 0 8px;
+        }
+
+        p { margin-bottom: 1.05em; }
+        ul { padding-left: 1.35em; margin-bottom: 1em; }
+        li { margin-bottom: 0.5em; }
+
+        .section-rule {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 30px 0;
+        }
+
+        .callout {
+            border-left: 4px solid #004a99;
+            background: #f0f5fc;
+            padding: 14px 18px;
+            margin: 18px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .callout.warn {
+            border-left-color: #b54708;
+            background: #fff6e8;
+        }
+        .callout.good {
+            border-left-color: #067647;
+            background: #ecfdf3;
+        }
+        .callout p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.58;
+            color: #333;
+            margin-bottom: 0;
+        }
+        .callout strong {
+            display: block;
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 5px;
+            color: #004a99;
+        }
+        .callout.warn strong { color: #b54708; }
+        .callout.good strong { color: #067647; }
+
+        blockquote.pull-quote {
+            margin: 28px 0;
+            padding: 0 24px;
+            text-align: center;
+            border: none;
+        }
+        blockquote.pull-quote p {
+            font-size: 1.45rem;
+            line-height: 1.45;
+            font-style: italic;
+            color: #004a99;
+            margin-bottom: 0;
+        }
+        blockquote.pull-quote footer {
+            margin-top: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.87rem;
+            margin: 16px 0 22px;
+        }
+        .data-table th {
+            background: #004a99;
+            color: #fff;
+            text-align: left;
+            padding: 10px 14px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+        .data-table td {
+            border-bottom: 1px solid #e8e8e8;
+            padding: 9px 14px;
+            vertical-align: top;
+        }
+        .data-table tr:nth-child(even) td { background: #fafafa; }
+
+        footer.page-footer {
+            border-top: 1px solid #ddd;
+            padding: 26px 24px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+            background: #fff;
+        }
+        footer.page-footer a {
+            color: #004a99;
+            text-decoration: none;
+        }
+        footer.page-footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<nav class="top-nav">
+    <a href="../index.html">&larr; IFSC 77003 Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Transcript Hub</a>
+    <span class="sep">/</span>
+    <a href="#">February 17, 2026</a>
+</nav>
+
+<article>
+    <header class="masthead">
+        <p class="kicker">IFSC 77003 · Data Science &amp; Technologies · Week 5</p>
+        <h1>Multimedia Analytics and Database Systems</h1>
+        <div class="byline">
+            <span>February 17, 2026</span>
+            <span>Dr. Elizabeth Pierce</span>
+            <span>UALR</span>
+        </div>
+        <div class="chip-row">
+            <a class="chip" href="#overview">Multimedia Overview</a>
+            <a class="chip" href="#sampling">Sampling</a>
+            <a class="chip" href="#compression">Compression</a>
+            <a class="chip" href="#fusion">Data Fusion</a>
+            <a class="chip" href="#dbms">Multimedia DBMS</a>
+            <a class="chip" href="#retrieval">Content Retrieval</a>
+        </div>
+    </header>
+
+    <p>
+        This lecture introduced Unit 5 by framing multimedia analytics as a high-value but high-complexity data science area. The session connected low-level media representation concepts to practical database design, retrieval, and query strategies for image, audio, and video-rich systems.
+    </p>
+
+    <hr class="section-rule">
+
+    <h2 id="overview">What Multimedia Data Science Covers</h2>
+    <p>
+        Multimedia data extends beyond traditional alphanumeric records to include images, audio, video, graphics, and sensor context. Many real systems are multimodal, where separate tracks are correlated and can be jointly analyzed for better outcomes.
+    </p>
+    <p>
+        The lecture emphasized both sides of this reality: richer semantics and stronger opportunities, but also larger files, greater modeling complexity, and harder indexing/retrieval problems.
+    </p>
+
+    <blockquote class="pull-quote">
+        <p>Multimedia brings semantic richness, but that same richness drives representation and scalability challenges.</p>
+        <footer>Lecture Theme</footer>
+    </blockquote>
+
+    <h2 id="sampling">Sampling and Digital Approximation</h2>
+    <p>
+        A core concept is that digital media is discrete while physical media is continuous. Audio, images, and video are sampled and quantized representations of real-world signals.
+    </p>
+    <ul>
+        <li>Audio can be viewed as sampled one-dimensional signal data.</li>
+        <li>Images are sampled in two spatial dimensions.</li>
+        <li>Video adds temporal evolution on top of visual frames.</li>
+    </ul>
+    <p>
+        This approximation is typically sufficient for human perception, but understanding it is essential when designing analysis pipelines and quality/performance trade-offs.
+    </p>
+
+    <h2 id="compression">Compression: Lossless vs Lossy</h2>
+    <p>
+        Text data is usually handled with lossless compression because exact reconstruction matters. For images, audio, and video, lossy compression is often necessary to reach practical storage and transmission rates.
+    </p>
+
+    <div class="callout good">
+        <strong>Why Lossy Works</strong>
+        <p>Human visual and auditory systems have perceptual limits. Compression can remove less perceptible information while preserving practical quality.</p>
+    </div>
+
+    <div class="callout warn">
+        <strong>Modeling Consequence</strong>
+        <p>Compression decisions impact downstream analytics quality, feature extraction behavior, and retrieval precision.</p>
+    </div>
+
+    <h3>Image Versus Graphics</h3>
+    <p>
+        The lecture distinguished camera-captured sampled images from synthesized/vector graphics. This affects scalability behavior, representation strategy, and what type of processing is appropriate.
+    </p>
+
+    <h2 id="fusion">Multimodal Fusion and Sensor Integration</h2>
+    <p>
+        A case-style discussion showed how combining camera-derived features with sensor-derived features can improve event detection decisions. Rather than relying on one modality, a fusion process integrates complementary evidence.
+    </p>
+
+    <table class="data-table">
+        <thead>
+            <tr><th>Fusion Input</th><th>Example Features</th><th>Potential Output</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Visual stream</td><td>Objects, movement, activity level</td><td>Event confidence score</td></tr>
+            <tr><td>Sensor stream</td><td>Motion triggers, accelerometer context, environment signals</td><td>Alarm decision / response action</td></tr>
+            <tr><td>Combined evidence</td><td>Cross-modal correlation at same time window</td><td>Higher reliability than single source</td></tr>
+        </tbody>
+    </table>
+
+    <h2 id="dbms">Multimedia Databases from a DBMS Perspective</h2>
+    <p>
+        The second half of the session shifted from representation to database architecture. A multimedia DBMS must support diverse formats, large objects, persistent storage, authorization, querying, and concurrency/integrity controls - all at larger data scales than typical relational records.
+    </p>
+    <p>
+        Traditional DBMS capabilities still matter, but the retrieval model must expand to support richer content semantics and larger payloads.
+    </p>
+
+    <h3>Large Objects and System Demands</h3>
+    <ul>
+        <li>Use of large-object models for bulky media payloads.</li>
+        <li>Higher storage and throughput requirements.</li>
+        <li>Greater query and transaction complexity for high-volume media.</li>
+    </ul>
+
+    <h2 id="retrieval">Content-Based Retrieval and Querying</h2>
+    <p>
+        Multimedia retrieval can range from simple metadata browsing to content-based querying and query-by-example workflows. These systems may require interactive refinement and relevance feedback because user intent and media semantics are not always captured by one exact keyword query.
+    </p>
+    <p>
+        The lecture also discussed extending SQL-style querying by integrating extracted features and object-oriented constructs, and noted NoSQL approaches as complementary options for scalability and flexibility.
+    </p>
+
+    <div class="callout">
+        <strong>Practical Direction</strong>
+        <p>For data science projects, success depends on feature design, indexing strategy, and evaluation of retrieval quality - not only on storing files in a database.</p>
+    </div>
+
+    <h2>Applications and Next Step</h2>
+    <ul>
+        <li>Security/surveillance analytics</li>
+        <li>Educational and digital library media archives</li>
+        <li>Video/audio-on-demand systems</li>
+        <li>Medical imaging and diagnostics support</li>
+    </ul>
+    <p>
+        The session closed by signaling continued practical exploration in the next class, especially toward image-focused analytics.
+    </p>
+</article>
+
+<footer class="page-footer">
+    <p><a href="index.html">&larr; Back to Transcript Hub</a> | IFSC 77003 Data Science &amp; Technologies | UALR Department of Information Science</p>
+    <p style="margin-top:8px;">Last updated March 24, 2026</p>
+</footer>
+</body>
+</html>
