@@ -13,8 +13,8 @@
 
         body {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 1.05rem;
-            line-height: 1.8;
+            font-size: 1rem;
+            line-height: 1.68;
             color: #1a1a1a;
             background-color: #fafaf8;
         }
@@ -41,16 +41,16 @@
 
         /* ── Article Wrapper ──────────────────────────────────── */
         article {
-            max-width: 780px;
+            max-width: 1040px;
             margin: 0 auto;
-            padding: 60px 24px 80px;
+            padding: 42px 28px 56px;
         }
 
         /* ── Masthead ─────────────────────────────────────────── */
         .masthead {
             border-bottom: 3px solid #004a99;
-            padding-bottom: 28px;
-            margin-bottom: 40px;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
         }
         .masthead .kicker {
             font-family: 'Inter', sans-serif;
@@ -105,7 +105,7 @@
             font-size: 1.6rem;
             font-weight: 700;
             color: #0d0d0d;
-            margin: 52px 0 12px;
+            margin: 34px 0 10px;
             padding-bottom: 6px;
             border-bottom: 1px solid #ddd;
         }
@@ -116,17 +116,17 @@
             color: #004a99;
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            margin: 32px 0 10px;
+            margin: 22px 0 8px;
         }
 
         /* ── Body Typography ──────────────────────────────────── */
-        p { margin-bottom: 1.4em; }
+        p { margin-bottom: 1.05em; }
 
         /* ── Pull Quotes ──────────────────────────────────────── */
         blockquote.pull-quote {
             border: none;
-            margin: 44px 0;
-            padding: 0 32px;
+            margin: 30px 0;
+            padding: 0 22px;
             text-align: center;
         }
         blockquote.pull-quote p {
@@ -150,15 +150,15 @@
         .section-rule {
             border: none;
             border-top: 1px solid #e0e0e0;
-            margin: 48px 0;
+            margin: 30px 0;
         }
 
         /* ── Callout Box (minimal, single-column) ─────────────── */
         .callout {
             border-left: 4px solid #004a99;
             background: #f0f5fc;
-            padding: 18px 22px;
-            margin: 28px 0;
+            padding: 14px 18px;
+            margin: 18px 0;
             border-radius: 0 6px 6px 0;
         }
         .callout.alert {
@@ -193,7 +193,7 @@
             border-collapse: collapse;
             font-family: 'Inter', sans-serif;
             font-size: 0.87rem;
-            margin: 24px 0 36px;
+            margin: 16px 0 22px;
         }
         .data-table th {
             background: #004a99;
@@ -214,7 +214,7 @@
         /* ── Bullet Lists ─────────────────────────────────────── */
         ul {
             padding-left: 1.4em;
-            margin-bottom: 1.4em;
+            margin-bottom: 1em;
         }
         ul li { margin-bottom: 0.5em; }
 
@@ -238,7 +238,10 @@
         @media (max-width: 600px) {
             .masthead h1 { font-size: 1.8rem; }
             blockquote.pull-quote p { font-size: 1.2rem; }
-            article { padding: 40px 16px 60px; }
+            article {
+                max-width: 100%;
+                padding: 32px 14px 44px;
+            }
         }
     </style>
 </head>
