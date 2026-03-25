@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Summary: Web Scraping, Legal Ethics & APIs - March 12, 2026</title>
+    <style>
+        :root {
+            --primary: #004a99;
+            --highlight-bg: #e7f3ff;
+            --warning-bg: #fee2e2;
+            --advice-bg: #fef3c7;
+            --tech-bg: #f0fdfa;
+            --strategy-bg: #eef2ff;
+            --text: #333;
+            --bg: #f4f4f9;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+        .linear-header {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-left: 10px solid var(--primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .bento-container {
+            max-width: 1100px;
+            margin: 0 auto 40px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(150px, auto);
+            gap: 20px;
+            padding: 20px;
+        }
+        .bento-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        .bento-item h3 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+
+        .experience { background: var(--highlight-bg); }
+        .warning { background: var(--warning-bg); }
+        .advice { background: var(--advice-bg); }
+        .tech { background: var(--tech-bg); }
+        .strategy { background: var(--strategy-bg); }
+
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+        .tag.alt {
+            background: #9b1c1c;
+        }
+        .tag.soft {
+            background: #4338ca;
+        }
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .chip {
+            background: #ffffff;
+            border: 1px solid rgba(0, 74, 153, 0.15);
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        @media (max-width: 900px) {
+            .bento-container {
+                grid-template-columns: 1fr;
+            }
+            .span-2,
+            .span-3 {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="linear-header">
+    <nav style="margin-bottom: 20px; font-size: 0.9rem;">
+        <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: bold;">&larr; Home</a>
+    </nav>
+    <p style="font-size: 0.8rem; color: #777; margin-bottom: 10px; font-weight: bold;">Week 8 | Mar 12, 2026</p>
+    <span class="tag">Web Scraping</span>
+    <span class="tag alt">Legal & Ethics</span>
+    <span class="tag soft">API Strategy</span>
+    <h1>Web Scraping, Legal Ethics, and API-First Data Access</h1>
+    <p>This lecture moved beyond scraping mechanics into the larger ecosystem around web data: why scraping is harder than it used to be, how sites defend themselves, where the legal gray areas sit, and why many organizations are now turning their data into products and APIs instead of allowing uncontrolled extraction.</p>
+    <hr>
+    <h3>Quick Summary</h3>
+    <p>Dr. Pierce reviewed commercial scraping services, explained why anti-scraping barriers are escalating, and framed AI as both a consumer of scraped data and a tool for scraping or blocking bots. The lecture then connected technical defenses with legal frameworks such as the CFAA and DMCA, walked through major court cases, and closed with industry examples that show the shift from scraping toward formal data-as-a-service platforms and APIs.</p>
+</div>
+
+<div class="bento-container">
+    <div class="bento-item span-2 experience">
+        <h3>Market Snapshot: Scrapers, Services, and Pricing</h3>
+        <ul>
+            <li>Web scraping options range from writing your own Python code to paying for managed scraping vendors and proxy services.</li>
+            <li>Example price points discussed ranged from roughly $40 per month to enterprise plans near $30,000 per month.</li>
+            <li>Success-rate claims for scraping tools should be read carefully because they are often based on narrow test sets rather than the wider web.</li>
+            <li>The lecture reinforced that access to web data has become a serious commercial market, not just a hobbyist technique.</li>
+        </ul>
+        <div class="chip-row">
+            <span class="chip">ScrapingDog</span>
+            <span class="chip">ScraperAPI</span>
+            <span class="chip">ScrapingBee</span>
+            <span class="chip">ZenRows</span>
+            <span class="chip">FireCrawl</span>
+        </div>
+    </div>
+
+    <div class="bento-item tech">
+        <h3>AI on Both Sides</h3>
+        <p>AI now increases demand for scraped data while also helping both attackers and defenders. The result is an AI-versus-AI environment where one side tries to automate collection and the other side tries to detect non-human behavior more accurately.</p>
+    </div>
+
+    <div class="bento-item span-3 warning">
+        <h3>Why Websites Fight Scraping</h3>
+        <ul>
+            <li>Sites may want to protect revenue models, copyrighted material, subscription content, or curated data that required real effort to assemble.</li>
+            <li>Heavy scraping can overload servers, bypass pricing plans, or facilitate bulk capture of sensitive or personally identifiable information.</li>
+            <li>Publishers are especially sensitive when scraped data is later used to train profitable AI systems without compensation.</li>
+        </ul>
+    </div>
+
+    <div class="bento-item tech">
+        <h3>Common Defenses</h3>
+        <ul>
+            <li>Browser fingerprinting and device identification</li>
+            <li>Dynamic JavaScript-heavy pages</li>
+            <li>Captchas and login walls</li>
+            <li>Honeypots and hidden links</li>
+            <li>Rate limiting and IP block lists</li>
+            <li>Behavioral signals such as scrolling, typing rhythm, and click flow</li>
+        </ul>
+    </div>
+
+    <div class="bento-item span-2 advice">
+        <h3>Legal and Ethical Frameworks</h3>
+        <ul>
+            <li><strong>CFAA:</strong> Focuses on unauthorized access to computer systems.</li>
+            <li><strong>DMCA:</strong> Addresses unauthorized reproduction and distribution of protected digital material.</li>
+            <li><strong>Public vs. protected data:</strong> Public visibility matters, but it does not erase privacy, copyright, or terms-of-service concerns.</li>
+            <li><strong>Ethics:</strong> Students were urged to think about purpose, privacy, fairness, data quality, downstream harm, and whether a project crosses a moral or professional line.</li>
+        </ul>
+        <p>Dr. Pierce emphasized that classroom experimentation for learning is different from scraping for profit, platform competition, or large-scale AI training.</p>
+    </div>
+
+    <div class="bento-item span-3">
+        <h3>Court Cases That Shape Practice</h3>
+        <ul>
+            <li><strong>Meta v. Bright Data:</strong> Presented as a dispute centered on scraping publicly accessible platform data and terms-of-service enforcement.</li>
+            <li><strong>eBay v. Bidder's Edge:</strong> Used to show how excessive automated requests can be framed as harmful interference with a site.</li>
+            <li><strong>Facebook v. Power Ventures:</strong> Raised issues around access after being told to stop and broader intellectual-property concerns.</li>
+            <li><strong>LinkedIn v. hiQ:</strong> Highlighted the importance of the public-versus-protected distinction in CFAA debates.</li>
+            <li><strong>Zillow actions:</strong> Discussed as examples of companies taking repeated steps to protect controlled data and enforce platform rules.</li>
+        </ul>
+    </div>
+
+    <div class="bento-item span-2 strategy">
+        <h3>Data Monetization and the API Shift</h3>
+        <ul>
+            <li>The CDO IQ Symposium examples showed how firms are increasingly asking: if others want our data, why not package it and sell it directly?</li>
+            <li>Organizations are creating APIs, subscription tiers, metered access, barter arrangements, and revenue-sharing models instead of tolerating open scraping.</li>
+            <li>Trustpilot was discussed as a case where a company identified valuable market demand, restricted scraping, and moved toward formal data access.</li>
+            <li>The rise of the <strong>data product manager</strong> reflects a new role centered on sourcing, evaluating, packaging, and governing data as an organizational asset.</li>
+        </ul>
+    </div>
+
+    <div class="bento-item experience">
+        <h3>API Example</h3>
+        <p>The Movie Database API illustrated what a structured alternative to scraping looks like: documented endpoints, rate limits, JSON responses, and a free tier that can support dashboards or exploratory data projects without scraping the front end.</p>
+    </div>
+
+    <div class="bento-item span-3 advice">
+        <h3>Action Items and Next Steps</h3>
+        <ol>
+            <li>Try a simple scraping exercise to understand the mechanics and practical barriers.</li>
+            <li>Compare scraping with API-based access when evaluating a potential data source.</li>
+            <li>Document legal, ethical, and operational risks before using scraped data for business or research purposes.</li>
+            <li>Prepare for the next lecture on current AI and data trends.</li>
+        </ol>
+    </div>
+</div>
+
+<footer>
+    <p>IFSC 77003: Data Science & Technologies | University of Arkansas at Little Rock</p>
+</footer>
+
+</body>
+</html>
