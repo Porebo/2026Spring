@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture: AI Image Analysis, Processing Foundations, and Vision APIs - March 3, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(0.98rem, 0.94rem + 0.12vw, 1.08rem); line-height: 1.68; color: #1a1a1a; background: #f7f7f5; }
+        .top-nav { background: #004a99; padding: 12px 24px; display: flex; align-items: center; gap: 12px; }
+        .top-nav a { color: #fff; text-decoration: none; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; opacity: 0.88; }
+        .top-nav a:hover { opacity: 1; text-decoration: underline; }
+        .top-nav .sep { color: rgba(255,255,255,0.45); }
+        article { width: clamp(1120px, 93vw, 1720px); margin: 0 auto; padding: clamp(28px, 2.8vw, 44px) clamp(16px, 2.4vw, 36px) clamp(38px, 4vw, 64px); background: #fff; }
+        .masthead { border-bottom: 3px solid #004a99; padding-bottom: 20px; margin-bottom: 30px; }
+        .kicker { font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #004a99; margin-bottom: 12px; }
+        h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 1.55rem + 1.5vw, 2.85rem); font-weight: 700; line-height: 1.18; color: #111; margin-bottom: 14px; }
+        .byline { font-family: 'Inter', sans-serif; font-size: 0.86rem; color: #666; display: flex; flex-wrap: wrap; gap: 14px; }
+        .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+        .chip { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; background: #e7f0fb; color: #004a99; border: 1px solid #b8d0f0; border-radius: 999px; padding: 4px 12px; text-decoration: none; }
+        .chip:hover { background: #dceafd; border-color: #9fc2ea; }
+        h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.35rem, 1.16rem + 0.65vw, 1.85rem); font-weight: 700; color: #111; margin: 34px 0 10px; padding-bottom: 6px; border-bottom: 1px solid #ddd; scroll-margin-top: 16px; }
+        h3 { font-family: 'Inter', sans-serif; font-size: 0.98rem; font-weight: 700; color: #004a99; text-transform: uppercase; letter-spacing: 0.06em; margin: 22px 0 8px; }
+        p { margin-bottom: 1.05em; }
+        ul { padding-left: 1.35em; margin-bottom: 1em; }
+        li { margin-bottom: 0.5em; }
+        .section-rule { border: none; border-top: 1px solid #e0e0e0; margin: 30px 0; }
+        .callout { border-left: 4px solid #004a99; background: #f0f5fc; padding: 14px 18px; margin: 18px 0; border-radius: 0 6px 6px 0; }
+        .callout.warn { border-left-color: #b54708; background: #fff6e8; }
+        .callout.good { border-left-color: #067647; background: #ecfdf3; }
+        .callout p { font-family: 'Inter', sans-serif; font-size: 0.9rem; line-height: 1.58; color: #333; margin-bottom: 0; }
+        .callout strong { display: block; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; color: #004a99; }
+        .callout.warn strong { color: #b54708; }
+        .callout.good strong { color: #067647; }
+        .data-table { width: 100%; border-collapse: collapse; font-family: 'Inter', sans-serif; font-size: 0.87rem; margin: 16px 0 22px; }
+        .data-table th { background: #004a99; color: #fff; text-align: left; padding: 10px 14px; font-weight: 600; letter-spacing: 0.04em; }
+        .data-table td { border-bottom: 1px solid #e8e8e8; padding: 9px 14px; vertical-align: top; }
+        .data-table tr:nth-child(even) td { background: #fafafa; }
+        blockquote.pull-quote { margin: 28px 0; padding: 0 24px; text-align: center; border: none; }
+        blockquote.pull-quote p { font-size: 1.45rem; line-height: 1.45; font-style: italic; color: #004a99; margin-bottom: 0; }
+        blockquote.pull-quote footer { margin-top: 10px; font-family: 'Inter', sans-serif; font-size: 0.78rem; color: #888; text-transform: uppercase; letter-spacing: 0.08em; }
+        footer.page-footer { border-top: 1px solid #ddd; padding: 26px 24px; text-align: center; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #999; background: #fff; }
+        footer.page-footer a { color: #004a99; text-decoration: none; }
+        footer.page-footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<nav class="top-nav">
+    <a href="../index.html">&larr; IFSC 77003 Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Transcript Hub</a>
+    <span class="sep">/</span>
+    <a href="#">March 3, 2026</a>
+</nav>
+
+<article>
+    <header class="masthead">
+        <p class="kicker">IFSC 77003 · Data Science &amp; Technologies · Week 7</p>
+        <h1>AI Image Analysis, Processing Foundations, and Vision APIs</h1>
+        <div class="byline">
+            <span>March 3, 2026</span>
+            <span>Dr. Elizabeth Pierce</span>
+            <span>UALR</span>
+        </div>
+        <div class="chip-row">
+            <a class="chip" href="#representation">Image Representation</a>
+            <a class="chip" href="#processing">Processing Basics</a>
+            <a class="chip" href="#threshold">Threshold and Edges</a>
+            <a class="chip" href="#assignments">Assignments</a>
+            <a class="chip" href="#ecosystem">Vision Ecosystem</a>
+            <a class="chip" href="#apis">Vision APIs</a>
+        </div>
+    </header>
+
+    <p>
+        This lecture blended fundamentals and applied direction: how image data is numerically represented, how classic preprocessing works in Python, and how modern AI services now reduce implementation effort for many real-world computer vision use cases.
+    </p>
+
+    <hr class="section-rule">
+
+    <h2 id="representation">How Computers Represent Images</h2>
+    <p>
+        Dr. Pierce used a low-resolution triangle example to show the transition from visual intuition to machine-readable arrays. Monochrome images map to intensity values, while color images are represented through channel-specific matrices.
+    </p>
+    <div class="callout good">
+        <strong>Core Concept</strong>
+        <p>Computers do not "see" objects directly; they process structured numeric grids that encode color and intensity.</p>
+    </div>
+
+    <h2 id="processing">Core Image Processing Workflow in Python</h2>
+    <h3>Grayscale and simplification</h3>
+    <ul>
+        <li>Converted RGB input to grayscale for reduced complexity and clearer intensity operations.</li>
+        <li>Used OpenCV-style conversions to align image channels and prepare transformations.</li>
+    </ul>
+
+    <h3>Gaussian blurring and parameter sensitivity</h3>
+    <ul>
+        <li>Compared smaller and larger blur kernels to show progressive smoothing.</li>
+        <li>Adjusted sigma values to demonstrate blur-strength control.</li>
+        <li>Observed that blur behavior depends strongly on image content.</li>
+    </ul>
+
+    <table class="data-table">
+        <thead>
+            <tr><th>Operation</th><th>Goal</th><th>Parameter Lever</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Grayscale conversion</td><td>Simplify color complexity</td><td>Channel mapping method</td></tr>
+            <tr><td>Gaussian blur</td><td>Suppress fine detail/noise</td><td>Kernel size and sigma</td></tr>
+            <tr><td>Thresholding</td><td>Separate foreground/background</td><td>Threshold cutoff value</td></tr>
+            <tr><td>Edge detection</td><td>Highlight object boundaries</td><td>Directional filters and weights</td></tr>
+        </tbody>
+    </table>
+
+    <h2 id="threshold">Thresholding and Edge Detection Insights</h2>
+    <p>
+        Thresholding was explained through pixel-intensity histograms and binary decision cutoffs. Edge extraction then showed how directional gradients can emphasize object outlines.
+    </p>
+    <div class="callout warn">
+        <strong>Tuning Tradeoff</strong>
+        <p>Overly aggressive settings may remove useful structure or amplify irrelevant background features, so iterative tuning is necessary.</p>
+    </div>
+
+    <blockquote class="pull-quote">
+        <p>Image processing is not one-click optimization; it is controlled experimentation with parameters against a clear task objective.</p>
+        <footer>Lecture Theme</footer>
+    </blockquote>
+
+    <h2 id="assignments">Assignment, Bonus, and Challenge Tracks</h2>
+    <ul>
+        <li>Weekly assignment: implement basic image processing tasks in a Colab notebook.</li>
+        <li>Bonus path: complete the additional image processing assignment for extra points.</li>
+        <li>Extended challenge options included multimodal retrieval and scene-cut detection workflows.</li>
+    </ul>
+
+    <h2 id="ecosystem">From Classical Processing to AI Vision Libraries</h2>
+    <p>
+        The lecture connected foundational techniques to current model workflows, including convolutional-network concepts, annotation quality, and overfitting risks in image model training.
+    </p>
+    <ul>
+        <li>Students were encouraged to evaluate multiple libraries rather than default to a single tool.</li>
+        <li>YOLO was highlighted as a contemporary option worth exploring.</li>
+        <li>Kaggle image datasets were recommended for project experimentation and comparison studies.</li>
+    </ul>
+
+    <h2 id="apis">Vision APIs and Application-Oriented Development</h2>
+    <p>
+        A cloud-vision demonstration showed that modern APIs can accept raw images and return structured outputs such as detected objects, confidence values, scene tags, and content attributes.
+    </p>
+    <div class="callout">
+        <strong>Practical Direction</strong>
+        <p>For many projects, value comes from building useful applications around AI vision outputs, not only from implementing every low-level preprocessing step from scratch.</p>
+    </div>
+</article>
+
+<footer class="page-footer">
+    <p><a href="index.html">&larr; Back to Transcript Hub</a> | IFSC 77003 Data Science &amp; Technologies | UALR Department of Information Science</p>
+    <p style="margin-top:8px;">Last updated March 24, 2026</p>
+</footer>
+</body>
+</html>
