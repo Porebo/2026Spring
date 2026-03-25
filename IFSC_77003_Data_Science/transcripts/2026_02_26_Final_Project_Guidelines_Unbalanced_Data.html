@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture: Final Project Guidelines, Unbalanced Data, and Reporting - February 26, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(0.98rem, 0.94rem + 0.12vw, 1.08rem); line-height: 1.68; color: #1a1a1a; background: #f7f7f5; }
+        .top-nav { background: #004a99; padding: 12px 24px; display: flex; align-items: center; gap: 12px; }
+        .top-nav a { color: #fff; text-decoration: none; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; opacity: 0.88; }
+        .top-nav a:hover { opacity: 1; text-decoration: underline; }
+        .top-nav .sep { color: rgba(255,255,255,0.45); }
+        article { width: clamp(1120px, 93vw, 1720px); margin: 0 auto; padding: clamp(28px, 2.8vw, 44px) clamp(16px, 2.4vw, 36px) clamp(38px, 4vw, 64px); background: #fff; }
+        .masthead { border-bottom: 3px solid #004a99; padding-bottom: 20px; margin-bottom: 30px; }
+        .kicker { font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #004a99; margin-bottom: 12px; }
+        h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 1.55rem + 1.5vw, 2.85rem); font-weight: 700; line-height: 1.18; color: #111; margin-bottom: 14px; }
+        .byline { font-family: 'Inter', sans-serif; font-size: 0.86rem; color: #666; display: flex; flex-wrap: wrap; gap: 14px; }
+        .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+        .chip { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; background: #e7f0fb; color: #004a99; border: 1px solid #b8d0f0; border-radius: 999px; padding: 4px 12px; text-decoration: none; }
+        .chip:hover { background: #dceafd; border-color: #9fc2ea; }
+        h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.35rem, 1.16rem + 0.65vw, 1.85rem); font-weight: 700; color: #111; margin: 34px 0 10px; padding-bottom: 6px; border-bottom: 1px solid #ddd; scroll-margin-top: 16px; }
+        h3 { font-family: 'Inter', sans-serif; font-size: 0.98rem; font-weight: 700; color: #004a99; text-transform: uppercase; letter-spacing: 0.06em; margin: 22px 0 8px; }
+        p { margin-bottom: 1.05em; }
+        ul { padding-left: 1.35em; margin-bottom: 1em; }
+        li { margin-bottom: 0.5em; }
+        .section-rule { border: none; border-top: 1px solid #e0e0e0; margin: 30px 0; }
+        .callout { border-left: 4px solid #004a99; background: #f0f5fc; padding: 14px 18px; margin: 18px 0; border-radius: 0 6px 6px 0; }
+        .callout.warn { border-left-color: #b54708; background: #fff6e8; }
+        .callout.good { border-left-color: #067647; background: #ecfdf3; }
+        .callout p { font-family: 'Inter', sans-serif; font-size: 0.9rem; line-height: 1.58; color: #333; margin-bottom: 0; }
+        .callout strong { display: block; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; color: #004a99; }
+        .callout.warn strong { color: #b54708; }
+        .callout.good strong { color: #067647; }
+        .data-table { width: 100%; border-collapse: collapse; font-family: 'Inter', sans-serif; font-size: 0.87rem; margin: 16px 0 22px; }
+        .data-table th { background: #004a99; color: #fff; text-align: left; padding: 10px 14px; font-weight: 600; letter-spacing: 0.04em; }
+        .data-table td { border-bottom: 1px solid #e8e8e8; padding: 9px 14px; vertical-align: top; }
+        .data-table tr:nth-child(even) td { background: #fafafa; }
+        blockquote.pull-quote { margin: 28px 0; padding: 0 24px; text-align: center; border: none; }
+        blockquote.pull-quote p { font-size: 1.45rem; line-height: 1.45; font-style: italic; color: #004a99; margin-bottom: 0; }
+        blockquote.pull-quote footer { margin-top: 10px; font-family: 'Inter', sans-serif; font-size: 0.78rem; color: #888; text-transform: uppercase; letter-spacing: 0.08em; }
+        footer.page-footer { border-top: 1px solid #ddd; padding: 26px 24px; text-align: center; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #999; background: #fff; }
+        footer.page-footer a { color: #004a99; text-decoration: none; }
+        footer.page-footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<nav class="top-nav">
+    <a href="../index.html">&larr; IFSC 77003 Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Transcript Hub</a>
+    <span class="sep">/</span>
+    <a href="#">February 26, 2026</a>
+</nav>
+
+<article>
+    <header class="masthead">
+        <p class="kicker">IFSC 77003 · Data Science &amp; Technologies · Week 6</p>
+        <h1>Final Project Guidelines, Unbalanced Data Strategies, and Research Reporting</h1>
+        <div class="byline">
+            <span>February 26, 2026</span>
+            <span>Dr. Elizabeth Pierce</span>
+            <span>UALR</span>
+        </div>
+        <div class="chip-row">
+            <a class="chip" href="#imbalance">Unbalanced Data</a>
+            <a class="chip" href="#deliverables">Project Deliverables</a>
+            <a class="chip" href="#report">Report Structure</a>
+            <a class="chip" href="#literature">Literature Review</a>
+            <a class="chip" href="#analysis">Analysis Expectations</a>
+            <a class="chip" href="#teams">Team Coordination</a>
+        </div>
+    </header>
+
+    <p>
+        This session connected technical modeling concerns with final-project execution: how to handle rare-event class imbalance, how to structure a strong report, and how to document complete individual contributions in coordinated projects.
+    </p>
+
+    <hr class="section-rule">
+
+    <h2 id="imbalance">Rare Events and Unbalanced Data</h2>
+    <p>
+        The lecture highlighted why raw model accuracy can be deceptive for rare-event problems such as fraud or medical-risk prediction. A model may appear highly accurate while still missing the class that matters most.
+    </p>
+
+    <table class="data-table">
+        <thead>
+            <tr><th>Strategy</th><th>Purpose</th><th>Typical Tradeoff</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Oversampling minority class</td><td>Increase rare-class visibility during training</td><td>Can overfit duplicated/synthetic signals</td></tr>
+            <tr><td>Undersampling majority class</td><td>Reduce class dominance</td><td>Potential loss of useful majority data</td></tr>
+            <tr><td>Weighted/penalty loss</td><td>Penalize rare-class errors more heavily</td><td>Needs careful tuning to avoid instability</td></tr>
+            <tr><td>Combined resampling + weighting</td><td>Balance data and objective simultaneously</td><td>More complex validation workflow</td></tr>
+        </tbody>
+    </table>
+
+    <div class="callout good">
+        <strong>Shared Resource</strong>
+        <p>Students were directed to Dr. Wu's prior bonus materials (recording, slides, notebook, and dataset) for practical workflows on imbalanced-data modeling.</p>
+    </div>
+
+    <h2 id="deliverables">Final Project Deliverables and Scope</h2>
+    <ul>
+        <li>Complete a full data science investigation.</li>
+        <li>Submit a written report (commonly 10 to 20 pages).</li>
+        <li>Submit a 3-minute video summary of the project.</li>
+    </ul>
+    <p>
+        The project was framed as a major demonstration of data literacy and employability skills, not only assignment completion.
+    </p>
+
+    <blockquote class="pull-quote">
+        <p>Strong projects show not just output, but clear reasoning: what was tried, what worked, what failed, and why.</p>
+        <footer>Course Guidance</footer>
+    </blockquote>
+
+    <h2 id="report">Recommended Report Structure</h2>
+    <h3>Core sections</h3>
+    <ul>
+        <li>Title section with course and project context.</li>
+        <li>Introduction with motivation, problem, and objectives.</li>
+        <li>Literature review with validated sources.</li>
+        <li>Methodology (data access, cleaning, feature/metric design, analysis plan).</li>
+        <li>Analysis with interpretation of outputs.</li>
+        <li>Discussion, conclusions, and future work.</li>
+        <li>Appendix with schedule/hours and full references.</li>
+    </ul>
+
+    <h2 id="literature">Literature Review Expectations and AI Caution</h2>
+    <p>
+        Students were advised to verify every citation, especially if an LLM is used to brainstorm. Fabricated or mismatched references are common when references are copied without source validation.
+    </p>
+    <div class="callout warn">
+        <strong>Validation Rule</strong>
+        <p>Any source included in the report should be real, accessible, and accurately represented in the literature summary.</p>
+    </div>
+    <p>
+        Source types can include journal papers, white papers, technical blogs, and notebooks when they are relevant and trustworthy.
+    </p>
+
+    <h2 id="analysis">Analysis Quality Criteria</h2>
+    <ul>
+        <li>Explain model and method choices, not just run default pipelines.</li>
+        <li>Describe parameter tuning and evaluation rationale.</li>
+        <li>Use diagnostics such as false positives/false negatives where relevant.</li>
+        <li>Clarify training/testing design and cross-validation choices.</li>
+        <li>Interpret plots/tables in plain language for decision-making.</li>
+    </ul>
+
+    <h2 id="teams">Coordinated Team Projects and Workload Evidence</h2>
+    <p>
+        Teams may coordinate around a shared dataset and divide work by region or analysis dimension, but each student must still demonstrate complete individual effort and report ownership.
+    </p>
+    <ul>
+        <li>Maintain roughly full per-person literature effort (for example, around 10+ sources each).</li>
+        <li>Track individual hours per phase, including peer review and revision.</li>
+        <li>Document coordinated context while preserving separate assessment artifacts.</li>
+    </ul>
+
+    <div class="callout">
+        <strong>Practical Reminder</strong>
+        <p>If project data comes from employer or external systems, get explicit permission before submission and protect confidentiality constraints.</p>
+    </div>
+</article>
+
+<footer class="page-footer">
+    <p><a href="index.html">&larr; Back to Transcript Hub</a> | IFSC 77003 Data Science &amp; Technologies | UALR Department of Information Science</p>
+    <p style="margin-top:8px;">Last updated March 24, 2026</p>
+</footer>
+</body>
+</html>
