@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture: CNN Image Recognition, Training Workflow, and Overfitting - March 5, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(0.98rem, 0.94rem + 0.12vw, 1.08rem); line-height: 1.68; color: #1a1a1a; background: #f7f7f5; }
+        .top-nav { background: #004a99; padding: 12px 24px; display: flex; align-items: center; gap: 12px; }
+        .top-nav a { color: #fff; text-decoration: none; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; opacity: 0.88; }
+        .top-nav a:hover { opacity: 1; text-decoration: underline; }
+        .top-nav .sep { color: rgba(255,255,255,0.45); }
+        article { width: clamp(1120px, 93vw, 1720px); margin: 0 auto; padding: clamp(28px, 2.8vw, 44px) clamp(16px, 2.4vw, 36px) clamp(38px, 4vw, 64px); background: #fff; }
+        .masthead { border-bottom: 3px solid #004a99; padding-bottom: 20px; margin-bottom: 30px; }
+        .kicker { font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #004a99; margin-bottom: 12px; }
+        h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 1.55rem + 1.5vw, 2.85rem); font-weight: 700; line-height: 1.18; color: #111; margin-bottom: 14px; }
+        .byline { font-family: 'Inter', sans-serif; font-size: 0.86rem; color: #666; display: flex; flex-wrap: wrap; gap: 14px; }
+        .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+        .chip { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; background: #e7f0fb; color: #004a99; border: 1px solid #b8d0f0; border-radius: 999px; padding: 4px 12px; text-decoration: none; }
+        .chip:hover { background: #dceafd; border-color: #9fc2ea; }
+        h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.35rem, 1.16rem + 0.65vw, 1.85rem); font-weight: 700; color: #111; margin: 34px 0 10px; padding-bottom: 6px; border-bottom: 1px solid #ddd; scroll-margin-top: 16px; }
+        h3 { font-family: 'Inter', sans-serif; font-size: 0.98rem; font-weight: 700; color: #004a99; text-transform: uppercase; letter-spacing: 0.06em; margin: 22px 0 8px; }
+        p { margin-bottom: 1.05em; }
+        ul { padding-left: 1.35em; margin-bottom: 1em; }
+        li { margin-bottom: 0.5em; }
+        .section-rule { border: none; border-top: 1px solid #e0e0e0; margin: 30px 0; }
+        .callout { border-left: 4px solid #004a99; background: #f0f5fc; padding: 14px 18px; margin: 18px 0; border-radius: 0 6px 6px 0; }
+        .callout.warn { border-left-color: #b54708; background: #fff6e8; }
+        .callout.good { border-left-color: #067647; background: #ecfdf3; }
+        .callout p { font-family: 'Inter', sans-serif; font-size: 0.9rem; line-height: 1.58; color: #333; margin-bottom: 0; }
+        .callout strong { display: block; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; color: #004a99; }
+        .callout.warn strong { color: #b54708; }
+        .callout.good strong { color: #067647; }
+        .data-table { width: 100%; border-collapse: collapse; font-family: 'Inter', sans-serif; font-size: 0.87rem; margin: 16px 0 22px; }
+        .data-table th { background: #004a99; color: #fff; text-align: left; padding: 10px 14px; font-weight: 600; letter-spacing: 0.04em; }
+        .data-table td { border-bottom: 1px solid #e8e8e8; padding: 9px 14px; vertical-align: top; }
+        .data-table tr:nth-child(even) td { background: #fafafa; }
+        blockquote.pull-quote { margin: 28px 0; padding: 0 24px; text-align: center; border: none; }
+        blockquote.pull-quote p { font-size: 1.45rem; line-height: 1.45; font-style: italic; color: #004a99; margin-bottom: 0; }
+        blockquote.pull-quote footer { margin-top: 10px; font-family: 'Inter', sans-serif; font-size: 0.78rem; color: #888; text-transform: uppercase; letter-spacing: 0.08em; }
+        footer.page-footer { border-top: 1px solid #ddd; padding: 26px 24px; text-align: center; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #999; background: #fff; }
+        footer.page-footer a { color: #004a99; text-decoration: none; }
+        footer.page-footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<nav class="top-nav">
+    <a href="../index.html">&larr; IFSC 77003 Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Transcript Hub</a>
+    <span class="sep">/</span>
+    <a href="#">March 5, 2026</a>
+</nav>
+
+<article>
+    <header class="masthead">
+        <p class="kicker">IFSC 77003 · Data Science &amp; Technologies · Week 7</p>
+        <h1>CNN Image Recognition, Training Workflow, and Overfitting Control</h1>
+        <div class="byline">
+            <span>March 5, 2026</span>
+            <span>Dr. Elizabeth Pierce</span>
+            <span>UALR</span>
+        </div>
+        <div class="chip-row">
+            <a class="chip" href="#cnn">What CNNs Do</a>
+            <a class="chip" href="#layers">Layer Mechanics</a>
+            <a class="chip" href="#prep">Data Preparation</a>
+            <a class="chip" href="#training">Training and Epochs</a>
+            <a class="chip" href="#evaluation">Evaluation</a>
+            <a class="chip" href="#projects">Project Direction</a>
+        </div>
+    </header>
+
+    <p>
+        This class transitioned from basic image preprocessing into predictive image modeling, showing how convolutional neural networks can classify handwritten digits when supported by disciplined data preparation, tuning, and evaluation.
+    </p>
+
+    <hr class="section-rule">
+
+    <h2 id="cnn">From Processed Images to Prediction</h2>
+    <p>
+        Dr. Pierce framed CNNs as specialized deep-learning models for grid-like data, with image pixels as the canonical example. The session used a digit-recognition challenge to make architecture and training concepts concrete.
+    </p>
+    <div class="callout good">
+        <strong>Practical Framing</strong>
+        <p>The instructional goal shifted from image cleanup (grayscale, blur, threshold) toward predicting labels on new unseen images.</p>
+    </div>
+
+    <h2 id="layers">CNN Layer Roles</h2>
+    <ul>
+        <li><strong>Convolution layers:</strong> extract local patterns such as strokes and edges.</li>
+        <li><strong>Pooling layers:</strong> reduce dimensionality and improve robustness to small shifts/variations.</li>
+        <li><strong>Dense/output layers:</strong> combine extracted features to produce class probabilities.</li>
+    </ul>
+
+    <table class="data-table">
+        <thead>
+            <tr><th>Pipeline Stage</th><th>Main Purpose</th><th>Why It Matters</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Convolution</td><td>Feature extraction</td><td>Captures spatial patterns from raw pixels</td></tr>
+            <tr><td>Pooling</td><td>Compression and invariance</td><td>Lowers compute cost and noise sensitivity</td></tr>
+            <tr><td>Dense classification</td><td>Decision mapping</td><td>Converts features into predicted labels</td></tr>
+        </tbody>
+    </table>
+
+    <h2 id="prep">Data Preparation in the Demo</h2>
+    <p>
+        The notebook walkthrough showed the required preprocessing path for handwritten-digit classification: split labels/features, inspect class balance, normalize pixel intensities from 0-255 to 0-1, reshape into tensors, and perform train/test partitioning.
+    </p>
+    <ul>
+        <li>Dataset context: digit labels with 28x28 pixel values per sample.</li>
+        <li>Train/test setup: example 80/20 split with configurable randomization.</li>
+        <li>Label encoding: prepared target values for network training.</li>
+    </ul>
+
+    <h2 id="training">Training Logic, Epochs, and Overfitting</h2>
+    <p>
+        The lecture explained iterative weight updates and why epoch count needs calibration. Too few epochs can underfit; too many can overfit by memorizing training details.
+    </p>
+    <div class="callout warn">
+        <strong>Overfitting Risk</strong>
+        <p>High performance on training data does not guarantee generalization. Validation behavior and unseen-data tests are essential before trusting deployment decisions.</p>
+    </div>
+
+    <p>
+        Mitigation techniques discussed included dropout, pooling choices, and data augmentation (rotations/shifts/transformations) to increase robustness against variation.
+    </p>
+
+    <blockquote class="pull-quote">
+        <p>A good CNN is not just accurate on known samples; it remains reliable on new handwriting it has never seen.</p>
+        <footer>Model Evaluation Principle</footer>
+    </blockquote>
+
+    <h2 id="evaluation">Diagnostic Evaluation</h2>
+    <ul>
+        <li>Validation-loss curves were used to locate useful epoch ranges and detect degradation patterns.</li>
+        <li>Confusion matrices highlighted class-specific mistakes (for example, where similar digits are confused).</li>
+        <li>Iterative tuning was demonstrated by adjusting configuration and comparing diagnostic outcomes.</li>
+    </ul>
+
+    <h2 id="projects">Project and Career Implications</h2>
+    <p>
+        Students were encouraged to apply the workflow to project ideas in Unit 12, especially where image/video recognition intersects with moderation, multimodal fusion, synthetic data, or real-time decision support.
+    </p>
+    <ul>
+        <li>Review Unit 6/7 demos and adapt notebook pipelines for project scoping.</li>
+        <li>Document tradeoffs among model accuracy, interpretability, compute cost, and ethical risk.</li>
+        <li>Consider cloud student/research credits when computational resources are a bottleneck.</li>
+    </ul>
+</article>
+
+<footer class="page-footer">
+    <p><a href="index.html">&larr; Back to Transcript Hub</a> | IFSC 77003 Data Science &amp; Technologies | UALR Department of Information Science</p>
+    <p style="margin-top:8px;">Last updated March 24, 2026</p>
+</footer>
+</body>
+</html>
