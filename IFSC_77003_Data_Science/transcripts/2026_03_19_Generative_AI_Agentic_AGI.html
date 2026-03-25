@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 1rem;
+            font-size: clamp(0.98rem, 0.94rem + 0.12vw, 1.08rem);
             line-height: 1.68;
             color: #1a1a1a;
             background-color: #fafaf8;
@@ -41,9 +41,9 @@
 
         /* ── Article Wrapper ──────────────────────────────────── */
         article {
-            max-width: 1040px;
+            width: clamp(1120px, 93vw, 1720px);
             margin: 0 auto;
-            padding: 42px 28px 56px;
+            padding: clamp(28px, 2.8vw, 44px) clamp(16px, 2.4vw, 36px) clamp(38px, 4vw, 64px);
         }
 
         /* ── Masthead ─────────────────────────────────────────── */
@@ -63,7 +63,7 @@
         }
         .masthead h1 {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 1.55rem + 1.5vw, 2.85rem);
             font-weight: 700;
             line-height: 1.2;
             color: #0d0d0d;
@@ -87,6 +87,7 @@
             margin-top: 18px;
         }
         .chip {
+            display: inline-block;
             font-family: 'Inter', sans-serif;
             font-size: 0.72rem;
             font-weight: 600;
@@ -97,17 +98,24 @@
             border: 1px solid #b8d0f0;
             border-radius: 20px;
             padding: 3px 12px;
+            text-decoration: none;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .chip:hover {
+            background: #dceafd;
+            border-color: #9fc2ea;
         }
 
         /* ── Section Headings ─────────────────────────────────── */
         h2 {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 1.6rem;
+            font-size: clamp(1.35rem, 1.16rem + 0.65vw, 1.85rem);
             font-weight: 700;
             color: #0d0d0d;
             margin: 34px 0 10px;
             padding-bottom: 6px;
             border-bottom: 1px solid #ddd;
+            scroll-margin-top: 16px;
         }
         h3 {
             font-family: 'Inter', sans-serif;
@@ -234,15 +242,7 @@
         }
         footer.page-footer a:hover { text-decoration: underline; }
 
-        /* ── Print / Narrow ───────────────────────────────────── */
-        @media (max-width: 600px) {
-            .masthead h1 { font-size: 1.8rem; }
-            blockquote.pull-quote p { font-size: 1.2rem; }
-            article {
-                max-width: 100%;
-                padding: 32px 14px 44px;
-            }
-        }
+        /* Desktop-only layout: mobile fallbacks intentionally removed */
     </style>
 </head>
 <body>
@@ -269,12 +269,12 @@
             <span>🏫 UALR</span>
         </div>
         <div class="chip-row">
-            <span class="chip">Generative AI</span>
-            <span class="chip">Agentic AI</span>
-            <span class="chip">AGI</span>
-            <span class="chip">Citizen Development</span>
-            <span class="chip">AI Ethics</span>
-            <span class="chip">LLMs</span>
+            <a class="chip" href="#gen-ai-risks">Generative AI</a>
+            <a class="chip" href="#agentic-ai">Agentic AI</a>
+            <a class="chip" href="#agi">AGI</a>
+            <a class="chip" href="#citizen-development">Citizen Development</a>
+            <a class="chip" href="#ai-ethics">AI Ethics</a>
+            <a class="chip" href="#gen-ai-risks">LLMs</a>
         </div>
     </header>
 
@@ -286,7 +286,7 @@
     <hr class="section-rule">
 
     <!-- ══════════════════════════════════════════════════════════ -->
-    <h2>Generative AI — A Closer Look at the Risks</h2>
+    <h2 id="gen-ai-risks">Generative AI — A Closer Look at the Risks</h2>
 
     <p>
         Generative AI — the technology behind ChatGPT, Google Gemini, and Microsoft Copilot — creates <em>original content</em> (text, images, music, code) by learning statistical patterns from massive datasets. Unlike traditional AI that analyzes existing data, generative models produce new material that mimics human output. The 2017 Google Transformer paper remains the foundational advance that made this possible.
@@ -356,7 +356,7 @@
     <hr class="section-rule">
 
     <!-- ══════════════════════════════════════════════════════════ -->
-    <h2>Tom Davenport on Citizen Development</h2>
+    <h2 id="citizen-development">Tom Davenport on Citizen Development</h2>
 
     <p>
         Tom Davenport — professor at Babson College and author of more than 200 articles in <em>Harvard Business Review</em> — presented at the Chief Data Officer &amp; Information Quality (CDO IQ) Conference in Boston last summer. Dr. Pierce obtained the session materials through her professional network and shared the highlights.
@@ -424,7 +424,7 @@
     <hr class="section-rule">
 
     <!-- ══════════════════════════════════════════════════════════ -->
-    <h2>Agentic AI — From Reactive to Proactive</h2>
+    <h2 id="agentic-ai">Agentic AI — From Reactive to Proactive</h2>
 
     <p>
         Generative AI is <em>reactive</em>: you prompt it, it responds. <strong>Agentic AI</strong> is the next step — proactive systems that are given goals and tool access, then independently plan and execute multi-step tasks without a human handling each step.
@@ -442,7 +442,7 @@
     <hr class="section-rule">
 
     <!-- ══════════════════════════════════════════════════════════ -->
-    <h2>Artificial General Intelligence — The Theoretical Horizon</h2>
+    <h2 id="agi">Artificial General Intelligence — The Theoretical Horizon</h2>
 
     <p>
         Artificial General Intelligence (AGI) — AI that is autonomous, highly adaptive, capable of teaching itself, and equal to or exceeding human cognitive ability across domains — remains theoretical. It is distinct from narrow AI (chatbots, image generators) and from agentic AI (task-specific multi-step systems).
@@ -477,7 +477,7 @@
     <hr class="section-rule">
 
     <!-- ══════════════════════════════════════════════════════════ -->
-    <h2>AI Ethics — A Rapid Survey</h2>
+    <h2 id="ai-ethics">AI Ethics — A Rapid Survey</h2>
 
     <ul>
         <li><strong>Historical bias:</strong> Models trained on historically biased data will reproduce and scale those biases. Synthetic data generation is one research avenue to build fairer training sets.</li>
