@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture: Text Analytics with NLTK, spaCy &amp; Sentiment Evaluation — February 12, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(0.98rem, 0.94rem + 0.12vw, 1.08rem);
+            line-height: 1.68;
+            color: #1a1a1a;
+            background: #f7f7f5;
+        }
+
+        .top-nav {
+            background: #004a99;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .top-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.88;
+        }
+        .top-nav a:hover { opacity: 1; text-decoration: underline; }
+        .top-nav .sep { color: rgba(255,255,255,0.45); }
+
+        article {
+            width: clamp(1120px, 93vw, 1720px);
+            margin: 0 auto;
+            padding: clamp(28px, 2.8vw, 44px) clamp(16px, 2.4vw, 36px) clamp(38px, 4vw, 64px);
+            background: #fff;
+        }
+
+        .masthead {
+            border-bottom: 3px solid #004a99;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .kicker {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #004a99;
+            margin-bottom: 12px;
+        }
+        h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2rem, 1.55rem + 1.5vw, 2.85rem);
+            font-weight: 700;
+            line-height: 1.18;
+            color: #111;
+            margin-bottom: 14px;
+        }
+        .byline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.86rem;
+            color: #666;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .chip {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: #e7f0fb;
+            color: #004a99;
+            border: 1px solid #b8d0f0;
+            border-radius: 999px;
+            padding: 4px 12px;
+            text-decoration: none;
+        }
+        .chip:hover { background: #dceafd; border-color: #9fc2ea; }
+
+        h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.35rem, 1.16rem + 0.65vw, 1.85rem);
+            font-weight: 700;
+            color: #111;
+            margin: 34px 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #ddd;
+            scroll-margin-top: 16px;
+        }
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #004a99;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin: 22px 0 8px;
+        }
+
+        p { margin-bottom: 1.05em; }
+
+        ul {
+            padding-left: 1.35em;
+            margin-bottom: 1em;
+        }
+        li { margin-bottom: 0.5em; }
+
+        .section-rule {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 30px 0;
+        }
+
+        .callout {
+            border-left: 4px solid #004a99;
+            background: #f0f5fc;
+            padding: 14px 18px;
+            margin: 18px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .callout.warn {
+            border-left-color: #b54708;
+            background: #fff6e8;
+        }
+        .callout.good {
+            border-left-color: #067647;
+            background: #ecfdf3;
+        }
+        .callout p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.58;
+            color: #333;
+            margin-bottom: 0;
+        }
+        .callout strong {
+            display: block;
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 5px;
+            color: #004a99;
+        }
+        .callout.warn strong { color: #b54708; }
+        .callout.good strong { color: #067647; }
+
+        blockquote.pull-quote {
+            margin: 28px 0;
+            padding: 0 24px;
+            text-align: center;
+            border: none;
+        }
+        blockquote.pull-quote p {
+            font-size: 1.45rem;
+            line-height: 1.45;
+            font-style: italic;
+            color: #004a99;
+            margin-bottom: 0;
+        }
+        blockquote.pull-quote footer {
+            margin-top: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.87rem;
+            margin: 16px 0 22px;
+        }
+        .data-table th {
+            background: #004a99;
+            color: #fff;
+            text-align: left;
+            padding: 10px 14px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+        .data-table td {
+            border-bottom: 1px solid #e8e8e8;
+            padding: 9px 14px;
+            vertical-align: top;
+        }
+        .data-table tr:nth-child(even) td { background: #fafafa; }
+
+        footer.page-footer {
+            border-top: 1px solid #ddd;
+            padding: 26px 24px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+            background: #fff;
+        }
+        footer.page-footer a {
+            color: #004a99;
+            text-decoration: none;
+        }
+        footer.page-footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<nav class="top-nav">
+    <a href="../index.html">← IFSC 77003 Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Transcript Hub</a>
+    <span class="sep">/</span>
+    <a href="#">February 12, 2026</a>
+</nav>
+
+<article>
+    <header class="masthead">
+        <p class="kicker">IFSC 77003 · Data Science &amp; Technologies · Week 4</p>
+        <h1>Text Analytics with NLTK, spaCy &amp; Sentiment Evaluation</h1>
+        <div class="byline">
+            <span>📅 February 12, 2026</span>
+            <span>👩‍🏫 Dr. Elizabeth Pierce</span>
+            <span>🏫 UALR</span>
+        </div>
+        <div class="chip-row">
+            <a class="chip" href="#automation">Text Automation</a>
+            <a class="chip" href="#libraries">NLTK vs spaCy</a>
+            <a class="chip" href="#preprocessing">Preprocessing</a>
+            <a class="chip" href="#sentiment">Sentiment Analysis</a>
+            <a class="chip" href="#evaluation">Confusion Matrix</a>
+            <a class="chip" href="#projects">Project Ideas</a>
+        </div>
+    </header>
+
+    <p>
+        This session focused on practical text analytics in Python, showing how Natural Language Toolkit (NLTK) and related libraries can automate language-processing tasks that humans understand conceptually but cannot execute efficiently at real-world scale. Dr. Pierce demonstrated core preprocessing techniques, sentiment analysis using Amazon reviews, and model evaluation with confusion-matrix metrics.
+    </p>
+
+    <hr class="section-rule">
+
+    <h2 id="automation">Why Automate Text Work?</h2>
+    <p>
+        The lecture opened with a key point: for text mining, many operations are intuitive if done manually (reading, identifying words, counting terms). The bottleneck is volume. Automation is required when handling thousands of documents or reviews.
+    </p>
+
+    <blockquote class="pull-quote">
+        <p>Text analytics is less about whether humans can do the task, and more about whether humans can do it at scale.</p>
+        <footer>— Lecture theme</footer>
+    </blockquote>
+
+    <h2 id="libraries">Library Choices: NLTK, spaCy, and AI Trends</h2>
+    <p>
+        NLTK was the primary teaching library in Google Colab. Dr. Pierce also compared it with spaCy, noting that community experience often reports spaCy as faster on very large text workloads, while NLTK can be more flexible for certain customization needs and language coverage.
+    </p>
+
+    <div class="callout good">
+        <strong>Decision-Making Practice</strong>
+        <p>Students were encouraged to evaluate libraries by testing, documenting pros/cons, and citing sources. This demonstrates analytical reasoning to both instructors and employers.</p>
+    </div>
+
+    <div class="callout warn">
+        <strong>Future Trend Note</strong>
+        <p>Large language models are increasingly used for text tasks, but deterministic rule-based pipelines remain valuable where reproducibility and lower hallucination risk are priorities.</p>
+    </div>
+
+    <h2 id="preprocessing">Core NLTK Preprocessing Demonstrations</h2>
+    <h3>Tokenization and Frequency</h3>
+    <p>
+        The lecture showed `word_tokenize` for splitting text into token arrays, including punctuation handling. From tokens, `FreqDist` was used to compute term frequencies and inspect the most-common words.
+    </p>
+
+    <h3>Stemming and Lemmatization</h3>
+    <p>
+        Examples covered Porter and Lancaster stemming, then WordNet lemmatization to reduce variants into normalized forms (for example, plural-to-singular transformations like corpora to corpus).
+    </p>
+
+    <h3>Stop Words and POS Tagging</h3>
+    <p>
+        The workflow included lowercasing plus stop-word filtering to remove low-information terms. Part-of-speech tagging was also demonstrated to classify words as nouns, verbs, adjectives, and related grammatical roles.
+    </p>
+
+    <h2 id="sentiment">Sentiment Pipeline with Amazon Reviews</h2>
+    <p>
+        A labeled Amazon review dataset (about 20,000 rows) was used to demonstrate end-to-end sentiment analysis. The pipeline performed text cleanup, then applied NLTK sentiment scoring to generate predicted sentiment labels for comparison against human annotations.
+    </p>
+
+    <table class="data-table">
+        <thead>
+            <tr><th>Pipeline Stage</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Lowercasing + tokenization</td><td>Normalize text format and split into analyzable tokens</td></tr>
+            <tr><td>Stop-word removal</td><td>Reduce noise from high-frequency low-information words</td></tr>
+            <tr><td>Lemmatization</td><td>Standardize word forms for cleaner feature behavior</td></tr>
+            <tr><td>Sentiment scoring</td><td>Create machine-predicted polarity labels</td></tr>
+            <tr><td>Comparison to human labels</td><td>Measure model quality and error patterns</td></tr>
+        </tbody>
+    </table>
+
+    <h2 id="evaluation">Evaluation: Confusion Matrix and Metrics</h2>
+    <p>
+        Dr. Pierce reviewed confusion-matrix interpretation and key metrics: precision, recall, F1-score, and support. The class discussed how diagonal values represent correct classifications and off-diagonal values represent misclassifications.
+    </p>
+
+    <p>
+        A notable finding in the demo was unequal performance across classes. Positive reviews were easier for the model than negative reviews, and class imbalance in the dataset likely contributed to that pattern.
+    </p>
+
+    <div class="callout">
+        <strong>Practical Implication</strong>
+        <p>When classes are imbalanced, always evaluate more than overall accuracy. Precision/recall/F1 and support provide better insight into real model behavior.</p>
+    </div>
+
+    <h2 id="projects">Project Directions Suggested</h2>
+    <ul>
+        <li>Use annotated sentiment data to build a full text-analytics pipeline.</li>
+        <li>Compare high-frequency terms in positive vs negative subsets.</li>
+        <li>Test different preprocessing choices and compare confusion matrices.</li>
+        <li>Try class balancing experiments (for example, 50/50 sampling) and observe metric changes.</li>
+        <li>Document all tooling and references as part of the final project narrative.</li>
+    </ul>
+
+    <hr class="section-rule">
+
+    <h2>Summary</h2>
+    <p>
+        This lecture established a practical blueprint for text analytics in data science: choose tools deliberately, preprocess rigorously, evaluate with the right metrics, and communicate decisions with clear documentation. The material is directly usable as a project foundation for IFSC 77003.
+    </p>
+</article>
+
+<footer class="page-footer">
+    <p><a href="index.html">← Back to Transcript Hub</a> | IFSC 77003 Data Science &amp; Technologies | UALR Department of Information Science</p>
+    <p style="margin-top:8px;">Last updated March 24, 2026</p>
+</footer>
+</body>
+</html>
