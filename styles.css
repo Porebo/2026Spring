@@ -35,3 +35,96 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.skills-section {
+  margin-top: 2rem;
+  padding: 1rem 1rem 0.35rem;
+  border: 1px solid #dbe7f6;
+  background: #f4f8ff;
+  border-radius: 8px;
+}
+
+.skills-section h2 {
+  margin: 0 0 0.5rem;
+}
+
+.skills-section p {
+  margin: 0 0 0.8rem;
+  color: #334155;
+}
+
+.education-section {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.education-section h2 {
+  margin-bottom: 0.5rem;
+}
+
+.education-section > p {
+  margin-top: 0;
+  color: #4b5563;
+}
+
+.education-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.education-item {
+  border: 1px solid #e6e9ef;
+  background: #f9fbff;
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+}
+
+.education-item.with-logo {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.edu-logo {
+  width: 84px;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid #d6deea;
+}
+
+.education-item h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.credential,
+.period,
+.meta {
+  margin: 0.2rem 0 0;
+  font-size: 0.93rem;
+}
+
+.credential {
+  color: #1f2937;
+}
+
+.period {
+  color: #334155;
+  font-weight: 600;
+}
+
+.meta {
+  color: #4b5563;
+}
+
+@media (max-width: 600px) {
+  .education-item.with-logo {
+    grid-template-columns: 1fr;
+  }
+
+  .edu-logo {
+    width: 96px;
+  }
+}

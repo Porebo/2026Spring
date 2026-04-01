@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="100" viewBox="0 0 300 100" role="img" aria-label="Penn State logo placeholder">
+  <rect width="300" height="100" fill="#041E42"/>
+  <rect x="10" y="10" width="80" height="80" rx="8" fill="#0A2D5E" stroke="#B8C7E0" stroke-width="2"/>
+  <text x="105" y="62" font-family="Arial, sans-serif" font-size="34" fill="#FFFFFF" font-weight="700">PennState</text>
+</svg>
