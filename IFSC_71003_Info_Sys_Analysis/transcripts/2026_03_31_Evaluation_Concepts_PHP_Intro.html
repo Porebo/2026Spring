@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mar 31: Evaluation Concepts &amp; PHP Introduction Preview</title>
+    <style>
+        :root {
+            --primary: #0d4d63;
+            --accent: #c0392b;
+            --bg: #f5f7fb;
+            --text: #1f2a37;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+        }
+        header {
+            background: linear-gradient(135deg, #0d4d63, #051d29);
+            color: white;
+            text-align: center;
+            padding: 36px 20px;
+        }
+        header a {
+            color: #cfe6ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        header a:hover { text-decoration: underline; }
+        section {
+            max-width: 980px;
+            margin: 30px auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 24px 48px rgba(5,29,41,0.1);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid rgba(13,77,99,0.2);
+            padding-bottom: 10px;
+        }
+        h3 { margin-top: 1.3rem; color: #12374a; }
+        ul, ol { line-height: 1.75; }
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            margin-bottom: 12px;
+        }
+        .highlight {
+            background: #e7f4ff;
+            border-left: 5px solid var(--primary);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        .warning {
+            background: #fff4e7;
+            border-left: 5px solid var(--accent);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 22px;
+            font-size: 0.88rem;
+        }
+        table th {
+            background: var(--primary);
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+        }
+        table td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #e8e8e8;
+            vertical-align: top;
+        }
+        table tr:nth-child(even) td { background: #f7f9fc; }
+        footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+            padding: 40px 20px 60px;
+        }
+        code {
+            background: rgba(13,77,99,0.08);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        blockquote {
+            border-left: 4px solid var(--primary);
+            margin: 16px 0;
+            padding: 10px 18px;
+            background: #f0f6fb;
+            border-radius: 0 6px 6px 0;
+            font-style: italic;
+            color: #2a4a5a;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Evaluation Concepts &amp; PHP Introduction Preview</h1>
+    <p>March 31, 2026 &bull; 4:11 PM &bull; W10 Tuesday</p>
+    <p class="tag">Module 10 &mdash; Evaluation</p>
+    <a href="index.html">&larr; Back to Transcript Hub</a>
+</header>
+
+<!-- ── ADMIN ──────────────────────────────────────────────── -->
+<section>
+    <h2>1. Administrative Updates &amp; HW10 Overview</h2>
+    <span class="tag">00:00&ndash;12:00</span>
+
+    <h3>Curriculum Change</h3>
+    <ul>
+        <li>The <strong>Lean Six Sigma unit has been replaced</strong> with a new unit on <strong>Evaluation</strong>. Today begins Part 1; it may continue into next Tuesday depending on depth.</li>
+        <li>HW9 was due tonight (March 31). No questions surfaced during class.</li>
+        <li><strong>Thursday (April 2):</strong> Introduction to <strong>PHP</strong> — a third web language completing the basic web stack (HTML → JavaScript → PHP).</li>
+    </ul>
+
+    <h3>Lecture Note Preparation (Behind the Scenes)</h3>
+    <p>
+        Daniel prepared the original lecture notes in plain Notepad (<code>.txt</code>) and then fed the file to both <strong>Claude</strong> and <strong>Gemini</strong>, asking each to convert it to a presentable HTML format. Both did a reasonable job but each omitted or altered small details. Gemini added spurious <code>&lt;cite&gt;</code> tags with no citations. The original <code>.txt</code> file remained the authoritative reference version.
+    </p>
+    <div class="highlight">
+        <strong>Takeaway for students:</strong> AI tools can help convert and reformat content, but they are not lossless — always verify AI output against the original source.
+    </div>
+
+    <h3>HW10 &mdash; PHP Track</h3>
+    <ul>
+        <li>Take your existing <strong>HTML + JavaScript demo page</strong> and add a single PHP command: the <code>echo</code> command.</li>
+        <li><strong>Rename the file extension</strong> from <code>.html</code> to <code>.php</code>. This is required — a server only processes PHP inside a <code>.php</code> file; an <code>.html</code> extension causes the PHP code to be printed as raw text on screen.</li>
+        <li>Renaming the extension will <em>not</em> break existing HTML or JavaScript.</li>
+        <li>Use <strong>Socratic dialogue with an AI</strong> to learn about the <code>echo</code> command and why PHP requires a server context. Take a <strong>screenshot</strong> of your transcript as evidence — the dialogue must be real (student asks, AI responds, student follows up); do not let the AI generate both sides of the conversation.</li>
+    </ul>
+
+    <h3>HW10 &mdash; Evaluation Track</h3>
+    <ol>
+        <li><strong>Evaluation game:</strong> Feed today's lecture notes to an AI and have it create a quiz/game about Evaluation. Play it, hand in the game link and a screenshot.</li>
+        <li><strong>Evaluate Blackboard:</strong> Apply the evaluation dimensions discussed today to assess the Blackboard LMS.</li>
+        <li><strong>Project progress:</strong> Continue individual or team project work.
+            <ul>
+                <li>Teams must create a <strong>separate InfinityFree account</strong> for the team (do not share your personal account).</li>
+                <li>Send Daniel your project link and team roster so he can maintain an end-of-semester demo list.</li>
+            </ul>
+        </li>
+    </ol>
+</section>
+
+<!-- ── DEFINITION ──────────────────────────────────────────── -->
+<section>
+    <h2>2. What Is Evaluation?</h2>
+    <span class="tag">00:00&ndash;10:00</span>
+
+    <h3>Definition Critique</h3>
+    <p>
+        Dictionary.com: "An act or instance of evaluating or appraising." This definition is <em>circular</em> — it defines evaluation using a form of the same word. The word "appraising" provides the escape route.
+    </p>
+    <p>
+        A better definition: <strong>a systematic quality assessment</strong>.
+    </p>
+
+    <h3>More Than Pass/Fail</h3>
+    <p>
+        Evaluation is not just <em>whether</em> something works — it is <em>how well</em> it works. Binary (works/doesn't work) is the simplest form. Richer evaluation uses a scale:
+    </p>
+    <ul>
+        <li><strong>Categorical scale:</strong> A, B, C, D, F — discrete labeled categories</li>
+        <li><strong>Numerical scale:</strong> a continuous spectrum (e.g., 0–100 score)</li>
+        <li><strong>Pass/Fail:</strong> the simplest binary — a valid but limited form of evaluation</li>
+    </ul>
+
+    <div class="highlight">
+        <strong>Formalized evaluation:</strong> In professional or course contexts, evaluation becomes explicit — weighted percentages, documented criteria, transparent protocols. Knowing the rubric in advance is standard in school; in the real world, it often isn't.
+    </div>
+</section>
+
+<!-- ── KEY CONSIDERATIONS ─────────────────────────────────── -->
+<section>
+    <h2>3. Key Questions in Any Evaluation</h2>
+    <span class="tag">04:00&ndash;18:00</span>
+
+    <p>Before an evaluation can be valid, several foundational decisions must be made explicitly:</p>
+
+    <table>
+        <thead><tr><th>Question</th><th>Examples</th></tr></thead>
+        <tbody>
+            <tr><td><strong>What concerns are being evaluated?</strong></td><td>In this course: spelling is not graded. An IT person evaluates connectivity; an interior decorator evaluates warmth and color scheme. The rack of exposed wires in EIT classrooms was a deliberate design choice — construction management students benefit from seeing real infrastructure.</td></tr>
+            <tr><td><strong>Whose concerns are being served?</strong></td><td>Grades serve: the student? The instructor? The university? Parents? Employers? Someone has to decide. The answer shapes what gets measured.</td></tr>
+            <tr><td><strong>How rigorous is the standard?</strong></td><td>90% threshold for an A vs. 10% threshold — same grading scheme, radically different standards. Same applies to DFDs, FMEAs, or any evaluated artifact.</td></tr>
+            <tr><td><strong>What factors are included?</strong></td><td>Midterm + final exams? Homeworks? Class participation? Teacher's judgment? Each weights different skills differently.</td></tr>
+            <tr><td><strong>Who does the measuring?</strong></td><td>TA, instructor, expert, external lab, the person being evaluated? Each brings different biases.</td></tr>
+            <tr><td><strong>What if the appraisal is uncertain?</strong></td><td>Accept the fishbone diagram as-is, or request more detail? Different philosophies; different risk tolerances.</td></tr>
+        </tbody>
+    </table>
+
+    <div class="warning">
+        <strong>Unstated or wrong criteria:</strong> Evaluation criteria are often assumed rather than declared. An interior decorator probably won't evaluate wiring, but if connectivity is what matters, the evaluation is useless. Criteria can even be <em>illegitimate</em> — wrong by any reasonable standard.
+    </div>
+</section>
+
+<!-- ── OBJECTIVE VS INTERPRETIVE ────────────────────────────── -->
+<section>
+    <h2>4. Evaluation Is Both Objective and Interpretive</h2>
+    <span class="tag">18:00&ndash;28:00</span>
+
+    <p>Evaluation is not purely data-driven. Two components always coexist:</p>
+    <ul>
+        <li><strong>Objective:</strong> collecting data, computing numbers, checking boxes.</li>
+        <li><strong>Interpretive:</strong> deciding <em>what</em> data to collect, <em>why</em> those metrics, <em>who</em> decides what counts, and how to interpret ambiguous results.</li>
+    </ul>
+
+    <p>
+        Example: Likert-scale course evaluations (1–5 agree/disagree). Two students who feel exactly the same way may still circle different numbers. The number is not purely objective.
+    </p>
+
+    <blockquote>
+        True or false: "Evaluation in systems analysis is straightforward once you have the right data."<br><br>
+        <strong>False.</strong> Having data is necessary but not sufficient. What is the "right" data? An interior decorator and an IT person define it completely differently. The word <em>straightforward</em> is the problem — you still need to decide what the data means, whether it was the right data to collect, whose agenda shaped the data collection, and how to interpret the results.
+    </blockquote>
+</section>
+
+<!-- ── STAKEHOLDERS ──────────────────────────────────────── -->
+<section>
+    <h2>5. Stakeholders</h2>
+    <span class="tag">20:00&ndash;24:00</span>
+
+    <p>
+        A <strong>stakeholder</strong> is anyone who has a stake in the outcome — who cares what the evaluation finds. Stakeholders include:
+    </p>
+    <ul>
+        <li><strong>Users</strong> — the people who operate the system daily</li>
+        <li><strong>Investors</strong> — who care about financial return (not always aligned with quality)</li>
+        <li><strong>Engineers/IT staff</strong> — who built the system; their professional reputation is on the line</li>
+        <li><strong>The organization</strong> — which bears operational risk</li>
+    </ul>
+
+    <blockquote>
+        Can two stakeholders reach <em>opposite</em> conclusions about whether the same system is working? <strong>Yes.</strong> They may have different data, different success criteria, and different standards. Daniel's example: "Some people think Blackboard is working. I personally have my doubts."
+    </blockquote>
+
+    <p>
+        Early tech companies like Google illustrate this: in early stages, user satisfaction drives the product. Once investors demand returns, quality sometimes yields to ad revenue or monetization — different stakeholders taking precedence at different company life-cycle stages.
+    </p>
+</section>
+
+<!-- ── DIMENSIONS ────────────────────────────────────────── -->
+<section>
+    <h2>6. Five Dimensions of Evaluation</h2>
+    <span class="tag">27:00&ndash;46:00</span>
+
+    <p>
+        Just as information quality has multiple dimensions (timeliness, correctness, completeness), evaluation can be applied along five key dimensions. Weakness in <em>any one</em> compromises the entire evaluation — even if the other four are done perfectly.
+    </p>
+
+    <table>
+        <thead><tr><th>#</th><th>Dimension</th><th>Key Question</th><th>Failure Example</th></tr></thead>
+        <tbody>
+            <tr><td>1</td><td><strong>Overall system</strong></td><td>Does it work? How well? Rate it.</td><td>System operates but too slowly for real-time use</td></tr>
+            <tr><td>2</td><td><strong>Criteria</strong></td><td>What does "works" mean? What standards apply?</td><td>Measuring uptime and new accounts instead of sustainability and staff capacity</td></tr>
+            <tr><td>3</td><td><strong>Analysis process</strong></td><td>Was the evaluation conducted soundly?</td><td>Mars Climate Orbiter: subsystems evaluated in isolation; interface units mismatch undetected</td></tr>
+            <tr><td>4</td><td><strong>Evaluators</strong></td><td>Who evaluated? Are they independent and qualified?</td><td>A professor placed in his own promotion evaluation chain; Space Shuttle engineers overridden by management pressure</td></tr>
+            <tr><td>5</td><td><strong>Timing</strong></td><td>When was the evaluation done — during the project or after?</td><td>Evaluating only at project end; problems discovered too late to correct</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Classroom Scenario: The Exposed Wires</h3>
+    <p>
+        The exposed ductwork, wiring, and steel beams visible in EIT classrooms were an intentional choice. Construction management students benefit from seeing real building infrastructure; the university also saved money on finishes. Evaluation of the classroom differs by evaluator perspective — an interior decorator focuses on warmth and aesthetics; an IT person focuses on connectivity; a facilities manager focuses on code compliance (the fuzzy insulation on steel beams is fire-code required — a severe fire can weaken or melt steel, so insulation is now standard).
+    </p>
+
+    <div class="highlight">
+        <strong>Mars Climate Orbiter (1999):</strong> One contractor used pound-force·seconds; NASA assumed Newton·seconds. Every subsystem passed its own evaluation. Dimension 3 (analysis process) failed: no one verified the unit convention at the software interface. The $125M spacecraft entered the Martian atmosphere at the wrong angle and was destroyed.
+    </div>
+
+    <h3>Class Discussion Questions</h3>
+    <ul>
+        <li><strong>Q:</strong> Which dimension applies when evaluating project <em>success</em> vs. tracking project <em>progress</em>?<br>
+            <strong>A: Dimension 5 (Timing)</strong> — the distinction is simply <em>when</em> you evaluate. Post-project = summative; ongoing = formative.</li>
+        <li><strong>Q:</strong> Which dimension applies when the goal is to anticipate cost/time overruns as early as possible?<br>
+            <strong>A: Dimension 5 (Timing)</strong> — requires evaluating early and continuously while the project is underway.</li>
+        <li><strong>Q (T/F):</strong> If a system meets all its stated goals, the evaluation is complete.<br>
+            <strong>A: False.</strong> The stated goals may be wrong (Dim 2); the analysis process may be flawed (Dim 3); evaluators may be biased (Dim 4); and new criteria may emerge post-deployment.</li>
+    </ul>
+</section>
+
+<!-- ── EVALUATOR INDEPENDENCE ────────────────────────────── -->
+<section>
+    <h2>7. Evaluator Independence</h2>
+    <span class="tag">39:00&ndash;50:00</span>
+
+    <p>Evaluators can be compromised in several ways:</p>
+    <ul>
+        <li><strong>Organizational pressure:</strong> An evaluator hired by the project's sponsor may feel — consciously or unconsciously — pressure to deliver a favorable result.</li>
+        <li><strong>Employment risk:</strong> No one wants to lose their job for giving an accurate-but-unflattering evaluation.</li>
+        <li><strong>Conflict of interest:</strong> Placing a person in their own evaluation chain is inappropriate in formal settings. (Daniel declined to participate in a promotion review where the candidate was in the evaluation hierarchy.)</li>
+    </ul>
+
+    <div class="warning">
+        <strong>Space Shuttle Challenger (1986):</strong> Engineers knew the O-ring rubber seals would fail in cold temperatures. Under severe real-time management pressure, engineers approved the launch anyway. The organizational pressure on the evaluators overrode valid technical judgment — and the shuttle broke apart 73 seconds after launch, killing all seven crew members.
+    </div>
+
+    <div class="highlight">
+        <strong>Solution: third-party independent evaluation.</strong> Underwriters Laboratories (UL) certifies electrical appliances independently from the manufacturers. For IT systems, an external testing firm has no incentive to please the client — this is why independent audits, penetration tests, and usability studies by external labs are industry best practice.
+    </div>
+</section>
+
+<!-- ── FAILURE CASES ───────────────────────────────────────── -->
+<section>
+    <h2>8. Evaluation Failure Case Studies</h2>
+    <span class="tag">46:00&ndash;63:00</span>
+
+    <h3>Case 1 — Personal Life: Study Habits</h3>
+    <p>
+        A student evaluates their study habits by <strong>counting hours studied</strong>. They budget more hours; grades don't improve.
+    </p>
+    <p>
+        <strong>What went wrong:</strong> Hours is an easy number to measure, but <em>quality and method</em> of study — not quantity — was the actual bottleneck. The criteria (Dimension 2) were wrong.
+    </p>
+
+    <table>
+        <thead><tr><th>What was measured</th><th>Better alternatives</th></tr></thead>
+        <tbody>
+            <tr><td>Hours studied</td><td>Learning goals set and met per session</td></tr>
+            <tr><td>&#8212;</td><td>Quiz/test score improvement over time</td></tr>
+            <tr><td>&#8212;</td><td>Method variation experiments (different study techniques → compare outcomes)</td></tr>
+            <tr><td>&#8212;</td><td>Tracking specific previous failure areas and measuring targeted improvement</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Case 2 — Mobile Health App in a Developing Country</h3>
+    <p>
+        A health app is deployed to rural clinics in a developing country. Evaluators measure <em>uptime</em> and <em>new account registrations</em>. Both look excellent — the project is declared a success. The project later collapses.
+    </p>
+
+    <table>
+        <thead><tr><th>What was measured</th><th>What should have been measured</th></tr></thead>
+        <tbody>
+            <tr><td>System uptime</td><td>Availability of local IT support staff to maintain the system</td></tr>
+            <tr><td>New account registrations</td><td>Sustainable staff training plan and training capacity</td></tr>
+            <tr><td>(nothing)</td><td>Integration with existing paper-based workflows</td></tr>
+            <tr><td>(nothing)</td><td>Long-term funding sustainability after initial grant period</td></tr>
+        </tbody>
+    </table>
+
+    <div class="warning">
+        <strong>Dimension 2 failure (Criteria):</strong> Uptime and registration are easy to measure. Sustainability is hard to measure. But sustainability is what actually matters for a rural clinic — and it wasn't evaluated at all. This pattern recurs frequently in health IT projects in developing countries.
+    </div>
+
+    <h3>Case 3 — Enterprise IT: Workday at UALR</h3>
+    <p>
+        The University of Arkansas System mandated the <strong>Workday ERP</strong> (Enterprise Resource Planning) system across all campuses. Years later, UALR is still struggling with the transition.
+    </p>
+
+    <table>
+        <thead><tr><th>What was apparently not evaluated</th><th>Consequence</th></tr></thead>
+        <tbody>
+            <tr><td>No pilot campus tested before system-wide mandate</td><td>No early-warning evaluation before full rollout</td></tr>
+            <tr><td>No staff/faculty usability testing</td><td>Primary users had no input; unexpected usability problems surfaced only after full deployment</td></tr>
+            <tr><td>No structured training assessment</td><td>Knowledgeable staff too busy firefighting to help colleagues; training pipeline collapsed</td></tr>
+            <tr><td>No salary/staffing impact analysis</td><td>New system complexity quietly raised the expertise bar — and therefore the compensation expectations — for staff positions</td></tr>
+        </tbody>
+    </table>
+
+    <div class="highlight">
+        <strong>Dimensions missed:</strong> Dimension 3 (no independent usability evaluation before rollout), Dimension 4 (decision-makers appeared to have no direct hands-on experience with the system), Dimension 5 (no formative evaluation during rollout to catch and correct problems early).
+    </div>
+
+    <blockquote>
+        "Evaluation is not just about evaluating — it's <em>what</em> you evaluate, <em>who</em> the evaluators are, and <em>when</em> you evaluate."<br>— Daniel Berleant
+    </blockquote>
+</section>
+
+<!-- ── NEXT CLASS ──────────────────────────────────────────── -->
+<section>
+    <h2>9. Key Takeaways &amp; Next Class</h2>
+    <span class="tag">Summary</span>
+
+    <ul>
+        <li>Evaluation is multidimensional — all five dimensions must pass; one weak link degrades the whole.</li>
+        <li>Having the right data is necessary but not sufficient — <em>who decides what's "right"</em> is the harder question.</li>
+        <li>Evaluators must be independent; organizational pressure is a persistent threat to valid evaluation.</li>
+        <li>Wrong criteria are the most common failure mode — a system can pass every test and still fail in the real world.</li>
+        <li>Formative evaluation (ongoing) is almost always more valuable than summative evaluation (after the fact).</li>
+    </ul>
+
+    <div class="highlight">
+        <strong>Next class (Thursday, April 2):</strong> Introduction to PHP — the <code>echo</code> command, file extension requirements, and why PHP needs a server context. Bring your demo page ready to modify.<br><br>
+        <strong>Next Tuesday (April 7):</strong> Evaluation unit continues, starting from Dimension 4.
+    </div>
+</section>
+
+<footer>
+    <p>Prepared by Lester Carcamo &bull; Last updated March 31, 2026</p>
+</footer>
+
+</body>
+</html>
