@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture: Batch Processing vs. Streaming Data &amp; IoT Introduction — March 31, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ── Reset & Base ─────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(0.98rem, 0.94rem + 0.12vw, 1.08rem);
+            line-height: 1.68;
+            color: #1a1a1a;
+            background-color: #fafaf8;
+        }
+
+        /* ── Navigation Bar ───────────────────────────────────── */
+        .top-nav {
+            background: #004a99;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .top-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+        .top-nav a:hover { opacity: 1; text-decoration: underline; }
+        .top-nav .sep { color: rgba(255,255,255,0.4); }
+
+        /* ── Article Wrapper ──────────────────────────────────── */
+        article {
+            width: clamp(1120px, 93vw, 1720px);
+            margin: 0 auto;
+            padding: clamp(28px, 2.8vw, 44px) clamp(16px, 2.4vw, 36px) clamp(38px, 4vw, 64px);
+        }
+
+        /* ── Masthead ─────────────────────────────────────────── */
+        .masthead {
+            border-bottom: 3px solid #004a99;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .masthead .kicker {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #004a99;
+            margin-bottom: 14px;
+        }
+        .masthead h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2rem, 1.55rem + 1.5vw, 2.85rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: #0d0d0d;
+            margin-bottom: 16px;
+        }
+        .masthead .byline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #666;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .masthead .byline span { display: flex; align-items: center; gap: 5px; }
+
+        /* ── Chip Tags ────────────────────────────────────────── */
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+        .chip {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: #e7f0fb;
+            color: #004a99;
+            border: 1px solid #b8d0f0;
+            border-radius: 20px;
+            padding: 3px 12px;
+            text-decoration: none;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .chip:hover {
+            background: #dceafd;
+            border-color: #9fc2ea;
+        }
+
+        /* ── Section Headings ─────────────────────────────────── */
+        h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.35rem, 1.16rem + 0.65vw, 1.85rem);
+            font-weight: 700;
+            color: #0d0d0d;
+            margin: 34px 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #ddd;
+            scroll-margin-top: 16px;
+        }
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #004a99;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin: 22px 0 8px;
+        }
+
+        /* ── Body Typography ──────────────────────────────────── */
+        p { margin-bottom: 1.05em; }
+
+        /* ── Pull Quotes ──────────────────────────────────────── */
+        blockquote.pull-quote {
+            border: none;
+            margin: 30px 0;
+            padding: 0 22px;
+            text-align: center;
+        }
+        blockquote.pull-quote p {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.5;
+            color: #004a99;
+            margin-bottom: 0;
+        }
+        blockquote.pull-quote footer {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* ── Section Divider ──────────────────────────────────── */
+        .section-rule {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 30px 0;
+        }
+
+        /* ── Callout Box ──────────────────────────────────────── */
+        .callout {
+            border-left: 4px solid #004a99;
+            background: #f0f5fc;
+            padding: 14px 18px;
+            margin: 18px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .callout.alert {
+            border-left-color: #c0392b;
+            background: #fdf2f1;
+        }
+        .callout.tip {
+            border-left-color: #27ae60;
+            background: #f0faf4;
+        }
+        .callout p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 0;
+        }
+        .callout strong {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
+            color: #004a99;
+        }
+        .callout.alert strong { color: #c0392b; }
+        .callout.tip strong { color: #27ae60; }
+
+        /* ── Data Tables ──────────────────────────────────────── */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.87rem;
+            margin: 16px 0 22px;
+        }
+        .data-table th {
+            background: #004a99;
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+        .data-table td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #e8e8e8;
+            vertical-align: top;
+            color: #333;
+        }
+        .data-table tr:nth-child(even) td { background: #f7f7f5; }
+
+        /* ── Bullet Lists ─────────────────────────────────────── */
+        ul {
+            padding-left: 1.4em;
+            margin-bottom: 1em;
+        }
+        ul li { margin-bottom: 0.5em; }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        footer.page-footer {
+            border-top: 1px solid #ddd;
+            padding: 28px 24px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+            background: #fff;
+        }
+        footer.page-footer a {
+            color: #004a99;
+            text-decoration: none;
+        }
+        footer.page-footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="top-nav">
+    <a href="../index.html">← IFSC 77003 Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Transcript Hub</a>
+    <span class="sep">/</span>
+    <a href="#">March 31, 2026</a>
+</nav>
+
+<!-- Article -->
+<article>
+
+    <!-- Masthead -->
+    <header class="masthead">
+        <p class="kicker">IFSC 77003 · Data Science &amp; Technologies · Week 11</p>
+        <h1>Batch Processing vs. Streaming Data &amp; IoT Introduction</h1>
+        <div class="byline">
+            <span>📅 March 31, 2026</span>
+            <span>👩‍🏫 Dr. Elizabeth Pierce</span>
+            <span>🏫 UALR</span>
+        </div>
+        <div class="chip-row">
+            <a class="chip" href="#batch-vs-streaming">Batch Processing</a>
+            <a class="chip" href="#batch-vs-streaming">Streaming Data</a>
+            <a class="chip" href="#iot">Internet of Things</a>
+            <a class="chip" href="#platforms">Streaming Platforms</a>
+            <a class="chip" href="#challenges">Data Quality</a>
+            <a class="chip" href="#perspectives">Data Science Perspectives</a>
+        </div>
+    </header>
+
+    <!-- Opening summary -->
+    <p>
+        Returning from spring break, Dr. Pierce reframed the course's central subject — data science — through a new lens: how data <em>moves</em>. This session introduced the distinction between batch processing (the classic data lake model) and streaming data (the data river model), illustrated with real-world applications from healthcare, agriculture, finance, and smart buildings. The session also opened Unit 9 with a first look at the Internet of Things, the hardware layer that makes large-scale streaming possible.
+    </p>
+
+    <hr class="section-rule">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <h2 id="admin">Administrative Announcements</h2>
+
+    <h3>Upcoming AI Events</h3>
+    <p>
+        Three AI educational events were shared with students. All are open attendance:
+    </p>
+    <ul>
+        <li><strong>Tomorrow (April 1), Dickinson 100, 10–11 am</strong> — Jose Antonio Bowen: "Thriving in an AI World." Focuses on how to be an AI boss — asking better questions, evaluating answers, building domain expertise. Visit <em>josebowen.com</em> for materials even if unable to attend.</li>
+        <li><strong>Thursday, April 9, noon–1 pm</strong> — Google monthly AI webinar (second Thursday of each month; webinar link available).</li>
+        <li><strong>Tuesday, April 14, 11:30–12:30, EIT218</strong> — AI Tips &amp; Tools session hosted by Dr. Sandra Leiterman. Covers Google AI Studio, Notebook LM, and Geniali. Bring your lunch. Open to all — faculty, students, and workplace professionals alike.</li>
+    </ul>
+
+    <div class="callout tip">
+        <strong>Key message from all three events</strong>
+        <p>Future jobs will prioritize work that is better than what either humans or AI can produce alone. Be the driver, not the passenger.</p>
+    </div>
+
+    <h3>Data Science Project — Due May 5th</h3>
+    <p>
+        The semester is in its final stretch. Students should be completing their data science project activities now. The deliverable package includes:
+    </p>
+    <ul>
+        <li>A written report (see course content area for full structure and rubric)</li>
+        <li>A <strong>2–3 minute "3-minute thesis"</strong> presentation (2–2.5 minutes is ideal) with one visual — a single-slide PowerPoint with recorded audio, or a selfie video on your phone</li>
+        <li>Upload to <strong>Google Drive</strong> and share viewing permission with <strong>eXpierce@ualr.edu</strong> if the file is too large to submit directly</li>
+    </ul>
+
+    <blockquote class="pull-quote">
+        <p>"A 3-minute summary: one opening, one 'here's my data and what I did,' one conclusion. That's it."</p>
+        <footer>— Dr. Pierce summarizing the thesis format</footer>
+    </blockquote>
+
+    <h3>AI Use Reminder</h3>
+    <p>
+        Do your own work first. Tools like Grammarly are fine for polishing sentence structure after you've written your draft. However, be extremely cautious when asking AI to generate literature reviews, references, graphs, or charts — these systems are probabilistic, not deterministic. A student in another section used Notebook LM to fill out a literature review and it cited a Reddit post as equivalent to a peer-reviewed research article.
+    </p>
+
+    <div class="callout alert">
+        <strong>AI-generated references are high-risk</strong>
+        <p>Dr. Pierce prefers the term "mirages" over "hallucinations" — AI produces very realistic illusions. A reference that looks real and sounds plausible may be completely fabricated. Always verify every cited source independently before submitting.</p>
+    </div>
+
+    <hr class="section-rule">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <h2 id="perspectives">Multiple Perspectives on Data Science</h2>
+
+    <p>
+        Before introducing today's new topic, Dr. Pierce revisited the multi-dimensional nature of data science — reinforcing that there is no single definition, only useful lenses.
+    </p>
+
+    <table class="data-table">
+        <thead>
+            <tr><th>Perspective</th><th>What It Covers</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Types of Questions</strong></td><td>What/Exploratory → Why/Associative → When/Predictive → How/Prescriptive</td></tr>
+            <tr><td><strong>Types of Data</strong></td><td>Quantitative, qualitative, text, image, multimedia (social media), biometric, geospatial, discipline-specific (chemistry, biology)</td></tr>
+            <tr><td><strong>Types of Techniques</strong></td><td>Statistical analysis, data mining (clustering, decision trees), machine learning, deep learning, generative AI</td></tr>
+            <tr><td><strong>Amount of Data</strong></td><td>Small/single-computer → Big Data requiring distributed cluster computing</td></tr>
+            <tr><td><strong>Batch vs. Streaming</strong></td><td><em>Today's new lens</em> — data lake vs. data river</td></tr>
+        </tbody>
+    </table>
+
+    <div class="callout">
+        <strong>Scope tip for your project</strong>
+        <p>You don't need to answer all question types with all techniques on all data types. Pick a focused question, find accessible data, choose appropriate techniques. A small, well-executed project beats an overly ambitious one.</p>
+    </div>
+
+    <hr class="section-rule">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <h2 id="batch-vs-streaming">Batch Processing vs. Streaming Data</h2>
+
+    <p>
+        The core contrast is between two fundamentally different relationships with data in motion.
+    </p>
+
+    <h3>Batch Processing — The Data Lake</h3>
+    <p>
+        In batch processing, you <em>collect first, then process</em>. A large body of records accumulates in a repository (the "data lake"), and when you're ready to run your job, you process them all — or break them into sub-batches for parallel processing. The output follows some time later: anywhere from minutes to hours.
+    </p>
+    <p>
+        Classic example: monthly credit card billing. All transactions from the billing cycle are tabulated at once, and statements are generated en masse. When Dr. Pierce worked at IBM, batch jobs were submitted before 5 pm and results were ready by 9 am the next morning — approximately 16 hours of latency.
+    </p>
+    <p>
+        <strong>COBOL note:</strong> COBOL, a language from the 1960s, still holds roughly 13% of the business computing market (down from 85% at its peak) and remains dominant in banking, insurance, and healthcare billing precisely because it excels at exactly these deterministic, rules-based batch calculations. About 60–70% of all healthcare IT billing reportedly still runs on COBOL. It is efficient, reliable, and cheap to operate — qualities that aren't going anywhere.
+    </p>
+
+    <h3>Streaming Data — The Data River</h3>
+    <p>
+        Streaming inverts the relationship: instead of waiting to accumulate data, you analyze it <em>as it flows by</em>. A continuous feed of events arrives, and your system focuses on whatever falls inside a designated <strong>sliding time window</strong> — the last 15 readings, the last 5 seconds, the last 30 events. Based on what's in that window, you make a real-time decision.
+    </p>
+    <p>
+        Example: an equipment temperature sensor reports every 2 seconds. Every 30 seconds, the system averages the last 15 readings. If the average exceeds a threshold, an alarm fires. More sophisticated: if the last five readings are progressively higher (even if the average is still safe), a trend alert fires early — catching problems before they become emergencies.
+    </p>
+
+    <blockquote class="pull-quote">
+        <p>"You're standing at the bank of the Arkansas River. You can only grab what's floating by you right now — and you have to decide in the moment."</p>
+        <footer>— Dr. Pierce on the streaming data analogy</footer>
+    </blockquote>
+
+    <h3>Side-by-Side Comparison</h3>
+    <table class="data-table">
+        <thead>
+            <tr><th>Dimension</th><th>Batch</th><th>Streaming</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Data model</td><td>Lake — large stored collection</td><td>River — continuous flow</td></tr>
+            <tr><td>Processing unit</td><td>Full dataset (millions of records)</td><td>Sliding window (micro-batches or individual events)</td></tr>
+            <tr><td>Latency</td><td>High — hours or overnight</td><td>Low — seconds to milliseconds</td></tr>
+            <tr><td>Implementation complexity</td><td>Simpler — distributed file system holds data until ready</td><td>More complex — requires event ingestion, window management, and real-time output tools</td></tr>
+            <tr><td>Analytics types</td><td>Complex analytics: full ML models, billing calculations, complete aggregations</td><td>Simpler functions: averages, medians, ranges, trend detection</td></tr>
+            <tr><td>Storage</td><td>Full dataset retained; higher storage cost</td><td>May discard after window analysis; easier to lower cost (but harder to audit)</td></tr>
+            <tr><td>Data replayability</td><td>Easy — stored data can be reprocessed</td><td>Difficult — what was in a window 3 weeks ago may be gone</td></tr>
+            <tr><td>Processing cost</td><td>Lower processing requirements</td><td>Higher — needs faster CPUs/memory for real-time throughput</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Real-World Streaming Applications</h3>
+    <ul>
+        <li><strong>Healthcare — UAMS ER prediction:</strong> Weather + time-of-day + day-of-week data (updated every 6 hours) predicted ER surges, triggering staffing calls, bed clearing, and elective surgery postponements.</li>
+        <li><strong>Patient monitoring:</strong> Heart rate can go from normal to cardiac event in seconds — streaming windows, not batch jobs, are what save lives.</li>
+        <li><strong>Industrial equipment:</strong> Temperature, vibration, and pressure sensors on machinery enable predictive maintenance, preventing costly failures.</li>
+        <li><strong>Smart buildings:</strong> Motion sensors, smart meters, HVAC controls, and security systems all feed real-time streams.</li>
+        <li><strong>Smart cities:</strong> Traffic feeds, emergency services routing, utility monitoring.</li>
+        <li><strong>Financial markets:</strong> Stock price updates, fraud detection, and trading systems operate at microsecond latency.</li>
+        <li><strong>Real-time sports betting (e.g., DraftKings):</strong> Live odds updates from real-time game event streams — a rapidly growing and ethically complex application area.</li>
+        <li><strong>Agriculture:</strong> Soil moisture and humidity sensors determine when to activate or shut off irrigation — hourly or daily windows are often sufficient.</li>
+    </ul>
+
+    <h3>Choosing Batch vs. Streaming</h3>
+    <p>
+        The choice is not binary — the same underlying data (e.g., social media posts) can be batched for in-depth analysis <em>or</em> streamed for real-time trend monitoring. The decision comes down to: how quickly do you need results? What's the cost of a delayed decision? What infrastructure can you support?
+    </p>
+    <table class="data-table">
+        <thead>
+            <tr><th>Batch is ideal for</th><th>Streaming is ideal for</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Payroll &amp; billing</td><td>Fraud detection</td></tr>
+            <tr><td>Data warehousing</td><td>Log monitoring &amp; alerting</td></tr>
+            <tr><td>Report generation</td><td>Patient vital signs</td></tr>
+            <tr><td>ML model training</td><td>Real-time customer behavior analysis</td></tr>
+            <tr><td>Student data science projects</td><td>Equipment predictive maintenance</td></tr>
+        </tbody>
+    </table>
+
+    <hr class="section-rule">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <h2 id="platforms">Streaming Platforms</h2>
+
+    <p>
+        Building a streaming system requires specialized software to handle event ingestion, window management, and real-time output. Several major platforms exist, each with strengths for particular use cases:
+    </p>
+
+    <table class="data-table">
+        <thead>
+            <tr><th>Platform</th><th>Vendor</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Apache Kafka</td><td>Open source</td><td>Widely adopted; excellent for high-throughput event streaming</td></tr>
+            <tr><td>Amazon Kinesis</td><td>Amazon Web Services</td><td>Built for logs, video, audio, website click streams; deep AWS integration</td></tr>
+            <tr><td>Google Cloud Dataflow</td><td>Google</td><td>Managed streaming and batch pipelines on GCP</td></tr>
+            <tr><td>Apache Spark Streaming</td><td>Open source</td><td>Part of the Spark ecosystem; micro-batch processing</td></tr>
+            <tr><td>Azure Stream Analytics</td><td>Microsoft</td><td>Managed service on Azure; SQL-like query interface</td></tr>
+            <tr><td>Apache Flink</td><td>Open source</td><td>True event-by-event streaming with stateful processing</td></tr>
+            <tr><td>Apache Storm</td><td>Open source</td><td>Particularly suited for real-time ML analytics on streaming data</td></tr>
+        </tbody>
+    </table>
+
+    <p>
+        Amazon Kinesis, for example, evolved directly from Amazon's need to process millions of real-time click events on its marketplace — different platforms were purpose-built for different streaming use cases.
+    </p>
+
+    <hr class="section-rule">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <h2 id="challenges">Streaming Data Challenges</h2>
+
+    <h3>Computational Speed</h3>
+    <p>
+        If your analysis cannot complete inside the window, results arrive too late to act on. Systems must be sized to process events faster than they arrive.
+    </p>
+
+    <h3>Data Quality in Streams</h3>
+    <p>
+        In a batch dataset of a million records, a few bad records are absorbed by the statistical weight of the rest. In a streaming window of 10–15 observations, one or two malfunctioning sensors can be <em>the majority</em> of your data — and can flip a decision from "safe" to "alarm" (or worse, from "alarm" to "safe"). Data quality monitoring in streaming systems is a distinct and demanding discipline.
+    </p>
+
+    <div class="callout alert">
+        <strong>Sensor malfunction risk</strong>
+        <p>Unlike batch reprocessing — where you can go back to the repository and rerun the job — once a streaming window has passed, that data may be gone. Diagnosing a false alarm from three weeks ago can be impossible without archiving strategies.</p>
+    </div>
+
+    <h3>Auditability &amp; Replay</h3>
+    <p>
+        If you need to answer "what did the data look like in that window at 2:15 am on a Tuesday three weeks ago?", streaming systems require deliberate snapshot or archiving strategies. Storing periodic snapshots at high frequency quickly becomes a storage challenge. For applications that don't require audit trails (home intruder detection: you only care if someone is there <em>right now</em>), this is not an issue. For healthcare or financial applications, it can be critical.
+    </p>
+
+    <h3>Security</h3>
+    <p>
+        Just as attackers target data lakes, they also try to intercept or inject into data streams — particularly financial transaction streams or streams carrying personally identifiable information (PII). Any retained streaming data that contains patient information must meet HIPAA compliance; student-related data must meet FERPA standards. The same regulatory burden applies regardless of whether the underlying architecture is batch or streaming.
+    </p>
+
+    <h3>Scalability</h3>
+    <p>
+        Streaming systems require more memory and processing power than equivalent batch setups. Systems must be horizontally scalable to handle traffic spikes — a streaming architecture that works at 10,000 events/second may not hold at 10 million. With batch, you can always add more computers to a cluster and wait longer; with streaming, "wait longer" defeats the purpose.
+    </p>
+
+    <hr class="section-rule">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <h2 id="iot">Internet of Things — Introduction</h2>
+
+    <p>
+        The Internet of Things (IoT) is the hardware layer that generates the streaming data discussed above. IoT systems connect physical sensors to cloud platforms via a simple three-component architecture:
+    </p>
+
+    <p style="text-align: center; font-family: 'Inter', sans-serif; font-size: 0.9rem; background: #f0f5fc; padding: 16px; border-radius: 8px; margin: 18px 0;">
+        <strong>Sensor</strong> → Power Source → Hotspot/Network → <strong>Cloud</strong> → <strong>Dashboard</strong>
+    </p>
+
+    <h3>Smart Dashboards</h3>
+    <p>
+        Static dashboards visualize what's happening. <em>Smart</em> dashboards apply rules to the incoming stream and send automated alerts (text, email, push notification) when a threshold or pattern is detected. You don't need to watch a screen 24/7 — the system watches for you and only calls when something requires attention.
+    </p>
+
+    <h3>IoT Demo: ThingsBoard</h3>
+    <p>
+        Dr. Pierce demonstrated <strong>ThingsBoard</strong> — a company that sells IoT kits including sensors, cloud hosting, and dashboard design software. A basic starter system is free; subscription tiers scale with larger IoT deployments. The platform allows users to design custom dashboards in their cloud account — monitoring anything from energy consumption to environmental conditions to equipment health.
+    </p>
+    <p>
+        Dr. Phil Williams (UALR bioinformatics) has used similar setups — built on Raspberry Pi hardware — to monitor water salt levels as a research and teaching project. Commercial kits like ThingsBoard's lower the barrier for students who want to explore IoT without custom hardware engineering.
+    </p>
+
+    <h3>IoT Application Areas</h3>
+    <ul>
+        <li><strong>Smart homes:</strong> Lighting, smart meters, security systems, connected appliances</li>
+        <li><strong>Smart cities:</strong> Traffic management, utility monitoring, emergency services coordination</li>
+        <li><strong>Agriculture:</strong> Soil moisture, weather station data, automated irrigation control</li>
+        <li><strong>Industrial:</strong> Equipment performance monitoring, predictive maintenance, factory floor sensors</li>
+        <li><strong>Healthcare:</strong> Patient vital signs, hospital infrastructure (temperature, humidity in labs and pharmacies)</li>
+        <li><strong>Environmental science:</strong> Air quality, water quality, ecosystem monitoring</li>
+    </ul>
+
+    <div class="callout">
+        <strong>Career note</strong>
+        <p>IoT development is a fast-growing specialty. On Thursday, Dr. Pierce will cover IoT developer career paths, privacy and legal considerations in IoT deployments, and walk through an IoT knowledge quiz on CognitiveClass.ai (the Unit 9 activity).</p>
+    </div>
+
+    <hr class="section-rule">
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <h2>Summary &amp; Next Steps</h2>
+
+    <p>
+        This session opened Unit 9 by establishing the conceptual foundation for how data <em>moves</em> through modern systems. The batch/streaming distinction cuts across every field where data science is applied — from hospital patient monitoring to financial trading to smart city infrastructure. Understanding which paradigm fits a problem is as important as knowing which algorithm to use.
+    </p>
+
+    <div class="callout tip">
+        <strong>Before Thursday</strong>
+        <p>Begin the IoT quiz on CognitiveClass.ai (50 questions; open-book style encouraged — Google unfamiliar terms as you go). Prepare a brief reflection: how much did you already know? Which topics would you like to explore further? Dr. Pierce will collect these reflections.</p>
+    </div>
+
+    <ul>
+        <li><strong>Data Science Project (all students):</strong> Report + 2–3 minute summary with one visual due <strong>May 5th</strong>. Upload to Google Drive and share with eXpierce@ualr.edu.</li>
+        <li><strong>Unit 9 IoT Activity:</strong> Complete the CognitiveClass.ai IoT quiz and submit your reflection to Dr. Pierce — what you knew, what surprised you, what you want to learn more about.</li>
+        <li><strong>Optional:</strong> Email Dr. Pierce about your project topic if you want feedback or want to confirm your scope is appropriate.</li>
+    </ul>
+
+</article>
+
+<!-- Footer -->
+<footer class="page-footer">
+    <p>
+        <a href="index.html">← Back to Transcript Hub</a> &nbsp;|&nbsp;
+        IFSC 77003 Data Science &amp; Technologies &nbsp;|&nbsp; UALR Department of Information Science
+    </p>
+    <p style="margin-top: 8px;">Last updated March 31, 2026</p>
+</footer>
+
+</body>
+</html>
