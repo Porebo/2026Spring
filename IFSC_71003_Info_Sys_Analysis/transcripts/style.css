@@ -341,16 +341,13 @@ footer {
 }
 
 .lecture-day {
-    background: #f5f7fa;
     color: #9aa5b1;
-    font-weight: 500;
+    font-weight: 600;
 }
 
-.lecture-day a {
+.calendar-table td.lecture-day a {
     display: block;
-    background: #e7f3ff;
     color: #0f4c9a;
-    border-radius: 4px;
     font-weight: 700;
 }
 
