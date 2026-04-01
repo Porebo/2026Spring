@@ -340,16 +340,18 @@ footer {
     color: #5c6d82;
 }
 
-.lecture-day,
-.lecture-day a {
-    background: #e7f3ff;
-    color: #0f4c9a;
-    border-radius: 4px;
-    font-weight: 600;
+.lecture-day {
+    background: #f5f7fa;
+    color: #9aa5b1;
+    font-weight: 500;
 }
 
 .lecture-day a {
     display: block;
+    background: #e7f3ff;
+    color: #0f4c9a;
+    border-radius: 4px;
+    font-weight: 700;
 }
 
 /* Responsive tweaks */
