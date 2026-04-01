@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mar 19: JavaScript Conditionals &amp; AI Debugging</title>
+    <style>
+        :root {
+            --primary: #0d4d63;
+            --accent: #c0392b;
+            --bg: #f5f7fb;
+            --text: #1f2a37;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+        }
+        header {
+            background: linear-gradient(135deg, #0d4d63, #051d29);
+            color: white;
+            text-align: center;
+            padding: 36px 20px;
+        }
+        header a {
+            color: #cfe6ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        header a:hover { text-decoration: underline; }
+        section {
+            max-width: 980px;
+            margin: 30px auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 24px 48px rgba(5,29,41,0.1);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid rgba(13,77,99,0.2);
+            padding-bottom: 10px;
+        }
+        h3 { margin-top: 1.3rem; color: #12374a; }
+        ul, ol { line-height: 1.75; }
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 0.82rem;
+            padding: 4px 10px;
+            border-radius: 999px;
+            margin: 0 8px 8px 0;
+        }
+        .highlight {
+            background: #e8f4ff;
+            border-left: 5px solid #2b7bbb;
+            padding: 14px 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+        .warning {
+            background: #fff4e8;
+            border-left: 5px solid #d9822b;
+            padding: 14px 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            font-size: 0.95rem;
+        }
+        th, td {
+            border: 1px solid #d9e2ec;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: #eef4f8;
+            color: #0d3d53;
+        }
+        blockquote {
+            margin: 14px 0;
+            padding: 12px 16px;
+            border-left: 4px solid #8aaec0;
+            background: #f8fbfd;
+            color: #2e4657;
+        }
+        footer {
+            text-align: center;
+            color: #60758a;
+            font-size: 0.9rem;
+            padding: 18px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p><a href="index.html">&larr; Back to Transcript Index</a></p>
+        <h1>Mar 19, 2026: JavaScript Conditionals &amp; AI Debugging</h1>
+        <p>IFSC 71003 - Information Systems Analysis</p>
+        <span class="tag">Spring Break Update</span>
+        <span class="tag">AI + Human Loop</span>
+        <span class="tag">If/Else Logic</span>
+        <span class="tag">Else-If Construct</span>
+        <span class="tag">Debugging</span>
+    </header>
+
+    <section>
+        <h2>Class Announcements and Context</h2>
+        <ul>
+            <li>Daniel confirmed classroom speaker issues were fixed compared with the previous meeting.</li>
+            <li>Because of spring break, the next homework deadline was moved to the Tuesday after break.</li>
+            <li>He framed the day around a practical question: if AI codes well, what does the human still need to know?</li>
+        </ul>
+        <div class="highlight">
+            <strong>Main framing:</strong> AI can accelerate coding, but humans still need enough technical understanding to diagnose failures and choose correct fixes.
+        </div>
+    </section>
+
+    <section>
+        <h2>AI Research Demo: Socratic Reading Tool</h2>
+        <p>Daniel demonstrated a research prototype that transforms text into a guided tutorial. After each sentence or paragraph, users answer true/false questions and can request a hint or commentary.</p>
+        <ul>
+            <li>The sentence-by-sentence version mostly worked after repeated prompt iteration.</li>
+            <li>The paragraph version partially failed because some commentary controls were missing or inconsistent.</li>
+            <li>This became a real debugging exercise for class, not just a polished showcase.</li>
+        </ul>
+        <blockquote>
+            Re-prompting can improve AI output, but correctness still requires systematic verification.
+        </blockquote>
+    </section>
+
+    <section>
+        <h2>Why the Commentary Button Broke</h2>
+        <p>The broken feature was an <strong>onclick</strong> attribute that should call <strong>alert(...)</strong>. The AI-generated quoting looked plausible but failed because HTML attribute parsing happened first.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Layer</th>
+                    <th>What Happens</th>
+                    <th>Consequence</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HTML parsing</td>
+                    <td>Browser scans from one double quote to the next in the onclick attribute.</td>
+                    <td>Escapes expected by JavaScript are not reliably interpreted at this stage.</td>
+                </tr>
+                <tr>
+                    <td>JavaScript execution</td>
+                    <td>Only the extracted snippet is passed to the JS interpreter.</td>
+                    <td>If extraction was truncated, JavaScript receives invalid code and the button appears dead.</td>
+                </tr>
+                <tr>
+                    <td>Human fix</td>
+                    <td>Daniel adjusted quote usage and tested iteratively in context.</td>
+                    <td>Commentary pop-ups began working as intended.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="warning">
+            <strong>Key takeaway:</strong> Understanding syntax boundaries between HTML and JavaScript is often the difference between fast fixes and repeated AI-generated misdiagnoses.
+        </div>
+    </section>
+
+    <section>
+        <h2>Conditionals Refresher: If, Else, Else-If</h2>
+        <h3>Core Rules</h3>
+        <ul>
+            <li><strong>if</strong> needs a condition and one statement.</li>
+            <li><strong>else</strong> needs one statement and no condition.</li>
+            <li>Curly braces create a compound statement, allowing multiple lines to behave as one controlled block.</li>
+        </ul>
+        <h3>Else-If Construct Insight</h3>
+        <p>Daniel showed how JavaScript associates an <strong>else</strong> with the nearest eligible <strong>if</strong>. This prevents dangling-else ambiguity when the chain is interpreted correctly, but poor brace placement can still break code readability and behavior.</p>
+    </section>
+
+    <section>
+        <h2>Live Sandbox Debugging Walkthrough</h2>
+        <ul>
+            <li>He ran alert-based examples to show branch outcomes like "No match" and "Done."</li>
+            <li>He inserted and moved braces to demonstrate where syntax became invalid.</li>
+            <li>A brief false alarm occurred when variable <strong>i</strong> was undeclared after removing an earlier script block.</li>
+            <li>Once <strong>i</strong> was restored and braces were placed correctly, the examples ran as expected.</li>
+        </ul>
+        <div class="highlight">
+            This sequence modeled real debugging: isolate variables, test one hypothesis at a time, and verify each structural change.
+        </div>
+    </section>
+
+    <section>
+        <h2>Human + AI Workflow Lessons</h2>
+        <ol>
+            <li>Use AI to draft quickly, but inspect generated code with parser-aware reasoning.</li>
+            <li>Prefer explicit braces for maintainability and lower error risk.</li>
+            <li>Validate behavior in small sandbox tests before applying changes broadly.</li>
+            <li>Treat AI output as a collaborator draft, not a final authority.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Next Class</h2>
+        <p>Students were encouraged to practice writing an if statement, an if-else statement, and optionally an else-if chain. After spring break, the course transitions from JavaScript into PHP.</p>
+    </section>
+
+    <footer>
+        Prepared by Lester Carcamo • Last updated March 31, 2026
+    </footer>
+</body>
+</html>
