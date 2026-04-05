@@ -243,3 +243,147 @@ body {
 .meta {
   color: var(--text-muted);
 }
+
+/* ══════════════════════════════════════════
+   Horizontal Cascading Timeline
+══════════════════════════════════════════ */
+
+.h-timeline-section {
+  padding: 0 1.5rem 1.5rem;
+}
+
+.timeline-card {
+  overflow: hidden;
+}
+
+.h-timeline-title {
+  margin: 0 0 1.25rem;
+  font-size: 1.05rem;
+}
+
+.h-timeline-scroll {
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--timeline-node) var(--card-border);
+}
+
+.h-timeline-track {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  padding: 0 2rem;
+  min-width: max-content;
+}
+
+/* The horizontal spine line — bisects the dots */
+.h-timeline-track::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(1.8rem + 0.5rem + 6px);
+  height: 2px;
+  background: var(--timeline-line);
+  z-index: 0;
+}
+
+/* ── Year group column ── */
+.year-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 140px;
+  padding: 0 0.6rem;
+  position: relative;
+}
+
+/* Vertical spike from dot down to last card */
+.year-group.has-cards::after {
+  content: "";
+  position: absolute;
+  top: calc(1.8rem + 0.5rem + 12px);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: var(--timeline-line);
+  z-index: 0;
+}
+
+.year-label {
+  height: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--timeline-node);
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: 1;
+}
+
+.year-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--timeline-node);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.35);
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Cards below the spike ── */
+.year-cards {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  gap: 0.45rem;
+  padding-top: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.t-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.78rem;
+  position: relative;
+  z-index: 1;
+}
+
+.t-credential {
+  margin: 0;
+  font-weight: 600;
+  color: #1f2937;
+  line-height: 1.35;
+}
+
+.t-institution {
+  margin: 0.15rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.73rem;
+  line-height: 1.3;
+}
+
+/* ── In-progress styling ── */
+.year-group.in-progress .year-dot {
+  background: #f59e0b;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.4);
+}
+
+.year-group.in-progress .year-label {
+  color: #b45309;
+}
+
+.t-card.in-progress {
+  border-color: #fcd34d;
+  background: #fffbeb;
+}
