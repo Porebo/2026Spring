@@ -399,3 +399,130 @@ body {
   border-color: #fcd34d;
   background: #fffbeb;
 }
+
+/* ══════════════════════════════════════════
+   Academic Transcript View — Option C
+══════════════════════════════════════════ */
+
+.transcript-section {
+  padding: 0 1.5rem 1.5rem;
+}
+
+.transcript-section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  color: var(--text-main);
+  letter-spacing: 0.01em;
+}
+
+.transcript-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.transcript-card {
+  background: var(--surface-bg);
+  border: 1px solid var(--card-border);
+  border-top: 4px solid var(--accent, #2563eb);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.transcript-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1rem;
+  background: #f8fafc;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.transcript-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.transcript-inst {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.transcript-location {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+.transcript-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.83rem;
+}
+
+.transcript-table thead th {
+  background: #f1f5f9;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.4rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.transcript-table tbody td {
+  padding: 0.45rem 0.85rem;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+  color: var(--text-main);
+  line-height: 1.35;
+}
+
+.transcript-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.transcript-table tbody tr:hover {
+  background: #f8faff;
+}
+
+/* Year column */
+.transcript-table th:nth-child(2),
+.transcript-table td:nth-child(2) {
+  white-space: nowrap;
+  font-weight: 600;
+  color: #334155;
+}
+
+/* GPA column */
+.transcript-table th:nth-child(3),
+.transcript-table td:nth-child(3) {
+  text-align: center;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  width: 3.5rem;
+}
+
+.t-badge-inprog {
+  display: inline-block;
+  font-size: 0.68rem;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+  border-radius: 4px;
+  padding: 0.1rem 0.45rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
