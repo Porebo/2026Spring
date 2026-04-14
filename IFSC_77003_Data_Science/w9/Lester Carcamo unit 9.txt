@@ -1,0 +1,13 @@
+Score: 13 out of 50 (26%)
+
+Overall assessment:
+This was honestly pretty tough. A lot of the questions went into software, hardware, and communication protocols that I’m not very familiar with yet.
+
+Strengths:
+I understood the general idea of IoT and how devices communicate with each other. I think of it like sensors in a car or systems in oil production where everything works together to keep things running efficiently.
+
+Areas to improve:
+I need to get better with communication protocols, hardware, and how software connects everything. Those were the parts that tripped me up the most.
+
+Reflection:
+This made me realize how many devices are constantly communicating, which is kind of crazy. It makes sense in industrial settings and smart homes, but it also made me think about data privacy and how much information is being shared.
