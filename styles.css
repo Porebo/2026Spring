@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --page-bg: #ffffff;
   --surface-bg: #ffffff;
   --text-main: #0f172a;
@@ -131,7 +131,7 @@ hr {
 }
 
 .edu-group summary::after {
-  content: "▸";
+  content: "Γû╕";
   position: absolute;
   right: 0;
   top: 50%;
