@@ -1,0 +1,52 @@
+welcome to using explode user-defined functions and pivot
+after completing this lesson we should be able to use these methods on data
+frames explode user-defined functions and pivot this lesson looks at how we
+can turn this sales data into this report on the left we see a table of
+information about deals that have been closed by members of a sales team for
+each deal we had the name of the account the year the sales rep involved and the
+Commission earned when there is more than one sales representative involved
+they will split the Commission evenly al goal is to generate a report showing the
+Commission earned by each sales rep during each year this is a simple
+example illustrates some kinds of data reshaping this is frequently needed when
+preparing data for predictive analysis we will use a few of the more advanced
+features of data frames to get this done first we set up the sequel context to
+give us access to the data frames API we import the required implicit spoon need
+for automatic type conversions and import the functions API that will need
+for the UD yet we then define the case class sales value talked the defines the
+data structure in its initial form
+we then load the data by creating a data frame from a sequence of data that we
+hand rolling to keep this example simple the first thing we want to do is to
+split up the sales where we have a list of salespeople this is exactly what
+explode will do it would generate a row for every element in the list of sales
+reps that's great but we still need to somehow deal with splitting the
+Commission to do that we're going to need to know how many ways to divide
+each commission computing each person's share of the commission would be easy to
+do
+sparks equal had some sort of a column link function that would return the
+length of the sales rep filled that spot doesn't have such a function so we have
+to define it ourselves
+the link function takes a sequence of strings and returns its length anytime
+you see be error
+you know you are looking at a function of 10 more input values 21 output value
+Lane is a function with the type sequence of string to integer the
+user-defined function provided by the functions API that we've imported
+converts the Len function into one called colin that can be used on a
+column in a data frame when we select the date on the sale sequence of values
+that we hand-rolled earlier we can use the column lane UDF we created to a
+Greek AP information about the sales reps and the Commission's where the
+commission is shared two ways the che column is hot of the Commission on the
+assumption that only a maximum of two reps could be involved in a sale
+together remember that our goal is to produce a table that lists each sales
+rep by commission for each year
+this is the final step in realizing how cold for these lists of the solution is
+to pivot on the year column
+bidding on a column replaces that column with new columns each distinct value of
+the original column in this case the year column head injuries for 2013 and
+2014 this can only be done in the context of an aggregation whenever you
+want to believe it you must choose one or more fields to group by this is the
+same period as before except this time we have chosen to do the group buy on
+two columns this is the effect that the scope for aggregation is narrower since
+its aggregating on each combination of account and sales rep for each year
+having completed this lesson we should be able to understand the role of
+explode user-defined functions and leave it in preparing data for further
+analysis
