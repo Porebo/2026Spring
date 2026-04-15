@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 10</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height:1.6; color:#333; background:#f5f7fa; min-height:100vh; padding:20px; }
+        .container { width:calc(100% - 40px); margin:0 auto; padding:20px; }
+        h1 { color:#667eea; margin-bottom:20px; }
+        .hw-status { display:inline-block; background:#2e8b57; color:#fff; padding:8px 14px; border-radius:4px; font-weight:600; font-size:0.9em; margin-left:15px; }
+        .hw-timestamp { display:block; color:#667eea; font-size:0.85em; font-weight:500; margin-top:8px; }
+        .breadcrumbs { margin-bottom:20px; font-size:0.9em; color:#666; padding:5px 0; border-bottom:1px solid #f0f0f0; }
+        .breadcrumbs a { color:#667eea; text-decoration:none; font-weight:500; }
+        .breadcrumbs span { margin:0 8px; color:#ccc; }
+        .nav { margin-bottom:30px; padding-bottom:20px; border-bottom:2px solid #f0f0f0; }
+        .nav a { color:#667eea; text-decoration:none; margin-right:15px; font-weight:500; }
+        .section { margin-bottom:25px; padding-bottom:25px; border-bottom:2px solid #f0f0f0; }
+        .section-title { color:#764ba2; font-size:1.2em; margin-bottom:10px; font-weight:600; }
+        table { width:100%; border-collapse:collapse; margin-top:10px; background:#fff; }
+        th, td { border:1px solid #dbe4f3; padding:10px; text-align:left; vertical-align:top; }
+        th { background:#eef3ff; color:#2c4375; }
+        ul { margin-left:20px; }
+        li { margin-bottom:8px; }
+        footer { text-align:center; color:#999; font-size:0.9em; margin-top:30px; padding-top:20px; border-top:2px solid #f0f0f0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> <span>&rsaquo;</span> Homework 10
+        </nav>
+
+        <h1>Homework 10<span class="hw-status">Ready for Grading</span></h1>
+        <p class="hw-timestamp">Last Updated: April 15, 2026</p>
+
+        <div class="nav"><a href="index.html">&larr; Back to Portfolio</a></div>
+
+        <div class="section">
+            <div class="section-title">Part 1: Lean Six Sigma Framing</div>
+            <p>Scenario: reduce cycle time for academic support request handling during registration peaks.</p>
+            <table>
+                <thead>
+                    <tr><th>DMAIC Phase</th><th>Application in Scenario</th><th>Output</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Define</td><td>Problem statement and stakeholders for ticket delays</td><td>Project charter</td></tr>
+                    <tr><td>Measure</td><td>Collect baseline response time and first-contact resolution rate</td><td>Performance baseline</td></tr>
+                    <tr><td>Analyze</td><td>Identify bottlenecks (handoffs, missing data, queue spikes)</td><td>Root-cause map</td></tr>
+                    <tr><td>Improve</td><td>Standard intake form and triage rules</td><td>Pilot process design</td></tr>
+                    <tr><td>Control</td><td>Dashboards and weekly variance review</td><td>Sustained monitoring plan</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Part 2: Evaluation Dimensions Applied</div>
+            <ul>
+                <li><strong>System:</strong> advising and registration support workflow.</li>
+                <li><strong>Criteria:</strong> response time, satisfaction, rework rate.</li>
+                <li><strong>Process:</strong> baseline, pilot, post-change comparison.</li>
+                <li><strong>Evaluators:</strong> mixed internal team plus independent reviewer.</li>
+                <li><strong>Timing:</strong> pre-peak, peak, and post-peak measurement windows.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Part 3: Risk and Mitigation Summary</div>
+            <table>
+                <thead><tr><th>Risk</th><th>Impact</th><th>Mitigation</th></tr></thead>
+                <tbody>
+                    <tr><td>Incomplete intake data</td><td>Rework, delays</td><td>Required fields + validation prompts</td></tr>
+                    <tr><td>Unbalanced queue</td><td>Long waits for specific cases</td><td>Priority routing and capacity shift</td></tr>
+                    <tr><td>No ownership</td><td>Stalled tickets</td><td>Named owner + escalation timer</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer><p>&copy; 2026 Lester S. Carcamo. All rights reserved.</p></footer>
+    </div>
+</body>
+</html>
