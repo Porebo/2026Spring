@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW6 | Task 5 Use Cases</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f7fa; min-height: 100vh; padding: 20px; }
+        .container { width: calc(100% - 40px); margin: 0 auto; padding: 20px; }
+        h1 { color: #667eea; margin-bottom: 20px; }
+        .breadcrumbs { margin-bottom: 20px; font-size: 0.9em; color: #666; padding: 5px 0; border-bottom: 1px solid #f0f0f0; }
+        .breadcrumbs a { color: #667eea; text-decoration: none; font-weight: 500; }
+        .breadcrumbs span { margin: 0 8px; color: #ccc; }
+        .nav { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #f0f0f0; }
+        .nav a { color: #667eea; text-decoration: none; margin-right: 15px; font-weight: 500; }
+        .section { margin-bottom: 25px; padding-bottom: 25px; border-bottom: 2px solid #f0f0f0; }
+        .section-title { color: #764ba2; font-size: 1.2em; margin-bottom: 10px; font-weight: 600; }
+        table { width:100%; border-collapse:collapse; margin-top:10px; }
+        th, td { border:1px solid #d9e2f2; padding:10px; text-align:left; vertical-align:top; }
+        th { background:#eef3ff; color:#2b4478; }
+        ul { margin-left:20px; }
+        footer { text-align:center; color:#999; font-size:0.9em; margin-top:30px; padding-top:20px; border-top:2px solid #f0f0f0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> <span>&rsaquo;</span> <a href="hw6.html">Homework 6</a> <span>&rsaquo;</span> Task 5
+        </nav>
+
+        <h1>Task 5: Use Cases</h1>
+
+        <div class="nav">
+            <a href="hw6.html">&larr; Back to Homework 6</a>
+            <a href="hw6Prototype.html">Open Prototype</a>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Brief Format Use Case</div>
+            <table>
+                <tr><th>Use Case</th><td>Add Work Item</td></tr>
+                <tr><th>Primary Actor</th><td>Mid-career professional</td></tr>
+                <tr><th>Goal</th><td>Capture and prioritize a work task quickly.</td></tr>
+                <tr><th>Main Success Scenario</th><td>User enters task text, selects priority, clicks Add, and sees item in the list with count updated.</td></tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Fowler Format Use Case</div>
+            <table>
+                <tr><th>Use Case ID</th><td>UC-01</td></tr>
+                <tr><th>Name</th><td>Add and Prioritize Work Item</td></tr>
+                <tr><th>Scope</th><td>ShiftBridge Planner Web Prototype</td></tr>
+                <tr><th>Level</th><td>User-goal level</td></tr>
+                <tr><th>Primary Actor</th><td>Professional user</td></tr>
+                <tr><th>Stakeholders</th><td>User wants clear task visibility and priority guidance.</td></tr>
+                <tr><th>Preconditions</th><td>User has page open and task list area is visible.</td></tr>
+                <tr><th>Minimal Guarantee</th><td>No task is added if input is empty; list remains consistent.</td></tr>
+                <tr><th>Success Guarantee</th><td>Task is appended to list with priority tag and item counter updates.</td></tr>
+                <tr><th>Trigger</th><td>User clicks Add button.</td></tr>
+                <tr><th>Main Success Scenario</th><td><ul><li>User enters task title.</li><li>User selects priority level.</li><li>User clicks Add.</li><li>System appends formatted list item.</li><li>System updates task count indicator.</li></ul></td></tr>
+                <tr><th>Extensions</th><td><ul><li>3a. Empty input: system shows alert and stops transaction.</li><li>4a. Rendering fails: system keeps existing list unchanged and no count increment occurs.</li></ul></td></tr>
+            </table>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Lester S. Carcamo. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 6</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f7fa; min-height: 100vh; padding: 20px; }
+        .container { width: calc(100% - 40px); margin: 0 auto; padding: 20px; }
+        h1 { color: #667eea; margin-bottom: 20px; }
+        .hw-status { display:inline-block; background:#2e8b57; color:#fff; padding:8px 14px; border-radius:4px; font-weight:600; font-size:0.9em; margin-left:15px; }
+        .hw-timestamp { display:block; color:#667eea; font-size:0.85em; font-weight:500; margin-top:8px; }
+        .breadcrumbs { margin-bottom: 20px; font-size: 0.9em; color: #666; padding: 5px 0; border-bottom: 1px solid #f0f0f0; }
+        .breadcrumbs a { color: #667eea; text-decoration: none; font-weight: 500; }
+        .breadcrumbs span { margin: 0 8px; color: #ccc; }
+        .nav { margin-bottom:30px; padding-bottom:20px; border-bottom:2px solid #f0f0f0; }
+        .nav a { color:#667eea; text-decoration:none; margin-right:15px; font-weight:500; }
+        .tasks-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; margin:25px 0 35px 0; }
+        .task-card { background:linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%); padding:22px; border-radius:10px; text-decoration:none; color:#333; transition:all 0.25s ease; border:2px solid transparent; box-shadow:0 6px 18px rgba(0,0,0,0.08); display:block; }
+        .task-card:hover { transform:translateY(-6px); border-color:#667eea; }
+        .task-number { display:inline-block; background:#667eea; color:#fff; width:36px; height:36px; border-radius:50%; text-align:center; line-height:36px; font-weight:700; margin-bottom:12px; }
+        .task-title { font-size:1.1em; font-weight:700; margin-bottom:8px; color:#2c3e50; }
+        .task-description { color:#444; font-size:0.95em; }
+        .task-status { display:inline-block; margin-top:12px; padding:6px 10px; border-radius:16px; font-size:0.82em; font-weight:700; background:#d4edda; color:#1e7e34; }
+        footer { text-align:center; color:#999; font-size:0.9em; margin-top:30px; padding-top:20px; border-top:2px solid #f0f0f0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> <span>&rsaquo;</span> Homework 6
+        </nav>
+
+        <h1>Homework 6<span class="hw-status">Ready for Grading</span></h1>
+        <p class="hw-timestamp">Last Updated: April 14, 2026</p>
+
+        <div class="nav">
+            <a href="index.html">&larr; Back to Portfolio</a>
+        </div>
+
+        <div class="tasks-grid" aria-label="HW6 deliverables">
+            <a href="demo.html#hw6-js-section" class="task-card">
+                <div class="task-number">1</div>
+                <div class="task-title">Task 1: Demo JS Commands</div>
+                <div class="task-description">Added 6 alphabetized JavaScript command buttons to the demo page and verified outputs.</div>
+                <div class="task-status">Completed</div>
+            </a>
+
+            <a href="hw6SandboxImprovements.html" class="task-card">
+                <div class="task-number">2</div>
+                <div class="task-title">Task 2: Sandbox Improvements</div>
+                <div class="task-description">Enhanced sandbox with additional interactive planning support and documented changes.</div>
+                <div class="task-status">Completed</div>
+            </a>
+
+            <a href="hw6JsLearning.html" class="task-card">
+                <div class="task-number">3</div>
+                <div class="task-title">Task 3: Learn JS with AI</div>
+                <div class="task-description">Focused Socratic-style Q&A on selected sandbox JavaScript lines.</div>
+                <div class="task-status">Completed</div>
+            </a>
+
+            <a href="hw6Prototype.html" class="task-card">
+                <div class="task-number">4</div>
+                <div class="task-title">Task 4: Prototype</div>
+                <div class="task-description">Built workplace software prototype for mid-career professionals with embedded JavaScript.</div>
+                <div class="task-status">Completed</div>
+            </a>
+
+            <a href="hw6UseCases.html" class="task-card">
+                <div class="task-number">5</div>
+                <div class="task-title">Task 5: Use Cases</div>
+                <div class="task-description">Included both brief and Fowler format use cases for the selected prototype.</div>
+                <div class="task-status">Completed</div>
+            </a>
+
+            <a href="hw6Reflection.html" class="task-card">
+                <div class="task-number">6</div>
+                <div class="task-title">Task 6: Reflection</div>
+                <div class="task-description">Reflection on practical AI-assisted coding process and lessons learned.</div>
+                <div class="task-status">Completed</div>
+            </a>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Lester S. Carcamo. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

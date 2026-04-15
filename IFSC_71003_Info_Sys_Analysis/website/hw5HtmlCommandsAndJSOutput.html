@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW5 Q4 | HTML Commands and JS Output</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f7fa; min-height: 100vh; padding: 20px; }
+        .container { width: calc(100% - 40px); margin: 0 auto; padding: 20px; }
+        h1 { color: #667eea; margin-bottom: 20px; }
+        .breadcrumbs { margin-bottom: 20px; font-size: 0.9em; color: #666; padding: 5px 0; border-bottom: 1px solid #f0f0f0; }
+        .breadcrumbs a { color: #667eea; text-decoration: none; font-weight: 500; }
+        .breadcrumbs span { margin: 0 8px; color: #ccc; }
+        .nav { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #f0f0f0; }
+        .nav a { color: #667eea; text-decoration: none; margin-right: 15px; font-weight: 500; }
+        .section { margin-bottom: 25px; padding-bottom: 25px; border-bottom: 2px solid #f0f0f0; }
+        .section-title { color: #764ba2; font-size: 1.2em; margin-bottom: 10px; font-weight: 600; }
+        ol { margin-left: 24px; columns: 2; }
+        li { margin-bottom: 6px; }
+        .buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+        button { background: #667eea; color: #fff; border: none; border-radius: 6px; padding: 10px 14px; cursor: pointer; }
+        button:hover { background: #764ba2; }
+        #domOutput { margin-top: 12px; background: #eaf2ff; border-left: 4px solid #667eea; padding: 10px; border-radius: 6px; min-height: 48px; }
+        iframe { margin-top: 12px; width: 100%; min-height: 90px; border: 1px solid #ccd8ee; border-radius: 6px; background: #fff; }
+        .note { color: #666; font-size: 0.92em; margin-top: 8px; }
+        footer { text-align: center; color: #999; font-size: 0.9em; margin-top: 30px; padding-top: 20px; border-top: 2px solid #f0f0f0; }
+        @media (max-width: 860px) { ol { columns: 1; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> <span>&rsaquo;</span> <a href="hw5.html">Homework 5</a> <span>&rsaquo;</span> Q4
+        </nav>
+
+        <h1>Q4: Alphabetized HTML Commands + 4 JavaScript Outputs</h1>
+
+        <div class="nav">
+            <a href="hw5.html">&larr; Back to Homework 5</a>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Alphabetized and Numbered HTML Commands</div>
+            <ol>
+                <li>&lt;a&gt;</li>
+                <li>&lt;article&gt;</li>
+                <li>&lt;aside&gt;</li>
+                <li>&lt;body&gt;</li>
+                <li>&lt;br&gt;</li>
+                <li>&lt;button&gt;</li>
+                <li>&lt;div&gt;</li>
+                <li>&lt;footer&gt;</li>
+                <li>&lt;form&gt;</li>
+                <li>&lt;h1&gt;</li>
+                <li>&lt;h2&gt;</li>
+                <li>&lt;head&gt;</li>
+                <li>&lt;header&gt;</li>
+                <li>&lt;hr&gt;</li>
+                <li>&lt;img&gt;</li>
+                <li>&lt;input&gt;</li>
+                <li>&lt;label&gt;</li>
+                <li>&lt;li&gt;</li>
+                <li>&lt;main&gt;</li>
+                <li>&lt;meta&gt;</li>
+                <li>&lt;nav&gt;</li>
+                <li>&lt;ol&gt;</li>
+                <li>&lt;option&gt;</li>
+                <li>&lt;p&gt;</li>
+                <li>&lt;section&gt;</li>
+                <li>&lt;select&gt;</li>
+                <li>&lt;span&gt;</li>
+                <li>&lt;strong&gt;</li>
+                <li>&lt;table&gt;</li>
+                <li>&lt;tbody&gt;</li>
+                <li>&lt;td&gt;</li>
+                <li>&lt;textarea&gt;</li>
+                <li>&lt;tfoot&gt;</li>
+                <li>&lt;th&gt;</li>
+                <li>&lt;thead&gt;</li>
+                <li>&lt;title&gt;</li>
+                <li>&lt;tr&gt;</li>
+                <li>&lt;ul&gt;</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <div class="section-title">JavaScript Output Commands (4 Buttons)</div>
+            <div class="buttons">
+                <button type="button" onclick="showAlertOutput()">1) alert()</button>
+                <button type="button" onclick="showConsoleOutput()">2) console.log()</button>
+                <button type="button" onclick="showDomOutput()">3) innerHTML</button>
+                <button type="button" onclick="showDocumentWriteOutput()">4) document.write()</button>
+            </div>
+
+            <div id="domOutput">Output area for innerHTML and status messages.</div>
+            <iframe id="writeFrame" title="document.write output frame"></iframe>
+            <p class="note">The document.write demo writes to the frame so the main page is not replaced.</p>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Lester S. Carcamo. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function showAlertOutput() {
+            alert("Hello from alert(). This is JavaScript output type #1.");
+        }
+
+        function showConsoleOutput() {
+            const message = "Hello from console.log(). This is output type #2.";
+            console.log(message);
+            document.getElementById("domOutput").innerHTML = "Check browser console: " + message;
+        }
+
+        function showDomOutput() {
+            document.getElementById("domOutput").innerHTML = "Hello from innerHTML. Current time: " + new Date().toLocaleTimeString();
+        }
+
+        function showDocumentWriteOutput() {
+            const frame = document.getElementById("writeFrame");
+            const doc = frame.contentWindow.document;
+            doc.open();
+            doc.write("<h3 style='font-family:Segoe UI,Tahoma,sans-serif;color:#667eea;margin:10px;'>Hello from document.write()</h3>");
+            doc.write("<p style='font-family:Segoe UI,Tahoma,sans-serif;margin:10px;'>This output is written into an iframe safely.</p>");
+            doc.close();
+            document.getElementById("domOutput").innerHTML = "document.write() output was sent to the frame below.";
+        }
+    </script>
+</body>
+</html>

@@ -58,6 +58,43 @@
             font-weight: 600;
         }
 
+        .section-subtitle {
+            color: #2c3e50;
+            font-size: 1.05em;
+            margin: 12px 0 8px;
+            font-weight: 700;
+        }
+
+        .lead {
+            background: #eef3ff;
+            border-left: 4px solid #667eea;
+            padding: 12px 14px;
+            border-radius: 6px;
+        }
+
+        ol {
+            margin-left: 22px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .why-answer {
+            display: block;
+            margin-top: 4px;
+            color: #2d3e58;
+        }
+
+        .action-box {
+            margin-top: 14px;
+            background: #f7fff0;
+            border: 1px solid #d9edc3;
+            border-left: 4px solid #6cbf4a;
+            border-radius: 8px;
+            padding: 12px 14px;
+        }
+
         footer {
             text-align: center;
             color: #999;
@@ -82,7 +119,47 @@
 
         <div class="section">
             <div class="section-title">5 Whys Analysis</div>
-            <!-- Add your 5 Whys analysis content here -->
+            <p class="lead">
+                <strong>System analyzed:</strong> Same as Task 3 (UALR registration).<br>
+                <strong>Problem statement:</strong> During registration peaks, students experience severe slowness and timeout errors that prevent successful enrollment.
+            </p>
+
+            <h2 class="section-subtitle">5 Whys (Bandwidth Focus)</h2>
+            <ol>
+                <li>
+                    Why can students not complete registration during peak times?
+                    <span class="why-answer">Because the registration pages and submit calls time out under heavy traffic.</span>
+                </li>
+                <li>
+                    Why do the pages and submit calls time out?
+                    <span class="why-answer">Because available network/server capacity is saturated when many users submit actions simultaneously.</span>
+                </li>
+                <li>
+                    Why is capacity saturated during those windows?
+                    <span class="why-answer">Because the system is sized for average daily traffic, not short enrollment spikes with high concurrency.</span>
+                </li>
+                <li>
+                    Why is the system sized for average traffic instead of peak enrollment traffic?
+                    <span class="why-answer">Because peak-event forecasting, load-testing cadence, and burst-capacity planning are not integrated into term readiness procedures.</span>
+                </li>
+                <li>
+                    Why are forecasting and burst-capacity planning not integrated into readiness procedures?
+                    <span class="why-answer">Because ownership is split across departments (academic scheduling, IT operations, and vendor/platform support) without a single performance governance process and clear service thresholds.</span>
+                </li>
+            </ol>
+
+            <div class="action-box">
+                <strong>Root Cause Summary:</strong> The core issue is not only raw bandwidth; it is the absence of a cross-functional peak-readiness process that translates expected enrollment demand into tested and provisioned capacity.
+            </div>
+
+            <h2 class="section-subtitle">Targeted Corrective Actions</h2>
+            <ol>
+                <li>Create a pre-registration readiness checklist with explicit capacity thresholds and sign-off owners.</li>
+                <li>Run recurring load tests before each registration cycle using realistic student behavior patterns.</li>
+                <li>Define automatic burst-scaling or queue rules for the registration window.</li>
+                <li>Set monitoring alerts for response time, error rate, and queue depth with clear escalation paths.</li>
+                <li>Perform post-registration retrospectives and feed lessons into the next cycle.</li>
+            </ol>
         </div>
 
         <footer>

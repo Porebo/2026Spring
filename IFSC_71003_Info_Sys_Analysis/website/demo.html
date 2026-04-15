@@ -844,6 +844,66 @@
         </div>
 
         </div>
+
+        <div class="homework-frame" id="hw6-js-section">
+            <a href="index.html" class="hw-back-link">← Back to Index</a>
+            <div class="homework-title">Homework 6 - JavaScript Commands (46-51)</div>
+
+            <div class="demo-section" id="demo46">
+                <a href="#toc" class="back-to-toc">↑ Back to Contents</a>
+                <div class="demo-title">46-51. JavaScript Output and Utility Commands</div>
+                <div class="demo-label">Six alphabetized JavaScript commands, each triggered by a button click.</div>
+                <div class="demo-example">
+                    <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                        <button type="button" onclick="hw6Alert()">46. alert()</button>
+                        <button type="button" onclick="hw6Confirm()">47. confirm()</button>
+                        <button type="button" onclick="hw6ConsoleLog()">48. console.log()</button>
+                        <button type="button" onclick="hw6DomUpdate()">49. document.getElementById().innerHTML</button>
+                        <button type="button" onclick="hw6MathMax()">50. Math.max()</button>
+                        <button type="button" onclick="hw6StringUpper()">51. String.toUpperCase()</button>
+                    </div>
+                    <div id="hw6-output" style="background:#eef3ff; border-left:4px solid #667eea; border-radius:6px; padding:10px; min-height:44px;">
+                        Click a button to see HW6 output here.
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        function setHw6Output(text) {
+            document.getElementById("hw6-output").innerHTML = text;
+        }
+
+        function hw6Alert() {
+            alert("HW6 alert(): This command displays a popup message.");
+            setHw6Output("Executed <strong>alert()</strong> successfully.");
+        }
+
+        function hw6Confirm() {
+            const accepted = confirm("HW6 confirm(): Click OK to continue or Cancel to decline.");
+            setHw6Output(`Executed <strong>confirm()</strong>. User selection: <strong>${accepted ? "OK" : "Cancel"}</strong>.`);
+        }
+
+        function hw6ConsoleLog() {
+            const message = "HW6 console.log(): message sent to developer console.";
+            console.log(message);
+            setHw6Output(`Executed <strong>console.log()</strong>. Check console for: "${message}"`);
+        }
+
+        function hw6DomUpdate() {
+            setHw6Output("Executed <strong>document.getElementById().innerHTML</strong> by updating this output area.");
+        }
+
+        function hw6MathMax() {
+            const maxValue = Math.max(14, 28, 42, 7);
+            setHw6Output(`Executed <strong>Math.max()</strong>. Result for [14, 28, 42, 7] is <strong>${maxValue}</strong>.`);
+        }
+
+        function hw6StringUpper() {
+            const value = "homework 6 javascript practice";
+            setHw6Output(`Executed <strong>String.toUpperCase()</strong>: ${value.toUpperCase()}`);
+        }
+    </script>
 </body>
 </html>

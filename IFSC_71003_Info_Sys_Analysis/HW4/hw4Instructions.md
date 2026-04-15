@@ -12,6 +12,10 @@ At the end of this module, students will be able to do the following:
 1. Make a form that submits data and contains multiple different kinds of components.
 2. Apply and compare FMEA and 5 whys.
 
+## Associated Lectures
+- 2026_02_10_Root_Cause_Analysis.html (Feb 10: Forms and Root Cause Analysis)
+- 2026_02_12_HTML_Forms_Colors_Passwords.html (Feb 12: Forms, Colors, and Passwords)
+
 ---
 
 ### Question 1: Form Creation

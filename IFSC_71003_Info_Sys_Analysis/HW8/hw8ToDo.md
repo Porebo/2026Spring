@@ -1,0 +1,19 @@
+﻿# HW8 To-Do List
+
+## Planning
+- [ ] Review transcript/module notes for HW8.
+- [ ] Confirm assignment scope and required outputs.
+
+## Build
+- [ ] Create required pages/files for HW8.
+- [ ] Add content aligned to module topic: Spaghetti diagrams.
+- [ ] Validate links, formatting, and readability.
+
+## Evidence
+- [ ] Document what was built in deliverables tracker.
+- [ ] Save references, screenshots, or transcript evidence as needed.
+
+## Publish
+- [ ] Link HW8 from website homework hub/homepage.
+- [ ] Mark HW8 ready for grading when complete.
+- [ ] Perform final review before upload/submission.

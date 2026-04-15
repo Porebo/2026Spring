@@ -58,6 +58,61 @@
             font-weight: 600;
         }
 
+        .section-subtitle {
+            color: #2c3e50;
+            font-size: 1.05em;
+            margin: 12px 0 8px;
+            font-weight: 700;
+        }
+
+        .lead {
+            background: #eef3ff;
+            border-left: 4px solid #667eea;
+            padding: 12px 14px;
+            border-radius: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            background: #fff;
+            border: 1px solid #dfe6f4;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            border: 1px solid #dfe6f4;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f3f6ff;
+            color: #2c3e50;
+        }
+
+        .risk-chip {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 14px;
+            font-size: 0.84em;
+            font-weight: 700;
+            background: #ffe8a1;
+            color: #6b5200;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
         footer {
             text-align: center;
             color: #999;
@@ -82,7 +137,75 @@
 
         <div class="section">
             <div class="section-title">FMEA Analysis</div>
-            <!-- Add your FMEA analysis content here -->
+            <p class="lead">
+                <strong>System analyzed:</strong> UALR online class registration process during peak enrollment windows.<br>
+                <strong>Failure mode:</strong> Students cannot complete registration because pages load very slowly or time out when many users are active at the same time.
+            </p>
+
+            <h2 class="section-subtitle">Failure Mode and Effects</h2>
+            <table aria-label="FMEA table for UALR registration bandwidth issue">
+                <thead>
+                    <tr>
+                        <th>FMEA Element</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Failure mode</td>
+                        <td>Registration portal responses exceed acceptable time and may fail at checkout/submit.</td>
+                    </tr>
+                    <tr>
+                        <td>Primary effect on students</td>
+                        <td>Students miss preferred sections, create incomplete schedules, or fail to enroll in required courses.</td>
+                    </tr>
+                    <tr>
+                        <td>Severity (1-10)</td>
+                        <td>8 - Enrollment delays can impact progression and graduation timelines.</td>
+                    </tr>
+                    <tr>
+                        <td>Occurrence (1-10)</td>
+                        <td>7 - Happens repeatedly during known high-traffic registration periods.</td>
+                    </tr>
+                    <tr>
+                        <td>Detection (1-10)</td>
+                        <td>5 - Monitoring can detect response spikes, but student-facing impact occurs before manual intervention.</td>
+                    </tr>
+                    <tr>
+                        <td>RPN</td>
+                        <td><span class="risk-chip">280 (High Priority)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 class="section-subtitle">Reasonable Causes (Likely)</h2>
+            <ul>
+                <li>Insufficient bandwidth allocation during peak registration hour bursts.</li>
+                <li>Application/database bottlenecks under concurrent write operations (course seat updates and student schedule writes).</li>
+                <li>Lack of queueing or throttling strategy, causing request storms.</li>
+                <li>Limited autoscaling or static server sizing that does not match peak load.</li>
+            </ul>
+
+            <h2 class="section-subtitle">Excluded or Less Reasonable Causes</h2>
+            <ul>
+                <li>Individual student typing speed or browser tab behavior as primary root cause.</li>
+                <li>Single random hardware failure only; the issue is patterned and time-based.</li>
+                <li>Students entering incorrect data; symptom appears before form completion and across many users.</li>
+            </ul>
+
+            <h2 class="section-subtitle">Suggested Improvements</h2>
+            <ul>
+                <li>Pre-registration load testing each term with realistic concurrent-user simulations.</li>
+                <li>Implement virtual waiting room/queue during peak windows to smooth demand.</li>
+                <li>Add autoscaling and short-term bandwidth burst provisioning for registration days.</li>
+                <li>Optimize critical database transactions and cache read-heavy course catalog calls.</li>
+                <li>Publish a live status page and estimated wait messages to reduce repeated refreshes.</li>
+            </ul>
+
+            <h2 class="section-subtitle">Expected Result After Mitigation</h2>
+            <p>
+                With queue management, capacity scaling, and transaction optimization, expected occurrence and detection ratings should improve significantly, reducing the risk priority and preserving fair student access to available courses.
+            </p>
         </div>
 
         <footer>

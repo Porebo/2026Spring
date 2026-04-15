@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW5 Q2 | Socratic JS Dialogue</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f7fa; min-height: 100vh; padding: 20px; }
+        .container { width: calc(100% - 40px); margin: 0 auto; padding: 20px; }
+        h1 { color: #667eea; margin-bottom: 20px; }
+        .breadcrumbs { margin-bottom: 20px; font-size: 0.9em; color: #666; padding: 5px 0; border-bottom: 1px solid #f0f0f0; }
+        .breadcrumbs a { color: #667eea; text-decoration: none; font-weight: 500; }
+        .breadcrumbs span { margin: 0 8px; color: #ccc; }
+        .nav { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #f0f0f0; }
+        .nav a { color: #667eea; text-decoration: none; margin-right: 15px; font-weight: 500; }
+        .section { margin-bottom: 25px; padding-bottom: 25px; border-bottom: 2px solid #f0f0f0; }
+        .section-title { color: #764ba2; font-size: 1.2em; margin-bottom: 10px; font-weight: 600; }
+        pre { background: #0f172a; color: #e2e8f0; padding: 12px; border-radius: 8px; overflow-x: auto; font-size: 0.9em; }
+        .qa { background: #fff; border: 1px solid #dbe4f3; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+        .speaker { font-weight: 700; color: #667eea; }
+        footer { text-align: center; color: #999; font-size: 0.9em; margin-top: 30px; padding-top: 20px; border-top: 2px solid #f0f0f0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> <span>&rsaquo;</span> <a href="hw5.html">Homework 5</a> <span>&rsaquo;</span> Q2
+        </nav>
+
+        <h1>Q2: Socratic Dialogue About JavaScript</h1>
+
+        <div class="nav">
+            <a href="hw5.html">&larr; Back to Homework 5</a>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Snippet Under Study</div>
+            <pre><code>const notes = document.getElementById("notes");
+const notesCount = document.getElementById("notesCount");
+
+function updateCount() {
+  notesCount.textContent = `${notes.value.length} / 300 characters`;
+}
+
+notes.addEventListener("input", updateCount);</code></pre>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Socratic Transcript</div>
+
+            <div class="qa"><span class="speaker">Student:</span> Please act as an expert in Socratic questioning. What does getElementById do in this code?<br><span class="speaker">AI:</span> It finds one element in the page by id and gives JavaScript a reference to it.</div>
+
+            <div class="qa"><span class="speaker">AI:</span> Which option is correct?<br>A) It creates a new HTML element<br>B) It finds an existing element<br>C) It sends data to a server<br><span class="speaker">Student:</span> B<br><span class="speaker">AI:</span> Correct. Nice start.</div>
+
+            <div class="qa"><span class="speaker">Student:</span> What does textContent change?<br><span class="speaker">AI:</span> It replaces the visible text inside that element. It does not parse HTML tags.</div>
+
+            <div class="qa"><span class="speaker">AI:</span> Why use notes.value.length here?<br>A) To count letters typed<br>B) To clear the field<br>C) To save to database<br><span class="speaker">Student:</span> A<br><span class="speaker">AI:</span> Correct. It updates the counter as the user types.</div>
+
+            <div class="qa"><span class="speaker">Student:</span> Why is addEventListener("input", updateCount) important?<br><span class="speaker">AI:</span> It runs updateCount every time the text changes, so the counter stays live and accurate.</div>
+
+            <div class="qa"><span class="speaker">AI:</span> If we remove this event listener, what happens?<br>A) Counter still updates automatically<br>B) Counter updates only when updateCount is called manually<br>C) The page crashes<br><span class="speaker">Student:</span> B<br><span class="speaker">AI:</span> Exactly.</div>
+
+            <div class="qa"><span class="speaker">Student:</span> Is updateCount a function declaration or expression?<br><span class="speaker">AI:</span> It is a function declaration. That means it is hoisted and can be called earlier in the script.</div>
+
+            <div class="qa"><span class="speaker">Student:</span> Brief final summary?<br><span class="speaker">AI:</span> The script reads two HTML elements, counts typed characters in a textarea, and updates a text label every time input changes.</div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Lester S. Carcamo. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

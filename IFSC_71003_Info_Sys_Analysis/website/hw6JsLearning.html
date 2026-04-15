@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW6 | Task 3 JavaScript Learning</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f7fa; min-height: 100vh; padding: 20px; }
+        .container { width: calc(100% - 40px); margin: 0 auto; padding: 20px; }
+        h1 { color: #667eea; margin-bottom: 20px; }
+        .breadcrumbs { margin-bottom: 20px; font-size: 0.9em; color: #666; padding: 5px 0; border-bottom: 1px solid #f0f0f0; }
+        .breadcrumbs a { color: #667eea; text-decoration: none; font-weight: 500; }
+        .breadcrumbs span { margin: 0 8px; color: #ccc; }
+        .nav { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #f0f0f0; }
+        .nav a { color: #667eea; text-decoration: none; margin-right: 15px; font-weight: 500; }
+        .section { margin-bottom: 25px; padding-bottom: 25px; border-bottom: 2px solid #f0f0f0; }
+        .section-title { color: #764ba2; font-size: 1.2em; margin-bottom: 10px; font-weight: 600; }
+        pre { background:#0f172a; color:#e2e8f0; padding:12px; border-radius:8px; overflow-x:auto; }
+        .qa { background:#fff; border:1px solid #dbe4f3; border-radius:8px; padding:12px; margin-bottom:12px; }
+        .speaker { font-weight:700; color:#667eea; }
+        footer { text-align:center; color:#999; font-size:0.9em; margin-top:30px; padding-top:20px; border-top:2px solid #f0f0f0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> <span>&rsaquo;</span> <a href="hw6.html">Homework 6</a> <span>&rsaquo;</span> Task 3
+        </nav>
+
+        <h1>Task 3: Learn JavaScript from Sandbox Code</h1>
+
+        <div class="nav">
+            <a href="hw6.html">&larr; Back to Homework 6</a>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Selected Sandbox Lines (1-3 lines)</div>
+            <pre><code>const perDay = (raw / 7).toFixed(1);
+readingEstimate.textContent = `Estimated pacing: ${perDay} pages/day...`;
+readingGoal.addEventListener("input", updateReadingEstimate);</code></pre>
+        </div>
+
+        <div class="section">
+            <div class="section-title">AI Learning Transcript (Brief Socratic Style)</div>
+            <div class="qa"><span class="speaker">Student:</span> What does toFixed(1) do in simple terms?<br><span class="speaker">AI:</span> It keeps one digit after the decimal so the number is easier to read.</div>
+            <div class="qa"><span class="speaker">Student:</span> Why divide by 7?<br><span class="speaker">AI:</span> To convert a weekly total into an estimated daily pace.</div>
+            <div class="qa"><span class="speaker">Student:</span> What is textContent changing here?<br><span class="speaker">AI:</span> It updates the visible text in the estimate area of the page.</div>
+            <div class="qa"><span class="speaker">Student:</span> What does addEventListener("input", ...) do?<br><span class="speaker">AI:</span> It reruns the function every time the user changes the input value.</div>
+            <div class="qa"><span class="speaker">Student:</span> Why is this useful for users?<br><span class="speaker">AI:</span> They get immediate feedback without clicking submit or refresh.</div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Lester S. Carcamo. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

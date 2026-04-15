@@ -196,19 +196,19 @@
 
                 <!-- Component 1: date -->
                 <div class="form-group">
-                    <label>Shift Date <span class="component-note">date</span></label>
+                    <label>1. Shift Date <span class="component-note">date</span></label>
                     <input type="date" name="shift_date" required>
                 </div>
 
                 <!-- Component 2: time -->
                 <div class="form-group">
-                    <label>Start Time <span class="component-note">time</span></label>
+                    <label>2. Start Time <span class="component-note">time</span></label>
                     <input type="time" name="start_time" required>
                 </div>
 
                 <!-- Component 3: select -->
                 <div class="form-group">
-                    <label>Platform <span class="component-note">select</span></label>
+                    <label>3. Platform <span class="component-note">select</span></label>
                     <select name="platform" required>
                         <option value="" disabled selected>-- Choose platform --</option>
                         <option value="Uber">Uber</option>
@@ -220,20 +220,20 @@
 
                 <!-- Component 4: text -->
                 <div class="form-group">
-                    <label>Area Driven <span class="component-note">text</span></label>
+                    <label>4. Area Driven <span class="component-note">text</span></label>
                     <span class="hint">General area or zone (e.g., Downtown, Airport, Suburbs)</span>
                     <input type="text" name="area" placeholder="e.g., Downtown Bakersfield" required>
                 </div>
 
                 <!-- Component 5: number -->
                 <div class="form-group">
-                    <label>Number of Rides <span class="component-note">number</span></label>
+                    <label>5. Number of Rides <span class="component-note">number</span></label>
                     <input type="number" name="ride_count" min="0" max="100" placeholder="0" required>
                 </div>
 
                 <!-- Component 6: radio -->
                 <div class="form-group">
-                    <label>Shift Type <span class="component-note">radio</span></label>
+                    <label>6. Shift Type <span class="component-note">radio</span></label>
                     <div class="radio-group">
                         <label><input type="radio" name="shift_type" value="Morning" required> Morning</label>
                         <label><input type="radio" name="shift_type" value="Afternoon"> Afternoon</label>
@@ -244,7 +244,7 @@
 
                 <!-- Component 7: checkbox -->
                 <div class="form-group">
-                    <label>Extras <span class="component-note">checkbox</span></label>
+                    <label>7. Extras <span class="component-note">checkbox</span></label>
                     <div class="checkbox-group">
                         <label><input type="checkbox" name="cash_tips" value="yes"> Cash tips received</label>
                         <label><input type="checkbox" name="long_ride" value="yes"> Had a long ride (30+ min)</label>
@@ -254,12 +254,12 @@
 
                 <!-- Component 8: textarea -->
                 <div class="form-group">
-                    <label>Notes <span class="component-note">textarea</span></label>
+                    <label>8. Notes <span class="component-note">textarea</span></label>
                     <textarea name="notes" placeholder="Any observations, memorable rides, issues..."></textarea>
                 </div>
 
                 <div class="form-actions">
-                    <input type="submit" value="Log Shift" class="btn-submit">
+                    <input type="submit" value="9. Log Shift" class="btn-submit">
                     <a href="hw4FormResults.php" class="btn-view">📋 View Past Entries</a>
                 </div>
             </form>

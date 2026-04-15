@@ -74,6 +74,39 @@
             gap: 15px;
         }
 
+        .radio-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 6px;
+        }
+
+        .radio-row label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin: 0;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .radio-row input {
+            width: auto;
+            padding: 0;
+        }
+
+        .char-count {
+            margin-top: 6px;
+            font-size: 0.88em;
+            color: #667eea;
+        }
+
+        .estimate-box {
+            margin-top: 6px;
+            font-size: 0.9em;
+            color: #2d4a86;
+        }
+
         label {
             font-weight: 600;
             color: #333;
@@ -158,7 +191,7 @@
             <form class="form-grid" action="hw3SandboxHandler.php" method="post">
                 <div>
                     <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" placeholder="Enter your name" required>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your name" maxlength="60" pattern="[A-Za-z ]{2,60}" title="Use letters and spaces only (2-60 characters)" required>
                 </div>
 
                 <div>
@@ -178,8 +211,24 @@
                 </div>
 
                 <div>
+                    <label>Preferred Study Mode</label>
+                    <div class="radio-row">
+                        <label for="modeSolo"><input type="radio" id="modeSolo" name="studyMode" value="Solo" required>Solo</label>
+                        <label for="modeGroup"><input type="radio" id="modeGroup" name="studyMode" value="Group">Group</label>
+                        <label for="modeMix"><input type="radio" id="modeMix" name="studyMode" value="Mix of both">Mix of both</label>
+                    </div>
+                </div>
+
+                <div>
                     <label for="notes">Course Notes</label>
-                    <textarea id="notes" name="notes" placeholder="Share your current study plan..."></textarea>
+                    <textarea id="notes" name="notes" maxlength="300" placeholder="Share your current study plan..."></textarea>
+                    <div id="notesCount" class="char-count">0 / 300 characters</div>
+                </div>
+
+                <div>
+                    <label for="readingGoal">Weekly Reading Goal (pages)</label>
+                    <input type="number" id="readingGoal" name="readingGoal" min="0" max="500" placeholder="e.g., 45">
+                    <div id="readingEstimate" class="estimate-box">Enter a value to see estimated pages per day (7-day pacing).</div>
                 </div>
 
                 <div>
@@ -194,5 +243,32 @@
             <p class="note">This sandbox form intentionally avoids sensitive fields such as password, date of birth, credit card number, or student ID.</p>
         </div>
     </div>
+
+    <script>
+        const notes = document.getElementById("notes");
+        const notesCount = document.getElementById("notesCount");
+        const readingGoal = document.getElementById("readingGoal");
+        const readingEstimate = document.getElementById("readingEstimate");
+
+        function updateCount() {
+            notesCount.textContent = `${notes.value.length} / 300 characters`;
+        }
+
+        notes.addEventListener("input", updateCount);
+        updateCount();
+
+        function updateReadingEstimate() {
+            const raw = Number(readingGoal.value);
+            if (!readingGoal.value || Number.isNaN(raw) || raw < 0) {
+                readingEstimate.textContent = "Enter a value to see estimated pages per day (7-day pacing).";
+                return;
+            }
+            const perDay = (raw / 7).toFixed(1);
+            readingEstimate.textContent = `Estimated pacing: ${perDay} pages/day to meet ${raw} pages this week.`;
+        }
+
+        readingGoal.addEventListener("input", updateReadingEstimate);
+        updateReadingEstimate();
+    </script>
 </body>
 </html>
