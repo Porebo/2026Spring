@@ -14,22 +14,22 @@
 ## Deliverables
 1. Primary assignment artifact(s)
 - Description: Core output(s) required for module topic.
-- Status: Pending
-- Link/Path: Pending
+- Status: Completed
+- Link/Path: website/hw7.html
 
 2. Supporting evidence
 - Description: Notes, screenshots, references, or transcript evidence.
-- Status: Pending
-- Link/Path: Pending
+- Status: Completed
+- Link/Path: website/hw7.html (PERT table + operator examples)
 
 3. Website integration
 - Description: Homework page link and homepage status update.
-- Status: Pending
-- Link/Path: Pending
+- Status: Completed
+- Link/Path: website/index.html and website/hw7.html
 
 ## Final Checklist
-- [ ] All required artifacts created.
-- [ ] All evidence captured.
-- [ ] Website links verified.
-- [ ] Homework status updated for grading.
+- [x] All required artifacts created.
+- [x] All evidence captured.
+- [x] Website links verified.
+- [x] Homework status updated for grading.
 
