@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 8</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f7fa; min-height: 100vh; padding: 20px; }
+        .container { width: calc(100% - 40px); margin: 0 auto; padding: 20px; }
+        h1 { color: #667eea; margin-bottom: 20px; }
+        .hw-status { display:inline-block; background:#2e8b57; color:#fff; padding:8px 14px; border-radius:4px; font-weight:600; font-size:0.9em; margin-left:15px; }
+        .hw-timestamp { display:block; color:#667eea; font-size:0.85em; font-weight:500; margin-top:8px; }
+        .breadcrumbs { margin-bottom:20px; font-size:0.9em; color:#666; padding:5px 0; border-bottom:1px solid #f0f0f0; }
+        .breadcrumbs a { color:#667eea; text-decoration:none; font-weight:500; }
+        .breadcrumbs span { margin:0 8px; color:#ccc; }
+        .nav { margin-bottom:30px; padding-bottom:20px; border-bottom:2px solid #f0f0f0; }
+        .nav a { color:#667eea; text-decoration:none; margin-right:15px; font-weight:500; }
+        .section { margin-bottom:25px; padding-bottom:25px; border-bottom:2px solid #f0f0f0; }
+        .section-title { color:#764ba2; font-size:1.2em; margin-bottom:10px; font-weight:600; }
+        table { width:100%; border-collapse:collapse; margin-top:10px; background:#fff; }
+        th, td { border:1px solid #dbe4f3; padding:10px; text-align:left; }
+        th { background:#eef3ff; color:#2c4375; }
+        pre { background:#0f172a; color:#e2e8f0; padding:12px; border-radius:8px; overflow-x:auto; }
+        ul { margin-left:20px; }
+        li { margin-bottom:8px; }
+        footer { text-align:center; color:#999; font-size:0.9em; margin-top:30px; padding-top:20px; border-top:2px solid #f0f0f0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> <span>&rsaquo;</span> Homework 8
+        </nav>
+
+        <h1>Homework 8<span class="hw-status">Ready for Grading</span></h1>
+        <p class="hw-timestamp">Last Updated: April 15, 2026</p>
+
+        <div class="nav">
+            <a href="index.html">&larr; Back to Portfolio</a>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Part 1: Spaghetti Diagram Workflow Trace</div>
+            <p>Case used: student handling a one-day campus schedule (advising, financial aid, registration help, and class meeting). The trace highlights movement waste and opportunities to streamline steps.</p>
+            <table>
+                <thead>
+                    <tr><th>Step</th><th>Location</th><th>Approx. Travel</th><th>Observed Delay</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>Parking to advising office</td><td>450 ft</td><td>Queue at advising check-in</td></tr>
+                    <tr><td>2</td><td>Advising to financial aid desk</td><td>380 ft</td><td>Form clarification wait</td></tr>
+                    <tr><td>3</td><td>Financial aid to registrar window</td><td>500 ft</td><td>Document mismatch</td></tr>
+                    <tr><td>4</td><td>Registrar back to advising</td><td>380 ft</td><td>Repeat approval cycle</td></tr>
+                    <tr><td>5</td><td>Advising to class building</td><td>620 ft</td><td>Late arrival risk</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Part 2: Improvement Recommendations</div>
+            <ul>
+                <li>Use one digital triage form so students are routed correctly the first time.</li>
+                <li>Enable advising notes visibility for registrar and financial aid to reduce repeat checks.</li>
+                <li>Create appointment batching for related services (advising + registrar in same slot).</li>
+                <li>Add campus wayfinding map with shortest routes between high-traffic offices.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Part 3: JavaScript Functions and Loops Recap</div>
+            <pre><code>function totalDistance(segments) {
+  let total = 0;
+  for (let i = 0; i < segments.length; i++) {
+    total += segments[i];
+  }
+  return total;
+}
+
+const walkingSegments = [450, 380, 500, 380, 620];
+const campusDistance = totalDistance(walkingSegments); // 2330 ft</code></pre>
+            <p>This connects the spaghetti-diagram concept to loops and reusable functions from the related JavaScript lecture.</p>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Lester S. Carcamo. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
