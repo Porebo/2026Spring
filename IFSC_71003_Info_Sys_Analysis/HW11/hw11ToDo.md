@@ -1,19 +1,19 @@
 ﻿# HW11 To-Do List
 
 ## Planning
-- [ ] Review transcript/module notes for HW11.
-- [ ] Confirm assignment scope and required outputs.
+- [x] Review transcript/module notes for HW11.
+- [x] Confirm assignment scope and required outputs.
 
 ## Build
-- [ ] Create required pages/files for HW11.
-- [ ] Add content aligned to module topic: Lean Six Sigma (cont.).
-- [ ] Validate links, formatting, and readability.
+- [x] Create required pages/files for HW11.
+- [x] Add content aligned to module topic: Lean Six Sigma (cont.).
+- [x] Validate links, formatting, and readability.
 
 ## Evidence
-- [ ] Document what was built in deliverables tracker.
-- [ ] Save references, screenshots, or transcript evidence as needed.
+- [x] Document what was built in deliverables tracker.
+- [x] Save references, screenshots, or transcript evidence as needed.
 
 ## Publish
-- [ ] Link HW11 from website homework hub/homepage.
-- [ ] Mark HW11 ready for grading when complete.
-- [ ] Perform final review before upload/submission.
+- [x] Link HW11 from website homework hub/homepage.
+- [x] Mark HW11 ready for grading when complete.
+- [x] Perform final review before upload/submission.
