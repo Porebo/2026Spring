@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 9</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height:1.6; color:#333; background:#f5f7fa; min-height:100vh; padding:20px; }
+        .container { width:calc(100% - 40px); margin:0 auto; padding:20px; }
+        h1 { color:#667eea; margin-bottom:20px; }
+        .hw-status { display:inline-block; background:#2e8b57; color:#fff; padding:8px 14px; border-radius:4px; font-weight:600; font-size:0.9em; margin-left:15px; }
+        .hw-timestamp { display:block; color:#667eea; font-size:0.85em; font-weight:500; margin-top:8px; }
+        .breadcrumbs { margin-bottom:20px; font-size:0.9em; color:#666; padding:5px 0; border-bottom:1px solid #f0f0f0; }
+        .breadcrumbs a { color:#667eea; text-decoration:none; font-weight:500; }
+        .breadcrumbs span { margin:0 8px; color:#ccc; }
+        .nav { margin-bottom:30px; padding-bottom:20px; border-bottom:2px solid #f0f0f0; }
+        .nav a { color:#667eea; text-decoration:none; margin-right:15px; font-weight:500; }
+        .section { margin-bottom:25px; padding-bottom:25px; border-bottom:2px solid #f0f0f0; }
+        .section-title { color:#764ba2; font-size:1.2em; margin-bottom:10px; font-weight:600; }
+        table { width:100%; border-collapse:collapse; margin-top:10px; background:#fff; }
+        th, td { border:1px solid #dbe4f3; padding:10px; text-align:left; }
+        th { background:#eef3ff; color:#2c4375; }
+        ul { margin-left:20px; }
+        li { margin-bottom:8px; }
+        pre { background:#0f172a; color:#e2e8f0; padding:12px; border-radius:8px; overflow-x:auto; }
+        footer { text-align:center; color:#999; font-size:0.9em; margin-top:30px; padding-top:20px; border-top:2px solid #f0f0f0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> <span>&rsaquo;</span> Homework 9
+        </nav>
+
+        <h1>Homework 9<span class="hw-status">Ready for Grading</span></h1>
+        <p class="hw-timestamp">Last Updated: April 15, 2026</p>
+
+        <div class="nav"><a href="index.html">&larr; Back to Portfolio</a></div>
+
+        <div class="section">
+            <div class="section-title">Part 1: CMMI Snapshot Assessment</div>
+            <p>System assessed: student support ticket workflow for course advisement and registration troubleshooting.</p>
+            <table>
+                <thead>
+                    <tr><th>Process Area</th><th>Current State</th><th>Maturity Signal</th><th>Improvement Action</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Request intake</td><td>Mostly ad hoc email threads</td><td>Level 1-2</td><td>Standardized ticket form with required fields</td></tr>
+                    <tr><td>Prioritization</td><td>Depends on staff availability</td><td>Level 1</td><td>Define SLA priority rules</td></tr>
+                    <tr><td>Resolution tracking</td><td>Partial follow-up</td><td>Level 2</td><td>Mandatory closure notes and owner assignment</td></tr>
+                    <tr><td>Continuous improvement</td><td>Informal retrospective</td><td>Level 2-3</td><td>Monthly metrics review with corrective backlog</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Part 2: JavaScript Conditional Debugging Notes</div>
+            <pre><code>function classifyWait(minutes) {
+  if (minutes <= 5) {
+    return "Low";
+  } else if (minutes <= 15) {
+    return "Medium";
+  } else {
+    return "High";
+  }
+}</code></pre>
+            <ul>
+                <li>Used clear else-if branches to prevent overlapping conditions.</li>
+                <li>Added boundary tests for 5, 6, 15, and 16 minutes.</li>
+                <li>Removed duplicated checks that caused unreachable branches.</li>
+            </ul>
+        </div>
+
+        <footer><p>&copy; 2026 Lester S. Carcamo. All rights reserved.</p></footer>
+    </div>
+</body>
+</html>
