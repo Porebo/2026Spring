@@ -1,4 +1,4 @@
-# Assistant Preferences — User: Lester
+# Assistant Preferences - User: Lester (Action Directory: workspace-wide assistant behavior)
 
 - Preference: **Quiet**
   - Do not send interim updates or thinking steps.

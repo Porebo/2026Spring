@@ -1,4 +1,4 @@
-# AI Instructions for Main Index (index.html)
+# AI Instructions for Main Index (Action Directory: workspace root - index.html, education-components.js, styles.css)
 
 ## Purpose
 This document defines how to maintain the main page architecture for [index.html](index.html) in this repository.
