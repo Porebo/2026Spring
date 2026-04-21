@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apr 16: PHP Hit Counters</title>
+    <style>
+        :root {
+            --primary: #0d4d63;
+            --accent: #c0392b;
+            --bg: #f5f7fb;
+            --text: #1f2a37;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+        }
+        header {
+            background: linear-gradient(135deg, #0d4d63, #051d29);
+            color: white;
+            text-align: center;
+            padding: 36px 20px;
+        }
+        header a {
+            color: #cfe6ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        header a:hover { text-decoration: underline; }
+        section {
+            max-width: 980px;
+            margin: 30px auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 24px 48px rgba(5,29,41,0.1);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid rgba(13,77,99,0.2);
+            padding-bottom: 10px;
+        }
+        h3 { margin-top: 1.3rem; color: #12374a; }
+        ul, ol { line-height: 1.75; }
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            margin-bottom: 12px;
+        }
+        .highlight {
+            background: #e7f4ff;
+            border-left: 5px solid var(--primary);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        .warning {
+            background: #fff4e7;
+            border-left: 5px solid var(--accent);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        code {
+            background: rgba(13,77,99,0.08);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+            padding: 40px 20px 60px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>PHP Hit Counters</h1>
+    <p>April 16, 2026 &bull; 4:10 PM &bull; W12 Thursday</p>
+    <p class="tag">Module 12 - PHP State and Files</p>
+    <a href="index.html">&larr; Back to Transcript Hub</a>
+</header>
+
+<section>
+    <h2>1. Homework Check-In</h2>
+    <span class="tag">Opening minutes</span>
+
+    <ul>
+        <li>Daniel reviewed HW12, which was due the following Tuesday.</li>
+        <li>He noted that the assignment combined project work, PHP practice, and reflection on rapid prototyping.</li>
+        <li>The visible hit counter example on the course page became the bridge into the day's lesson.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>2. Why a Hit Counter Is a Good PHP Example</h2>
+    <span class="tag">Concept framing</span>
+
+    <p>
+        The hit counter was presented as a simple but meaningful example of <strong>server-side state</strong>. Unlike plain HTML, a PHP page can remember something across visits by storing data outside the page itself.
+    </p>
+
+    <div class="highlight">
+        Daniel's point was not that this was industrial-grade analytics. It was that the example was small enough for students to understand end to end.
+    </div>
+</section>
+
+<section>
+    <h2>3. What Can Go Wrong with a Basic Counter</h2>
+    <span class="tag">Limitations discussion</span>
+
+    <ul>
+        <li>Refreshing the page repeatedly inflates the count.</li>
+        <li>A bot or script could automate that inflation.</li>
+        <li>If multiple pages share one backing file, the displayed number blends hits from all of them.</li>
+        <li>Even so, the method is still useful for small student projects and learning exercises.</li>
+    </ul>
+
+    <div class="warning">
+        Accuracy was discussed honestly: this was a lightweight learning tool, not a trustworthy anti-fraud traffic measurement system.
+    </div>
+</section>
+
+<section>
+    <h2>4. Core Program Structure</h2>
+    <span class="tag">Step-by-step walkthrough</span>
+
+    <ol>
+        <li>Start a PHP block inside the page.</li>
+        <li>Store the counter filename in a variable such as <code>counter.txt</code>.</li>
+        <li>Check whether that file already exists.</li>
+        <li>If it does not exist, create it and initialize the count.</li>
+        <li>Read the current number, increment it, write it back, and then display it.</li>
+    </ol>
+
+    <p>
+        The key teaching move here was showing how just a few PHP file operations can turn a static page into a page that updates server-side data.
+    </p>
+</section>
+
+<section>
+    <h2>5. Files as Lightweight Storage</h2>
+    <span class="tag">Server-side state</span>
+
+    <ul>
+        <li>The counter stores its value in a plain text file rather than a database.</li>
+        <li>PHP can check existence, write contents, and reuse those contents on the next request.</li>
+        <li>This reinforced the idea that PHP runs before the browser sees the final output.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>6. Broader PHP Review</h2>
+    <span class="tag">Comparisons to JavaScript</span>
+
+    <ul>
+        <li>Daniel briefly revisited PHP variables, operators, and control flow.</li>
+        <li>He again emphasized that PHP and JavaScript share many concepts, even when syntax differs.</li>
+        <li>The lecture ended by restating the most important distinction: PHP typically runs on the server, JavaScript typically runs in the browser.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>7. Key Takeaways</h2>
+
+    <ol>
+        <li>A hit counter is an approachable example of server-side persistence.</li>
+        <li>PHP can read and update small files with very little code.</li>
+        <li>Basic counters are easy to manipulate, so their limitations matter.</li>
+        <li>The learning goal was understanding stateful web behavior, not building production analytics.</li>
+    </ol>
+</section>
+
+<footer>
+    <p>IFSC 71003 Transcript Notes &bull; Compiled from Zoom transcript artifacts</p>
+    <p>Last updated April 20, 2026</p>
+</footer>
+
+</body>
+</html>

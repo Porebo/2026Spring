@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudCircle Prototype</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #1f2a37; background: linear-gradient(180deg, #edf4ff 0%, #f6f8fc 100%); min-height: 100vh; padding: 20px; }
+        .container { width: calc(100% - 40px); margin: 0 auto; padding: 20px; }
+        .breadcrumbs { margin-bottom: 20px; font-size: 0.9em; color: #666; padding: 5px 0; border-bottom: 1px solid #dbe4f3; }
+        .breadcrumbs a { color: #667eea; text-decoration: none; font-weight: 500; }
+        .breadcrumbs span { margin: 0 8px; color: #ccc; }
+        .hero { background: linear-gradient(135deg, #0d4d63, #123b8b); color: #fff; padding: 28px; border-radius: 18px; margin-bottom: 24px; box-shadow: 0 18px 40px rgba(18,59,139,0.16); }
+        .hero h1 { font-size: 2.1em; margin-bottom: 10px; }
+        .hero p { max-width: 720px; opacity: 0.95; }
+        .hero-links { margin-top: 16px; }
+        .hero-links a { display: inline-block; margin-right: 10px; margin-top: 8px; padding: 10px 14px; background: rgba(255,255,255,0.14); color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.22); border-radius: 999px; }
+        .grid { display: grid; grid-template-columns: 280px 1fr 260px; gap: 18px; }
+        .panel { background: #fff; border: 1px solid #dbe4f3; border-radius: 16px; padding: 18px; box-shadow: 0 10px 24px rgba(15,23,42,0.05); }
+        .panel h2 { color: #3b4f8c; font-size: 1.05em; margin-bottom: 12px; }
+        .panel h3 { color: #0d4d63; font-size: 0.95em; margin-bottom: 8px; }
+        .chip { display: inline-block; padding: 4px 10px; border-radius: 999px; background: #eef3ff; color: #33508d; font-size: 0.8em; font-weight: 600; margin: 0 6px 6px 0; }
+        .group-list, .trend-list, .task-list { list-style: none; }
+        .group-list li, .trend-list li, .task-list li { padding: 10px 0; border-bottom: 1px solid #eef2f7; }
+        .group-list li:last-child, .trend-list li:last-child, .task-list li:last-child { border-bottom: none; }
+        .feed-card { background: #fbfcff; border: 1px solid #e6ebf5; border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+        .feed-meta { color: #667; font-size: 0.88em; margin-bottom: 10px; }
+        .cta-bar { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; }
+        .cta { padding: 8px 12px; border-radius: 8px; background: #eef3ff; color: #33508d; font-size: 0.88em; }
+        .note { margin-top: 18px; padding: 14px 16px; border-left: 4px solid #0d4d63; background: #eef8fb; border-radius: 6px; }
+        footer { text-align: center; color: #7a8599; font-size: 0.9em; margin-top: 28px; padding-top: 20px; }
+        @media (max-width: 980px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> <span>&rsaquo;</span> <a href="hw12.html">HW12</a> <span>&rsaquo;</span> CloudCircle Prototype
+        </nav>
+
+        <section class="hero">
+            <h1>CloudCircle</h1>
+            <p>A rapid prototype for a social media platform designed for cloud enthusiasts to share labs, compare certifications, ask architecture questions, and build small peer communities around AWS, Azure, GCP, Kubernetes, and DevOps workflows.</p>
+            <div class="hero-links">
+                <a href="hw12.html">Back to HW12</a>
+                <a href="demo.php">View PHP Demo</a>
+            </div>
+        </section>
+
+        <div class="grid">
+            <aside class="panel">
+                <h2>Community Groups</h2>
+                <ul class="group-list">
+                    <li><strong>AWS Builders</strong><br><span class="chip">1,482 members</span><span class="chip">Hands-on labs</span></li>
+                    <li><strong>Azure Admin Track</strong><br><span class="chip">894 members</span><span class="chip">Certification prep</span></li>
+                    <li><strong>Kubernetes Corner</strong><br><span class="chip">522 members</span><span class="chip">Cluster troubleshooting</span></li>
+                    <li><strong>FinOps Exchange</strong><br><span class="chip">311 members</span><span class="chip">Cost optimization</span></li>
+                </ul>
+
+                <div class="note">
+                    This left column shows how the final system could organize user communities around specialties rather than one undifferentiated feed.
+                </div>
+            </aside>
+
+            <main class="panel">
+                <h2>Main Feed Prototype</h2>
+
+                <article class="feed-card">
+                    <div class="feed-meta">Maya R. | AWS Builders | 8 minutes ago</div>
+                    <h3>Lab checkpoint: S3 static hosting + CloudFront</h3>
+                    <p>I finished the front-end routing and cache invalidation notes for my study lab. The next version should attach cost estimates per deployment so learners see the tradeoff between convenience and spend.</p>
+                    <div class="cta-bar">
+                        <div class="cta">Comment</div>
+                        <div class="cta">Save Lab</div>
+                        <div class="cta">Reuse Checklist</div>
+                    </div>
+                </article>
+
+                <article class="feed-card">
+                    <div class="feed-meta">Luis C. | Kubernetes Corner | 23 minutes ago</div>
+                    <h3>Question: best way to explain pod restarts to beginners?</h3>
+                    <p>I want the app to support short question cards where advanced users can reply with diagrams, practical analogies, and links to examples. This prototype keeps that interaction visible without needing a real backend yet.</p>
+                    <div class="cta-bar">
+                        <div class="cta">Reply</div>
+                        <div class="cta">Attach Diagram</div>
+                        <div class="cta">Follow Thread</div>
+                    </div>
+                </article>
+
+                <article class="feed-card">
+                    <div class="feed-meta">Nina T. | FinOps Exchange | 41 minutes ago</div>
+                    <h3>Weekly cost-review board</h3>
+                    <p>Prototype concept: a dashboard-style post that blends community discussion with practical monthly cloud-spend snapshots. It helps connect technical design choices to financial outcomes.</p>
+                    <div class="cta-bar">
+                        <div class="cta">Open Snapshot</div>
+                        <div class="cta">Compare Month</div>
+                        <div class="cta">Share Insight</div>
+                    </div>
+                </article>
+            </main>
+
+            <aside class="panel">
+                <h2>Profile and Trends</h2>
+                <h3>Lester's Prototype Focus</h3>
+                <ul class="task-list">
+                    <li>Clarify navigation between feed, groups, and profile.</li>
+                    <li>Test which actions need priority placement above the fold.</li>
+                    <li>Decide what should stay prototype-only vs. real backend later.</li>
+                </ul>
+
+                <h3 style="margin-top:16px;">Trending Topics</h3>
+                <ul class="trend-list">
+                    <li>#cloud-cert-roadmaps</li>
+                    <li>#terraform-state</li>
+                    <li>#azure-cost-alerts</li>
+                    <li>#k8s-debug-notes</li>
+                </ul>
+
+                <div class="note">
+                    This page is intentionally a rapid prototype: it shows interface structure, expected user flow, and content categories without needing real login, database, or posting systems yet.
+                </div>
+            </aside>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Lester S. Carcamo. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

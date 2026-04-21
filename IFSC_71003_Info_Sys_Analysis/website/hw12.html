@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 12</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height:1.6; color:#333; background:#f5f7fa; min-height:100vh; padding:20px; }
+        .container { width:calc(100% - 40px); margin:0 auto; padding:20px; }
+        h1 { color:#667eea; margin-bottom:20px; }
+        .hw-status { display:inline-block; background:#2e8b57; color:#fff; padding:8px 14px; border-radius:4px; font-weight:600; font-size:0.9em; margin-left:15px; }
+        .hw-timestamp { display:block; color:#667eea; font-size:0.85em; font-weight:500; margin-top:8px; }
+        .breadcrumbs { margin-bottom:20px; font-size:0.9em; color:#666; padding:5px 0; border-bottom:1px solid #f0f0f0; }
+        .breadcrumbs a { color:#667eea; text-decoration:none; font-weight:500; }
+        .breadcrumbs span { margin:0 8px; color:#ccc; }
+        .nav { margin-bottom:30px; padding-bottom:20px; border-bottom:2px solid #f0f0f0; }
+        .nav a { color:#667eea; text-decoration:none; margin-right:15px; font-weight:500; }
+        .section { margin-bottom:25px; padding-bottom:25px; border-bottom:2px solid #f0f0f0; }
+        .section-title { color:#764ba2; font-size:1.2em; margin-bottom:10px; font-weight:600; }
+        table { width:100%; border-collapse:collapse; margin-top:10px; background:#fff; }
+        th, td { border:1px solid #dbe4f3; padding:10px; text-align:left; vertical-align:top; }
+        th { background:#eef3ff; color:#2c4375; }
+        pre { background:#0f172a; color:#e2e8f0; padding:12px; border-radius:8px; overflow-x:auto; }
+        ul { margin-left:20px; }
+        li { margin-bottom:8px; }
+        .callout { background:#fff8e1; border-left:4px solid #f39c12; padding:14px 16px; border-radius:6px; margin-top:14px; }
+        .link-card { display:inline-block; background:#667eea; color:#fff; text-decoration:none; padding:10px 14px; border-radius:6px; margin-right:10px; margin-top:10px; }
+        .link-card:hover { background:#764ba2; }
+        footer { text-align:center; color:#999; font-size:0.9em; margin-top:30px; padding-top:20px; border-top:2px solid #f0f0f0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> <span>&rsaquo;</span> Homework 12
+        </nav>
+
+        <h1>Homework 12<span class="hw-status">Ready for Grading</span></h1>
+        <p class="hw-timestamp">Last Updated: April 20, 2026</p>
+
+        <div class="nav">
+            <a href="index.html">&larr; Back to Portfolio</a>
+            <a href="demo.php">Open PHP Demo Page</a>
+            <a href="cloudPrototype.html">Open Project Prototype</a>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Part 1: Three New PHP Commands Added</div>
+            <table>
+                <thead>
+                    <tr><th>PHP Command</th><th>What It Does</th><th>Where It Appears</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>date()</code></td><td>Prints the current server-rendered date for the page.</td><td><a href="demo.php">demo.php</a></td></tr>
+                    <tr><td><code>strtoupper()</code></td><td>Converts project text to uppercase for emphasis.</td><td><a href="demo.php">demo.php</a></td></tr>
+                    <tr><td><code>number_format()</code></td><td>Formats numeric output cleanly for display.</td><td><a href="demo.php">demo.php</a></td></tr>
+                </tbody>
+            </table>
+            <div class="callout">
+                The PHP code is quoted directly on the demo page so the instructor can see both the code and the live output in one place.
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Part 2: PHP Hit Counter</div>
+            <p>The demo page now includes a live file-based hit counter in the page title area. Each visit reads a text file, increments the count, writes the new value back to the file, and displays the updated total.</p>
+            <pre><code>$counterFile = __DIR__ . '/demo_counter.txt';
+if (!file_exists($counterFile)) {
+    file_put_contents($counterFile, "0", LOCK_EX);
+}
+$currentCount = (int) trim((string) file_get_contents($counterFile));
+$currentCount++;
+file_put_contents($counterFile, (string) $currentCount, LOCK_EX);</code></pre>
+            <ul>
+                <li>This demonstrates basic server-side state persistence.</li>
+                <li>The counter is intentionally simple and matches the lecture example from April 16.</li>
+                <li>Evidence of the live counter appears on the PHP demo page itself.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Part 3: Rapid Prototyping Reflection</div>
+            <p>The current project prototype is a lightweight front-end concept for a cloud-enthusiast social platform called <strong>CloudCircle</strong>. It is a rapid prototype because it focuses on visual structure, navigation, and user workflow without needing a full production back end, database, authentication system, or live posting engine yet.</p>
+            <ul>
+                <li>The prototype already shows the main feed, community groups, and a profile summary.</li>
+                <li>It gives the user the look and feel of the final product early in development.</li>
+                <li>It allows feedback on layout, feature priorities, and navigation before deeper server-side work is added.</li>
+                <li>This approach lowers risk because design problems can be spotted before investing time in a complete implementation.</li>
+            </ul>
+            <div class="callout">
+                Full-screen screenshot evidence for submission was taken from this reflection or project-review view during the homework submission workflow.
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Part 4: Project Progress for This Homework Cycle</div>
+            <p>For HW12, I made two practical project-related improvements:</p>
+            <ul>
+                <li>Built a cleaner cloud-community project prototype page to support the final presentation direction.</li>
+                <li>Extended the site with PHP behavior on the demo page, including live output and a hit counter, so the project now includes visible server-side functionality.</li>
+            </ul>
+            <a class="link-card" href="cloudPrototype.html">Project Prototype Link</a>
+            <a class="link-card" href="demo.php">PHP Demo Link</a>
+        </div>
+
+        <footer><p>&copy; 2026 Lester S. Carcamo. All rights reserved.</p></footer>
+    </div>
+</body>
+</html>
