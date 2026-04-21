@@ -1,19 +1,23 @@
-﻿# HW13 To-Do List
+# HW13 To-Do List
 
 ## Planning
-- [ ] Review transcript/module notes for HW13.
-- [ ] Confirm assignment scope and required outputs.
+- [ ] Re-check the Module 13 transcript when it becomes available.
+- [ ] Confirm the project topic and final demo direction.
+- [ ] Decide which pages and features belong in the demo walkthrough.
 
 ## Build
-- [ ] Create required pages/files for HW13.
-- [ ] Add content aligned to module topic: Project decomposition & demos.
-- [ ] Validate links, formatting, and readability.
+- [ ] Create the HW13 page.
+- [ ] Write a short project overview.
+- [ ] Break the project into major modules or pages.
+- [ ] Add a demo order or speaking flow for the presentation.
+- [ ] Note what was improved after HW12.
 
 ## Evidence
-- [ ] Document what was built in deliverables tracker.
-- [ ] Save references, screenshots, or transcript evidence as needed.
+- [ ] Update the deliverables tracker with actual links.
+- [ ] Keep screenshots or notes showing project progress.
+- [ ] Save any presentation bullets you may want during the demo.
 
 ## Publish
-- [ ] Link HW13 from website homework hub/homepage.
+- [ ] Link HW13 from the website homepage or homework hub.
+- [ ] Verify the project link works live.
 - [ ] Mark HW13 ready for grading when complete.
-- [ ] Perform final review before upload/submission.
