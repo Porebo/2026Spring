@@ -33,14 +33,14 @@
 <body>
     <div class="container">
         <nav class="breadcrumbs">
-            <a href="index.html">Home</a> <span>&rsaquo;</span> Homework 12
+            <a href="index.php">Home</a> <span>&rsaquo;</span> Homework 12
         </nav>
 
         <h1>Homework 12<span class="hw-status">Ready for Grading</span></h1>
         <p class="hw-timestamp">Last Updated: April 20, 2026</p>
 
         <div class="nav">
-            <a href="index.html">&larr; Back to Portfolio</a>
+            <a href="index.php">&larr; Back to Portfolio</a>
             <a href="demo.php">Open PHP Demo Page</a>
             <a href="cloudPrototype.html">Open Project Prototype</a>
         </div>
@@ -64,18 +64,18 @@
 
         <div class="section">
             <div class="section-title">Part 2: PHP Hit Counter</div>
-            <p>The demo page now includes a live file-based hit counter in the page title area. Each visit reads a text file, increments the count, writes the new value back to the file, and displays the updated total.</p>
-            <pre><code>$counterFile = __DIR__ . '/demo_counter.txt';
+            <p>The homepage now includes a live file-based hit counter in a PHP version of the portfolio homepage. Each visit reads a text file, increments the count, writes the new value back to the file, and displays the updated total.</p>
+            <pre><code>$counterFile = __DIR__ . '/homepage_counter.txt';
 if (!file_exists($counterFile)) {
     file_put_contents($counterFile, "0", LOCK_EX);
 }
-$currentCount = (int) trim((string) file_get_contents($counterFile));
-$currentCount++;
-file_put_contents($counterFile, (string) $currentCount, LOCK_EX);</code></pre>
+$homePageViews = (int) trim((string) file_get_contents($counterFile));
+$homePageViews++;
+file_put_contents($counterFile, (string) $homePageViews, LOCK_EX);</code></pre>
             <ul>
-                <li>This demonstrates basic server-side state persistence.</li>
+                <li>This demonstrates basic server-side state persistence on the homepage itself.</li>
                 <li>The counter is intentionally simple and matches the lecture example from April 16.</li>
-                <li>Evidence of the live counter appears on the PHP demo page itself.</li>
+                <li>For grading, the live homepage should be opened through <code>index.php</code> after upload to the host.</li>
             </ul>
         </div>
 
@@ -89,7 +89,7 @@ file_put_contents($counterFile, (string) $currentCount, LOCK_EX);</code></pre>
                 <li>This approach lowers risk because design problems can be spotted before investing time in a complete implementation.</li>
             </ul>
             <div class="callout">
-                Full-screen screenshot evidence for submission was taken from this reflection or project-review view during the homework submission workflow.
+                After uploading to the host service, open the live homework or project page in the browser and take one full-screen screenshot that shows the full browser window and your rapid-prototyping write-up.
             </div>
         </div>
 
@@ -100,6 +100,7 @@ file_put_contents($counterFile, (string) $currentCount, LOCK_EX);</code></pre>
                 <li>Built a cleaner cloud-community project prototype page to support the final presentation direction.</li>
                 <li>Extended the site with PHP behavior on the demo page, including live output and a hit counter, so the project now includes visible server-side functionality.</li>
             </ul>
+            <a class="link-card" href="index.php">PHP Homepage Link</a>
             <a class="link-card" href="cloudPrototype.html">Project Prototype Link</a>
             <a class="link-card" href="demo.php">PHP Demo Link</a>
         </div>

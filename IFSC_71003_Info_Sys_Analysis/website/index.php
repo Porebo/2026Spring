@@ -1,0 +1,241 @@
+<?php
+$counterFile = __DIR__ . '/homepage_counter.txt';
+if (!file_exists($counterFile)) {
+    file_put_contents($counterFile, "0", LOCK_EX);
+}
+$homePageViews = (int) trim((string) file_get_contents($counterFile));
+$homePageViews++;
+file_put_contents($counterFile, (string) $homePageViews, LOCK_EX);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lester S. Carcamo - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #e5e5e5;
+            min-height: 100vh;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+        }
+
+        .subtitle {
+            color: #764ba2;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .info-item {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .info-item:before {
+            content: "\25B8";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .highlight {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .portfolio-image {
+            float: right;
+            width: 300px;
+            margin: 0 0 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .nav a {
+            display: inline-block;
+            flex: 1;
+            background-color: #667eea;
+            color: white;
+            text-decoration: none;
+            padding: 12px 16px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            line-height: 1.4;
+        }
+
+        .nav a .status {
+            display: block;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9em;
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .nav a:hover {
+            background-color: #764ba2;
+        }
+
+        .breadcrumbs {
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #666;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .counter-strip {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding: 10px 14px;
+            background: #eef3ff;
+            border: 1px solid #c9d6f2;
+            border-radius: 999px;
+            color: #33508d;
+            font-weight: 600;
+        }
+
+        .counter-strip code {
+            background: #fff;
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid #dbe4f3;
+        }
+    </style>
+</head>
+<body>
+    <nav class="breadcrumbs">
+        Home
+    </nav>
+
+    <div class="counter-strip">
+        <span>Homepage views:</span>
+        <code><?php echo number_format($homePageViews); ?></code>
+    </div>
+
+    <h1>Lester S. Carcamo</h1>
+    <p class="subtitle">Subsurface Data Specialist | Spotfire Reports Developer</p>
+
+    <div class="nav">
+        <a href="demo.php">PHP Demo Page<span class="status">HW12 PHP Commands</span></a>
+        <a href="hw1.html">Homework 1<span class="status" style="color: #2ecc71;">Ready for Grading</span></a>
+        <a href="hw2.html">Homework 2<span class="status" style="color: #2ecc71;">Ready for Grading</span></a>
+        <a href="hw3.html">Homework 3<span class="status" style="color: #2ecc71;">Ready for Grading</span></a>
+        <a href="hw4.html">Homework 4<span class="status" style="color: #2ecc71;">HW4 is ready to be graded</span></a>
+        <a href="hw5.html">Homework 5<span class="status" style="color: #2ecc71;">HW5 is ready to be graded</span></a>
+        <a href="hw6.html">Homework 6<span class="status" style="color: #2ecc71;">HW6 is ready to be graded</span></a>
+        <a href="hw7.html">Homework 7<span class="status" style="color: #2ecc71;">HW7 is ready to be graded</span></a>
+        <a href="hw8.html">Homework 8<span class="status" style="color: #2ecc71;">HW8 is ready to be graded</span></a>
+        <a href="hw9.html">Homework 9<span class="status" style="color: #2ecc71;">HW9 is ready to be graded</span></a>
+        <a href="hw10.html">Homework 10<span class="status" style="color: #2ecc71;">HW10 is ready to be graded</span></a>
+        <a href="hw11.html">Homework 11<span class="status" style="color: #2ecc71;">HW11 is ready to be graded</span></a>
+        <a href="hw12.html">Homework 12<span class="status" style="color: #2ecc71;">Homepage Counter Ready</span></a>
+    </div>
+
+    <div class="section">
+        <div class="section-title">About Me</div>
+        <img src="multiScreen.jpg" alt="Multi-screen workspace setup" class="portfolio-image">
+        <p>I am a dedicated data specialist and graduate student working at the intersection of subsurface data analysis and modern data visualization. Based in <span class="highlight">Bakersfield, California</span>, I leverage my technical expertise to design and build comprehensive Spotfire reports that transform complex operational data into actionable insights for oil and gas operations.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Professional</div>
+        <div class="info-item">
+            <strong>Position:</strong> Subsurface Data Specialist
+        </div>
+        <div class="info-item">
+            <strong>Location:</strong> Bakersfield, California
+        </div>
+        <div class="info-item">
+            <strong>Focus:</strong> Building and maintaining Spotfire analytical reports for operational reporting
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Education</div>
+        <div class="info-item">
+            <strong>Bachelor's Degree:</strong> Interdisciplinary Studies
+            <ul style="margin-top: 8px; margin-left: 20px; list-style-type: circle;">
+                <li>Technical Writing</li>
+                <li>Data Analytics (with undergraduate certificate)</li>
+                <li>Psychology Research</li>
+            </ul>
+        </div>
+        <div class="info-item" style="margin-top: 15px;">
+            <strong>Associate Degrees:</strong> 14+ completed across multiple disciplines including Geology, Information Technology, Mathematics, English Literature, Economics, History, and other topics of interest
+        </div>
+        <div class="info-item" style="margin-top: 15px;">
+            <strong>Current Graduate Studies:</strong> University of Arkansas at Little Rock (UALR)
+            <ul style="margin-top: 8px; margin-left: 20px; list-style-type: circle;">
+                <li>Data Science Certificate (final course in progress)</li>
+                <li>Master's Program: Class 71003 (Spring 2026 - first course)</li>
+            </ul>
+        </div>
+        <div class="info-item" style="margin-top: 15px; font-style: italic; color: #667eea;">
+            <strong>Lifelong Learner:</strong> Committed to continuous education and exploration across diverse fields of knowledge
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Lester S. Carcamo. All rights reserved.</p>
+    </footer>
+</body>
+</html>

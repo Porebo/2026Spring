@@ -322,13 +322,13 @@ $featureCountFormatted = number_format(3);
 <body>
     <div class="container">
         <nav class="breadcrumbs">
-            <a href="index.html">Home</a> <span>&rsaquo;</span> <a href="hw12.html">HW12</a> <span>&rsaquo;</span> HTML + PHP Demo
+            <a href="index.php">Home</a> <span>&rsaquo;</span> <a href="hw12.html">HW12</a> <span>&rsaquo;</span> HTML + PHP Demo
         </nav>
         <h1>HTML + PHP Test & Demo Page <span class="page-badge">Views: <?php echo number_format($currentCount); ?></span></h1>
         
         <div class="nav">
             <a href="hw12.html">Go to Homework 12</a>
-            <a href="index.html">← Back to Portfolio</a>
+            <a href="index.php">← Back to Portfolio</a>
         </div>
         
         <div class="table-of-contents" id="toc">
@@ -404,7 +404,7 @@ $featureCountFormatted = number_format(3);
                 </div>
             </div>
 
-            <p><strong>Hit Counter:</strong> The green badge near the page title is powered by PHP using a small text file on the server. Each page load reads the file, increments the count, writes the new value back, and then displays the updated total.</p>
+            <p><strong>Hit Counter Note:</strong> This demo page still shows a PHP counter example, but the HW12 homepage requirement is now satisfied through <code>index.php</code>, which runs the live homepage counter after upload.</p>
 
             <div class="code-block"><code>&lt;?php
 $counterFile = __DIR__ . '/demo_counter.txt';
@@ -422,7 +422,7 @@ $featureCountFormatted = number_format(3);
         </div>
         
         <div class="homework-frame" id="hw1-section">
-            <a href="index.html" class="hw-back-link">← Back to Index</a>
+            <a href="index.php" class="hw-back-link">← Back to Index</a>
             <div class="homework-title">Homework 1 - HTML Commands (1-15)</div>
         
         <!-- Demo 1: Bold -->
@@ -529,7 +529,7 @@ $featureCountFormatted = number_format(3);
             <div class="demo-title">9. Hyperlink</div>
             <div class="demo-label">The &lt;a&gt; command creates clickable links to other pages or websites</div>
             <div class="demo-example">
-                Click <a href="index.html">here to go back to the portfolio</a> to test this link.
+                Click <a href="index.php">here to go back to the portfolio</a> to test this link.
             </div>
         </div>
         
@@ -607,7 +607,7 @@ $featureCountFormatted = number_format(3);
         </div>
         
         <div class="homework-frame" id="hw2-section">
-            <a href="index.html" class="hw-back-link">← Back to Index</a>
+            <a href="index.php" class="hw-back-link">← Back to Index</a>
             <div class="homework-title">Homework 2 - HTML Commands (16-30)</div>
         
         <!-- Demo 16: Deleted Text -->
@@ -963,7 +963,7 @@ $featureCountFormatted = number_format(3);
         </div>
 
         <div class="homework-frame" id="hw6-js-section">
-            <a href="index.html" class="hw-back-link">← Back to Index</a>
+            <a href="index.php" class="hw-back-link">← Back to Index</a>
             <div class="homework-title">Homework 6 - JavaScript Commands (46-51)</div>
 
             <div class="demo-section" id="demo46">
