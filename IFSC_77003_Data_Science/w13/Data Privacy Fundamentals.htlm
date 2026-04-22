@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Privacy Fundamentals</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --paper: #fffdf8;
+      --ink: #1f2933;
+      --muted: #52606d;
+      --line: #d9cdb9;
+      --accent: #8c3d1f;
+      --accent-soft: #f3e1d8;
+      --highlight: #e8f1ea;
+      --highlight-border: #93b39c;
+      --shadow: 0 18px 40px rgba(46, 38, 24, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(140, 61, 31, 0.08), transparent 28%),
+        linear-gradient(180deg, #f8f4ec 0%, var(--bg) 100%);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(140, 61, 31, 0.96), rgba(71, 36, 22, 0.96));
+      color: #fff9f3;
+      border-radius: 24px;
+      padding: 36px 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 780px;
+      font-size: 1.05rem;
+      color: rgba(255, 249, 243, 0.9);
+    }
+
+    .overview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .overview-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .overview-card h2 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .overview-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .module {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .module-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .module-header h2 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: var(--accent);
+    }
+
+    .module-tag {
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 18px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      background: #fffefb;
+    }
+
+    .panel h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+
+    .panel p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .panel ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .panel li + li {
+      margin-top: 8px;
+    }
+
+    .remember {
+      background: var(--highlight);
+      border-color: var(--highlight-border);
+    }
+
+    .closing {
+      background: linear-gradient(180deg, #fffaf1 0%, #f8efe0 100%);
+    }
+
+    .footer-note {
+      margin-top: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        padding: 18px 14px 40px;
+      }
+
+      .hero,
+      .module {
+        padding: 22px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>Data Privacy Fundamentals</h1>
+      <p>This study guide brings together the main lessons from Modules 1 through 5 and the final case work. It focuses on the laws, case studies, privacy principles, password practices, and company habits that show up again and again across the course.</p>
+    </section>
+
+    <section class="overview">
+      <article class="overview-card">
+        <h2>Big Picture</h2>
+        <p>Data privacy is about lawful collection, careful use, secure storage, limited retention, and responsible disclosure of personal information.</p>
+      </article>
+      <article class="overview-card">
+        <h2>Recurring Theme</h2>
+        <p>Most breaches in these modules were preventable. Weak security, poor retention, delayed action, and bad password behavior kept appearing.</p>
+      </article>
+      <article class="overview-card">
+        <h2>Exam Focus</h2>
+        <p>Remember the difference between the Privacy Act and PIPEDA, the major breach facts, Privacy by Design, and the password tips.</p>
+      </article>
+    </section>
+
+    <section class="module">
+      <div class="module-header">
+        <h2>Module 1</h2>
+        <div class="module-tag">Canadian privacy laws and the student loan hard-drive breach</div>
+      </div>
+      <div class="grid">
+        <article class="panel">
+          <h3>Summary of the Contents</h3>
+          <p>Module 1 introduced the two main Canadian federal privacy laws and used the Student Loan Data case to show how government-held personal information can be exposed through weak safeguards. The case centered on a lost hard drive containing sensitive borrower and employee data.</p>
+        </article>
+        <article class="panel">
+          <h3>Central Points</h3>
+          <ul>
+            <li>The Privacy Act applies to federal government institutions and their handling of personal information.</li>
+            <li>PIPEDA stands for Personal Information Protection and Electronic Documents Act.</li>
+            <li>The student loan case fell under the Privacy Act because it involved a federal government department.</li>
+            <li>The backup copy was created to avoid accidental data loss during migration, but the drive was not properly protected.</li>
+          </ul>
+        </article>
+        <article class="panel remember">
+          <h3>What to Remember</h3>
+          <ul>
+            <li>The Privacy Act covers government institutions; PIPEDA covers private-sector commercial activity.</li>
+            <li>The lost drive contained highly sensitive information and was not encrypted or secured by a strong password.</li>
+            <li>Even well-intended backups can become a breach if storage and handling controls fail.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="module">
+      <div class="module-header">
+        <h2>Module 2</h2>
+        <div class="module-tag">PIPEDA and the Target payment-card breach</div>
+      </div>
+      <div class="grid">
+        <article class="panel">
+          <h3>Summary of the Contents</h3>
+          <p>Module 2 explained PIPEDA in more detail and paired it with the Target breach. It showed how private businesses must collect, use, disclose, and protect personal information during commercial activity and how payment-card and customer data clearly qualify as personal information.</p>
+        </article>
+        <article class="panel">
+          <h3>Central Points</h3>
+          <ul>
+            <li>PIPEDA applies to private-sector organizations engaged in commercial activity, including online and physical businesses.</li>
+            <li>Personal information includes credit and debit card data, financial records, contact details, and many other identifiers.</li>
+            <li>PIPEDA emphasizes consent, limiting collection, accuracy, safeguards, retention limits, access, and recourse.</li>
+            <li>The Target breach affected payment-card data and personal information for tens of millions of customers.</li>
+          </ul>
+        </article>
+        <article class="panel remember">
+          <h3>What to Remember</h3>
+          <ul>
+            <li>Credit card information is personal information.</li>
+            <li>PIPEDA covers both bricks-and-mortar stores and online businesses.</li>
+            <li>Strong safeguards and fast incident response matter because early warning signs may appear before the breach becomes public.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="module">
+      <div class="module-header">
+        <h2>Module 3</h2>
+        <div class="module-tag">Privacy by Design, UK principles, Think W3, and Doritex</div>
+      </div>
+      <div class="grid">
+        <article class="panel">
+          <h3>Summary of the Contents</h3>
+          <p>Module 3 moved from laws into design and governance. It covered privacy breaches, privacy plans, privacy policies, the seven foundational principles of Privacy by Design, UK data-protection principles, and two case studies: Think W3 and Doritex.</p>
+        </article>
+        <article class="panel">
+          <h3>Central Points</h3>
+          <ul>
+            <li>Privacy by Design means building privacy into systems from the start, not adding it only after problems occur.</li>
+            <li>The seven principles include being proactive, using privacy as the default, embedding privacy into design, and ensuring end-to-end security.</li>
+            <li>Think W3 violated the seventh UK data-protection principle because it failed to use appropriate technical and organizational safeguards.</li>
+            <li>Doritex showed that delayed breach notification is a major problem; notice should be given in the most expedient time possible and without unreasonable delay.</li>
+          </ul>
+        </article>
+        <article class="panel remember">
+          <h3>What to Remember</h3>
+          <ul>
+            <li>Proactive, not reactive, is one of the key Privacy by Design principles.</li>
+            <li>Delete data you no longer need and secure the systems that hold the data you must keep.</li>
+            <li>Quick reporting and proper encryption can reduce harm and legal exposure after a breach.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="module">
+      <div class="module-header">
+        <h2>Module 4</h2>
+        <div class="module-tag">Home Depot breach and strong-password behavior</div>
+      </div>
+      <div class="grid">
+        <article class="panel">
+          <h3>Summary of the Contents</h3>
+          <p>Module 4 combined a major retail case study with practical guidance for personal and organizational password habits. The Home Depot case illustrated how attackers used a vendor account and malware on self-checkout systems, while the transcript focused on weak passwords, reused credentials, and better password design.</p>
+        </article>
+        <article class="panel">
+          <h3>Central Points</h3>
+          <ul>
+            <li>Hackers accessed Home Depot's network through a third-party vendor's username and password.</li>
+            <li>Custom-built malware was deployed on self-checkout systems.</li>
+            <li>Password reuse multiplies risk because one compromised account can expose many others.</li>
+            <li>Good password practices include limiting login attempts, using long mixed-character phrases, and changing passwords regularly.</li>
+          </ul>
+        </article>
+        <article class="panel remember">
+          <h3>What to Remember</h3>
+          <ul>
+            <li>Weak or reused passwords are not small mistakes; they can become enterprise-wide security failures.</li>
+            <li>The strongest password examples are long, unique, and hard to predict.</li>
+            <li>Third-party access is a major security risk and must be controlled carefully.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="module">
+      <div class="module-header">
+        <h2>Module 5</h2>
+        <div class="module-tag">Company privacy habits and everyday operational discipline</div>
+      </div>
+      <div class="grid">
+        <article class="panel">
+          <h3>Summary of the Contents</h3>
+          <p>Module 5 was a practical checklist for organizations. Instead of focusing on a breach narrative, it listed ten privacy tips that companies should follow to lower risk in day-to-day operations.</p>
+        </article>
+        <article class="panel">
+          <h3>Central Points</h3>
+          <ul>
+            <li>Invest in data security before problems happen.</li>
+            <li>Use NDAs when appropriate and follow them strictly.</li>
+            <li>Avoid risky file-sharing tools, malware, phishing, and careless social-media behavior.</li>
+            <li>Back up data securely, use SSL, control USB devices, and use strong unique passwords.</li>
+          </ul>
+        </article>
+        <article class="panel remember">
+          <h3>What to Remember</h3>
+          <ul>
+            <li>Delete project materials when the project ends, including backups.</li>
+            <li>Security is not just technical; it also includes behavior, contracts, and process discipline.</li>
+            <li>These ten tips are broad but highly testable because they translate directly into review questions.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="module closing">
+      <div class="module-header">
+        <h2>Final Case Work</h2>
+        <div class="module-tag">OneStopParking and the Justin ethics scenario</div>
+      </div>
+      <div class="grid">
+        <article class="panel">
+          <h3>Summary of the Contents</h3>
+          <p>The final case materials brought together breach analysis and ethical decision-making. OneStopParking showed how delayed security patching can expose customer payment data, while the Justin scenario tested whether good privacy behavior includes reporting problems instead of trying risky workarounds.</p>
+        </article>
+        <article class="panel">
+          <h3>Central Points</h3>
+          <ul>
+            <li>OneStopParking delayed a Joomla update because it broke parts of the site, and that left a vulnerability in place.</li>
+            <li>The company learned of the exposure on December 25, 2014 and remediated it by December 31, 2014.</li>
+            <li>At the time of notification, OneStopParking could not identify exactly which customers were affected.</li>
+            <li>In Justin's case, the ethical and policy-based response is to report the password problem to the IT Director instead of trying to guess the password.</li>
+          </ul>
+        </article>
+        <article class="panel remember">
+          <h3>What to Remember</h3>
+          <ul>
+            <li>Postponing security updates for convenience can create major breach exposure.</li>
+            <li>Privacy by Design includes features like requiring regular password changes and preventing unsafe password habits.</li>
+            <li>Good privacy practice includes ethical reporting, not secret attempts to bypass official process.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="module">
+      <div class="module-header">
+        <h2>Course-Wide Memory List</h2>
+        <div class="module-tag">Fast review before quizzes or the final</div>
+      </div>
+      <div class="grid">
+        <article class="panel remember">
+          <h3>What to Remember Most</h3>
+          <ul>
+            <li>The Privacy Act is mainly for Canadian federal government institutions.</li>
+            <li>PIPEDA is the private-sector commercial privacy law.</li>
+            <li>Privacy by Design starts early and aims to prevent harm before it happens.</li>
+            <li>Personal information includes payment-card data, financial data, contact data, and government identifiers like Social Insurance Numbers.</li>
+            <li>Weak passwords, reused passwords, insecure storage, delayed updates, and poor breach reporting are repeated failure points across the course.</li>
+            <li>Delete unneeded data, secure what remains, notify affected parties quickly, and follow policy even when it feels inconvenient.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <p class="footer-note">Prepared from the notes in <code>w13</code> as a single study reference page.</p>
+  </main>
+</body>
+</html>
