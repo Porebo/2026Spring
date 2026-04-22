@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture: AI Ethics, Privacy, Bias &amp; Regulation - April 21, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(0.98rem, 0.94rem + 0.12vw, 1.08rem);
+            line-height: 1.68;
+            color: #1a1a1a;
+            background-color: #fafaf8;
+        }
+
+        .top-nav {
+            background: #004a99;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .top-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+
+        .top-nav a:hover { opacity: 1; text-decoration: underline; }
+        .top-nav .sep { color: rgba(255,255,255,0.4); }
+
+        article {
+            width: clamp(1120px, 93vw, 1720px);
+            margin: 0 auto;
+            padding: clamp(28px, 2.8vw, 44px) clamp(16px, 2.4vw, 36px) clamp(38px, 4vw, 64px);
+        }
+
+        .masthead {
+            border-bottom: 3px solid #004a99;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .masthead .kicker {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #004a99;
+            margin-bottom: 14px;
+        }
+
+        .masthead h1 {
+            font-size: clamp(2rem, 1.55rem + 1.5vw, 2.85rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: #0d0d0d;
+            margin-bottom: 16px;
+        }
+
+        .masthead .byline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #666;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .chip {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: #e7f0fb;
+            color: #004a99;
+            border: 1px solid #b8d0f0;
+            border-radius: 20px;
+            padding: 3px 12px;
+            text-decoration: none;
+        }
+
+        .chip:hover {
+            background: #dceafd;
+            border-color: #9fc2ea;
+        }
+
+        h2 {
+            font-size: clamp(1.35rem, 1.16rem + 0.65vw, 1.85rem);
+            font-weight: 700;
+            color: #0d0d0d;
+            margin: 34px 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #ddd;
+            scroll-margin-top: 16px;
+        }
+
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #004a99;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin: 22px 0 8px;
+        }
+
+        p { margin-bottom: 1.05em; }
+
+        blockquote.pull-quote {
+            border: none;
+            margin: 30px 0;
+            padding: 0 22px;
+            text-align: center;
+        }
+
+        blockquote.pull-quote p {
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.5;
+            color: #004a99;
+            margin-bottom: 0;
+        }
+
+        blockquote.pull-quote footer {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .section-rule {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 30px 0;
+        }
+
+        .callout {
+            border-left: 4px solid #004a99;
+            background: #f0f5fc;
+            padding: 14px 18px;
+            margin: 18px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .callout.alert {
+            border-left-color: #c0392b;
+            background: #fdf2f1;
+        }
+
+        .callout.tip {
+            border-left-color: #27ae60;
+            background: #f0faf4;
+        }
+
+        .callout p,
+        .callout li {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .callout strong {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
+            color: #004a99;
+        }
+
+        .callout.alert strong { color: #c0392b; }
+        .callout.tip strong { color: #27ae60; }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.87rem;
+            margin: 16px 0 22px;
+        }
+
+        .data-table th {
+            background: #004a99;
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        .data-table td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #e8e8e8;
+            vertical-align: top;
+            color: #333;
+        }
+
+        .data-table tr:nth-child(even) td { background: #f7f7f5; }
+
+        ul, ol {
+            padding-left: 1.4em;
+            margin-bottom: 1em;
+        }
+
+        li { margin-bottom: 0.5em; }
+
+        footer.page-footer {
+            border-top: 1px solid #ddd;
+            padding: 28px 24px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+            background: #fff;
+        }
+
+        footer.page-footer a {
+            color: #004a99;
+            text-decoration: none;
+        }
+
+        footer.page-footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<nav class="top-nav">
+    <a href="index.html">IFSC 77003 Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Transcript Hub</a>
+    <span class="sep">/</span>
+    <a href="#">April 21, 2026</a>
+</nav>
+
+<article>
+    <header class="masthead">
+        <div class="kicker">IFSC 77003 Data Science &amp; Technologies</div>
+        <h1>AI Ethics, Privacy, Bias &amp; Regulation</h1>
+        <div class="byline">
+            <span>April 21, 2026</span>
+            <span>Dr. Elizabeth Pierce</span>
+            <span>Unit 11: Data Ethics &amp; Legal</span>
+        </div>
+        <div class="chip-row">
+            <a class="chip" href="#ethics-overview">Ethics Overview</a>
+            <a class="chip" href="#privacy-security">Privacy &amp; Security</a>
+            <a class="chip" href="#bias-cases">Bias Cases</a>
+            <a class="chip" href="#regulation">Regulation</a>
+            <a class="chip" href="#ai-guidelines">AI Guidelines</a>
+            <a class="chip" href="#next-steps">Next Steps</a>
+        </div>
+    </header>
+
+    <section id="ethics-overview">
+        <h2>Ethics, Law, and Sustainability in Data Science</h2>
+        <p>Dr. Pierce framed this lecture as an entry point into a much larger professional landscape. Ethical, legal, and sustainability questions now surround data science, big data infrastructure, and AI in ways that affect engineers, business leaders, policy makers, IT professionals, and researchers alike. The class discussed how these issues now appear constantly in the news because they shape education, employment, public safety, data center expansion, and the long-term social impact of AI systems.</p>
+
+        <blockquote class="pull-quote">
+            <p>"These topics are not side issues. They shape how data science is built, deployed, regulated, and trusted."</p>
+            <footer>Lecture Theme</footer>
+        </blockquote>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="privacy-security">
+        <h2>Privacy, Surveillance, and Security</h2>
+        <p>The lecture examined how easy large-scale data collection has become. Public records, APIs, Ring cameras, traffic cameras, smart vehicles, insurance tracking apps, and connected devices all contribute to a persistent digital trail. A recurring question was whether people fully understand what is being collected, how long it is retained, and how it is shared.</p>
+
+        <div class="callout">
+            <strong>Key Distinction</strong>
+            <p><b>Security</b> is about unauthorized access. <b>Privacy</b> is about whether data is used in ways that violate consent, expectations, or comfort, even if the organization technically controls the data securely.</p>
+        </div>
+
+        <h3>Questions Raised in Class</h3>
+        <ul>
+            <li>Who owns personal data once it has been collected?</li>
+            <li>Can individuals ask for that data to be deleted or corrected?</li>
+            <li>What counts as acceptable use versus misuse?</li>
+            <li>How do we balance smart-city and public-safety benefits against surveillance risks?</li>
+            <li>Where is the data physically stored, and which jurisdiction governs it?</li>
+        </ul>
+
+        <p>Dr. Pierce also noted that data breaches are not caused only by elite attackers. Accidents, insiders, and social engineering remain major sources of exposure, which means privacy and security are both technical and organizational challenges.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="bias-cases">
+        <h2>AI Bias, Proxy Variables, and High-Stakes Decisions</h2>
+        <p>A major portion of the class focused on how AI and machine learning systems can replicate or intensify historical bias. Because models learn from past data, they can absorb distorted patterns tied to race, gender, age, disability, skin tone, and socioeconomic status. Even when a protected attribute is not explicitly included, the model may infer it from proxies such as ZIP code, school attended, purchase behavior, or health history.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Area</th>
+                    <th>Example Discussed</th>
+                    <th>Why It Matters</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Hiring</td>
+                    <td>Resume screening and Workday litigation</td>
+                    <td>Qualified people may be filtered out because of age, race, gender, or disability-related signals.</td>
+                </tr>
+                <tr>
+                    <td>Healthcare</td>
+                    <td>Lesion detection and treatment recommendation disparities</td>
+                    <td>Bias can reduce detection quality or produce weaker care recommendations for some groups.</td>
+                </tr>
+                <tr>
+                    <td>Social Services</td>
+                    <td>AI summaries describing men as more dependent than women with similar needs</td>
+                    <td>Bias can distort care allocation and institutional decision-making.</td>
+                </tr>
+                <tr>
+                    <td>Credit &amp; Finance</td>
+                    <td>Women receiving lower credit limits despite stronger profiles</td>
+                    <td>Opaque scoring systems can encode unfair treatment at scale.</td>
+                </tr>
+                <tr>
+                    <td>Image Generation</td>
+                    <td>CEO prompts yielding white men; nurse or housekeeper prompts yielding women or minorities</td>
+                    <td>Generative AI can reinforce stereotypes in subtle but powerful ways.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout alert">
+            <strong>Bias Testing Problem</strong>
+            <p>Traditional software testing checks for syntax, runtime, logic, and performance errors. AI adds a harder question: how do we systematically test for unfairness, hidden proxy behavior, and unequal impact across groups?</p>
+        </div>
+
+        <p>The lecture also emphasized explainability. A model may produce a prediction, but if an organization cannot explain how a decision was made in understandable terms, that becomes a legal, managerial, and ethical problem, especially in hiring, criminal justice, lending, and healthcare.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="regulation">
+        <h2>CCPA and the Expanding Privacy Regulation Landscape</h2>
+        <p>The class reviewed the California Consumer Privacy Act as a major turning point in U.S. privacy compliance. Its practical importance extends far beyond California because many organizations outside the state still do business with California residents. Dr. Pierce explained that this made privacy governance a nationwide issue for many businesses, including universities and online organizations.</p>
+
+        <h3>Rights Highlighted in Class</h3>
+        <ul>
+            <li>Right to know what personal information is collected, used, shared, or sold</li>
+            <li>Right to request deletion, with exceptions for legal or operational obligations</li>
+            <li>Right to stop the sale or sharing of personal information</li>
+            <li>Right to correct inaccurate information</li>
+            <li>Right to limit the use of sensitive personal data</li>
+            <li>Right to non-discrimination for exercising privacy rights</li>
+            <li>Stronger protections for minors</li>
+        </ul>
+
+        <div class="callout tip">
+            <strong>Compliance Reality</strong>
+            <p>Even organizations that think they are outside a specific privacy law may still benefit from aligning with it early, especially as more states adopt similar legislation and consumers expect stronger control over their data.</p>
+        </div>
+
+        <p>The lecture also referenced newer California requirements around cybersecurity audits, risk assessments, and automated decision-making technology, along with the fact that many additional states now have similar or emerging privacy laws.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="ai-guidelines">
+        <h2>Responsible AI Use for Students and Employees</h2>
+        <p>Dr. Pierce split AI guidance into two contexts: academic use and workplace use. For students, AI can be appropriate for brainstorming, polishing writing, clarifying ideas, and supporting research discovery when used carefully. But asking AI to complete the assignment itself undermines learning and often introduces factual problems through hallucination or poor sourcing.</p>
+
+        <h3>Student Guidance</h3>
+        <ul>
+            <li>Use AI to brainstorm, revise, or rephrase, not to replace your own thinking.</li>
+            <li>Prefer specialized research-support tools when doing literature reviews.</li>
+            <li>Verify facts, quotes, and references through reliable search tools and vetted sources.</li>
+        </ul>
+
+        <h3>Employee Guidance</h3>
+        <p>Using the University of Richmond as an example, the lecture showed how organizations are creating AI policies for staff. The most important rule is that employees must not place confidential or restricted data into public AI systems.</p>
+
+        <ul>
+            <li>Do not enter personally identifiable information into public AI tools.</li>
+            <li>Do not submit health, financial, student, or employment records into open systems.</li>
+            <li>Know which AI tools are approved by your organization.</li>
+            <li>Check with a manager when trying a new workplace AI use case.</li>
+            <li>Remain accountable for the accuracy, legality, and quality of the final work.</li>
+        </ul>
+
+        <p>The lecture also touched on transparency, copyright, consent, non-discrimination, and the environmental cost of generative AI systems.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="next-steps">
+        <h2>Next Steps</h2>
+        <ol>
+            <li>Read the assigned materials on data privacy, ethics, AI bias, and related legal issues.</li>
+            <li>Complete the <b>Data Privacy Fundamentals</b> course on Cognitive Class and submit the certificate.</li>
+            <li>Prepare for upcoming ethics case studies and think about how fairness, privacy, and explainability affect real systems.</li>
+        </ol>
+    </section>
+</article>
+
+<footer class="page-footer">
+    <p>IFSC 77003 Data Science &amp; Technologies Transcript Archive</p>
+    <p><a href="index.html">Return to the transcript hub</a></p>
+</footer>
+</body>
+</html>

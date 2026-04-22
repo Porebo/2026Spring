@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture: MapReduce, Spark &amp; the Hadoop Ecosystem - April 16, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(0.98rem, 0.94rem + 0.12vw, 1.08rem);
+            line-height: 1.68;
+            color: #1a1a1a;
+            background-color: #fafaf8;
+        }
+
+        .top-nav {
+            background: #004a99;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .top-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+
+        .top-nav a:hover { opacity: 1; text-decoration: underline; }
+        .top-nav .sep { color: rgba(255,255,255,0.4); }
+
+        article {
+            width: clamp(1120px, 93vw, 1720px);
+            margin: 0 auto;
+            padding: clamp(28px, 2.8vw, 44px) clamp(16px, 2.4vw, 36px) clamp(38px, 4vw, 64px);
+        }
+
+        .masthead {
+            border-bottom: 3px solid #004a99;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .masthead .kicker {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #004a99;
+            margin-bottom: 14px;
+        }
+
+        .masthead h1 {
+            font-size: clamp(2rem, 1.55rem + 1.5vw, 2.85rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: #0d0d0d;
+            margin-bottom: 16px;
+        }
+
+        .masthead .byline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #666;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .chip {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: #e7f0fb;
+            color: #004a99;
+            border: 1px solid #b8d0f0;
+            border-radius: 20px;
+            padding: 3px 12px;
+            text-decoration: none;
+        }
+
+        .chip:hover {
+            background: #dceafd;
+            border-color: #9fc2ea;
+        }
+
+        h2 {
+            font-size: clamp(1.35rem, 1.16rem + 0.65vw, 1.85rem);
+            font-weight: 700;
+            color: #0d0d0d;
+            margin: 34px 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #ddd;
+            scroll-margin-top: 16px;
+        }
+
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #004a99;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin: 22px 0 8px;
+        }
+
+        p { margin-bottom: 1.05em; }
+
+        blockquote.pull-quote {
+            border: none;
+            margin: 30px 0;
+            padding: 0 22px;
+            text-align: center;
+        }
+
+        blockquote.pull-quote p {
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.5;
+            color: #004a99;
+            margin-bottom: 0;
+        }
+
+        blockquote.pull-quote footer {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .section-rule {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 30px 0;
+        }
+
+        .callout {
+            border-left: 4px solid #004a99;
+            background: #f0f5fc;
+            padding: 14px 18px;
+            margin: 18px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .callout.alert {
+            border-left-color: #c0392b;
+            background: #fdf2f1;
+        }
+
+        .callout.tip {
+            border-left-color: #27ae60;
+            background: #f0faf4;
+        }
+
+        .callout p,
+        .callout li {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .callout strong {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
+            color: #004a99;
+        }
+
+        .callout.alert strong { color: #c0392b; }
+        .callout.tip strong { color: #27ae60; }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.87rem;
+            margin: 16px 0 22px;
+        }
+
+        .data-table th {
+            background: #004a99;
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        .data-table td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #e8e8e8;
+            vertical-align: top;
+            color: #333;
+        }
+
+        .data-table tr:nth-child(even) td { background: #f7f7f5; }
+
+        ul, ol {
+            padding-left: 1.4em;
+            margin-bottom: 1em;
+        }
+
+        li { margin-bottom: 0.5em; }
+
+        footer.page-footer {
+            border-top: 1px solid #ddd;
+            padding: 28px 24px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+            background: #fff;
+        }
+
+        footer.page-footer a {
+            color: #004a99;
+            text-decoration: none;
+        }
+
+        footer.page-footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<nav class="top-nav">
+    <a href="index.html">IFSC 77003 Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Transcript Hub</a>
+    <span class="sep">/</span>
+    <a href="#">April 16, 2026</a>
+</nav>
+
+<article>
+    <header class="masthead">
+        <div class="kicker">IFSC 77003 Data Science &amp; Technologies</div>
+        <h1>MapReduce, Spark &amp; the Hadoop Ecosystem</h1>
+        <div class="byline">
+            <span>April 16, 2026</span>
+            <span>Dr. Elizabeth Pierce</span>
+            <span>Unit 10: Cloud &amp; Big Data</span>
+        </div>
+        <div class="chip-row">
+            <a class="chip" href="#mapreduce">MapReduce</a>
+            <a class="chip" href="#pig-emr">Pig &amp; EMR</a>
+            <a class="chip" href="#yarn">YARN</a>
+            <a class="chip" href="#spark">Spark</a>
+            <a class="chip" href="#comparison">Comparison</a>
+            <a class="chip" href="#next-steps">Next Steps</a>
+        </div>
+    </header>
+
+    <section id="mapreduce">
+        <h2>MapReduce Fundamentals and Historical Context</h2>
+        <p>Dr. Pierce framed the session around a core big data question: how do we process huge volumes of data reliably and at scale? In the early Hadoop era, MapReduce was the primary answer. The class reviewed how MapReduce jobs use mappers to emit key-value pairs, rely on Hadoop's built-in shuffle and sort phase, and then use reducers to combine and summarize grouped results.</p>
+
+        <blockquote class="pull-quote">
+            <p>MapReduce was built for the kind of workloads that do not feel interactive at all: overnight jobs, multi-day jobs, and massive batch processing pipelines.</p>
+            <footer>Lecture Theme</footer>
+        </blockquote>
+
+        <div class="callout">
+            <strong>Performance Note</strong>
+            <p>The <b>combiner</b> is an optional optimization that performs partial local reduction before data is sent onward for final reduction, helping reduce communication overhead in suitable workloads such as counting.</p>
+        </div>
+
+        <p>The classic word count example showed the full logic clearly: break text into words, emit each word with a value of one, group matching keys, and then sum the counts.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="pig-emr">
+        <h2>Pig and AWS Elastic MapReduce</h2>
+        <p>The lecture then moved from low-level MapReduce code to more accessible interfaces. Raw Java MapReduce requires a mapper class, a reducer class, and a driver class, which can be intimidating for analysts. Apache Pig emerged as a higher-level scripting approach that translates Pig scripts into MapReduce jobs behind the scenes.</p>
+
+        <p>Dr. Pierce demonstrated how to run a simple word count workflow in AWS using Elastic MapReduce. The demo included setting up an S3 bucket, creating a secure key pair, uploading a text file and a Pig script, provisioning a small cluster, and submitting a Pig step through EMR.</p>
+
+        <div class="callout tip">
+            <strong>Why This Matters</strong>
+            <p>Modern cloud tooling makes it much easier to spin up a Hadoop cluster and submit a distributed job, even though the underlying processing model is still geared toward large batch workloads rather than tiny interactive tasks.</p>
+        </div>
+
+        <p>The logs also illustrated how much Hadoop handles automatically: loading data into HDFS, splitting it into blocks, distributing work, shuffling intermediate results, and writing output.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="yarn">
+        <h2>Hadoop 2 and the Importance of YARN</h2>
+        <p>Dr. Pierce described Hadoop 2 as a major transition point. YARN separated resource management from the original MapReduce execution model, which allowed Hadoop to support many more processing frameworks while preserving compatibility with existing MapReduce workloads.</p>
+
+        <ul>
+            <li>MapReduce was not discarded.</li>
+            <li>Older MapReduce jobs could still run.</li>
+            <li>YARN opened the platform to broader innovation.</li>
+            <li>HDFS became a foundation for multiple types of processing engines.</li>
+        </ul>
+
+        <p>This architectural change helped turn Hadoop from a single dominant processing approach into a broader data platform ecosystem.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="spark">
+        <h2>Apache Spark and In-Memory Analytics</h2>
+        <p>Spark was introduced as a framework designed for workloads that can fit into available memory. Because Spark keeps working data in memory rather than repeatedly reading from disk, it can be dramatically faster than MapReduce for iterative analytics, machine learning, and streaming-style processing.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Purpose</th>
+                    <th>Why It Matters</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Spark SQL</td>
+                    <td>Distributed SQL-style analytics</td>
+                    <td>Makes large-scale querying more approachable.</td>
+                </tr>
+                <tr>
+                    <td>Spark Streaming</td>
+                    <td>Mini-batch processing of data streams</td>
+                    <td>Fits well with real-time windows that can stay in memory.</td>
+                </tr>
+                <tr>
+                    <td>MLlib</td>
+                    <td>Machine learning framework</td>
+                    <td>Supports iterative analytics over large datasets.</td>
+                </tr>
+                <tr>
+                    <td>GraphX</td>
+                    <td>Graph computation</td>
+                    <td>Supports network and relationship-based analysis.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout alert">
+            <strong>Constraint</strong>
+            <p>If the working dataset does not fit into available memory, Spark loses much of its advantage and MapReduce may become the better option for that workload.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="comparison">
+        <h2>Choosing Between MapReduce, Spark, and Newer Alternatives</h2>
+        <p>The lecture emphasized that Spark and MapReduce are suited to different situations. MapReduce remains strong for very large disk-oriented batch jobs, especially ETL-style work and jobs that exceed RAM. Spark is stronger for iterative analytics, streaming windows, and workloads where repeated in-memory access gives a major speed advantage.</p>
+
+        <p>Dr. Pierce then expanded the discussion beyond these two frameworks. By 2026, professionals can choose from a wide range of tools including Flink, Storm, Snowflake, BigQuery, Redshift, Trino, Tez, Beam, Kafka, Hive, Oozie, and ZooKeeper. The larger lesson is that the ecosystem is now specialized: the best tool depends on the exact kind of processing, scale, latency, and interface requirements involved.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="next-steps">
+        <h2>Next Steps</h2>
+        <ol>
+            <li>Complete <b>two tutorials</b> from the suggested list of big data tools and frameworks.</li>
+            <li>For the Linux commands and shell scripting tutorial, submit a <b>screenshot of progress</b> instead of buying a certificate.</li>
+            <li>Review the ecosystem examples so you can better match processing engines to the kinds of big data jobs they are designed to handle.</li>
+        </ol>
+    </section>
+</article>
+
+<footer class="page-footer">
+    <p>IFSC 77003 Data Science &amp; Technologies Transcript Archive</p>
+    <p><a href="index.html">Return to the transcript hub</a></p>
+</footer>
+</body>
+</html>
