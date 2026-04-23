@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apr 21: Project Decomposition, SDLC, and Delayed Issue Effect</title>
+    <style>
+        :root {
+            --primary: #0d4d63;
+            --accent: #c0392b;
+            --bg: #f5f7fb;
+            --text: #1f2a37;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+        }
+        header {
+            background: linear-gradient(135deg, #0d4d63, #051d29);
+            color: white;
+            text-align: center;
+            padding: 36px 20px;
+        }
+        header a {
+            color: #cfe6ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        header a:hover { text-decoration: underline; }
+        section {
+            max-width: 980px;
+            margin: 30px auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 24px 48px rgba(5,29,41,0.1);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid rgba(13,77,99,0.2);
+            padding-bottom: 10px;
+        }
+        ul, ol { line-height: 1.75; }
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            margin-bottom: 12px;
+        }
+        .highlight {
+            background: #e7f4ff;
+            border-left: 5px solid var(--primary);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        .warning {
+            background: #fff4e7;
+            border-left: 5px solid var(--accent);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        code {
+            background: rgba(13,77,99,0.08);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+            padding: 40px 20px 60px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Project Decomposition, SDLC, and Delayed Issue Effect</h1>
+    <p>April 21, 2026 &bull; 4:19 PM &bull; W13 Tuesday</p>
+    <p class="tag">Module 13 - Design, Lifecycle Models, and Decomposition</p>
+    <a href="index.html">&larr; Back to Transcript Hub</a>
+</header>
+
+<section>
+    <h2>1. Opening Logistics and Presentation Reminders</h2>
+    <span class="tag">Administrative opening</span>
+
+    <ul>
+        <li>Daniel confirmed that HW12 was due that night.</li>
+        <li>He clarified that the hit counter should appear on the main homework page or homepage area that lists assignments.</li>
+        <li>Project presentations would begin the following Tuesday, with overflow to Thursday if needed.</li>
+        <li>E-learning students who could not present live were asked to send a working demo-video link by next Tuesday.</li>
+        <li>Students were reminded to keep a visible project link on their homepage, test microphones early, and maintain backups of their files.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>2. Evaluation Example Before the Main Lecture</h2>
+    <span class="tag">Formative vs. summative</span>
+
+    <p>
+        Before shifting into decomposition, Daniel briefly revisited the difference between <strong>formative</strong> and <strong>summative</strong> evaluation using a large failed military software project as an example.
+    </p>
+
+    <div class="warning">
+        His point was that a project can absorb years of work and billions of dollars, then still fail at the end if summative evaluation reveals unresolved core problems.
+    </div>
+
+    <p>
+        This example set up one of the lecture's broader concerns: how design choices and process structure affect project outcomes long before the final delivery moment.
+    </p>
+</section>
+
+<section>
+    <h2>3. Systems Analysis Goes Beyond Analysis</h2>
+    <span class="tag">Field review</span>
+
+    <ul>
+        <li>Daniel reviewed systems analysis as a field aimed at improving IT-enabled organizational processes.</li>
+        <li>He connected the course to process mapping, root cause analysis, prototyping, benchmarking, and cost-benefit thinking.</li>
+        <li>He emphasized that systems analysts do not stop at analysis in real practice; they also contribute to design and implementation.</li>
+        <li>The lecture therefore moved from the analysis phase into the design phase, especially system structure and decomposition.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>4. Requirements, Specifications, and Design</h2>
+    <span class="tag">Transition to design</span>
+
+    <ul>
+        <li>A <strong>requirement</strong> states what the system should accomplish.</li>
+        <li>A <strong>specification</strong> makes that requirement more concrete and measurable.</li>
+        <li>Daniel framed this as a shift from the "why" and "what" of analysis into the "how" of design.</li>
+    </ul>
+
+    <div class="highlight">
+        One practical message was that design is not just visual layout. It includes the architecture of the system and the structure of the work used to create it.
+    </div>
+</section>
+
+<section>
+    <h2>5. SDLC Models: Waterfall and Its Revisions</h2>
+    <span class="tag">Lifecycle review</span>
+
+    <ul>
+        <li>Daniel began with the classic waterfall model: analysis, design, implementation, testing, and deployment.</li>
+        <li>He argued that the simple one-way waterfall picture is misleading because real projects often need to revisit earlier stages.</li>
+        <li>More realistic diagrams include back arrows, verification steps, and repeated testing throughout the process.</li>
+        <li>He contrasted these structured approaches with the older build-and-fix model, where teams repeatedly patch problems without strong initial design.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>6. Spiral, Unified Process, and Agile</h2>
+    <span class="tag">Iterative alternatives</span>
+
+    <ul>
+        <li>The spiral model re-expresses staged development while adding repeated verification and risk analysis.</li>
+        <li>The Unified Process was presented as iterative blocks that still contain specification, design, and implementation work.</li>
+        <li>Daniel used a skyscraper analogy: first establish the structural framework, then add usable features in later cycles.</li>
+        <li>Agile was discussed in a similar spirit, with short iterations that still perform requirements work, design, coding, and testing.</li>
+    </ul>
+
+    <div class="highlight">
+        Even when a process is iterative, Daniel's message was that order still matters. Iteration is not the same as chaos.
+    </div>
+</section>
+
+<section>
+    <h2>7. Delayed Issue Effect</h2>
+    <span class="tag">Classic software-engineering idea</span>
+
+    <p>
+        Daniel introduced the delayed issue effect: the longstanding belief that defects become much more expensive to fix the later they are discovered in the lifecycle.
+    </p>
+
+    <ul>
+        <li>He tied this idea to Barry Boehm's 1981 work.</li>
+        <li>Classic charts often show defect-fix cost rising sharply from requirements to operation.</li>
+        <li>Older software-distribution models made the logic intuitive because post-release fixes could require large-scale replacement and customer communication.</li>
+    </ul>
+
+    <div class="warning">
+        Daniel's spreadsheet-company story illustrated why late fixes used to be so painful: defective physical copies had to be replaced after customers already had them.
+    </div>
+</section>
+
+<section>
+    <h2>8. Why the Delayed Issue Effect May Not Always Hold</h2>
+    <span class="tag">Modern critique</span>
+
+    <ul>
+        <li>Daniel contrasted Boehm's classic position with a 2016 study of 171 software projects that reported no evidence for a universal delayed issue effect.</li>
+        <li>He suggested that project size, development method, and deployment environment may all affect whether late fixes are truly much more expensive.</li>
+        <li>Cloud software was an important example: fixing a server-side issue in a service like Google Sheets is often cheaper than replacing physical software media.</li>
+    </ul>
+
+    <div class="highlight">
+        The takeaway was not "Boehm was wrong" in every situation. It was that students should treat the delayed issue effect as context-dependent rather than as a universal law.
+    </div>
+</section>
+
+<section>
+    <h2>9. Fred Brooks and Project Decomposition</h2>
+    <span class="tag">Design efficiency</span>
+
+    <ul>
+        <li>Daniel used Fred Brooks and <em>The Mythical Man-Month</em> to explain why software effort cannot be understood as a simple count of person-months.</li>
+        <li>He reviewed four project types: fully decomposable, partially decomposable, non-decomposable, and difficult-to-decompose.</li>
+        <li>In fully decomposable work, adding people can reduce delivery time almost proportionally.</li>
+        <li>In partially decomposable work, coordination overhead reduces those gains.</li>
+        <li>In difficult-to-decompose work, too many people can actually slow the project down.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>10. Good vs. Bad Decomposition</h2>
+    <span class="tag">Structure matters</span>
+
+    <ul>
+        <li>Daniel argued that decomposition should follow natural functional boundaries.</li>
+        <li>A CPU example showed that grouping meaningful components is far better than grouping raw low-level parts by type and trying to assemble them later.</li>
+        <li>He connected this to programming: a well-designed program groups logic into meaningful units rather than scattering related behavior across arbitrary categories.</li>
+        <li>He also connected it to websites, noting that both the overall site structure and the quality of each page affect usability.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>11. Closing Review Questions</h2>
+
+    <ol>
+        <li>The delayed issue effect is historically important, but modern evidence suggests it does not apply equally in every context.</li>
+        <li>Adding people to a project only helps when the work can actually be decomposed well.</li>
+        <li>Good decomposition means choosing boundaries that reduce interference and preserve meaningful structure.</li>
+        <li>The class ended with AI-generated review questions and an attendance check in the chat.</li>
+    </ol>
+</section>
+
+<footer>
+    <p>IFSC 71003 Transcript Notes &bull; Compiled from Zoom transcript artifacts</p>
+    <p>Last updated April 23, 2026</p>
+</footer>
+
+</body>
+</html>
