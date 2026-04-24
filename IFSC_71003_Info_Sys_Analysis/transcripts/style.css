@@ -345,6 +345,35 @@ footer {
     font-weight: 600;
 }
 
+.spring-break-row td {
+    background: #fff7d6;
+    color: #8a5a00;
+    font-style: italic;
+    font-weight: 600;
+    border-color: #f0c86b;
+}
+
+.spring-break-row td:last-child {
+    border-top-right-radius: 999px;
+    border-bottom-right-radius: 999px;
+}
+
+.spring-break-row .week-num {
+    background: #f5c14b;
+    color: #5a3a00;
+    border-top-left-radius: 999px;
+    border-bottom-left-radius: 999px;
+}
+
+.spring-break-row .break-label {
+    background: transparent;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    color: #8a5a00;
+}
+
 .calendar-table td.lecture-day a {
     display: block;
     color: #0f4c9a;
