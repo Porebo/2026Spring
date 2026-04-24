@@ -8,7 +8,7 @@ Workspace Context:
 My project folder may contain planning notes, literature-review notes, draft sections, and delivery materials rather than one finished paper.
 Common files may include:
 - Admin files: `A_OriginalAssignment.md`, `B_professor.md`, `C_to_do.md`, `D_hourslog.md`
-- Roadmap-direct files: `01_roadMap.html`, `02_outline.md`, `03_introduction.md`, `04_solutions.md`
+- Roadmap-direct files (numbers match report Part numbers): `00_roadMap.html` (the guide), `01_outline.md`, `03_introduction.md` (Part 3), `05_solutions.md` (feeds Part 5 Methods and Part 6 Analysis)
 - Literature-note files (`L_` prefix): `L_knowledgeConservation.md`, `L_administratorsPerceptions.md`, `L_dashboardEncodedExpertise.md`, `L_domainTunedAI.md`, `L_strategicPrompting.md`, `L_tacitExplicitKnowledge.md`, `L_dataWarehouseFoundation.md`, `L_interactiveVisualAnalysis.md`, `L_businessIntelligenceTools.md`, and `L_migrationProcess.md`
 
 Important:
