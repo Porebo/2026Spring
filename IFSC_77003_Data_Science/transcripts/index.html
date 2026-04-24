@@ -277,6 +277,36 @@
         .calendar-table th { background: #f8f9fa; color: #777; font-size: 0.7rem; }
         .week-num { color: var(--primary); font-weight: bold; font-size: 0.7rem; background: #eef2f7; }
         
+        .spring-break-row td {
+            background: #fff7d6;
+            color: #8a5a00;
+            font-style: italic;
+            font-weight: 600;
+            border-color: #f0c86b;
+        }
+        .spring-break-row td:first-child + td {
+            border-top-left-radius: 999px;
+            border-bottom-left-radius: 999px;
+        }
+        .spring-break-row td:last-child {
+            border-top-right-radius: 999px;
+            border-bottom-right-radius: 999px;
+        }
+        .spring-break-row .week-num {
+            background: #f5c14b;
+            color: #5a3a00;
+            border-top-left-radius: 999px;
+            border-bottom-left-radius: 999px;
+        }
+        .spring-break-row .break-label {
+            background: transparent;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            color: #8a5a00;
+        }
+
         .lecture-day { background: #e7f3ff; font-weight: bold; position: relative; }
         .lecture-day a {
             text-decoration: none;
@@ -592,6 +622,7 @@
                 <p>How IoT systems work and the analytical applications built from connected device data for better decision-making.</p>
                 <div class="card-links">
                     <a href="2026_03_31_Batch_Streaming_IoT.html">Batch Processing vs. Streaming Data &amp; IoT Introduction</a>
+                    <a href="2026_04_09_IoT_Technologies_and_Applications.html">IoT Technologies &amp; Applications (Dr. Dagtas)</a>
                 </div>
             </div>
             <!-- Arrow -->
@@ -602,6 +633,8 @@
                 <h4>Cloud & Big Data</h4>
                 <p>Using infrastructure like Hadoop to store and process massive datasets. Scalability and resilience in real-time.</p>
                 <div class="card-links">
+                    <a href="2026_04_07_Data_Centers_Virtualization_Cloud_AWS.html">Data Centers, Virtualization &amp; Cloud Infrastructure</a>
+                    <a href="2026_04_14_Distributed_Computing_and_Hadoop_Fundamentals.html">Distributed Computing &amp; Hadoop Fundamentals</a>
                     <a href="2026_04_16_MapReduce_Spark_Hadoop_Ecosystem.html">MapReduce, Spark &amp; the Hadoop Ecosystem</a>
                 </div>
             </div>
@@ -679,6 +712,7 @@
     <div class="legend">
         <div class="legend-item"><div class="box" style="background:#e7f3ff; border:1px solid #004a99"></div> Lecture Scheduled</div>
         <div class="legend-item"><div class="box" style="background:#eef2f7;"></div> Week Indicator</div>
+        <div class="legend-item"><div class="box" style="background:#fff7d6; border:1px solid #f0c86b; border-radius:999px;"></div> Spring Break</div>
     </div>
 
     <div class="calendar-grid">
@@ -716,7 +750,7 @@
                 <tr><td class="week-num">W7</td><td>1</td><td>2</td><td class="lecture-day"><a href="2026_03_03_AI_Image_Analysis_Processing_Vision_APIs.html" title="AI Image Analysis, Processing Foundations, and Vision APIs">3</a></td><td>4</td><td class="lecture-day"><a href="2026_03_05_CNN_Image_Recognition_Training_Overfitting.html" title="CNN Image Recognition, Training Workflow, and Overfitting Control">5</a></td><td>6</td><td>7</td></tr>
                 <tr><td class="week-num">W8</td><td>8</td><td>9</td><td class="lecture-day"><a href="Mar_10_2026_lecture.html" title="Social Media Analytics &amp; Web Scraping">10</a></td><td>11</td><td class="lecture-day"><a href="2026_03_12_Web_Scraping_Legal_Ethics_APIs.html" title="Web Scraping, Legal Ethics &amp; APIs">12</a></td><td>13</td><td>14</td></tr>
                 <tr><td class="week-num">W9</td><td>15</td><td>16</td><td class="lecture-day"><a href="2026_03_17_AI_Deep_Learning_LLMs.html" title="AI, Deep Learning &amp; LLM Foundations">17</a></td><td>18</td><td class="lecture-day"><a href="2026_03_19_Generative_AI_Agentic_AGI.html" title="Generative AI, Citizen Development, Agentic AI &amp; AGI">19</a></td><td>20</td><td>21</td></tr>
-                <tr><td class="week-num">W10</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+                <tr class="spring-break-row" title="Spring Break - no classes"><td class="week-num">W10</td><td colspan="7" class="break-label">Spring Break</td></tr>
                 <tr><td class="week-num">W11</td><td>29</td><td>30</td><td class="lecture-day"><a href="2026_03_31_Batch_Streaming_IoT.html" title="Batch Processing vs. Streaming Data &amp; IoT Introduction">31</a></td><td></td><td></td><td></td><td></td></tr>
             </table>
         </div>
@@ -727,8 +761,8 @@
             <table class="calendar-table">
                 <tr><th>Wk</th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
                 <tr><td class="week-num">W11</td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
-                <tr><td class="week-num">W12</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
-                <tr><td class="week-num">W13</td><td>12</td><td>13</td><td>14</td><td>15</td><td class="lecture-day"><a href="2026_04_16_MapReduce_Spark_Hadoop_Ecosystem.html" title="MapReduce, Spark &amp; the Hadoop Ecosystem">16</a></td><td>17</td><td>18</td></tr>
+                <tr><td class="week-num">W12</td><td>5</td><td>6</td><td class="lecture-day"><a href="2026_04_07_Data_Centers_Virtualization_Cloud_AWS.html" title="Data Centers, Virtualization &amp; Cloud Infrastructure">7</a></td><td>8</td><td class="lecture-day"><a href="2026_04_09_IoT_Technologies_and_Applications.html" title="IoT Technologies &amp; Applications (Dr. Dagtas)">9</a></td><td>10</td><td>11</td></tr>
+                <tr><td class="week-num">W13</td><td>12</td><td>13</td><td class="lecture-day"><a href="2026_04_14_Distributed_Computing_and_Hadoop_Fundamentals.html" title="Distributed Computing &amp; Hadoop Fundamentals">14</a></td><td>15</td><td class="lecture-day"><a href="2026_04_16_MapReduce_Spark_Hadoop_Ecosystem.html" title="MapReduce, Spark &amp; the Hadoop Ecosystem">16</a></td><td>17</td><td>18</td></tr>
                 <tr><td class="week-num">W14</td><td>19</td><td>20</td><td class="lecture-day"><a href="2026_04_21_AI_Ethics_Privacy_Bias_Regulation.html" title="AI Ethics, Privacy, Bias &amp; Regulation">21</a></td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
                 <tr><td class="week-num">W15</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td><td></td></tr>
             </table>

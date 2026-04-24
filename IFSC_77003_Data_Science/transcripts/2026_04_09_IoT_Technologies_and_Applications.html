@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture: IoT Technologies &amp; Applications - April 9, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(0.98rem, 0.94rem + 0.12vw, 1.08rem);
+            line-height: 1.68;
+            color: #1a1a1a;
+            background-color: #fafaf8;
+        }
+
+        .top-nav {
+            background: #004a99;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .top-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+
+        .top-nav a:hover { opacity: 1; text-decoration: underline; }
+        .top-nav .sep { color: rgba(255,255,255,0.4); }
+
+        article {
+            width: clamp(1120px, 93vw, 1720px);
+            margin: 0 auto;
+            padding: clamp(28px, 2.8vw, 44px) clamp(16px, 2.4vw, 36px) clamp(38px, 4vw, 64px);
+        }
+
+        .masthead {
+            border-bottom: 3px solid #004a99;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .masthead .kicker {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #004a99;
+            margin-bottom: 14px;
+        }
+
+        .masthead h1 {
+            font-size: clamp(2rem, 1.55rem + 1.5vw, 2.85rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: #0d0d0d;
+            margin-bottom: 16px;
+        }
+
+        .masthead .byline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #666;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .chip {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: #e7f0fb;
+            color: #004a99;
+            border: 1px solid #b8d0f0;
+            border-radius: 20px;
+            padding: 3px 12px;
+            text-decoration: none;
+        }
+
+        .chip:hover {
+            background: #dceafd;
+            border-color: #9fc2ea;
+        }
+
+        h2 {
+            font-size: clamp(1.35rem, 1.16rem + 0.65vw, 1.85rem);
+            font-weight: 700;
+            color: #0d0d0d;
+            margin: 34px 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #ddd;
+            scroll-margin-top: 16px;
+        }
+
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #004a99;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin: 22px 0 8px;
+        }
+
+        p { margin-bottom: 1.05em; }
+
+        blockquote.pull-quote {
+            border: none;
+            margin: 30px 0;
+            padding: 0 22px;
+            text-align: center;
+        }
+
+        blockquote.pull-quote p {
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.5;
+            color: #004a99;
+            margin-bottom: 0;
+        }
+
+        blockquote.pull-quote footer {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .section-rule {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 30px 0;
+        }
+
+        .callout {
+            border-left: 4px solid #004a99;
+            background: #f0f5fc;
+            padding: 14px 18px;
+            margin: 18px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .callout.alert {
+            border-left-color: #c0392b;
+            background: #fdf2f1;
+        }
+
+        .callout.tip {
+            border-left-color: #27ae60;
+            background: #f0faf4;
+        }
+
+        .callout p,
+        .callout li {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .callout strong {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
+            color: #004a99;
+        }
+
+        .callout.alert strong { color: #c0392b; }
+        .callout.tip strong { color: #27ae60; }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.87rem;
+            margin: 16px 0 22px;
+        }
+
+        .data-table th {
+            background: #004a99;
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        .data-table td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #e8e8e8;
+            vertical-align: top;
+            color: #333;
+        }
+
+        .data-table tr:nth-child(even) td { background: #f7f7f5; }
+
+        ul, ol {
+            padding-left: 1.4em;
+            margin-bottom: 1em;
+        }
+
+        li { margin-bottom: 0.5em; }
+
+        footer.page-footer {
+            border-top: 1px solid #ddd;
+            padding: 28px 24px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+            background: #fff;
+        }
+
+        footer.page-footer a {
+            color: #004a99;
+            text-decoration: none;
+        }
+
+        footer.page-footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<nav class="top-nav">
+    <a href="index.html">IFSC 77003 Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Transcript Hub</a>
+    <span class="sep">/</span>
+    <a href="#">April 9, 2026</a>
+</nav>
+
+<article>
+    <header class="masthead">
+        <div class="kicker">IFSC 77003 Data Science &amp; Technologies</div>
+        <h1>IoT Technologies &amp; Applications</h1>
+        <div class="byline">
+            <span>April 9, 2026</span>
+            <span>Dr. Serhan Dagtas</span>
+            <span>Unit 9: Internet of Things</span>
+        </div>
+        <div class="chip-row">
+            <a class="chip" href="#origins">Origins of IoT</a>
+            <a class="chip" href="#tech-stack">Technology Stack</a>
+            <a class="chip" href="#device-design">Device Design</a>
+            <a class="chip" href="#abcds">ABCDs Framework</a>
+            <a class="chip" href="#cloud-fog">Cloud &amp; Fog</a>
+            <a class="chip" href="#applications">Applications</a>
+            <a class="chip" href="#military-project">Sensor Placement</a>
+            <a class="chip" href="#challenges">Challenges</a>
+        </div>
+    </header>
+
+    <section id="origins">
+        <h2>Origins of IoT: From RFID to a General Paradigm</h2>
+        <p>Dr. Dagtas opened by framing IoT as the convergence of two capabilities: <strong>connectivity</strong> and <strong>self- or environment-awareness through sensors</strong>. The term was coined by Kevin Ashton in the late 1990s while working on RFID at MIT. What began as RFID tagging grew, over two decades, into a much broader technological concept.</p>
+
+        <blockquote class="pull-quote">
+            <p>When devices became addressable at the scale that IPv6 allowed, simple low-power things could finally live on the internet as first-class network participants.</p>
+            <footer>Enabling Shift</footer>
+        </blockquote>
+
+        <div class="callout">
+            <strong>The Technologies That Joined RFID</strong>
+            <p>NFC (now used in phone-based payments), visual tagging (barcodes and QR codes), Bluetooth, ZigBee and other wireless sensor network standards, and digital watermarking for security all layered on top of the original RFID foundation.</p>
+        </div>
+
+        <p>The promise Dr. Dagtas repeated throughout the lecture: once the physical world generates rich, continuous data, that data can feed AI-style macro decisions across industries — making many processes more efficient and more effective than guesswork or sampling alone.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="tech-stack">
+        <h2>What Has to Converge for IoT to Work</h2>
+        <p>IoT is not a single technology. It is an integration problem that only becomes viable when several independent advancements arrive at once.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Layer</th>
+                    <th>What It Provides</th>
+                    <th>Examples</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Connectivity</td>
+                    <td>How devices reach each other and the internet</td>
+                    <td>Bluetooth, ZigBee, Wi-Fi, LTE, 5G, IPv6</td>
+                </tr>
+                <tr>
+                    <td>Addressability</td>
+                    <td>A unique identifier for each device</td>
+                    <td>IPv6 addresses, device IDs</td>
+                </tr>
+                <tr>
+                    <td>Sensing</td>
+                    <td>Capturing the state of the world</td>
+                    <td>Temperature, light, motion, pulse, camera, microphone</td>
+                </tr>
+                <tr>
+                    <td>Actuation</td>
+                    <td>Acting on the world</td>
+                    <td>Open a door, change a traffic light, turn lights on</td>
+                </tr>
+                <tr>
+                    <td>Embedded processing</td>
+                    <td>Local computation on the device itself</td>
+                    <td>Microcontrollers running minimal firmware</td>
+                </tr>
+                <tr>
+                    <td>Cloud and fog</td>
+                    <td>Heavier processing, long-term storage, AI</td>
+                    <td>AWS / Azure / GCP plus local smart-home servers</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout tip">
+            <strong>Why IPv6 Mattered</strong>
+            <p>IPv4's address space simply cannot support billions of tiny devices. IPv6 is what made it practical to give every sensor, watch, or home device a real IP address rather than forcing them behind NAT gateways.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="device-design">
+        <h2>How IoT Devices Are Actually Built</h2>
+        <p>IoT devices are deliberately <strong>small, low-power, and inexpensive</strong> so they can be deployed in large numbers. That shapes every design decision.</p>
+
+        <ul>
+            <li>A microcontroller (Dr. Dagtas showed an 8-bit AVR running at 20 MHz, smaller than a quarter) handles onboard logic.</li>
+            <li>Onboard sensors capture the needed measurement: pulse, force, light, motion, and so on.</li>
+            <li>The microcontroller organizes the data, temporarily stores it, and manages communication with a nearby device.</li>
+            <li>Communication typically uses Bluetooth or a low-power wireless sensor network protocol like ZigBee.</li>
+            <li>Mesh networking lets devices relay messages to each other instead of each one talking to a central base station, which drops power usage dramatically.</li>
+        </ul>
+
+        <div class="callout">
+            <strong>Battery Life as a First-Class Design Goal</strong>
+            <p>Mesh networking and careful power management are why many sensors can run for months, years, or longer on a single battery. Some deployments add tiny solar panels, but many environments are too dark for that, so power budget discipline is the norm.</p>
+        </div>
+
+        <h3>Devices Relay Through More Powerful Devices</h3>
+        <p>A smartwatch has more compute and storage than a minimal sensor but far less than a phone. A common pattern: the sensor talks to the watch, the watch talks to the phone, and the phone passes relevant data to the cloud. Different categories of device fill different roles in the relay chain.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="abcds">
+        <h2>The ABCDs of IoT</h2>
+        <p>Dr. Dagtas offered a simple mnemonic for the four critical components of any real IoT application.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Letter</th>
+                    <th>Component</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>A</strong></td>
+                    <td>Applications</td>
+                    <td>The specific domain: healthcare, transportation, retail, agriculture.</td>
+                </tr>
+                <tr>
+                    <td><strong>B</strong></td>
+                    <td>Big data / Analytics</td>
+                    <td>Turning raw sensor streams into information, knowledge, and action.</td>
+                </tr>
+                <tr>
+                    <td><strong>C</strong></td>
+                    <td>Connectivity</td>
+                    <td>Networking stack from Bluetooth and ZigBee up through LTE and 5G.</td>
+                </tr>
+                <tr>
+                    <td><strong>D</strong></td>
+                    <td>Devices</td>
+                    <td>The wearables and embedded sensors out in the world.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout alert">
+            <strong>Raw Data Alone Is Of Limited Value</strong>
+            <p>Pulse rate as a standalone number does not diagnose anything. Pulse combined with activity data, oxygen saturation, sleep trends, and personal baselines becomes medically meaningful. IoT value lives in the <em>integration</em>, not the individual sensor reading.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="cloud-fog">
+        <h2>Cloud Computing, Fog Nodes, and Device Categories</h2>
+        <p>Cloud computing completes the IoT puzzle by providing storage, deep learning infrastructure, and long-term analytics at a scale that no sensor or phone could match. Cloud services show up in the familiar SaaS / PaaS / IaaS forms introduced in the previous session.</p>
+
+        <h3>Fog Computing as the Middle Layer</h3>
+        <p>Before data reaches the cloud, it often passes through an intermediate tier. Fog nodes are local servers — sometimes dedicated smart-home hubs like an Alexa-style device — that handle a lot of local processing and only escalate to the cloud when necessary. They act as a bridge: in constant communication with the devices around them, but also capable of talking upstream.</p>
+
+        <div class="callout tip">
+            <strong>Why Fog Exists</strong>
+            <p>Latency, bandwidth, and power all push some work closer to the sensor. Fog nodes reduce round-trips, reduce upstream data volume, and make the system more responsive for local decisions (like detecting a fire event before a cloud call round-trips).</p>
+        </div>
+
+        <h3>Six Categories of IoT-Integrated Devices</h3>
+        <ol>
+            <li><strong>Category 1:</strong> minimal low-end sensing nodes.</li>
+            <li><strong>Category 2:</strong> mesh-network participants with some networking capability.</li>
+            <li><strong>Category 3:</strong> more advanced compute, IP-network capable, can talk to tablets and phones.</li>
+            <li><strong>Category 4:</strong> tablets and mobile phones.</li>
+            <li><strong>Category 5:</strong> PCs and laptops.</li>
+            <li><strong>Category 6:</strong> cloud servers or advanced local servers in a professional setting.</li>
+        </ol>
+
+        <p>A working IoT deployment typically spans several of these categories, with data flowing up and decisions flowing back down.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="applications">
+        <h2>Application Areas: What IoT Is Already Doing</h2>
+        <p>Dr. Dagtas walked through application domains he has personally worked in and ones that are maturing industry-wide.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Domain</th>
+                    <th>Example</th>
+                    <th>Benefit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Smart home</td>
+                    <td>Multi-point temperature control, remote monitoring</td>
+                    <td>Convenience, energy efficiency</td>
+                </tr>
+                <tr>
+                    <td>Agriculture</td>
+                    <td>Soil moisture sensors at multiple depths and points</td>
+                    <td>Water savings, higher yields, optimized harvest timing</td>
+                </tr>
+                <tr>
+                    <td>Animal farming</td>
+                    <td>Wearables on cows tracking movement and activity</td>
+                    <td>Better feeding schedules, health detection, economic gains</td>
+                </tr>
+                <tr>
+                    <td>Healthcare</td>
+                    <td>Smartwatches, wearable medical sensors, regional trend detection</td>
+                    <td>Earlier intervention, population-level insight</td>
+                </tr>
+                <tr>
+                    <td>Parking management</td>
+                    <td>Sensors indicating which spots are open</td>
+                    <td>Less time circling, lower emissions, faster ROI</td>
+                </tr>
+                <tr>
+                    <td>Smart waste</td>
+                    <td>Bins reporting fill level and waste type</td>
+                    <td>Optimized collection routes, better recycling</td>
+                </tr>
+                <tr>
+                    <td>Retail</td>
+                    <td>Smart checkout, inventory sensors, smart refrigerators</td>
+                    <td>Faster checkout, stock accuracy, connected shopping habits</td>
+                </tr>
+                <tr>
+                    <td>Smart transportation</td>
+                    <td>Cars communicating with each other and with city infrastructure</td>
+                    <td>Traffic optimization, integration with smart-city networks</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout">
+            <strong>20-Year Arc</strong>
+            <p>Many of these applications — smart watches, smart stores, wearable medical sensors — were experimental research topics 15–20 years ago. Dr. Dagtas noted that several projects he personally worked on in that era have since matured into real products and daily practices.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="military-project">
+        <h2>Case Study: Military Sensor Placement Optimization</h2>
+        <p>Dr. Dagtas closed with a project he worked on for the US military involving <strong>data fusion</strong> across multiple sensor types and <strong>optimal sensor placement</strong> in a building.</p>
+
+        <h3>The Placement Problem</h3>
+        <ul>
+            <li>Different sensor types have different coverage shapes.</li>
+            <li>Motion and light sensors cover roughly circular areas.</li>
+            <li>Visual sensors (cameras) are <em>directional</em> — they cover a cone defined by their angle of view and pointing direction.</li>
+            <li>RF propagation for wireless communication is non-linear and context-dependent.</li>
+            <li>The goal: place the minimum number of each sensor type in the right locations to maximize coverage at minimum total cost while preserving mesh connectivity.</li>
+        </ul>
+
+        <div class="callout tip">
+            <strong>What Made This Interesting</strong>
+            <p>Every building changes the answer. Placement is not a one-time decision — it is an optimization problem that must be re-solved for each environment, balancing sensing coverage, networking reach, total cost, and power budget simultaneously.</p>
+        </div>
+
+        <p>The project's broader lesson: even a small IoT deployment is a real optimization problem. That complexity is part of why IoT adoption has been more challenging and more gradual than the early hype suggested.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="challenges">
+        <h2>Current Challenges in IoT</h2>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Challenge</th>
+                    <th>Why It Matters</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Interoperability and standardization</td>
+                    <td>Requires human agreement across vendors, not just a technical fix.</td>
+                </tr>
+                <tr>
+                    <td>Software and integration complexity</td>
+                    <td>Each new device and platform increases combinatorial complexity.</td>
+                </tr>
+                <tr>
+                    <td>RF and health concerns</td>
+                    <td>Growing 5G and wireless density raises questions about long-term exposure.</td>
+                </tr>
+                <tr>
+                    <td>Privacy and security</td>
+                    <td>Especially for cameras and other visual sensors in public and home spaces.</td>
+                </tr>
+                <tr>
+                    <td>Environmental impact</td>
+                    <td>E-waste from device turnover; radio-frequency saturation of the environment.</td>
+                </tr>
+                <tr>
+                    <td>Automation of critical decisions</td>
+                    <td>Telehealth and similar applications raise questions about relying on software for high-stakes judgment.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout alert">
+            <strong>The Social Side</strong>
+            <p>IoT is not purely a technology discussion. Placement of sensors and cameras around people triggers real objections, regulation, and policy work. Dr. Dagtas emphasized that technology adoption and social acceptance move together, not independently.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="next-steps">
+        <h2>Next Steps</h2>
+        <ol>
+            <li>The lecture slides live on Blackboard under <strong>Instructional Materials, Unit 9 &rarr; IoT Technologies and Applications</strong>.</li>
+            <li>Be able to describe the <strong>ABCDs framework</strong> and give a real-world example of each layer.</li>
+            <li>Understand why <strong>raw sensor data</strong> is of limited value without integration and analytics on top of it.</li>
+            <li>Be ready to discuss the tradeoffs between <strong>embedded, fog, and cloud</strong> processing for a given IoT application.</li>
+        </ol>
+    </section>
+</article>
+
+<footer class="page-footer">
+    <p>IFSC 77003 Data Science &amp; Technologies Transcript Archive</p>
+    <p><a href="index.html">Return to the transcript hub</a></p>
+</footer>
+</body>
+</html>

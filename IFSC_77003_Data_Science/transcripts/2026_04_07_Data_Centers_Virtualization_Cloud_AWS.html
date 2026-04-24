@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture: Data Centers, Virtualization &amp; Cloud Infrastructure - April 7, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(0.98rem, 0.94rem + 0.12vw, 1.08rem);
+            line-height: 1.68;
+            color: #1a1a1a;
+            background-color: #fafaf8;
+        }
+
+        .top-nav {
+            background: #004a99;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .top-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+
+        .top-nav a:hover { opacity: 1; text-decoration: underline; }
+        .top-nav .sep { color: rgba(255,255,255,0.4); }
+
+        article {
+            width: clamp(1120px, 93vw, 1720px);
+            margin: 0 auto;
+            padding: clamp(28px, 2.8vw, 44px) clamp(16px, 2.4vw, 36px) clamp(38px, 4vw, 64px);
+        }
+
+        .masthead {
+            border-bottom: 3px solid #004a99;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .masthead .kicker {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #004a99;
+            margin-bottom: 14px;
+        }
+
+        .masthead h1 {
+            font-size: clamp(2rem, 1.55rem + 1.5vw, 2.85rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: #0d0d0d;
+            margin-bottom: 16px;
+        }
+
+        .masthead .byline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #666;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .chip {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: #e7f0fb;
+            color: #004a99;
+            border: 1px solid #b8d0f0;
+            border-radius: 20px;
+            padding: 3px 12px;
+            text-decoration: none;
+        }
+
+        .chip:hover {
+            background: #dceafd;
+            border-color: #9fc2ea;
+        }
+
+        h2 {
+            font-size: clamp(1.35rem, 1.16rem + 0.65vw, 1.85rem);
+            font-weight: 700;
+            color: #0d0d0d;
+            margin: 34px 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #ddd;
+            scroll-margin-top: 16px;
+        }
+
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #004a99;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin: 22px 0 8px;
+        }
+
+        p { margin-bottom: 1.05em; }
+
+        blockquote.pull-quote {
+            border: none;
+            margin: 30px 0;
+            padding: 0 22px;
+            text-align: center;
+        }
+
+        blockquote.pull-quote p {
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.5;
+            color: #004a99;
+            margin-bottom: 0;
+        }
+
+        blockquote.pull-quote footer {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .section-rule {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 30px 0;
+        }
+
+        .callout {
+            border-left: 4px solid #004a99;
+            background: #f0f5fc;
+            padding: 14px 18px;
+            margin: 18px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .callout.alert {
+            border-left-color: #c0392b;
+            background: #fdf2f1;
+        }
+
+        .callout.tip {
+            border-left-color: #27ae60;
+            background: #f0faf4;
+        }
+
+        .callout p,
+        .callout li {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .callout strong {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
+            color: #004a99;
+        }
+
+        .callout.alert strong { color: #c0392b; }
+        .callout.tip strong { color: #27ae60; }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.87rem;
+            margin: 16px 0 22px;
+        }
+
+        .data-table th {
+            background: #004a99;
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        .data-table td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #e8e8e8;
+            vertical-align: top;
+            color: #333;
+        }
+
+        .data-table tr:nth-child(even) td { background: #f7f7f5; }
+
+        ul, ol {
+            padding-left: 1.4em;
+            margin-bottom: 1em;
+        }
+
+        li { margin-bottom: 0.5em; }
+
+        footer.page-footer {
+            border-top: 1px solid #ddd;
+            padding: 28px 24px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+            background: #fff;
+        }
+
+        footer.page-footer a {
+            color: #004a99;
+            text-decoration: none;
+        }
+
+        footer.page-footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<nav class="top-nav">
+    <a href="index.html">IFSC 77003 Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Transcript Hub</a>
+    <span class="sep">/</span>
+    <a href="#">April 7, 2026</a>
+</nav>
+
+<article>
+    <header class="masthead">
+        <div class="kicker">IFSC 77003 Data Science &amp; Technologies</div>
+        <h1>Data Centers, Virtualization &amp; Cloud Infrastructure</h1>
+        <div class="byline">
+            <span>April 7, 2026</span>
+            <span>Dr. Elizabeth Pierce</span>
+            <span>Unit 10: Cloud &amp; Big Data</span>
+        </div>
+        <div class="chip-row">
+            <a class="chip" href="#data-centers">Data Centers</a>
+            <a class="chip" href="#hardware">Hardware Review</a>
+            <a class="chip" href="#virtualization">Virtualization</a>
+            <a class="chip" href="#service-models">SaaS / PaaS / IaaS</a>
+            <a class="chip" href="#containers">Containers &amp; Microservices</a>
+            <a class="chip" href="#aws-demo">AWS Demo</a>
+            <a class="chip" href="#storage">S3 Storage Tiers</a>
+        </div>
+    </header>
+
+    <section id="data-centers">
+        <h2>Opening Frame: The Infrastructure Behind AI and Data Science</h2>
+        <p>Dr. Pierce opened by pivoting the course from machine learning and IoT topics to the <strong>physical computing infrastructure</strong> that makes all of it possible. Data centers are racks upon racks of networked computers, typically running 24/7, with no keyboards or mice on the rack itself since all administration happens from a separate control center.</p>
+
+        <blockquote class="pull-quote">
+            <p>Data centers are in the news for a reason. They run constantly, they consume enormous amounts of energy, and they depend on heavy cooling infrastructure just to stay online.</p>
+            <footer>Lecture Theme</footer>
+        </blockquote>
+
+        <div class="callout">
+            <strong>Hybrid Is the Norm</strong>
+            <p>Most large organizations run a mix: some workloads stay in private on-premise data centers, some run on AWS / Azure / Google Cloud, and often more than one cloud vendor is used. The decision of what to keep on-prem versus what to offload is now a core IT strategy question.</p>
+        </div>
+
+        <p>Active research areas mentioned: more energy-efficient chip designs, leaner algorithms (the Bitcoin / blockchain space drove a lot of this), and sustainable energy sourcing, with renewed interest in <em>nuclear</em> and early work on <em>fusion</em> because wind and solar cannot guarantee the steady supply data centers require.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="hardware">
+        <h2>Quick Review: What Is Inside a Computer</h2>
+        <p>Before jumping into virtualization, Dr. Pierce walked through the basic hardware components found in essentially any modern computing device.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Role</th>
+                    <th>Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CPU</td>
+                    <td>Executes basic instructions and most calculations</td>
+                    <td>The general-purpose brain.</td>
+                </tr>
+                <tr>
+                    <td>GPU</td>
+                    <td>Originally for video and graphics</td>
+                    <td>Now central to neural nets and LLM workloads.</td>
+                </tr>
+                <tr>
+                    <td>Motherboard</td>
+                    <td>Hosts the circuitry that lets components talk</td>
+                    <td>Now embedded in smart appliances and vehicles too.</td>
+                </tr>
+                <tr>
+                    <td>RAM</td>
+                    <td>Fast, volatile working memory</td>
+                    <td>Expensive per gigabyte but essential for performance.</td>
+                </tr>
+                <tr>
+                    <td>Hard drive / SSD</td>
+                    <td>Persistent storage</td>
+                    <td>Cheaper than RAM but slower for I/O.</td>
+                </tr>
+                <tr>
+                    <td>Power supply + cooling</td>
+                    <td>Keeps things powered and within thermal limits</td>
+                    <td>At scale, air alone is insufficient; AC becomes required.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout tip">
+            <strong>Real-World Aside</strong>
+            <p>Because so many household devices now contain motherboards and CPUs, whole-home surge protectors are increasingly popular. One protected surge device is cheaper to replace than a house full of fried appliance boards.</p>
+        </div>
+
+        <p>Above the hardware sits the <strong>operating system</strong> as the resource manager, and above that the user-installed applications. This standard stack — hardware, OS, applications — is the baseline that virtualization reshapes.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="virtualization">
+        <h2>Virtualization: The Hypervisor and the Pie</h2>
+        <p>The concept of virtual machines dates back to the 1960s, but the technology only became broadly practical in the 2000s. By roughly 2010, virtualization had matured to the point where <strong>cloud computing as we know it became possible</strong>.</p>
+
+        <p>A virtualized machine keeps the same physical hardware, but inserts a new software layer called the <strong>hypervisor</strong> between the hardware and the operating systems. Common hypervisors include VMware vSphere and Microsoft Hyper-V. The hypervisor carves up the physical machine into logical slices, each presented to its user as if it were a full computer.</p>
+
+        <blockquote class="pull-quote">
+            <p>Think of the hardware as a pie. The hypervisor cuts it into slices. The slices do not need to be equal, and they do not need to be permanent.</p>
+            <footer>Virtualization Model</footer>
+        </blockquote>
+
+        <div class="callout">
+            <strong>What the Hypervisor Cannot Do</strong>
+            <p>It cannot create more resources than physically exist. If the host has 64 GB of RAM total, the combined RAM allocated across all virtual machines cannot exceed 64 GB. Virtualization redistributes; it does not manufacture.</p>
+        </div>
+
+        <h3>Why Virtualization Matters for Operations</h3>
+        <ul>
+            <li><strong>Device independence:</strong> a cheap Chromebook can access a powerful virtual machine over the network, so the client device no longer needs to match the workload.</li>
+            <li><strong>OS neutrality:</strong> once you log in, you are in the VM's environment, regardless of whether your local machine is Mac, Windows, or Linux.</li>
+            <li><strong>Resource on demand:</strong> slices can be resized dynamically, and resources freed by idle users can be redeployed to busy users.</li>
+            <li><strong>Fault tolerance:</strong> if one physical host starts failing, the hypervisor can migrate workloads to other hosts, often transparently to the user.</li>
+            <li><strong>Disaster recovery:</strong> if the user's client device dies, they just log in from another device and resume in the same VM.</li>
+        </ul>
+
+        <div class="callout tip">
+            <strong>Cost Lesson from UALR</strong>
+            <p>When UALR experimented with classroom virtualization, the raw hardware cost was comparable to buying 30 workstations. The real savings came from <em>manpower</em>: one or two admins can maintain a virtualized environment, versus a much larger team needed to keep 30 individual machines healthy.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="service-models">
+        <h2>From Virtualization to Cloud Service Models</h2>
+        <p>Dr. Pierce traced how Amazon pioneered cloud computing almost by accident. Amazon built massive infrastructure to handle the Christmas shopping surge on its retail marketplace. Outside of peak season, all of that compute capacity sat idle. Virtualization let them rent those idle slices to other companies, and <strong>AWS</strong> was born as a separate line of business that now generates billions of dollars of revenue in its own right.</p>
+
+        <p>From there, the industry settled into three classic service models, each a different depth of responsibility for the customer.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>What You Get</th>
+                    <th>Who Uses It</th>
+                    <th>Examples</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SaaS (Software as a Service)</td>
+                    <td>A finished application accessed in the browser</td>
+                    <td>End users</td>
+                    <td>Google Workspace, Workday, Gmail</td>
+                </tr>
+                <tr>
+                    <td>PaaS (Platform as a Service)</td>
+                    <td>A pre-configured development platform</td>
+                    <td>Developers building apps</td>
+                    <td>Google Colab, Gitpod, GitHub Codespaces</td>
+                </tr>
+                <tr>
+                    <td>IaaS (Infrastructure as a Service)</td>
+                    <td>Raw virtual machines with a base OS</td>
+                    <td>IT teams building their own stack</td>
+                    <td>AWS EC2, Azure VMs, GCE</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout">
+            <strong>PaaS In This Program</strong>
+            <p>This is why the department stopped trying to install Visual Studio on lab machines. Students use Google Colab, Gitpod, and GitHub Codespaces instead. Their work lives in the cloud and follows them from freshman through senior year, regardless of whether they log in from a Mac, PC, or Chromebook.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="containers">
+        <h2>Containers and Microservices Architecture</h2>
+        <p>A virtual machine is analogous to <em>renting a whole building</em> — you get your own OS and applications on top of the hypervisor. But you often do not need a whole building; sometimes you just need an <strong>apartment, or a single room</strong>. That is the role of the container.</p>
+
+        <p>Containers replace the hypervisor with <em>container software</em> (Docker being the most recognizable brand, Kubernetes being the orchestration layer). Containers share the host operating system rather than virtualizing a full machine, which makes them dramatically smaller, lighter, faster to start, and easier to update.</p>
+
+        <h3>Stacking Containers Like Tupperware</h3>
+        <p>Dr. Pierce used a refrigerator analogy: the things you pull out most often belong on top of the stack. In containerized systems, the pieces that change the most frequently go at the top of the stack, and slow-changing base libraries and utilities go at the bottom. Swapping a frequently-changing container should not force you to rebuild the stable layers underneath.</p>
+
+        <div class="callout tip">
+            <strong>Microservices Example</strong>
+            <p>A shopping web app can be decomposed into separate services in separate containers: a search bar, a shopping cart, a buy button. If the search container fails, the cart and buy button keep working. If the buy button is recoded, the cart is unaffected.</p>
+        </div>
+
+        <div class="callout">
+            <strong>Why Containers Solved a Developer Pain Point</strong>
+            <p>Code that worked on a developer's laptop used to break in production because of OS version drift, permission differences, or missing database drivers. A container packages the application together with its dependencies, so the same container runs identically in local development, testing, and production.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="aws-demo">
+        <h2>AWS Services Walkthrough</h2>
+        <p>Dr. Pierce then toured the AWS console to show the scale of the service catalog — AWS has grown from 5,000 services a few years ago to an even larger catalog today. AWS pushed hard into universities with <strong>AWS Academy</strong>, which mirrors what Microsoft and Google do: get students familiar with your environment early, because today's students are tomorrow's IT buyers.</p>
+
+        <h3>EC2 Instance Types</h3>
+        <ul>
+            <li>Each instance type has a name, architecture, vCPU count, memory, storage, and network performance profile.</li>
+            <li>Pricing is shown per hour and varies by OS; Linux is consistently cheaper than Windows in server workloads.</li>
+            <li>AWS Academy student accounts are restricted to the <code>us-east-1</code> region because it is the cheapest data center.</li>
+            <li>Data residency rules often force enterprises to stay within specific regions (EU, US, etc.).</li>
+        </ul>
+
+        <div class="callout">
+            <strong>Edge Computing</strong>
+            <p>Even inside a single cloud provider, choosing where to run a job is a real optimization problem. Edge computing is about reducing the distance data has to travel, cutting latency, improving real-time responsiveness, and lowering bandwidth costs.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="storage">
+        <h2>S3 Storage Tiers and Cost Structure</h2>
+        <p>Amazon S3 is AWS's core object storage. Data is organized into <strong>buckets</strong>, and the economics drive major architectural decisions.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Tier</th>
+                    <th>Approximate Cost per GB / Month</th>
+                    <th>Best For</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>S3 Standard</td>
+                    <td>~$0.023</td>
+                    <td>Frequently accessed hot data</td>
+                </tr>
+                <tr>
+                    <td>S3 Infrequent Access</td>
+                    <td>~$0.01</td>
+                    <td>Data that is read occasionally</td>
+                </tr>
+                <tr>
+                    <td>S3 Glacier</td>
+                    <td>Fraction of a cent</td>
+                    <td>Archival data accessed rarely</td>
+                </tr>
+                <tr>
+                    <td>S3 Glacier Deep Archive</td>
+                    <td>~$0.001 or less</td>
+                    <td>Records accessed once or twice a year; retrieval can take ~12 hours</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout tip">
+            <strong>Scale Numbers</strong>
+            <p>S3 can hold effectively unlimited total data (up to exabyte scale). Individual objects range from 0 bytes to 5 TB. An AWS account can create up to 1 million buckets. Most teams use many buckets to organize data, manage permissions, and scale around per-bucket request limits.</p>
+        </div>
+
+        <p>The broader point: <strong>access pattern determines tier, and tier determines cost</strong>. If you have historical records only pulled for rare FOIA requests, archival tiers are dramatically cheaper. If you need millisecond access, you pay Standard pricing.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="elsewhere">
+        <h2>Other Service Categories and Clusters on Demand</h2>
+        <p>Beyond compute and storage, Dr. Pierce briefly surveyed the breadth of the AWS catalog: databases, migration and transfer, networking and content delivery, developer tools, blockchain, satellite, quantum, management and governance, media, game development, IoT, end-user computing, business applications, application integration, front-end mobile, cloud financial management, security and compliance, analytics, and machine learning.</p>
+
+        <p>AWS EMR (Elastic MapReduce) was previewed as a preview of next class's topic. Creating a Hadoop / Spark / Flink / HBase / Presto cluster used to mean buying hardware, racking it, wiring the network, installing the OS, installing the cluster software, and testing — now it is a menu of instance types, a security key setup, and a "Create Cluster" button. Provisioning takes about 20 minutes.</p>
+
+        <div class="callout">
+            <strong>The EC2 Key Pair as "Secret Handshake"</strong>
+            <p>Dr. Pierce compared the EC2 key pair to the secret handshake at a childhood clubhouse. The cluster will not accept connections from a machine that does not present the matching key, which is how access is gated.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="next-steps">
+        <h2>Next Steps</h2>
+        <ol>
+            <li>Review the SaaS / PaaS / IaaS distinction so you can classify real tools correctly.</li>
+            <li>Be able to explain <strong>why virtualization had to come first</strong> for cloud computing to exist.</li>
+            <li>Understand the refrigerator-stack analogy for containers — what goes on top, what goes on the bottom, and why.</li>
+            <li>Next class will dive into clusters on EMR, building directly on today's AWS tour.</li>
+        </ol>
+    </section>
+</article>
+
+<footer class="page-footer">
+    <p>IFSC 77003 Data Science &amp; Technologies Transcript Archive</p>
+    <p><a href="index.html">Return to the transcript hub</a></p>
+</footer>
+</body>
+</html>

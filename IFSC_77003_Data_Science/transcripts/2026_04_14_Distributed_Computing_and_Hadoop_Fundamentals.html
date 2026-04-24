@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture: Distributed Computing &amp; Hadoop Fundamentals - April 14, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(0.98rem, 0.94rem + 0.12vw, 1.08rem);
+            line-height: 1.68;
+            color: #1a1a1a;
+            background-color: #fafaf8;
+        }
+
+        .top-nav {
+            background: #004a99;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .top-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+
+        .top-nav a:hover { opacity: 1; text-decoration: underline; }
+        .top-nav .sep { color: rgba(255,255,255,0.4); }
+
+        article {
+            width: clamp(1120px, 93vw, 1720px);
+            margin: 0 auto;
+            padding: clamp(28px, 2.8vw, 44px) clamp(16px, 2.4vw, 36px) clamp(38px, 4vw, 64px);
+        }
+
+        .masthead {
+            border-bottom: 3px solid #004a99;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .masthead .kicker {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #004a99;
+            margin-bottom: 14px;
+        }
+
+        .masthead h1 {
+            font-size: clamp(2rem, 1.55rem + 1.5vw, 2.85rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: #0d0d0d;
+            margin-bottom: 16px;
+        }
+
+        .masthead .byline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #666;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .chip {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: #e7f0fb;
+            color: #004a99;
+            border: 1px solid #b8d0f0;
+            border-radius: 20px;
+            padding: 3px 12px;
+            text-decoration: none;
+        }
+
+        .chip:hover {
+            background: #dceafd;
+            border-color: #9fc2ea;
+        }
+
+        h2 {
+            font-size: clamp(1.35rem, 1.16rem + 0.65vw, 1.85rem);
+            font-weight: 700;
+            color: #0d0d0d;
+            margin: 34px 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #ddd;
+            scroll-margin-top: 16px;
+        }
+
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #004a99;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin: 22px 0 8px;
+        }
+
+        p { margin-bottom: 1.05em; }
+
+        blockquote.pull-quote {
+            border: none;
+            margin: 30px 0;
+            padding: 0 22px;
+            text-align: center;
+        }
+
+        blockquote.pull-quote p {
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.5;
+            color: #004a99;
+            margin-bottom: 0;
+        }
+
+        blockquote.pull-quote footer {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .section-rule {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 30px 0;
+        }
+
+        .callout {
+            border-left: 4px solid #004a99;
+            background: #f0f5fc;
+            padding: 14px 18px;
+            margin: 18px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .callout.alert {
+            border-left-color: #c0392b;
+            background: #fdf2f1;
+        }
+
+        .callout.tip {
+            border-left-color: #27ae60;
+            background: #f0faf4;
+        }
+
+        .callout p,
+        .callout li {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .callout strong {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
+            color: #004a99;
+        }
+
+        .callout.alert strong { color: #c0392b; }
+        .callout.tip strong { color: #27ae60; }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.87rem;
+            margin: 16px 0 22px;
+        }
+
+        .data-table th {
+            background: #004a99;
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        .data-table td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #e8e8e8;
+            vertical-align: top;
+            color: #333;
+        }
+
+        .data-table tr:nth-child(even) td { background: #f7f7f5; }
+
+        ul, ol {
+            padding-left: 1.4em;
+            margin-bottom: 1em;
+        }
+
+        li { margin-bottom: 0.5em; }
+
+        footer.page-footer {
+            border-top: 1px solid #ddd;
+            padding: 28px 24px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+            background: #fff;
+        }
+
+        footer.page-footer a {
+            color: #004a99;
+            text-decoration: none;
+        }
+
+        footer.page-footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<nav class="top-nav">
+    <a href="index.html">IFSC 77003 Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Transcript Hub</a>
+    <span class="sep">/</span>
+    <a href="#">April 14, 2026</a>
+</nav>
+
+<article>
+    <header class="masthead">
+        <div class="kicker">IFSC 77003 Data Science &amp; Technologies</div>
+        <h1>Distributed Computing &amp; Hadoop Fundamentals</h1>
+        <div class="byline">
+            <span>April 14, 2026</span>
+            <span>Dr. Elizabeth Pierce</span>
+            <span>Unit 10: Cloud &amp; Big Data</span>
+        </div>
+        <div class="chip-row">
+            <a class="chip" href="#distributed">Distributed Computing</a>
+            <a class="chip" href="#roman-analogy">Roman Empire Census</a>
+            <a class="chip" href="#hadoop-v1">Hadoop v1 Architecture</a>
+            <a class="chip" href="#replication">Replication &amp; Rack Awareness</a>
+            <a class="chip" href="#failure">Handling Failure</a>
+            <a class="chip" href="#yarn">Hadoop v2 &amp; YARN</a>
+            <a class="chip" href="#mapreduce">Word Count Walkthrough</a>
+            <a class="chip" href="#ecosystem">Ecosystem &amp; Deployment</a>
+        </div>
+    </header>
+
+    <section id="distributed">
+        <h2>What Distributed Computing Is and Why It Matters</h2>
+        <p>Dr. Pierce opened by defining distributed computing: multiple independent networked computers (nodes) working together on a shared task, communicating and coordinating via messages. They break a large workload into smaller tasks processed in parallel, giving higher efficiency, reliability, and scalability than a single centralized machine.</p>
+
+        <p>The industry has always had a second path: keep making one machine faster. Laptops scale up to workstations, to mid-range servers, to mainframes, to supercomputers, and now to quantum computing research. The problem is that centralized power is <strong>extremely expensive</strong>. Distributed computing on <em>commodity machines</em> is the cheap-at-scale alternative.</p>
+
+        <blockquote class="pull-quote">
+            <p>If one person with a standard lawn mower needs an hour, four neighborhood kids with four mowers finish in a quarter of the time — provided the lawn can actually be split four ways.</p>
+            <footer>Parallelism Analogy</footer>
+        </blockquote>
+
+        <div class="callout">
+            <strong>The Limiting Factor</strong>
+            <p>Parallelism only helps when the work <em>can</em> be divided. If task B depends on task A finishing, they cannot run at the same time. Distributed computing wins on workloads where big chunks of work are genuinely independent.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="roman-analogy">
+        <h2>The Roman Empire Census Analogy</h2>
+        <p>To motivate Hadoop's architecture, Dr. Pierce built an extended analogy: the Roman Emperor wants a census, fast, and cheap. He submits the job to two trusted ministers.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Role</th>
+                    <th>In the Analogy</th>
+                    <th>In Hadoop</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Client</td>
+                    <td>The Emperor submitting the census request</td>
+                    <td>The application submitting a job</td>
+                </tr>
+                <tr>
+                    <td>Minister of Jobs</td>
+                    <td>High-ranking official tracking workers and progress</td>
+                    <td>Job Tracker / Resource Manager</td>
+                </tr>
+                <tr>
+                    <td>Minister of Data</td>
+                    <td>High-ranking official tracking map sections</td>
+                    <td>NameNode</td>
+                </tr>
+                <tr>
+                    <td>Workers</td>
+                    <td>Cheap imperial minions going to each section</td>
+                    <td>Commodity worker nodes / DataNodes</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>The Two Critical Design Choices</h3>
+        <ol>
+            <li><strong>Divide the empire into sections</strong> and send a worker to each section to count, then report back to the ministers who combine results for the final tally.</li>
+            <li><strong>Build in redundancy</strong> — some workers will get sick, be robbed, or run into bad weather. The ministers assign <em>three workers per section</em>, and whoever reports back first is the result that counts; the others are discarded so the census stays on schedule.</li>
+        </ol>
+
+        <div class="callout tip">
+            <strong>Why Three Workers</strong>
+            <p>Three is the default for risky sections. Low-risk sections (e.g., a suburb of Rome) might get only one worker. Higher-risk sections might get more. This is exactly how Hadoop picks a replication factor per deployment.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="hadoop-v1">
+        <h2>Hadoop v1: HDFS + MapReduce</h2>
+        <p>Hadoop was created by Doug Cutting and Mike Cafarella in 2005 as an Apache open-source framework. While Google Labs and many others were building distributed computing systems in parallel, Hadoop became the dominant one in industry.</p>
+
+        <p>Hadoop v1 has two main pieces, which directly mirror the census analogy:</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Layer</th>
+                    <th>Role in v1</th>
+                    <th>Analogy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HDFS (Hadoop Distributed File System)</td>
+                    <td>Splits huge files into blocks, distributes them across the cluster, and tracks where each block lives via the NameNode</td>
+                    <td>Minister of Data with the empire map</td>
+                </tr>
+                <tr>
+                    <td>MapReduce</td>
+                    <td><em>Double duty</em> in v1: it is both the programming model AND the resource manager / job tracker</td>
+                    <td>Minister of Jobs who also does resource scheduling</td>
+                </tr>
+                <tr>
+                    <td>Hadoop Common</td>
+                    <td>Shared libraries and utilities every module depends on</td>
+                    <td>The imperial bureaucracy infrastructure</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout alert">
+            <strong>Hadoop Is a Semi-Truck, Not a Bicycle</strong>
+            <p>Dr. Pierce was emphatic: do not reach for Hadoop for an Excel spreadsheet or even a few million rows. Hadoop earns its operational cost only at terabyte, petabyte, and exabyte scale. For small data, a single machine is always the right answer.</p>
+        </div>
+
+        <h3>Why MapReduce's "Double Duty" Was a Problem</h3>
+        <ul>
+            <li>MapReduce became a bottleneck as clusters grew, because it was simultaneously scheduling resources and executing the processing model.</li>
+            <li>It also locked every Hadoop user into MapReduce — there was no way to plug in a different processing framework.</li>
+            <li>Hadoop v2 split these responsibilities, which is what unlocked Spark, Flink, and every other engine that followed.</li>
+        </ul>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="replication">
+        <h2>Replication and Rack Awareness</h2>
+        <p>When HDFS receives a large file, it breaks it into <strong>blocks</strong> and stores multiple copies of each block across the cluster. The default replication factor is <strong>three</strong>.</p>
+
+        <h3>Where the Three Copies Actually Go</h3>
+        <ol>
+            <li><strong>Copy 1:</strong> on a worker node somewhere in the cluster.</li>
+            <li><strong>Copy 2:</strong> on a different worker node, but in the <em>same rack</em>. If the first worker fails, a neighbor in the same rack can take over quickly because intra-rack networking is fast.</li>
+            <li><strong>Copy 3:</strong> on a worker node in a <em>different rack</em>. This protects against an entire rack failing (power, network switch, fire) at the cost of slower cross-rack network traffic.</li>
+        </ol>
+
+        <div class="callout">
+            <strong>Why the Math Demands Replication</strong>
+            <p>Dr. Pierce ran the numbers live. If each computer is 99% reliable and you need all 100 nodes to succeed independently, the probability of every one finishing cleanly is 0.99<sup>100</sup> &asymp; <strong>36.6%</strong>. Without replication, the cluster would only complete a big job roughly one time in three.</p>
+        </div>
+
+        <h3>Rack Awareness</h3>
+        <p>The job tracker knows not just <em>which computer</em> is working on which data, but also <em>which rack that computer lives in</em>. When a node drops out, the job tracker coordinates with the NameNode to pick the next-best computer — preferring nodes that are physically closest to an available replica to minimize network lag.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="failure">
+        <h2>Handling Failure: Heartbeats and NameNode Backup</h2>
+        <p>Hardware failures are <strong>expected</strong>. At Yahoo's roughly 10,000-node cluster, the chance that some node is failing <em>right now</em> is essentially guaranteed.</p>
+
+        <h3>Heartbeats</h3>
+        <ul>
+            <li>Each worker node periodically pings the job tracker: "I am still here."</li>
+            <li>If the heartbeats stop, the job tracker tries to re-establish contact.</li>
+            <li>If it cannot, it consults the NameNode, identifies another worker closest to an available replica, and reassigns the task.</li>
+        </ul>
+
+        <h3>The Secondary NameNode Misnomer</h3>
+        <div class="callout alert">
+            <strong>Easy to Misunderstand</strong>
+            <p>In Hadoop v1, the "secondary NameNode" was <em>not</em> a failover backup. It just took periodic snapshots of the primary NameNode's directory information — useful for restarting a failed primary, but not a hot standby. True manual NameNode failover came in later releases.</p>
+        </div>
+
+        <h3>Multiple Clients on One Cluster</h3>
+        <p>A single Hadoop cluster typically serves multiple clients concurrently. The job tracker assigns tasks for each client, and tasks from different clients run in parallel across the cluster's worker pool.</p>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="yarn">
+        <h2>Hadoop v2: YARN and the Ecosystem Unlock</h2>
+        <p>The biggest architectural change in Hadoop's history was the v1 &rarr; v2 transition. The key move: <strong>separate resource management from the processing model</strong>.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Concept</th>
+                    <th>v1</th>
+                    <th>v2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Job scheduling</td>
+                    <td>MapReduce Job Tracker</td>
+                    <td>YARN Resource Manager (global) + Application Master (per application)</td>
+                </tr>
+                <tr>
+                    <td>Per-node execution</td>
+                    <td>Task Tracker</td>
+                    <td>Node Manager launching application containers</td>
+                </tr>
+                <tr>
+                    <td>Processing model</td>
+                    <td>MapReduce only</td>
+                    <td>MapReduce, Spark, streaming, interactive SQL, and more</td>
+                </tr>
+                <tr>
+                    <td>Storage layer</td>
+                    <td>HDFS</td>
+                    <td>HDFS (mostly unchanged)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>What YARN Actually Does</h3>
+        <ul>
+            <li>The <strong>Resource Manager</strong> is the global authority over compute resources across all applications.</li>
+            <li>Each running application gets its own <strong>Application Master</strong> that coordinates with the Resource Manager.</li>
+            <li>A <strong>Node Manager</strong> lives on every worker and launches application containers, monitors CPU / memory / disk / network usage, and reports back to the Resource Manager.</li>
+            <li>Mesos is a competing cluster resource manager in the same architectural category.</li>
+        </ul>
+
+        <div class="callout tip">
+            <strong>Why This Mattered Strategically</strong>
+            <p>Decoupling resource management from MapReduce is what made modern big data possible. Spark, Flink, streaming engines, interactive SQL — none of them could have plugged into Hadoop without YARN. The ecosystem expansion of the 2015+ era is a direct consequence of this v2 decision.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="mapreduce">
+        <h2>MapReduce Word Count: The Canonical Example</h2>
+        <p>Dr. Pierce walked through the "hello world" of MapReduce: counting word frequencies in a large body of text.</p>
+
+        <h3>Phase 1 — Input Splitting</h3>
+        <p>The input file is broken into blocks distributed across the cluster. In a toy example with lines like "Welcome to Hadoop", "Class Hadoop is good", "Hadoop is bad", each line (or chunk) goes to a different worker.</p>
+
+        <h3>Phase 2 — Mapping</h3>
+        <p>Each worker parses its chunk and emits <strong>key-value pairs</strong> of the form <code>(word, 1)</code>. No real counting happens here — just tokenization and tagging with a 1.</p>
+        <p>Example output from one worker: <code>(welcome, 1)</code>, <code>(to, 1)</code>, <code>(Hadoop, 1)</code>.</p>
+
+        <h3>Phase 3 — Shuffling</h3>
+        <p>Hadoop automatically groups all key-value pairs by key across workers. The shuffle phase is built into the framework — you do not have to code it. After shuffling, all the <code>(Hadoop, 1)</code> pairs from every worker end up together in one group, and same for every other word.</p>
+
+        <h3>Phase 4 — Reducing</h3>
+        <p>The reducer receives each grouped key and applies your reduce logic. For word count, the reducer sums the values: three <code>(Hadoop, 1)</code> pairs become <code>(Hadoop, 3)</code>, two <code>(is, 1)</code> pairs become <code>(is, 2)</code>, and so on.</p>
+
+        <div class="callout">
+            <strong>Your Code Is Just Map + Reduce</strong>
+            <p>The developer writes a mapper and a reducer. Hadoop handles input splitting, distribution, heartbeats, failure recovery, shuffling, and aggregation. The framework is trading your convenience for massive operational complexity under the hood.</p>
+        </div>
+
+        <h3>Tuning Knobs</h3>
+        <ul>
+            <li>Replication factor (default 3) and block size.</li>
+            <li>Number of reducer nodes.</li>
+            <li>Whether workers should do local partial reduction (combiners) before shipping results over the network.</li>
+            <li>Hundreds of other parameters, all aimed at minimizing network traffic and maximizing cluster throughput.</li>
+        </ul>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="ecosystem">
+        <h2>The Modern Hadoop Ecosystem and Deployment Options</h2>
+        <p>Hadoop is now at version <strong>3.5</strong>, released April 2, 2026. The v2 &rarr; v3 changes are evolutionary — better optimization, usability, security, fault tolerance, programming language support, and file-system flexibility — not revolutionary like v1 &rarr; v2.</p>
+
+        <h3>What "Hadoop" Means Today</h3>
+        <p>"Hadoop" no longer refers only to HDFS + YARN + MapReduce. Twenty-plus years of ecosystem growth mean the term now covers tools for:</p>
+        <ul>
+            <li>Data ingestion and streaming</li>
+            <li>System deployment</li>
+            <li>Visualization</li>
+            <li>Machine learning</li>
+            <li>SQL and SQL-like interactive querying</li>
+            <li>Security, scheduling, and workflow orchestration</li>
+            <li>Multiple data formats and alternative distributed file systems</li>
+        </ul>
+
+        <h3>Deployment Options Today</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Option</th>
+                    <th>What You Do Yourself</th>
+                    <th>Tradeoff</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Self-hosted cluster</td>
+                    <td>Buy hardware, install Ubuntu, install Hadoop, configure everything</td>
+                    <td>Most control, most operational burden</td>
+                </tr>
+                <tr>
+                    <td>Rent IaaS, install Hadoop</td>
+                    <td>Rent VMs from AWS / Azure / GCP / IBM / Oracle, install the Hadoop software stack</td>
+                    <td>No hardware ownership but you still manage the stack</td>
+                </tr>
+                <tr>
+                    <td>Managed service (e.g., AWS EMR)</td>
+                    <td>Pick the cluster type, click "create" — provisioned in ~20 minutes</td>
+                    <td>Fastest to production, least flexibility for unusual configurations</td>
+                </tr>
+                <tr>
+                    <td>Hybrid</td>
+                    <td>Mix of managed cloud clusters for R&amp;D and on-prem clusters for stable production workloads</td>
+                    <td>Real-world enterprise norm</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout tip">
+            <strong>Bakery vs. Bake-From-Scratch</strong>
+            <p>Dr. Pierce's analogy: self-hosting Hadoop is baking and decorating your own cake for a party. EMR is walking into the bakery and leaving with a finished cake. Most companies end up doing some of both, depending on the workload.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="next-steps">
+        <h2>Next Steps</h2>
+        <ol>
+            <li>Be able to explain the Roman Empire census analogy and map each role to its Hadoop equivalent (NameNode, Job Tracker, DataNode, replication).</li>
+            <li>Understand why the default replication factor is <strong>three</strong> and how the three copies are distributed across racks.</li>
+            <li>Be able to describe what changed from Hadoop v1 to v2 and <em>why</em> splitting MapReduce from resource management unlocked Spark and the broader ecosystem.</li>
+            <li>Walk through the MapReduce word-count example end-to-end: split, map, shuffle, reduce.</li>
+            <li>Next class will move from Hadoop fundamentals into MapReduce, Pig, EMR, and Spark in more depth (see the <a href="2026_04_16_MapReduce_Spark_Hadoop_Ecosystem.html">April 16 lecture</a>).</li>
+        </ol>
+    </section>
+</article>
+
+<footer class="page-footer">
+    <p>IFSC 77003 Data Science &amp; Technologies Transcript Archive</p>
+    <p><a href="index.html">Return to the transcript hub</a></p>
+</footer>
+</body>
+</html>
