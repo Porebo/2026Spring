@@ -7,8 +7,9 @@ Context: This project is for Spring 2026, worth 50 points, and expected to refle
 Workspace Context:
 My project folder may contain planning notes, literature-review notes, draft sections, and delivery materials rather than one finished paper.
 Common files may include:
-- Admin files: `A_OriginalAssignment.md`, `B_professor.md`, `C_to_do.md`, `D_hourslog.md`
-- Roadmap-direct files (numbers match report Part numbers): `00_roadMap.html` (the guide), `01_outline.md`, `03_introduction.md` (Part 3), `05_solutions.md` (feeds Part 5 Methods and Part 6 Analysis)
+- Admin files: `_A_OriginalAssignment.md`, `_B_professor.md`, `_C_to_do.md`, `_D_hourslog.md`
+- Planning guide (same stem, two extensions): `00_roadMap.md` (source of truth — drives the visual) and `00_roadMap.html` (rendered visual)
+- Report-Part files (numbers match roadmap Part numbers): `01_titlePage.md`, `02_tableOfContents.md`, `03_introduction.md`, `04_literatureReview.md`, `05_dataSelectionResearchDesignAndMethods.md`, `06_analysisWork.md`, `07_discussionEthicsPrivacyAIDisclosure.md`, `08_conclusionsAndClosingThoughts.md`, `09_appendix.md`, `10_threeMinuteThesis.md`
 - Literature-note files (`L_` prefix): `L_knowledgeConservation.md`, `L_administratorsPerceptions.md`, `L_dashboardEncodedExpertise.md`, `L_domainTunedAI.md`, `L_strategicPrompting.md`, `L_tacitExplicitKnowledge.md`, `L_dataWarehouseFoundation.md`, `L_interactiveVisualAnalysis.md`, `L_businessIntelligenceTools.md`, and `L_migrationProcess.md`
 
 Important:

@@ -9,4 +9,4 @@ Draft log based on Git history and file timestamps. Adjust as needed if you reme
 | 3 | 4/22/26 | 3:30 PM - 5:00 PM | 1.50 | 4.00 | Expanded introduction notes and developed methods/solution framing |
 | 4 | 4/23/26 | 12:00 AM - 12:30 AM | 0.50 | 4.50 | Light cleanup, file organization, and assignment renaming |
 | 5 | 4/24/26 | 12:18 AM - 1:16 AM | 0.97 | 5.47 | Created roadmap to organize the outline into the sections that need draft 1 |
-| 6 | 4/24/26 | 12:45 PM - _end_ | _tbd_ | _tbd_ | _Session in progress_ |
+| 6 | 4/24/26 | 12:45 PM - 1:10 PM | 0.42 | 5.89 | files organization |
