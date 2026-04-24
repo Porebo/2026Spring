@@ -1,4 +1,3 @@
-
 SPRING_2026 IFSC 77003-9U2 - Data Science & Technologies
 Data Science Project, Report, and Three Minute Summary: Activity and Assessment
 For your semester project, you will be demonstrating your data literacy abilities by conducting a data science investigation, developing a well-written report, and a 3-minute video presentation to share your investigation with others.
