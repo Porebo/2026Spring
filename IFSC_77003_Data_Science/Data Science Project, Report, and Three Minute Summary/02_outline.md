@@ -55,7 +55,7 @@ Subsections:
 4. **Research question and subquestion** — as stated above.
 5. **Significance** — the finding matters beyond this case because acquisitions, platform consolidations, and retirements are common in any large enterprise; preserving analytical knowledge is a generalizable problem.
 
-**Feeds from:** `introduction.md` (rich but in exploratory form).
+**Feeds from:** `03_introduction.md` (rich but in exploratory form).
 **Still needed:** one committed version — strip the six "Current view after this stage" iterations; extract and polish the chosen framing.
 
 ---
@@ -87,7 +87,7 @@ Target: ~3–4 pages.
 
 **Gap statement** — The literature treats BI migration, knowledge management, and AI-assisted analysis as separate conversations. No source in this set addresses how AI-assisted extraction can operationalize knowledge preservation *during* BI platform migration in a post-acquisition enterprise. That is the gap this project fills.
 
-**Feeds from:** the ten lit-note files (`knowledgeConservation.md`, `dashboardPracticalValue.md`, `dashboardEncodedExpertise.md`, `domainTunedAI.md`, `strategicPrompting.md`, `tacitExplicitKnowledge.md`, `dataWarehouseFoundation.md`, `interactiveVisualAnalysis.md`, `businessIntelligenceTools.md`, `migrationProcess.md`).
+**Feeds from:** the ten lit-note files (`L_knowledgeConservation.md`, `L_administratorsPerceptions.md`, `L_dashboardEncodedExpertise.md`, `L_domainTunedAI.md`, `L_strategicPrompting.md`, `L_tacitExplicitKnowledge.md`, `L_dataWarehouseFoundation.md`, `L_interactiveVisualAnalysis.md`, `L_businessIntelligenceTools.md`, `L_migrationProcess.md`).
 **Still needed:**
 - 2–5 additional sources to push total to 12–15 (target areas: organizational knowledge loss during M&A, Tableau workbook XML structure, LLM code/logic extraction).
 - Rewrite from per-source paragraphs to thematic synthesis.
@@ -114,7 +114,7 @@ Subsections:
    - (d) business purpose identifiable
    - (e) Spotfire rebuild path actionable without re-opening Tableau
 
-**Feeds from:** `solutions.md`, `introduction.md`.
+**Feeds from:** `04_solutions.md`, `03_introduction.md`.
 **Still needed:**
 - Final sample list (workbook names, why chosen).
 - Written evaluation-criteria subsection.
@@ -132,7 +132,7 @@ Subsections:
 3. **Labor/complexity analysis** — the 4-to-8-week manual-rebuild estimate: source it, show how AI-assisted discovery changes it.
 4. **Examples/figures** — discovery-package excerpts, before/after comparisons, complexity classification table.
 
-**Feeds from:** `solutions.md` (contains the `New_InjCentered_Daily2_3957.twbx` example).
+**Feeds from:** `04_solutions.md` (contains the `New_InjCentered_Daily2_3957.twbx` example).
 **Still needed:**
 - Pick 2–4 additional workbooks, run the discovery process, capture results.
 - Write up cross-case comparison.
@@ -184,7 +184,7 @@ Contents:
 5. **Figures / screenshots** — if they support the analysis.
 6. **Code / scripts / notebook links** — if used in the discovery work.
 
-**Feeds from:** the ten lit-note files (citations), `solutions.md` (discovery example).
+**Feeds from:** the ten lit-note files (citations), `04_solutions.md` (discovery example).
 **Still needed:** schedule document, hours log, consolidated references.
 
 ---
@@ -198,7 +198,7 @@ Components:
 3. **Talk arc** — hook → problem (lost knowledge during BI migration) → approach (AI-assisted discovery) → finding (what was preserved, what was not) → why it matters beyond oil.
 4. **Delivery format** — one-slide PowerPoint with audio OR selfie video.
 
-**Feeds from:** `introduction.md` (narrative), `solutions.md` (finding).
+**Feeds from:** `03_introduction.md` (narrative), `04_solutions.md` (finding).
 **Still needed:** script draft, slide design, recording.
 
 ---
@@ -209,9 +209,9 @@ Components:
 |------|--------|-------------------------|-------------------------|
 | 1 Title page | Missing | N/A | No |
 | 2 TOC | Optional | N/A | N/A |
-| 3 Introduction | Partial | Yes (`introduction.md`) | No (needs rewrite) |
+| 3 Introduction | Partial | Yes (`03_introduction.md`) | No (needs rewrite) |
 | 4 Literature Review | Partial | Yes (10 lit notes) | No (needs synthesis + 2–5 more sources) |
-| 5 Methods | Partial | Yes (`solutions.md`, `introduction.md`) | No |
+| 5 Methods | Partial | Yes (`04_solutions.md`, `03_introduction.md`) | No |
 | 6 Analysis | Partial | Yes (1 workbook example) | No (need 2–4 more workbooks) |
 | 7 Discussion + Ethics + AI disclosure | Missing | No | No |
 | 8 Conclusions | Missing | No | No |

@@ -3,12 +3,12 @@
 ### Setup and Reference Files
 
 - [x] Create project folder
-- [x] Create `instructions.md`
-- [x] Add corrected assignment instructions to `instructions.md`
-- [x] Add key University of Sussex 3 Minute Thesis guidance to `instructions.md`
-- [x] Create `introduction.md`
-- [x] Create `solutions.md`
-- [x] Create `01_outline.md` mapping existing material to required report sections
+- [x] Create `A_OriginalAssignment.md`
+- [x] Add corrected assignment instructions to `A_OriginalAssignment.md`
+- [x] Add key University of Sussex 3 Minute Thesis guidance to `A_OriginalAssignment.md`
+- [x] Create `03_introduction.md`
+- [x] Create `04_solutions.md`
+- [x] Create `02_outline.md` mapping existing material to required report sections
 - [ ] Create `ethics.md` scratch file for Part 7 drafting
 - [ ] Create `schedule.md` for the project schedule and hours log
 - [ ] Create `references.md` consolidating every APA citation
@@ -25,18 +25,18 @@
 - [x] Document institutional knowledge embedded in Tableau reports
 - [x] Document CRC acquisition and the migration challenge
 - [x] Define AI as the large-frame solution direction
-- [x] Finalize one main research question (locked in `01_outline.md`)
-- [x] Finalize 1 to 2 supporting subquestions (locked in `01_outline.md`)
-- [x] Finalize a working paper title (locked in `01_outline.md`)
+- [x] Finalize one main research question (locked in `02_outline.md`)
+- [x] Finalize 1 to 2 supporting subquestions (locked in `02_outline.md`)
+- [x] Finalize a working paper title (locked in `02_outline.md`)
 
 ### Report Structure Required by the Assignment
 
 - [ ] Create title page/title section (Part 1)
 - [x] Decide whether to include a table of contents (skipped — assignment allows omission)
-- [ ] Turn `introduction.md` into a polished report introduction (Part 3)
-- [ ] Turn `solutions.md` into polished report sections where appropriate (feeds Parts 5, 6)
+- [ ] Turn `03_introduction.md` into a polished report introduction (Part 3)
+- [ ] Turn `04_solutions.md` into polished report sections where appropriate (feeds Parts 5, 6)
 - [ ] Draft consolidated outline mapping existing notes to each report Part
-- [ ] Strip the six "Current view after this stage" iterations from `introduction.md` and commit one version
+- [ ] Strip the six "Current view after this stage" iterations from `03_introduction.md` and commit one version
 - [ ] Extract final problem statement, research question, and significance as standalone paragraphs
 
 ### Literature Review
@@ -53,7 +53,7 @@
 - [ ] Compare and contrast prior work
 - [ ] Identify gaps that this project addresses
 - [ ] Add 2 to 5 more sources to reach the 12 to 15 target (M&A knowledge loss, Tableau workbook XML, LLM code/logic extraction)
-- [ ] Group the ten existing notes into the five themes defined in `01_outline.md`
+- [ ] Group the ten existing notes into the five themes defined in `02_outline.md`
 - [ ] Rewrite from per-source paragraphs into synthesized thematic prose
 - [ ] Draft an explicit gap statement positioning this project against the five themes
 
@@ -66,7 +66,7 @@
 - [x] Describe the Tableau artifacts or workbooks to be analyzed
 - [x] Describe any discovery packages or migration notes to be analyzed
 - [ ] Define the research design (case-study method with AI-assisted discovery)
-- [ ] Define the evaluation framework (criteria a through e in `01_outline.md`)
+- [ ] Define the evaluation framework (criteria a through e in `02_outline.md`)
 - [ ] Define the criteria for migration complexity or knowledge preservation
 - [x] Explain how AI will be used in the method
 - [ ] Document data-quality or validity concerns
@@ -149,13 +149,13 @@
 
 ### Recommended Next Steps
 
-- [x] Create a project outline that maps the current material into the required report sections (`01_outline.md`)
+- [x] Create a project outline that maps the current material into the required report sections (`02_outline.md`)
 - [ ] Choose the exact sample of Tableau workbooks or cases
 - [x] Lock the final research question before writing the literature review
 
-### Writing Sequence (from `01_outline.md`)
+### Writing Sequence (from `02_outline.md`)
 
-- [ ] 1. Lock title and research question (done in `01_outline.md`)
+- [ ] 1. Lock title and research question (done in `02_outline.md`)
 - [ ] 2. Draft Part 5 Methods — forces sample, evaluation framework, scope commitments
 - [ ] 3. Run discovery on 2 to 4 more workbooks (Part 6 fuel)
 - [ ] 4. Write Part 4 Literature Review with thematic synthesis

@@ -7,11 +7,9 @@ Context: This project is for Spring 2026, worth 50 points, and expected to refle
 Workspace Context:
 My project folder may contain planning notes, literature-review notes, draft sections, and delivery materials rather than one finished paper.
 Common files may include:
-- `instructions.md`
-- `introduction.md`
-- `solutions.md`
-- `to_do.md`
-- literature-note files such as `knowledgeConservation.md`, `dashboardPracticalValue.md`, `dashboardEncodedExpertise.md`, `domainTunedAI.md`, `strategicPrompting.md`, `tacitExplicitKnowledge.md`, `dataWarehouseFoundation.md`, `interactiveVisualAnalysis.md`, `businessIntelligenceTools.md`, and `migrationProcess.md`
+- Admin files: `A_OriginalAssignment.md`, `B_professor.md`, `C_to_do.md`, `D_hourslog.md`
+- Roadmap-direct files: `01_roadMap.html`, `02_outline.md`, `03_introduction.md`, `04_solutions.md`
+- Literature-note files (`L_` prefix): `L_knowledgeConservation.md`, `L_administratorsPerceptions.md`, `L_dashboardEncodedExpertise.md`, `L_domainTunedAI.md`, `L_strategicPrompting.md`, `L_tacitExplicitKnowledge.md`, `L_dataWarehouseFoundation.md`, `L_interactiveVisualAnalysis.md`, `L_businessIntelligenceTools.md`, and `L_migrationProcess.md`
 
 Important:
 Do not assume that the existence of notes means the final paper section is complete.
