@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apr 23: PHP Forms and Code Injection</title>
+    <style>
+        :root {
+            --primary: #0d4d63;
+            --accent: #c0392b;
+            --bg: #f5f7fb;
+            --text: #1f2a37;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+        }
+        header {
+            background: linear-gradient(135deg, #0d4d63, #051d29);
+            color: white;
+            text-align: center;
+            padding: 36px 20px;
+        }
+        header a {
+            color: #cfe6ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        header a:hover { text-decoration: underline; }
+        section {
+            max-width: 980px;
+            margin: 30px auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 24px 48px rgba(5,29,41,0.1);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid rgba(13,77,99,0.2);
+            padding-bottom: 10px;
+        }
+        ul, ol { line-height: 1.75; }
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            margin-bottom: 12px;
+        }
+        .highlight {
+            background: #e7f4ff;
+            border-left: 5px solid var(--primary);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        .warning {
+            background: #fff4e7;
+            border-left: 5px solid var(--accent);
+            padding: 16px 18px;
+            border-radius: 6px;
+            margin: 18px 0;
+        }
+        code {
+            background: rgba(13,77,99,0.08);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        pre {
+            background: #0d1b23;
+            color: #e6f0f3;
+            padding: 14px 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.88rem;
+            line-height: 1.55;
+        }
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85rem;
+            padding: 40px 20px 60px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>PHP Forms and Code Injection</h1>
+    <p>April 23, 2026 &bull; 4:20 PM &bull; W13 Thursday</p>
+    <p class="tag">Module 13 - PHP Form Handling and XSS Risk</p>
+    <a href="index.html">&larr; Back to Transcript Hub</a>
+</header>
+
+<section>
+    <h2>1. Opening Logistics: Project Demo Format</h2>
+    <span class="tag">Administrative opening</span>
+
+    <ul>
+        <li>Next class session will be the project demo homework.</li>
+        <li>Students will <strong>not</strong> share screens. Daniel opens each student's project link, and the student narrates navigation over microphone.</li>
+        <li>Homework is due by class time, since the demo <em>is</em> the homework.</li>
+        <li>Students who cannot present live may email Daniel ahead of time with a recorded demo link.</li>
+        <li>Thomas Wallace confirmed this accommodation for an app that depends on built-up local-storage state.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>2. Reviewing PHP Plus HTML Form Integration</h2>
+    <span class="tag">Connecting forms to PHP</span>
+
+    <p>
+        Daniel returned to the W3Schools form example that the class used before they had formally learned PHP.
+        The form's <code>action</code> attribute sends the submission to a PHP file on the server.
+    </p>
+
+    <ul>
+        <li>The PHP program runs server-side.</li>
+        <li>It <strong>echoes HTML</strong> as its output.</li>
+        <li>The browser receives that HTML and renders it as a normal web page.</li>
+    </ul>
+
+    <div class="highlight">
+        PHP is the bridge between a submitted form and the web page that appears afterward.
+        The browser never runs the PHP itself; it only sees the HTML the server produced.
+    </div>
+</section>
+
+<section>
+    <h2>3. Side Trip: Analyzing ChatGPT's Form with AI</h2>
+    <span class="tag">Debugging unfamiliar code</span>
+
+    <ul>
+        <li>Daniel viewed the source of the ChatGPT input area and located its <code>&lt;form&gt;</code> and <code>&lt;textarea&gt;</code>.</li>
+        <li>He highlighted that even complex production pages use the same form and text-area tags students already know.</li>
+        <li>Unknown attributes such as <code>class</code>, <code>name</code>, <code>autofocus</code>, and <code>data-virtualkeyboard</code> can be pasted into ChatGPT and explained on demand.</li>
+    </ul>
+
+    <div class="highlight">
+        Point: AI tools are good at decoding large, minified, production HTML.
+        That makes real pages readable for learning, not just textbook examples.
+    </div>
+</section>
+
+<section>
+    <h2>4. PHP Form Handling with $_GET</h2>
+    <span class="tag">Superglobal arrays</span>
+
+    <p>
+        Using the W3Schools <code>welcome_get.php</code> example, Daniel walked through how a PHP page uses submitted form data.
+    </p>
+
+    <ul>
+        <li>In PHP, variables start with <code>$</code>.</li>
+        <li><code>$_GET</code> is a predefined variable. Its leading underscore signals that it is special.</li>
+        <li><code>$_GET</code> is an <strong>associative array</strong> whose keys match the <code>name</code> attributes of the form inputs.</li>
+        <li><code>$_GET['name']</code> returns the submitted name. <code>$_GET['email']</code> returns the submitted email.</li>
+    </ul>
+
+    <pre><code>&lt;?php
+echo $_GET["name"];
+echo "&lt;br&gt;";
+echo "Your email address is: ";
+echo $_GET["email"];
+?&gt;</code></pre>
+
+    <div class="highlight">
+        With a GET submission, the browser packs the form fields into the URL after the <code>?</code>.
+        The server parses that and populates <code>$_GET</code> before the PHP runs.
+    </div>
+</section>
+
+<section>
+    <h2>5. PHP Variable Scope and Superglobals</h2>
+    <span class="tag">Scope rules</span>
+
+    <ul>
+        <li>In PHP, a global variable is <strong>not</strong> automatically visible inside a function. This differs from JavaScript.</li>
+        <li>A <code>$x</code> inside a function is a different variable from a <code>$x</code> outside it, even if they share the name.</li>
+        <li><strong>Superglobals</strong> are the exception. They are visible everywhere, including inside functions.</li>
+        <li>Students cannot declare new superglobals; the set is fixed by PHP itself.</li>
+    </ul>
+
+    <div class="warning">
+        You cannot invent your own superglobal. The predefined set includes
+        <code>$_GET</code>, <code>$_POST</code>, <code>$_REQUEST</code>, <code>$_SERVER</code>, <code>$_SESSION</code>,
+        <code>$_COOKIE</code>, <code>$_FILES</code>, <code>$_ENV</code>, and <code>$GLOBALS</code>.
+    </div>
+</section>
+
+<section>
+    <h2>6. Inspecting $_GET at Runtime</h2>
+    <span class="tag">Live debugging</span>
+
+    <ul>
+        <li>Running <code>echo $_GET</code> alone simply prints <code>Array</code>, which is not informative.</li>
+        <li><code>var_dump($_GET)</code> prints the full structure, including each key, its type, and its value.</li>
+        <li>With no submission, <code>$_GET</code> dumps as an empty array.</li>
+        <li>After submitting the form, <code>$_GET</code> contains the <code>name</code> and <code>email</code> keys with their submitted strings.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>7. PHP Arrays Quick Reference</h2>
+    <span class="tag">Array shapes</span>
+
+    <ul>
+        <li><strong>Indexed arrays</strong> use numeric keys starting at 0, similar to JavaScript arrays.</li>
+        <li><strong>Associative arrays</strong> use string keys, which is how <code>$_GET</code> works.</li>
+        <li>Elements can themselves be arrays, producing nested structures. That is why <code>$GLOBALS</code> shows a tree when dumped.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>8. Code Injection Demonstration (Cross-Site Scripting)</h2>
+    <span class="tag">Security live demo</span>
+
+    <p>
+        Because the echoed value of <code>$_GET['name']</code> is written raw into the HTML response, the form is vulnerable to <strong>code injection</strong>.
+    </p>
+
+    <ul>
+        <li>Entering <code>&lt;b&gt;</code> or <code>&lt;u&gt;</code> in the name field caused the echoed response to render bold or underlined text.</li>
+        <li>Escalating, Daniel entered a <code>&lt;script&gt;</code> tag containing <code>window.prompt('Enter password')</code>.</li>
+        <li>The returned page executed it, showing a fake password prompt in the browser.</li>
+    </ul>
+
+    <div class="warning">
+        This is a textbook <strong>cross-site scripting (XSS)</strong> attack.
+        The server happily echoed the attacker's <code>&lt;script&gt;</code> into the page, and the browser ran it.
+    </div>
+</section>
+
+<section>
+    <h2>9. Why XSS Matters Beyond the Classroom Demo</h2>
+    <span class="tag">Threat model</span>
+
+    <ul>
+        <li>Because the malicious payload is embedded in the URL, an attacker can craft and share a weaponized link.</li>
+        <li>A victim who clicks that link executes arbitrary JavaScript in their own browser, under the attacker's control.</li>
+        <li>Examples Daniel gave: fake password prompts, phishing tabs impersonating UALR, and fake "download this virus scanner" pages that install malware.</li>
+    </ul>
+
+    <div class="highlight">
+        The victim does not need to enter anything themselves. Simply visiting the attacker's link is enough to trigger the injected script.
+    </div>
+</section>
+
+<section>
+    <h2>10. Closing Notes</h2>
+
+    <ul>
+        <li>Protecting forms against XSS is critical in production, but protection techniques are outside this course's scope.</li>
+        <li>Attendance was collected over chat at the end.</li>
+        <li>David Samuel and Ahmad AlOmari reported that the Zoom chat was not working for them; Daniel asked them to email him instead.</li>
+        <li>Next class: in-class project demos.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>11. Main Takeaways</h2>
+
+    <ol>
+        <li>PHP form handling reads submitted data from the <code>$_GET</code> superglobal associative array.</li>
+        <li>Superglobals are the one exception to PHP's strict function scoping rules.</li>
+        <li>Echoing unvalidated user input straight into HTML produces a cross-site scripting vulnerability.</li>
+        <li>Real-world form handling must sanitize user-supplied content before writing it back into a page.</li>
+    </ol>
+</section>
+
+<footer>
+    <p>IFSC 71003 Transcript Notes &bull; Compiled from Zoom transcript artifacts</p>
+    <p>Last updated April 24, 2026</p>
+</footer>
+
+</body>
+</html>
