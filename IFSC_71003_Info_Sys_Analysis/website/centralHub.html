@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meeting Notes Hub - Asset Development</title>
+  <link rel="stylesheet" href="breadcrumbs.css">
+  <link rel="stylesheet" href="meeting-hub.css">
+  <link rel="stylesheet" href="meeting-notes-widget.css">
+  <link rel="stylesheet" href="page-counter.css">
+</head>
+<body>
+  <div class="page">
+    <div class="content-layout">
+      <main class="content-main">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.php">Home</a><span>&rsaquo;</span>Final Project Central Hub
+        </nav>
+
+        <section class="hero" aria-labelledby="hub-title">
+          <p class="hero-eyebrow">Asset Development | Data and Analytics</p>
+          <h1 id="hub-title">Meeting Notes Hub</h1>
+          <p class="hero-sub">Centralized access to recurring Zoom meeting notes, preparation notes, and project movement updates by series.</p>
+          <p class="hero-core">Project Center: Capture Zoom AI summaries and transform them into structured, actionable project data.</p>
+        </section>
+
+        <section aria-label="Transformation workflow" class="workflow-strip">
+          <div class="workflow-step">Capture</div>
+          <div class="workflow-step">Parse</div>
+          <div class="workflow-step">Assign</div>
+          <div class="workflow-step">Track</div>
+          <div class="workflow-step">Report</div>
+        </section>
+
+        <section class="controls-card" aria-label="Meeting filters">
+          <div class="controls-grid" id="hubControls">
+            <div class="control-group">
+              <label for="ownerFilter">Owner</label>
+              <select id="ownerFilter">
+                <option value="All">All</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="priorityFilter">Priority</label>
+              <select id="priorityFilter">
+                <option value="All">All</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Planned">Planned</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="statusFilter">Status</label>
+              <select id="statusFilter">
+                <option value="All">All</option>
+                <option value="Completed">Completed</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Escalated">Escalated</option>
+                <option value="Prepared">Prepared</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="kindFilter">Type</label>
+              <select id="kindFilter">
+                <option value="All">All</option>
+                <option value="summary">Summary</option>
+                <option value="townhall">Town Hall</option>
+                <option value="preparation">Preparation</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="sortFilter">Sort</label>
+              <select id="sortFilter">
+                <option value="dateDesc">Newest first</option>
+                <option value="dateAsc">Oldest first</option>
+                <option value="priorityDesc">Priority first</option>
+              </select>
+              <button id="clearFiltersBtn" type="button">Clear Filters</button>
+            </div>
+          </div>
+        </section>
+
+        <div id="seriesContainer" aria-live="polite"></div>
+
+        <section>
+          <p class="section-label">Weekly Outcomes</p>
+          <div class="insight-grid">
+            <article class="insight-card" aria-label="Weekly outcome summary">
+              <h3>Current Week Outcome</h3>
+              <ul id="outcomeList">
+                <li>Completed actions: 0</li>
+                <li>Open risks: 0</li>
+                <li>Escalations to manager: 0</li>
+                <li>Programmed project impact: stable</li>
+              </ul>
+            </article>
+
+            <article class="insight-card" aria-label="Manager view delta">
+              <h3>Manager View: Changes Since Last Meeting</h3>
+              <ul id="managerList">
+                <li>Visible meetings after filters: 0.</li>
+                <li>High-priority items currently visible: 0.</li>
+                <li>Owner focus: none.</li>
+                <li>Escalation load: low.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <aside class="content-side">
+        <section class="implementation-panel">
+          <p class="section-label">Implementation Notes</p>
+          <div class="notes-stack">
+            <article class="insight-card" aria-label="CSS implementation notes">
+              <h3>How CSS Is Applied On This Page</h3>
+              <ul>
+                <li>The page uses an external stylesheet to separate visual design from page content.</li>
+                <li>Design tokens are defined with CSS variables for color, spacing, radius, and shadows to keep style decisions consistent.</li>
+                <li>Reusable component classes style cards, section headers, filters, meeting rows, and summary panels across the hub.</li>
+                <li>Breadcrumbs are centrally controlled through a shared stylesheet so navigation cues stay consistent across all meeting pages.</li>
+                <li>The layout is intentionally desktop-first, using fixed panel widths and spacing for a stable presentation view.</li>
+              </ul>
+            </article>
+
+            <article class="insight-card" aria-label="JavaScript implementation notes">
+              <h3>How JavaScript Is Used On This Page</h3>
+              <ul>
+                <li>Meeting records are stored as JavaScript objects and arrays, then rendered dynamically into the page.</li>
+                <li>Event listeners power filters, sorting, and clear actions so the displayed meeting list updates instantly.</li>
+                <li>Functions and loops are used to build reusable render logic for series cards and individual meeting rows.</li>
+                <li>A reusable Meeting Notes widget is loaded as a shared JavaScript module so the same notes experience can run across all meeting pages.</li>
+                <li>The widget supports meeting-specific comments, tag labels, draft autosave, and saved-note history per selected meeting date.</li>
+                <li>The widget sends note updates to a PHP endpoint and refreshes the note list from server data, so notes stay available across sessions.</li>
+                <li>If PHP is temporarily unavailable, the widget falls back to localStorage so note-taking can continue.</li>
+                <li>The Weekly Outcomes and Manager View summaries are recalculated from currently visible data after each interaction.</li>
+              </ul>
+            </article>
+
+            <article class="insight-card" aria-label="PHP implementation notes">
+              <h3>How PHP Is Used For Meeting Notes</h3>
+              <ul>
+                <li>A dedicated handler file <code>meetingNotesApi.php</code> receives browser requests and returns JSON responses.</li>
+                <li>The endpoint uses GET to load notes and POST to save updated notes and drafts.</li>
+                <li>Notes are persisted in a server-side JSON file, creating a class-style PHP storage solution without a database.</li>
+                <li>Input is validated and length-limited in PHP before writing to disk to keep stored data clean and predictable.</li>
+                <li>File locking is used during writes so concurrent saves do not corrupt the JSON store.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <p class="footer-note">Asset Development | Meeting Notes Hub | 2026 | Less meeting friction, stronger project control.</p>
+  </div>
+  <script src="meeting-hub.js"></script>
+  <script src="meeting-notes-widget.js"></script>
+  <script src="page-counter.js"></script>
+</body>
+</html>

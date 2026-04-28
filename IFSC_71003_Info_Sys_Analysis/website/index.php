@@ -132,6 +132,27 @@ file_put_contents($counterFile, (string) $homePageViews, LOCK_EX);
             background-color: #764ba2;
         }
 
+        .status-badge {
+            display: inline-block;
+            background-color: #2E8B57;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.85em;
+            margin-left: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
         .breadcrumbs {
             margin-bottom: 20px;
             font-size: 0.9em;
@@ -175,19 +196,20 @@ file_put_contents($counterFile, (string) $homePageViews, LOCK_EX);
     <p class="subtitle">Subsurface Data Specialist | Spotfire Reports Developer</p>
 
     <div class="nav">
-        <a href="demo.php">PHP Demo Page<span class="status">HW12 PHP Commands</span></a>
-        <a href="hw1.html">Homework 1<span class="status" style="color: #2ecc71;">Ready for Grading</span></a>
-        <a href="hw2.html">Homework 2<span class="status" style="color: #2ecc71;">Ready for Grading</span></a>
-        <a href="hw3.html">Homework 3<span class="status" style="color: #2ecc71;">Ready for Grading</span></a>
-        <a href="hw4.html">Homework 4<span class="status" style="color: #2ecc71;">HW4 is ready to be graded</span></a>
-        <a href="hw5.html">Homework 5<span class="status" style="color: #2ecc71;">HW5 is ready to be graded</span></a>
-        <a href="hw6.html">Homework 6<span class="status" style="color: #2ecc71;">HW6 is ready to be graded</span></a>
-        <a href="hw7.html">Homework 7<span class="status" style="color: #2ecc71;">HW7 is ready to be graded</span></a>
-        <a href="hw8.html">Homework 8<span class="status" style="color: #2ecc71;">HW8 is ready to be graded</span></a>
-        <a href="hw9.html">Homework 9<span class="status" style="color: #2ecc71;">HW9 is ready to be graded</span></a>
-        <a href="hw10.html">Homework 10<span class="status" style="color: #2ecc71;">HW10 is ready to be graded</span></a>
-        <a href="hw11.html">Homework 11<span class="status" style="color: #2ecc71;">HW11 is ready to be graded</span></a>
-        <a href="hw12.html">Homework 12<span class="status" style="color: #2ecc71;">Homepage Counter Ready</span></a>
+        <a href="demo.php">PHP Demo Page<span class="status">HW12 PHP + Counter</span></a>
+        <a href="centralHub.html">Final Project Demo Hub<span class="status" style="color: #2ecc71;">HW14 Meeting Notes Hub</span></a>
+        <a href="hw1.html">Homework 1<span class="status" style="color: #2ecc71;">&#10003; Ready for Grading</span></a>
+        <a href="hw2.html">Homework 2<span class="status" style="color: #2ecc71;">&#10003; Ready for Grading</span></a>
+        <a href="hw3.html">Homework 3<span class="status" style="color: #2ecc71;">&#10003; Ready for Grading</span></a>
+        <a href="hw4.html">Homework 4<span class="status" style="color: #2ecc71;">&#10003; HW4 is ready to be graded</span></a>
+        <a href="hw5.html">Homework 5<span class="status" style="color: #2ecc71;">&#10003; HW5 is ready to be graded</span></a>
+        <a href="hw6.html">Homework 6<span class="status" style="color: #2ecc71;">&#10003; HW6 is ready to be graded</span></a>
+        <a href="hw7.html">Homework 7<span class="status" style="color: #2ecc71;">&#10003; HW7 is ready to be graded</span></a>
+        <a href="hw8.html">Homework 8<span class="status" style="color: #2ecc71;">&#10003; HW8 is ready to be graded</span></a>
+        <a href="hw9.html">Homework 9<span class="status" style="color: #2ecc71;">&#10003; HW9 is ready to be graded</span></a>
+        <a href="hw10.html">Homework 10<span class="status" style="color: #2ecc71;">&#10003; HW10 is ready to be graded</span></a>
+        <a href="hw11.html">Homework 11<span class="status" style="color: #2ecc71;">&#10003; HW11 is ready to be graded</span></a>
+        <a href="hw12.html">Homework 12<span class="status" style="color: #2ecc71;">Ready for Grading</span></a>
     </div>
 
     <div class="section">
