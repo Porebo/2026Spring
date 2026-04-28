@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eng Tech Weekly &mdash; April 6, 2026 (Cancelled)</title>
+  <style>
+    :root {
+      --bg-a: #f4f1e8;
+      --bg-b: #e5efe9;
+      --ink: #1b2a2f;
+      --muted: #5b6a6f;
+      --card: #ffffffcc;
+      --line: #c8d5cf;
+      --radius: 13px;
+      --shadow: 0 8px 24px rgba(16,24,32,0.10);
+      --accent: #1f6f8b;
+      --cancelled: #8a7462;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; padding: 0;
+      color: var(--ink);
+      font-family: "Trebuchet MS", "Gill Sans", Candara, sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, #fff6dd 0%, transparent 35%),
+        radial-gradient(circle at 95% 90%, #d5ede0 0%, transparent 40%),
+        linear-gradient(140deg, var(--bg-a), var(--bg-b));
+      min-height: 100vh;
+    }
+
+    .wrapper {
+      width: min(900px, 95vw);
+      margin: 28px auto 52px;
+    }
+
+    /* -- HERO -- */
+    .hero {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px 36px 26px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(138,116,98,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+    }
+    .hero h1 {
+      font-size: 1.7rem;
+      margin: 0 0 8px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .hero-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* -- CANCELLED BADGE -- */
+    .cancelled-badge {
+      display: inline-block;
+      background: #f5ebe0;
+      color: var(--cancelled);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 5px 16px;
+      border-radius: 20px;
+      border: 2px solid var(--cancelled);
+      margin-top: 12px;
+    }
+
+    /* -- CARD -- */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px 26px;
+      margin-bottom: 18px;
+    }
+    .section-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin: 0 0 10px;
+      padding-left: 2px;
+    }
+    .note-text {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--ink);
+    }
+    .note-text a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .note-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* -- NAV LINKS -- */
+    .nav-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .nav-link {
+      display: inline-block;
+      background: #eef2f0;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    .nav-link:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* -- TIMELINE -- */
+    .timeline {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 22px 0 6px;
+    }
+    .tl-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .tl-dot.past { background: var(--accent); }
+    .tl-dot.cancelled { background: var(--cancelled); border: 2px solid var(--cancelled); background: #f5ebe0; }
+    .tl-dot.future { background: var(--line); }
+    .tl-line {
+      flex: 1;
+      height: 2px;
+      background: var(--line);
+    }
+    .tl-line.done { background: var(--accent); }
+    .tl-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .tl-label-cancelled {
+      color: var(--cancelled);
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      .wrapper { margin: 14px auto 30px; }
+      .hero { padding: 20px 22px 18px; }
+      .hero h1 { font-size: 1.3rem; }
+    }
+  </style>
+  <link rel="stylesheet" href="breadcrumbs.css">
+  <link rel="stylesheet" href="meeting-notes-widget.css">
+  <link rel="stylesheet" href="page-counter.css">
+
+</head>
+<body>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="index.php">Home</a><span>&rsaquo;</span><a href="centralHub.html">Final Project Central Hub</a>
+  </nav>
+
+<div class="wrapper">
+
+  <!-- -- HERO -- -->
+  <section class="hero">
+    <p class="hero-eyebrow">Engineering Tech &middot; Weekly Meeting</p>
+    <h1>Meeting Notes &mdash; April 6, 2026</h1>
+    <div class="hero-meta">Monday &middot; Week 15 &middot; Source: N/A</div>
+    <div class="cancelled-badge">Meeting Cancelled</div>
+  </section>
+
+  <!-- -- TIMELINE -- -->
+  <section>
+    <p class="section-label">Recent Meeting Timeline</p>
+    <div class="card">
+      <div class="timeline">
+        <div class="tl-dot past"></div>
+        <div class="tl-line done"></div>
+        <div class="tl-dot past"></div>
+        <div class="tl-line done"></div>
+        <div class="tl-dot cancelled"></div>
+        <div class="tl-line"></div>
+        <div class="tl-dot future"></div>
+      </div>
+      <div class="tl-labels">
+        <span>Mar 23</span>
+        <span>Mar 30</span>
+        <span class="tl-label-cancelled">Apr 6 (cancelled)</span>
+        <span>Apr 13</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- -- NOTE -- -->
+  <section>
+    <p class="section-label">Notes</p>
+    <div class="card">
+      <p class="note-text">
+        The weekly Engineering Tech meeting scheduled for Monday, April 6, 2026 was <strong>cancelled</strong>.
+        No Zoom AI summary is available for this date.
+      </p>
+      <p class="note-text">
+        Preparation notes were submitted prior to cancellation and remain on file for reference in the next meeting.
+      </p>
+      <div class="nav-row">
+        <a class="nav-link" href="2026-04-06_Preparation.html">View Preparation Notes</a>
+        <a class="nav-link" href="2026-03-30_EngineeringTech_Weekly.html">Previous Meeting (Mar 30)</a>
+        <a class="nav-link" href="PatternDiscovery_Tracker.html">Pattern Discovery Tracker</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+  <script src="meeting-notes-widget.js"></script>
+  <script src="page-counter.js"></script>
+
+</body>
+</html>
+

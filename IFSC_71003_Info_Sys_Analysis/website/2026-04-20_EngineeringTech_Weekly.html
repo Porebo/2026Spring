@@ -1,0 +1,716 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eng Tech Weekly &mdash; April 20, 2026</title>
+  <style>
+    :root {
+      --bg-a: #f4f1e8;
+      --bg-b: #e5efe9;
+      --ink: #1b2a2f;
+      --muted: #5b6a6f;
+      --card: #ffffffcc;
+      --line: #c8d5cf;
+      --radius: 13px;
+      --shadow: 0 8px 24px rgba(16,24,32,0.10);
+      --Elena:  #7b3fa0;
+      --Camila:   #1f6f8b;
+      --lester:  #2f7d32;
+      --Mario:    #a76600;
+      --Sofia:  #b23a48;
+      --Valeria: #3a5fa0;
+      --Nora: #6b5b3a;
+      --Emilio:    #555e72;
+      --Arturo:   #38767a;
+      --Ivan:     #8a6d3b;
+      --Marco:     #4a6b3a;
+      --accent:  #1f6f8b;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; padding: 0;
+      color: var(--ink);
+      font-family: "Trebuchet MS", "Gill Sans", Candara, sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, #fff6dd 0%, transparent 35%),
+        radial-gradient(circle at 95% 90%, #d5ede0 0%, transparent 40%),
+        linear-gradient(140deg, var(--bg-a), var(--bg-b));
+      min-height: 100vh;
+    }
+
+    /* -- LAYOUT -- */
+    .layout {
+      display: grid;
+      grid-template-columns: 178px 1fr;
+      gap: 18px;
+      width: min(1340px, 97vw);
+      margin: 28px auto 52px;
+      align-items: start;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    /* -- CALENDAR SIDEBAR -- */
+    .cal-sidebar {
+      position: sticky;
+      top: 20px;
+      max-height: calc(100vh - 50px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--line) transparent;
+    }
+    .cal-sidebar::-webkit-scrollbar { width: 4px; }
+    .cal-sidebar::-webkit-scrollbar-thumb { background: var(--line); border-radius: 2px; }
+    .cal-sidebar::-webkit-scrollbar-track { background: transparent; }
+
+    .cal-legend {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      font-size: 0.63rem;
+      color: var(--muted);
+      padding: 2px 4px 4px;
+    }
+    .cal-legend-sq {
+      width: 9px; height: 9px;
+      background: var(--accent);
+      border-radius: 2px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .cal-month-block {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 6px 7px 7px;
+      box-shadow: 0 2px 8px rgba(16,24,32,0.07);
+    }
+    .cal-month-block.current {
+      border: 2px solid var(--accent);
+    }
+
+    .cal-month-name {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    .cal-month-block.current .cal-month-name {
+      color: var(--accent);
+    }
+
+    .cal-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .cal-table th,
+    .cal-table td {
+      text-align: center;
+      padding: 1px 1px;
+      font-size: 0.63rem;
+      line-height: 1.55;
+    }
+    .cal-table thead th {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.6rem;
+    }
+    .wk-col {
+      color: var(--muted) !important;
+      font-size: 0.57rem !important;
+      text-align: right !important;
+      padding-right: 3px !important;
+      border-right: 1px solid var(--line);
+      min-width: 15px;
+    }
+    .cal-table td.empty {
+      color: transparent;
+    }
+    .cal-table td.meeting {
+      background: var(--accent);
+      color: #fff !important;
+      border-radius: 2px;
+      font-weight: 700;
+    }
+
+    /* -- HERO -- */
+    .hero {
+      background: linear-gradient(130deg, #ffffffee, #f2f6f4ee);
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 4px);
+      padding: 22px 26px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute; right: -40px; top: -40px;
+      width: 180px; height: 180px; border-radius: 100%;
+      background: radial-gradient(circle, #6fa8bf44, transparent 68%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.35rem, 3vw, 1.9rem);
+      letter-spacing: 0.01em;
+    }
+    .hero-meta {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* -- SECTION LABEL -- */
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      font-weight: 700;
+      margin: 0 0 10px;
+      padding-left: 2px;
+    }
+
+    /* -- RECAP -- */
+    .recap-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      box-shadow: var(--shadow);
+      line-height: 1.65;
+      font-size: 0.97rem;
+    }
+
+    /* -- NEXT STEPS -- */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 13px;
+    }
+    .person-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .person-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 15px;
+      border-bottom: 1px solid var(--line);
+    }
+    .avatar {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .person-name { font-weight: 700; font-size: 1rem; }
+    .task-count {
+      margin-left: auto;
+      font-size: 0.78rem;
+      color: var(--muted);
+      background: #eef1f3;
+      border-radius: 999px;
+      padding: 2px 9px;
+      font-weight: 700;
+    }
+    .person-tasks {
+      list-style: none;
+      margin: 0;
+      padding: 10px 15px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .person-tasks li {
+      font-size: 0.91rem;
+      line-height: 1.5;
+      padding-left: 18px;
+      position: relative;
+      color: var(--ink);
+    }
+    .person-tasks li::before {
+      content: "\203A";
+      position: absolute;
+      left: 4px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .Elena    .avatar { background: var(--Elena); }
+    .Camila     .avatar { background: var(--Camila); }
+    .lester    .avatar { background: var(--lester); }
+    .Mario      .avatar { background: var(--Mario); }
+    .Sofia    .avatar { background: var(--Sofia); }
+    .Valeria   .avatar { background: var(--Valeria); }
+    .Nora .avatar { background: var(--Nora); }
+    .Elena    .person-header { border-left: 4px solid var(--Elena); }
+    .Camila     .person-header { border-left: 4px solid var(--Camila); }
+    .lester    .person-header { border-left: 4px solid var(--lester); }
+    .Mario      .person-header { border-left: 4px solid var(--Mario); }
+    .Sofia    .person-header { border-left: 4px solid var(--Sofia); }
+    .Valeria   .person-header { border-left: 4px solid var(--Valeria); }
+    .Nora .person-header { border-left: 4px solid var(--Nora); }
+
+    /* -- SUMMARY TOPICS -- */
+    .topics { display: flex; flex-direction: column; gap: 10px; }
+    details {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    details[open] summary { border-bottom: 1px solid var(--line); }
+    summary {
+      cursor: pointer;
+      padding: 14px 18px;
+      font-weight: 700;
+      font-size: 0.97rem;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      user-select: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before { content: "\25B8"; font-size: 0.8rem; color: var(--muted); flex-shrink: 0; }
+    details[open] summary::before { content: "\25BE"; }
+    .topic-body {
+      padding: 14px 20px 16px;
+      font-size: 0.94rem;
+      line-height: 1.68;
+    }
+
+    /* -- FOOTER -- */
+    .page-footer {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding-top: 4px;
+    }
+
+    /* -- RESPONSIVE -- */
+    @media (max-width: 700px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .cal-sidebar {
+        position: static;
+        max-height: none;
+        overflow-y: visible;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .cal-month-block { min-width: 140px; }
+    }
+  </style>
+  <link rel="stylesheet" href="breadcrumbs.css">
+  <link rel="stylesheet" href="meeting-notes-widget.css">
+  <link rel="stylesheet" href="page-counter.css">
+
+</head>
+<body>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="index.php">Home</a><span>&rsaquo;</span><a href="centralHub.html">Final Project Central Hub</a>
+  </nav>
+<div class="layout">
+
+  <!-- ============== CALENDAR SIDEBAR ============== -->
+  <aside class="cal-sidebar">
+
+    <div class="cal-legend">
+      <span class="cal-legend-sq"></span> Meeting day
+    </div>
+
+    <!-- JANUARY -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">January</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">1</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td>1</td><td>2</td><td>3</td></tr>
+          <tr><td class="wk-col">2</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+          <tr><td class="wk-col">3</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td></tr>
+          <tr><td class="wk-col">4</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+          <tr><td class="wk-col">5</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FEBRUARY -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">February</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">6</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+          <tr><td class="wk-col">7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+          <tr><td class="wk-col">8</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+          <tr><td class="wk-col">9</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MARCH -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">March</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">10</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+          <tr><td class="wk-col">11</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+          <tr><td class="wk-col">12</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+          <tr><td class="wk-col">13</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+          <tr><td class="wk-col">14</td><td>29</td><td>30</td><td>31</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- APRIL (current) -->
+    <div class="cal-month-block current">
+      <div class="cal-month-name">April</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">14</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+          <tr><td class="wk-col">15</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+          <tr><td class="wk-col">16</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+          <tr><td class="wk-col">17</td><td>19</td><td class="meeting">20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+          <tr><td class="wk-col">18</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td class="empty"></td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MAY -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">May</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">18</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td>1</td><td>2</td></tr>
+          <tr><td class="wk-col">19</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+          <tr><td class="wk-col">20</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+          <tr><td class="wk-col">21</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>
+          <tr><td class="wk-col">22</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
+          <tr><td class="wk-col">23</td><td>31</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- JUNE -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">June</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">23</td><td class="empty"></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+          <tr><td class="wk-col">24</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
+          <tr><td class="wk-col">25</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
+          <tr><td class="wk-col">26</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+          <tr><td class="wk-col">27</td><td>28</td><td>29</td><td>30</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- JULY -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">July</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">27</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+          <tr><td class="wk-col">28</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+          <tr><td class="wk-col">29</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+          <tr><td class="wk-col">30</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+          <tr><td class="wk-col">31</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- AUGUST -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">August</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">31</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td>1</td></tr>
+          <tr><td class="wk-col">32</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+          <tr><td class="wk-col">33</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr>
+          <tr><td class="wk-col">34</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td></tr>
+          <tr><td class="wk-col">35</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td></tr>
+          <tr><td class="wk-col">36</td><td>30</td><td>31</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEPTEMBER -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">September</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">36</td><td class="empty"></td><td class="empty"></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+          <tr><td class="wk-col">37</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+          <tr><td class="wk-col">38</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+          <tr><td class="wk-col">39</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
+          <tr><td class="wk-col">40</td><td>27</td><td>28</td><td>29</td><td>30</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- OCTOBER -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">October</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">40</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td>1</td><td>2</td><td>3</td></tr>
+          <tr><td class="wk-col">41</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+          <tr><td class="wk-col">42</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td></tr>
+          <tr><td class="wk-col">43</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+          <tr><td class="wk-col">44</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- NOVEMBER -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">November</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">45</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+          <tr><td class="wk-col">46</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+          <tr><td class="wk-col">47</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+          <tr><td class="wk-col">48</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+          <tr><td class="wk-col">49</td><td>29</td><td>30</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- DECEMBER -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">December</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">49</td><td class="empty"></td><td class="empty"></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+          <tr><td class="wk-col">50</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+          <tr><td class="wk-col">51</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+          <tr><td class="wk-col">52</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
+          <tr><td class="wk-col">53</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td class="empty"></td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </aside>
+
+  <!-- ============== MAIN CONTENT ============== -->
+  <main class="content">
+
+    <!-- HERO -->
+    <section class="hero">
+      <p class="hero-eyebrow">Engineering Tech &nbsp;&middot;&nbsp; Weekly Meeting</p>
+      <h1>Meeting Notes &mdash; April 20, 2026</h1>
+      <div class="hero-meta">Monday, 11:14 AM &nbsp;&middot;&nbsp; Week 17 &nbsp;&middot;&nbsp; Source: Zoom AI Summary</div>
+    </section>
+
+    <!-- QUICK RECAP -->
+    <section>
+      <p class="section-label">Quick Recap</p>
+      <div class="recap-card">
+        The team held their weekly meeting to discuss ongoing projects and updates. <strong>Lester</strong> reported being 60% complete on converting the new production daily to Spotfire conversion and working on Spotfire Phase 2 outsource proposal validation. <strong>Camila</strong> updated on Berry volumes loading and QC work, while <strong>Valeria</strong> discussed completing UIC tool updates and well list work. <strong>Nora</strong> addressed LEGO system updates and operational field assignment issues, particularly regarding BV and EH wells being incorrectly assigned to Wilmington Operational Field. The team discussed challenges with AWS data access and Redshift table removals, with <strong>Emilio</strong> performing cleanup operations that were affecting various tools and queries. <strong>Lester</strong> then demonstrated a new AI-powered workflow using VS Code and Claude Code extensions, showing how the AI could assist with database queries, file management, and meeting summary generation, which <strong>Elena</strong> noted could help with making users more self-sufficient in handling routine requests.
+      </div>
+    </section>
+
+    <!-- NEXT STEPS -->
+    <section>
+      <p class="section-label">Next Steps &mdash; by Person</p>
+      <div class="steps-grid">
+
+        <div class="person-card lester">
+          <div class="person-header">
+            <div class="avatar">LE</div>
+            <div class="person-name">Lester</div>
+            <div class="task-count">4 tasks</div>
+          </div>
+          <ul class="person-tasks">
+            <li>Complete the conversion of the new production daily to Spotfire by end of this week</li>
+            <li>Validate the Spotfire Phase 2 outsource proposal email draft with report users this week</li>
+            <li>Continue conversations with Nora and Mario regarding AWS structuring and next steps</li>
+            <li>Offer assistance to team members on installing or setting up VS Code and AI integration if needed</li>
+          </ul>
+        </div>
+
+        <div class="person-card Camila">
+          <div class="person-header">
+            <div class="avatar">LY</div>
+            <div class="person-name">Camila</div>
+            <div class="task-count">4 tasks</div>
+          </div>
+          <ul class="person-tasks">
+            <li>Finish up the raw mapping for LEGO facility source system this week</li>
+            <li>Begin work on Well and Wellbore mapping for the OpenWells to WellView project</li>
+            <li>Inform Arturo Anakin to submit a help desk ticket to Emilio regarding missing AWS/Redshift data in his surveillance tool and specify what data is not visible</li>
+            <li>Offer to help Mario next week with ProCount replication and Oracle connection for monthly volumes</li>
+          </ul>
+        </div>
+
+        <div class="person-card Nora">
+          <div class="person-header">
+            <div class="avatar">PR</div>
+            <div class="person-name">Nora</div>
+            <div class="task-count">4 tasks</div>
+          </div>
+          <ul class="person-tasks">
+            <li>Investigate why new side tracks are not getting the operational field in the warehouse and resolve the issue</li>
+            <li>Respond to request regarding BV and Elkins wells assigned to Wilmington Operational Field and advise on using management plan/field name in queries</li>
+            <li>Look into performance of Arturo's view (query optimization or materialized view) to improve loading speed</li>
+            <li>Update XY coordinates on new wells as requested</li>
+          </ul>
+        </div>
+
+        <div class="person-card Elena">
+          <div class="person-header">
+            <div class="avatar">MA</div>
+            <div class="person-name">Elena</div>
+            <div class="task-count">1 task</div>
+          </div>
+          <ul class="person-tasks">
+            <li>Ask Mario to re-look at moving monthly volumes to EKPSPP/ODW and address historical data and well count issues</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DETAILED SUMMARY -->
+    <section>
+      <p class="section-label">Detailed Summary</p>
+      <div class="topics">
+
+        <details>
+          <summary>Project Updates and Progress Reports</summary>
+          <div class="topic-body">
+            Lester provided updates on three key projects. He reported being 60% complete with the conversion of the new production daily to Spotfire conversion, which is on track for completion this week. Regarding Spotfire Phase 2 outsource proposal, Lester crafted an email draft to validate workload requirements with Spotfire report users, which Nora and Mario approved. The AWS project remains challenging for Lester to handle alone, and he expressed willingness to have further discussions with Nora and Mario about structuring it.
+          </div>
+        </details>
+
+        <details>
+          <summary>System Data Loading and Updates</summary>
+          <div class="topic-body">
+            Camila reported that Ivan had loaded Berry volumes and Willows wells into the system on Friday, with QC showing good alignment with the table data. She sent completion RCUIDs to Marco for the LEGO facility source system and plans to finish raw mapping this week, while also needing to focus on WellView project work. Valeria confirmed she obtained edit access for the UIC tool and completed Paula's updates, is currently working on updating well lists for projects, and continues QC work on Coalinga data when time permits.
+          </div>
+        </details>
+
+        <details>
+          <summary>LEGO System Updates and Modifications</summary>
+          <div class="topic-body">
+            Nora reported on LEGO updates including engineering string modifications and operational field assignment issues. The team discussed problems with using operational field in queries, with Elena and Camila clarifying that management plan should be used instead. Nora agreed to advise Alonso to modify his queries using management plan field values. Additional tasks included investigating a slow-loading view for Arturo and updating XY coordinates for new wells.
+          </div>
+        </details>
+
+        <details>
+          <summary>Surveillance Tool Information Links Issue</summary>
+          <div class="topic-body">
+            Camila discussed with Elena issues regarding broken information links in a surveillance tool, which appear to be related to Emilio's ongoing cleanup of AWS resources. Elena explained that some Redshift tables/views have been removed as part of this cleanup process, particularly for non-ODW data sources like Perfs and Picks. They agreed that IT should be notified through help desk tickets before any resources are disabled, as multiple tools may be affected, and Emilio should be informed about the specific tools experiencing issues.
+          </div>
+        </details>
+
+        <details>
+          <summary>AWS Migration Timeline Discussion</summary>
+          <div class="topic-body">
+            Elena and Camila discussed the timeline for moving off AWS, noting that while the end-of-year target seems early given the June license renewal, there might be negotiation opportunities. They explored implementing monthly volumes in EKPSPP to reduce processing in AWS, potentially using historical data from surveillance tables. Elena mentioned Mario's work on ProCount implementation, though he faced challenges with recreating the welcome table in EKPSPP, and Camila offered to assist with the implementation next week using the Oracle connection to ODW.
+          </div>
+        </details>
+
+        <details>
+          <summary>AI Tools Integration Demonstration</summary>
+          <div class="topic-body">
+            Lester demonstrated how he uses AI tools, specifically Claude Code and Codex extensions in VS Code, to integrate with SharePoint and streamline database queries and file management tasks. He explained the setup process and highlighted the benefits of having an AI assistant for tasks like data extraction, formatting, and automation, which could potentially increase efficiency and self-sufficiency. Elena emphasized the potential of using AI as a helper tool and encouraged the team to explore its capabilities while ensuring proper implementation. The group discussed possible applications of these tools in their current workflows and agreed on the importance of learning and leveraging AI for process improvement.
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <div class="page-footer">Engineering Tech Weekly &nbsp;&middot;&nbsp; April 20, 2026 &nbsp;&middot;&nbsp; Zoom AI Summary</div>
+
+  </main>
+</div>
+  <script src="meeting-notes-widget.js"></script>
+  <script src="page-counter.js"></script>
+
+</body>
+</html>
+
+

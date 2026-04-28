@@ -1,0 +1,29 @@
+/* page-counter.css — visit counter badge, shared across all pages */
+
+.pvc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72em;
+  font-weight: 500;
+  color: #5b6a6f;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  border-radius: 999px;
+  padding: 2px 10px 2px 8px;
+  margin-left: 12px;
+  vertical-align: middle;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.pvc-badge .pvc-icon {
+  font-size: 0.9em;
+  opacity: 0.7;
+}
+
+.pvc-badge .pvc-num {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
