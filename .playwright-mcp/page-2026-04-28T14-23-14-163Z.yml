@@ -1,0 +1,288 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - main [ref=e4]:
+        - navigation "Breadcrumb" [ref=e5]:
+          - link "Home" [ref=e6] [cursor=pointer]:
+            - /url: index.php
+          - text: ›Final Project Central Hub
+        - region "Meeting Notes Hub" [ref=e7]:
+          - paragraph [ref=e8]: Asset Development · Data and Analytics
+          - heading "Meeting Notes Hub" [level=1] [ref=e9]
+          - paragraph [ref=e10]: Centralized access to recurring Zoom meeting notes, preparation notes, and project movement updates by series.
+          - paragraph [ref=e11]: "Project Center: Capture Zoom AI summaries and transform them into structured, actionable project data."
+        - region "Transformation workflow" [ref=e12]:
+          - generic [ref=e13]: Capture
+          - generic [ref=e14]: Parse
+          - generic [ref=e15]: Assign
+          - generic [ref=e16]: Track
+          - generic [ref=e17]: Report
+        - region "Meeting filters" [ref=e18]:
+          - generic [ref=e19]:
+            - generic [ref=e20]:
+              - generic [ref=e21]: Owner
+              - combobox "Owner" [ref=e22]:
+                - option "All" [selected]
+                - option "Leadership"
+                - option "Lester"
+                - option "Team Shared"
+            - generic [ref=e23]:
+              - generic [ref=e24]: Priority
+              - combobox "Priority" [ref=e25]:
+                - option "All" [selected]
+                - option "High"
+                - option "Medium"
+                - option "Planned"
+            - generic [ref=e26]:
+              - generic [ref=e27]: Status
+              - combobox "Status" [ref=e28]:
+                - option "All" [selected]
+                - option "Completed"
+                - option "In Progress"
+                - option "Escalated"
+                - option "Prepared"
+            - generic [ref=e29]:
+              - generic [ref=e30]: Type
+              - combobox "Type" [ref=e31]:
+                - option "All" [selected]
+                - option "Summary"
+                - option "Town Hall"
+                - option "Preparation"
+            - generic [ref=e32]:
+              - generic [ref=e33]: Sort
+              - combobox "Sort" [ref=e34]:
+                - option "Newest first" [selected]
+                - option "Oldest first"
+                - option "Priority first"
+              - button "Clear Filters" [ref=e35] [cursor=pointer]
+        - generic [ref=e36]:
+          - generic [ref=e37]:
+            - paragraph [ref=e38]: Meeting Series
+            - generic [ref=e39]:
+              - generic [ref=e40]:
+                - img [ref=e42]
+                - generic [ref=e44]:
+                  - paragraph [ref=e45]: Engineering Tech Weekly
+                  - paragraph [ref=e46]: Monday | 11:00 AM | Zoom
+                - generic [ref=e47]: 4 meetings
+                - button "Hide" [ref=e48] [cursor=pointer]
+              - list [ref=e49]:
+                - listitem [ref=e50]:
+                  - link "April 20, 2026 summary" [ref=e51] [cursor=pointer]:
+                    - /url: 2026-04-20_EngineeringTech_Weekly.html
+                    - generic [ref=e52]:
+                      - generic [ref=e53]: Apr
+                      - generic [ref=e54]: "20"
+                      - generic [ref=e55]: "2026"
+                    - generic [ref=e56]:
+                      - generic [ref=e57]: April 20, 2026
+                      - generic [ref=e58]: Monday, 11:14 AM | Week 17
+                      - generic [ref=e59]:
+                        - generic [ref=e60]: "Priority: High"
+                        - generic [ref=e61]: "Owner: Lester"
+                        - generic [ref=e62]: "Due: Apr 24, 2026"
+                        - generic [ref=e63]: "Status: In Progress"
+                    - generic [ref=e64]: ›
+                - listitem [ref=e65]:
+                  - link "April 13, 2026 summary" [ref=e66] [cursor=pointer]:
+                    - /url: 2026-04-13_EngineeringTech_Weekly.html
+                    - generic [ref=e67]:
+                      - generic [ref=e68]: Apr
+                      - generic [ref=e69]: "13"
+                      - generic [ref=e70]: "2026"
+                    - generic [ref=e71]:
+                      - generic [ref=e72]: April 13, 2026
+                      - generic [ref=e73]: Monday, 11:00 AM | Week 16
+                      - generic [ref=e74]:
+                        - generic [ref=e75]: "Priority: Medium"
+                        - generic [ref=e76]: "Owner: Team Shared"
+                        - generic [ref=e77]: "Due: Apr 20, 2026"
+                        - generic [ref=e78]: "Status: Completed"
+                    - generic [ref=e79]: ›
+                - listitem [ref=e80]:
+                  - link "March 30, 2026 summary" [ref=e81] [cursor=pointer]:
+                    - /url: 2026-03-30_EngineeringTech_Weekly.html
+                    - generic [ref=e82]:
+                      - generic [ref=e83]: Mar
+                      - generic [ref=e84]: "30"
+                      - generic [ref=e85]: "2026"
+                    - generic [ref=e86]:
+                      - generic [ref=e87]: March 30, 2026
+                      - generic [ref=e88]: Monday, 11:39 AM | Week 14
+                      - generic [ref=e89]:
+                        - generic [ref=e90]: "Priority: High"
+                        - generic [ref=e91]: "Owner: Lester"
+                        - generic [ref=e92]: "Due: Apr 3, 2026"
+                        - generic [ref=e93]: "Status: Escalated"
+                    - generic [ref=e94]: ›
+                - listitem [ref=e95]:
+                  - link "March 23, 2026 summary" [ref=e96] [cursor=pointer]:
+                    - /url: 2026-03-23_EngineeringTech_Weekly.html
+                    - generic [ref=e97]:
+                      - generic [ref=e98]: Mar
+                      - generic [ref=e99]: "23"
+                      - generic [ref=e100]: "2026"
+                    - generic [ref=e101]:
+                      - generic [ref=e102]: March 23, 2026
+                      - generic [ref=e103]: Monday, 11:12 AM | Week 13
+                      - generic [ref=e104]:
+                        - generic [ref=e105]: "Priority: Medium"
+                        - generic [ref=e106]: "Owner: Team Shared"
+                        - generic [ref=e107]: "Due: Mar 30, 2026"
+                        - generic [ref=e108]: "Status: Completed"
+                    - generic [ref=e109]: ›
+          - generic [ref=e110]:
+            - paragraph [ref=e111]: Meeting Series
+            - generic [ref=e112]:
+              - generic [ref=e113]:
+                - img [ref=e115]
+                - generic [ref=e120]:
+                  - paragraph [ref=e121]: Asset Development Town Halls
+                  - paragraph [ref=e122]: Quarterly | Webinar Format | Diana Morse
+                - generic [ref=e123]: 1 meeting
+                - button "Hide" [ref=e124] [cursor=pointer]
+              - list [ref=e125]:
+                - listitem [ref=e126]:
+                  - link "Q1 Town Hall - March 27, 2026 townhall" [ref=e127] [cursor=pointer]:
+                    - /url: 2026-03-27_AssetDev_Q1Townhall.html
+                    - generic [ref=e128]:
+                      - generic [ref=e129]: Mar
+                      - generic [ref=e130]: "27"
+                      - generic [ref=e131]: "2026"
+                    - generic [ref=e132]:
+                      - generic [ref=e133]: Q1 Town Hall - March 27, 2026
+                      - generic [ref=e134]: Friday, 8:31 AM | Week 13 | Diana Morse
+                      - generic [ref=e135]:
+                        - generic [ref=e136]: "Priority: Planned"
+                        - generic [ref=e137]: "Owner: Leadership"
+                        - generic [ref=e138]: "Due: Mar 27, 2026"
+                        - generic [ref=e139]: "Status: Completed"
+                    - generic [ref=e140]: ›
+          - generic [ref=e141]:
+            - paragraph [ref=e142]: Meeting Preparation
+            - generic [ref=e143]:
+              - generic [ref=e144]:
+                - img [ref=e146]
+                - generic [ref=e149]:
+                  - paragraph [ref=e150]: Engineering Tech - Prep Notes
+                  - paragraph [ref=e151]: Pre-meeting preparation and status tracking
+                - generic [ref=e152]: 4 meetings
+                - button "Hide" [ref=e153] [cursor=pointer]
+              - list [ref=e154]:
+                - listitem [ref=e155]:
+                  - link "April 27, 2026 - Preparation preparation" [ref=e156] [cursor=pointer]:
+                    - /url: 2026-04-27_Preparation.html
+                    - generic [ref=e157]:
+                      - generic [ref=e158]: Apr
+                      - generic [ref=e159]: "27"
+                      - generic [ref=e160]: "2026"
+                    - generic [ref=e161]:
+                      - generic [ref=e162]: April 27, 2026 - Preparation
+                      - generic [ref=e163]: Monday | Week 18 | Lester
+                      - generic [ref=e164]:
+                        - generic [ref=e165]: "Priority: Planned"
+                        - generic [ref=e166]: "Owner: Lester"
+                        - generic [ref=e167]: "Due: Apr 27, 2026"
+                        - generic [ref=e168]: "Status: Prepared"
+                    - generic [ref=e169]: ›
+                - listitem [ref=e170]:
+                  - link "April 20, 2026 - Preparation preparation" [ref=e171] [cursor=pointer]:
+                    - /url: 2026-04-20_Preparation.html
+                    - generic [ref=e172]:
+                      - generic [ref=e173]: Apr
+                      - generic [ref=e174]: "20"
+                      - generic [ref=e175]: "2026"
+                    - generic [ref=e176]:
+                      - generic [ref=e177]: April 20, 2026 - Preparation
+                      - generic [ref=e178]: Monday | Week 17 | Lester
+                      - generic [ref=e179]:
+                        - generic [ref=e180]: "Priority: Planned"
+                        - generic [ref=e181]: "Owner: Lester"
+                        - generic [ref=e182]: "Due: Apr 20, 2026"
+                        - generic [ref=e183]: "Status: Prepared"
+                    - generic [ref=e184]: ›
+                - listitem [ref=e185]:
+                  - link "April 13, 2026 - Preparation preparation" [ref=e186] [cursor=pointer]:
+                    - /url: 2026-04-13_Preparation.html
+                    - generic [ref=e187]:
+                      - generic [ref=e188]: Apr
+                      - generic [ref=e189]: "13"
+                      - generic [ref=e190]: "2026"
+                    - generic [ref=e191]:
+                      - generic [ref=e192]: April 13, 2026 - Preparation
+                      - generic [ref=e193]: Monday | Week 16 | Lester
+                      - generic [ref=e194]:
+                        - generic [ref=e195]: "Priority: Planned"
+                        - generic [ref=e196]: "Owner: Lester"
+                        - generic [ref=e197]: "Due: Apr 13, 2026"
+                        - generic [ref=e198]: "Status: Prepared"
+                    - generic [ref=e199]: ›
+                - listitem [ref=e200]:
+                  - link "April 6, 2026 - Preparation preparation" [ref=e201] [cursor=pointer]:
+                    - /url: 2026-04-06_Preparation.html
+                    - generic [ref=e202]:
+                      - generic [ref=e203]: Apr
+                      - generic [ref=e204]: "06"
+                      - generic [ref=e205]: "2026"
+                    - generic [ref=e206]:
+                      - generic [ref=e207]: April 6, 2026 - Preparation
+                      - generic [ref=e208]: Monday | Week 15 | Lester
+                      - generic [ref=e209]:
+                        - generic [ref=e210]: "Priority: Planned"
+                        - generic [ref=e211]: "Owner: Lester"
+                        - generic [ref=e212]: "Due: Apr 6, 2026"
+                        - generic [ref=e213]: "Status: Prepared"
+                    - generic [ref=e214]: ›
+        - generic [ref=e215]:
+          - paragraph [ref=e216]: Weekly Outcomes
+          - generic [ref=e217]:
+            - article "Weekly outcome summary" [ref=e218]:
+              - heading "Current Week Outcome" [level=3] [ref=e219]
+              - list [ref=e220]:
+                - listitem [ref=e221]: "Completed actions: 7"
+                - listitem [ref=e222]: "Open risks: 2"
+                - listitem [ref=e223]: "Escalations to manager: 1"
+                - listitem [ref=e224]: "Programmed project impact: watch list"
+            - article "Manager view delta" [ref=e225]:
+              - 'heading "Manager View: Changes Since Last Meeting" [level=3] [ref=e226]'
+              - list [ref=e227]:
+                - listitem [ref=e228]: "Visible meetings after filters: 9."
+                - listitem [ref=e229]: "High-priority items currently visible: 2."
+                - listitem [ref=e230]: "Owner focus: Lester (6)."
+                - listitem [ref=e231]: "Escalation load: moderate."
+      - complementary [ref=e232]:
+        - generic [ref=e233]:
+          - paragraph [ref=e234]: Implementation Notes
+          - generic [ref=e235]:
+            - article "CSS implementation notes" [ref=e236]:
+              - heading "How CSS Is Applied On This Page" [level=3] [ref=e237]
+              - list [ref=e238]:
+                - listitem [ref=e239]: The page uses an external stylesheet to separate visual design from page content.
+                - listitem [ref=e240]: Design tokens are defined with CSS variables for color, spacing, radius, and shadows to keep style decisions consistent.
+                - listitem [ref=e241]: Reusable component classes style cards, section headers, filters, meeting rows, and summary panels across the hub.
+                - listitem [ref=e242]: Breadcrumbs are centrally controlled through a shared stylesheet so navigation cues stay consistent across all meeting pages.
+                - listitem [ref=e243]: The layout is intentionally desktop-first, using fixed panel widths and spacing for a stable presentation view.
+            - article "JavaScript implementation notes" [ref=e244]:
+              - heading "How JavaScript Is Used On This Page" [level=3] [ref=e245]
+              - list [ref=e246]:
+                - listitem [ref=e247]: Meeting records are stored as JavaScript objects and arrays, then rendered dynamically into the page.
+                - listitem [ref=e248]: Event listeners power filters, sorting, and clear actions so the displayed meeting list updates instantly.
+                - listitem [ref=e249]: Functions and loops are used to build reusable render logic for series cards and individual meeting rows.
+                - listitem [ref=e250]: A reusable Meeting Notes widget is loaded as a shared JavaScript module so the same notes experience can run across all meeting pages.
+                - listitem [ref=e251]: The widget supports meeting-specific comments, tag labels, draft autosave, and saved-note history per selected meeting date.
+                - listitem [ref=e252]: The widget sends note updates to a PHP endpoint and refreshes the note list from server data, so notes stay available across sessions.
+                - listitem [ref=e253]: If PHP is temporarily unavailable, the widget falls back to localStorage so note-taking can continue.
+                - listitem [ref=e254]: The Weekly Outcomes and Manager View summaries are recalculated from currently visible data after each interaction.
+            - article "PHP implementation notes" [ref=e255]:
+              - heading "How PHP Is Used For Meeting Notes" [level=3] [ref=e256]
+              - list [ref=e257]:
+                - listitem [ref=e258]:
+                  - text: A dedicated handler file
+                  - code [ref=e259]: meetingNotesApi.php
+                  - text: receives browser requests and returns JSON responses.
+                - listitem [ref=e260]: The endpoint uses GET to load notes and POST to save updated notes and drafts.
+                - listitem [ref=e261]: Notes are persisted in a server-side JSON file, creating a class-style PHP storage solution without a database.
+                - listitem [ref=e262]: Input is validated and length-limited in PHP before writing to disk to keep stored data clean and predictable.
+                - listitem [ref=e263]: File locking is used during writes so concurrent saves do not corrupt the JSON store.
+    - paragraph [ref=e264]: Asset Development · Meeting Notes Hub · 2026 · Less meeting friction, stronger project control.
+  - button "Meeting Notes" [ref=e265] [cursor=pointer]

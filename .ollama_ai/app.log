@@ -1,0 +1,321 @@
+2026-05-01 01:22:00,121 - ERROR - Global Error: module 'os' has no attribute 'basename'
+Traceback (most recent call last):
+  File "c:\Users\leste\OneDrive - UA Little Rock\2026\2026Spring\.ollama_ai\summarize_pdf.py", line 101, in process_files
+    self.root.after(0, self.status_label.config, {'text': f"Status: Processing {i+1}/{len(self.selected_files)} - {os.basename(pdf_path)}..."})
+                                                                                                                   ^^^^^^^^^^^
+AttributeError: module 'os' has no attribute 'basename'
+
+2026-05-01 01:22:57,428 - INFO - Attempting to pull model 'phi3'...
+2026-05-01 01:22:57,432 - DEBUG - connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+2026-05-01 01:22:57,439 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001DFDEA1E510>
+2026-05-01 01:22:57,439 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 01:22:57,439 - DEBUG - send_request_headers.complete
+2026-05-01 01:22:57,439 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 01:22:57,439 - DEBUG - send_request_body.complete
+2026-05-01 01:22:57,439 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 01:22:58,000 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json'), (b'Date', b'Fri, 01 May 2026 08:22:57 GMT'), (b'Content-Length', b'20')])
+2026-05-01 01:22:58,000 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/pull "HTTP/1.1 200 OK"
+2026-05-01 01:22:58,000 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 01:22:58,000 - DEBUG - receive_response_body.complete
+2026-05-01 01:22:58,000 - DEBUG - response_closed.started
+2026-05-01 01:22:58,001 - DEBUG - response_closed.complete
+2026-05-01 01:22:58,001 - INFO - Model 'phi3' pull successful or already exists.
+2026-05-01 01:22:58,001 - INFO - Sending text to model for summarization...
+2026-05-01 01:22:58,008 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 01:22:58,008 - DEBUG - send_request_headers.complete
+2026-05-01 01:22:58,008 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 01:22:58,008 - DEBUG - send_request_body.complete
+2026-05-01 01:22:58,009 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 01:35:52,816 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 08:35:52 GMT'), (b'Content-Length', b'1449')])
+2026-05-01 01:35:52,817 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 01:35:52,817 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 01:35:52,817 - DEBUG - receive_response_body.complete
+2026-05-01 01:35:52,817 - DEBUG - response_closed.started
+2026-05-01 01:35:52,817 - DEBUG - response_closed.complete
+2026-05-01 01:35:52,817 - INFO - Summarization successful.
+2026-05-01 01:35:52,819 - INFO - All files successfully processed.
+2026-05-01 01:46:17,975 - INFO - Pulling model 'phi3' at startup...
+2026-05-01 01:46:17,976 - DEBUG - connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+2026-05-01 01:46:17,982 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000023A21250C20>
+2026-05-01 01:46:17,982 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 01:46:17,982 - DEBUG - send_request_headers.complete
+2026-05-01 01:46:17,982 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 01:46:17,982 - DEBUG - send_request_body.complete
+2026-05-01 01:46:17,983 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 01:46:18,520 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json'), (b'Date', b'Fri, 01 May 2026 08:46:18 GMT'), (b'Content-Length', b'20')])
+2026-05-01 01:46:18,520 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/pull "HTTP/1.1 200 OK"
+2026-05-01 01:46:18,520 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 01:46:18,521 - DEBUG - receive_response_body.complete
+2026-05-01 01:46:18,521 - DEBUG - response_closed.started
+2026-05-01 01:46:18,521 - DEBUG - response_closed.complete
+2026-05-01 01:46:18,521 - INFO - Model pull successful or already exists.
+2026-05-01 01:46:47,197 - INFO - Sending chunk 1/21 to model for summarization...
+2026-05-01 01:46:47,198 - DEBUG - close.started
+2026-05-01 01:46:47,198 - DEBUG - close.complete
+2026-05-01 01:46:47,198 - DEBUG - connect_tcp.started host='127.0.0.1' port=11434 local_address=None timeout=None socket_options=None
+2026-05-01 01:46:47,199 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000023A2126A990>
+2026-05-01 01:46:47,199 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 01:46:47,199 - DEBUG - send_request_headers.complete
+2026-05-01 01:46:47,199 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 01:46:47,199 - DEBUG - send_request_body.complete
+2026-05-01 01:46:47,199 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 01:50:19,971 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 08:50:19 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 01:50:19,971 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 01:50:19,971 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 01:50:19,971 - DEBUG - receive_response_body.complete
+2026-05-01 01:50:19,972 - DEBUG - response_closed.started
+2026-05-01 01:50:19,972 - DEBUG - response_closed.complete
+2026-05-01 01:50:19,972 - INFO - Sending chunk 2/21 to model for summarization...
+2026-05-01 01:50:19,973 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 01:50:19,973 - DEBUG - send_request_headers.complete
+2026-05-01 01:50:19,973 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 01:50:19,973 - DEBUG - send_request_body.complete
+2026-05-01 01:50:19,973 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 01:52:38,604 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 08:52:38 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 01:52:38,604 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 01:52:38,604 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 01:52:38,604 - DEBUG - receive_response_body.complete
+2026-05-01 01:52:38,604 - DEBUG - response_closed.started
+2026-05-01 01:52:38,604 - DEBUG - response_closed.complete
+2026-05-01 01:52:38,605 - INFO - Sending chunk 3/21 to model for summarization...
+2026-05-01 01:52:38,605 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 01:52:38,606 - DEBUG - send_request_headers.complete
+2026-05-01 01:52:38,606 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 01:52:38,606 - DEBUG - send_request_body.complete
+2026-05-01 01:52:38,606 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 01:55:46,436 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 08:55:46 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 01:55:46,436 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 01:55:46,436 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 01:55:46,436 - DEBUG - receive_response_body.complete
+2026-05-01 01:55:46,436 - DEBUG - response_closed.started
+2026-05-01 01:55:46,437 - DEBUG - response_closed.complete
+2026-05-01 01:55:46,437 - INFO - Sending chunk 4/21 to model for summarization...
+2026-05-01 01:55:46,438 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 01:55:46,438 - DEBUG - send_request_headers.complete
+2026-05-01 01:55:46,438 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 01:55:46,438 - DEBUG - send_request_body.complete
+2026-05-01 01:55:46,439 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:01:48,690 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:01:48 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:01:48,690 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:01:48,690 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:01:48,690 - DEBUG - receive_response_body.complete
+2026-05-01 02:01:48,691 - DEBUG - response_closed.started
+2026-05-01 02:01:48,691 - DEBUG - response_closed.complete
+2026-05-01 02:01:48,692 - INFO - Sending chunk 5/21 to model for summarization...
+2026-05-01 02:01:48,692 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:01:48,694 - DEBUG - send_request_headers.complete
+2026-05-01 02:01:48,694 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:01:48,694 - DEBUG - send_request_body.complete
+2026-05-01 02:01:48,695 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:04:49,363 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:04:49 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:04:49,363 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:04:49,363 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:04:49,363 - DEBUG - receive_response_body.complete
+2026-05-01 02:04:49,363 - DEBUG - response_closed.started
+2026-05-01 02:04:49,363 - DEBUG - response_closed.complete
+2026-05-01 02:04:49,364 - INFO - Sending chunk 6/21 to model for summarization...
+2026-05-01 02:04:49,364 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:04:49,365 - DEBUG - send_request_headers.complete
+2026-05-01 02:04:49,365 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:04:49,365 - DEBUG - send_request_body.complete
+2026-05-01 02:04:49,365 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:07:53,132 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:07:53 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:07:53,132 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:07:53,132 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:07:53,132 - DEBUG - receive_response_body.complete
+2026-05-01 02:07:53,132 - DEBUG - response_closed.started
+2026-05-01 02:07:53,132 - DEBUG - response_closed.complete
+2026-05-01 02:07:53,133 - INFO - Sending chunk 7/21 to model for summarization...
+2026-05-01 02:07:53,133 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:07:53,134 - DEBUG - send_request_headers.complete
+2026-05-01 02:07:53,134 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:07:53,134 - DEBUG - send_request_body.complete
+2026-05-01 02:07:53,134 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:10:08,680 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:10:08 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:10:08,680 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:10:08,681 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:10:08,681 - DEBUG - receive_response_body.complete
+2026-05-01 02:10:08,681 - DEBUG - response_closed.started
+2026-05-01 02:10:08,681 - DEBUG - response_closed.complete
+2026-05-01 02:10:08,681 - INFO - Sending chunk 8/21 to model for summarization...
+2026-05-01 02:10:08,682 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:10:08,682 - DEBUG - send_request_headers.complete
+2026-05-01 02:10:08,682 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:10:08,682 - DEBUG - send_request_body.complete
+2026-05-01 02:10:08,682 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:12:47,601 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:12:47 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:12:47,601 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:12:47,601 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:12:47,602 - DEBUG - receive_response_body.complete
+2026-05-01 02:12:47,602 - DEBUG - response_closed.started
+2026-05-01 02:12:47,602 - DEBUG - response_closed.complete
+2026-05-01 02:12:47,602 - INFO - Sending chunk 9/21 to model for summarization...
+2026-05-01 02:12:47,603 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:12:47,603 - DEBUG - send_request_headers.complete
+2026-05-01 02:12:47,603 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:12:47,603 - DEBUG - send_request_body.complete
+2026-05-01 02:12:47,603 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:15:53,600 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:15:53 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:15:53,600 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:15:53,600 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:15:53,600 - DEBUG - receive_response_body.complete
+2026-05-01 02:15:53,600 - DEBUG - response_closed.started
+2026-05-01 02:15:53,601 - DEBUG - response_closed.complete
+2026-05-01 02:15:53,601 - INFO - Sending chunk 10/21 to model for summarization...
+2026-05-01 02:15:53,601 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:15:53,602 - DEBUG - send_request_headers.complete
+2026-05-01 02:15:53,602 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:15:53,602 - DEBUG - send_request_body.complete
+2026-05-01 02:15:53,602 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:18:16,978 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:18:16 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:18:16,978 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:18:16,979 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:18:16,979 - DEBUG - receive_response_body.complete
+2026-05-01 02:18:16,979 - DEBUG - response_closed.started
+2026-05-01 02:18:16,979 - DEBUG - response_closed.complete
+2026-05-01 02:18:16,979 - INFO - Sending chunk 11/21 to model for summarization...
+2026-05-01 02:18:16,980 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:18:16,980 - DEBUG - send_request_headers.complete
+2026-05-01 02:18:16,980 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:18:16,980 - DEBUG - send_request_body.complete
+2026-05-01 02:18:16,981 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:21:05,169 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:21:05 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:21:05,169 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:21:05,169 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:21:05,169 - DEBUG - receive_response_body.complete
+2026-05-01 02:21:05,169 - DEBUG - response_closed.started
+2026-05-01 02:21:05,170 - DEBUG - response_closed.complete
+2026-05-01 02:21:05,170 - INFO - Sending chunk 12/21 to model for summarization...
+2026-05-01 02:21:05,170 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:21:05,171 - DEBUG - send_request_headers.complete
+2026-05-01 02:21:05,171 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:21:05,171 - DEBUG - send_request_body.complete
+2026-05-01 02:21:05,171 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:22:56,342 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:22:56 GMT'), (b'Content-Length', b'1812')])
+2026-05-01 02:22:56,342 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:22:56,342 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:22:56,342 - DEBUG - receive_response_body.complete
+2026-05-01 02:22:56,342 - DEBUG - response_closed.started
+2026-05-01 02:22:56,342 - DEBUG - response_closed.complete
+2026-05-01 02:22:56,343 - INFO - Sending chunk 13/21 to model for summarization...
+2026-05-01 02:22:56,345 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:22:56,345 - DEBUG - send_request_headers.complete
+2026-05-01 02:22:56,345 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:22:56,345 - DEBUG - send_request_body.complete
+2026-05-01 02:22:56,345 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:25:08,941 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:25:08 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:25:08,942 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:25:08,942 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:25:08,943 - DEBUG - receive_response_body.complete
+2026-05-01 02:25:08,943 - DEBUG - response_closed.started
+2026-05-01 02:25:08,944 - DEBUG - response_closed.complete
+2026-05-01 02:25:08,945 - INFO - Sending chunk 14/21 to model for summarization...
+2026-05-01 02:25:08,946 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:25:08,946 - DEBUG - send_request_headers.complete
+2026-05-01 02:25:08,947 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:25:08,947 - DEBUG - send_request_body.complete
+2026-05-01 02:25:08,948 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:27:18,861 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:27:18 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:27:18,862 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:27:18,863 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:27:18,863 - DEBUG - receive_response_body.complete
+2026-05-01 02:27:18,864 - DEBUG - response_closed.started
+2026-05-01 02:27:18,864 - DEBUG - response_closed.complete
+2026-05-01 02:27:18,865 - INFO - Sending chunk 15/21 to model for summarization...
+2026-05-01 02:27:18,865 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:27:18,865 - DEBUG - send_request_headers.complete
+2026-05-01 02:27:18,865 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:27:18,866 - DEBUG - send_request_body.complete
+2026-05-01 02:27:18,866 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:30:36,598 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:30:36 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:30:36,599 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:30:36,599 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:30:36,599 - DEBUG - receive_response_body.complete
+2026-05-01 02:30:36,599 - DEBUG - response_closed.started
+2026-05-01 02:30:36,599 - DEBUG - response_closed.complete
+2026-05-01 02:30:36,600 - INFO - Sending chunk 16/21 to model for summarization...
+2026-05-01 02:30:36,600 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:30:36,601 - DEBUG - send_request_headers.complete
+2026-05-01 02:30:36,601 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:30:36,601 - DEBUG - send_request_body.complete
+2026-05-01 02:30:36,601 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:33:12,170 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:33:12 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:33:12,171 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:33:12,172 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:33:12,172 - DEBUG - receive_response_body.complete
+2026-05-01 02:33:12,173 - DEBUG - response_closed.started
+2026-05-01 02:33:12,174 - DEBUG - response_closed.complete
+2026-05-01 02:33:12,174 - INFO - Sending chunk 17/21 to model for summarization...
+2026-05-01 02:33:12,175 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:33:12,176 - DEBUG - send_request_headers.complete
+2026-05-01 02:33:12,176 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:33:12,177 - DEBUG - send_request_body.complete
+2026-05-01 02:33:12,177 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:35:59,766 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:35:59 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:35:59,767 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:35:59,768 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:35:59,769 - DEBUG - receive_response_body.complete
+2026-05-01 02:35:59,769 - DEBUG - response_closed.started
+2026-05-01 02:35:59,770 - DEBUG - response_closed.complete
+2026-05-01 02:35:59,771 - INFO - Sending chunk 18/21 to model for summarization...
+2026-05-01 02:35:59,772 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:35:59,773 - DEBUG - send_request_headers.complete
+2026-05-01 02:35:59,773 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:35:59,774 - DEBUG - send_request_body.complete
+2026-05-01 02:35:59,774 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:39:19,285 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:39:19 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:39:19,286 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:39:19,286 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:39:19,286 - DEBUG - receive_response_body.complete
+2026-05-01 02:39:19,286 - DEBUG - response_closed.started
+2026-05-01 02:39:19,286 - DEBUG - response_closed.complete
+2026-05-01 02:39:19,287 - INFO - Sending chunk 19/21 to model for summarization...
+2026-05-01 02:39:19,287 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:39:19,288 - DEBUG - send_request_headers.complete
+2026-05-01 02:39:19,288 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:39:19,288 - DEBUG - send_request_body.complete
+2026-05-01 02:39:19,288 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:45:50,361 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:45:50 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:45:50,361 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:45:50,361 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:45:50,361 - DEBUG - receive_response_body.complete
+2026-05-01 02:45:50,361 - DEBUG - response_closed.started
+2026-05-01 02:45:50,362 - DEBUG - response_closed.complete
+2026-05-01 02:45:50,362 - INFO - Sending chunk 20/21 to model for summarization...
+2026-05-01 02:45:50,363 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:45:50,363 - DEBUG - send_request_headers.complete
+2026-05-01 02:45:50,363 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:45:50,363 - DEBUG - send_request_body.complete
+2026-05-01 02:45:50,363 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:51:18,213 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:51:18 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:51:18,213 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:51:18,213 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:51:18,213 - DEBUG - receive_response_body.complete
+2026-05-01 02:51:18,213 - DEBUG - response_closed.started
+2026-05-01 02:51:18,214 - DEBUG - response_closed.complete
+2026-05-01 02:51:18,214 - INFO - Sending chunk 21/21 to model for summarization...
+2026-05-01 02:51:18,215 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:51:18,215 - DEBUG - send_request_headers.complete
+2026-05-01 02:51:18,215 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:51:18,215 - DEBUG - send_request_body.complete
+2026-05-01 02:51:18,215 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 02:54:25,168 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 09:54:25 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 02:54:25,168 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 02:54:25,169 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 02:54:25,169 - DEBUG - receive_response_body.complete
+2026-05-01 02:54:25,169 - DEBUG - response_closed.started
+2026-05-01 02:54:25,169 - DEBUG - response_closed.complete
+2026-05-01 02:54:25,170 - INFO - Generating final structured summary...
+2026-05-01 02:54:25,171 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-05-01 02:54:25,171 - DEBUG - send_request_headers.complete
+2026-05-01 02:54:25,171 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-05-01 02:54:25,172 - DEBUG - send_request_body.complete
+2026-05-01 02:54:25,172 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-05-01 03:53:50,222 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=utf-8'), (b'Date', b'Fri, 01 May 2026 10:53:50 GMT'), (b'Transfer-Encoding', b'chunked')])
+2026-05-01 03:53:50,223 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-01 03:53:50,223 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-05-01 03:53:50,224 - DEBUG - receive_response_body.complete
+2026-05-01 03:53:50,224 - DEBUG - response_closed.started
+2026-05-01 03:53:50,224 - DEBUG - response_closed.complete
+2026-05-01 03:53:50,224 - INFO - Final summarization successful.
+2026-05-01 03:53:50,230 - INFO - All files successfully processed.
