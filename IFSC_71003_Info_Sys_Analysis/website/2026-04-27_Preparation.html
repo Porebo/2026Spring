@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eng Tech Preparation Notes v2 - April 27, 2026</title>
+  <style>
+    :root {
+      --bg: #f8f8f6;
+      --ink: #1f2933;
+      --muted: #5d6975;
+      --line: #d7dde3;
+      --p1: #c58a00;
+      --p2: #1f6f8b;
+      --done: #7b8794;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Trebuchet MS", "Gill Sans", Candara, sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      padding: 20px;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 14px;
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+
+    .meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      margin-top: 18px;
+      margin-bottom: 8px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 12px;
+      background: transparent;
+    }
+
+    th, td {
+      font-size: 14px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+      padding: 7px 6px;
+    }
+
+    th {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .project-row {
+      border-left: 4px solid var(--line);
+      padding: 8px 10px 8px 12px;
+      margin-bottom: 8px;
+      border-radius: 4px;
+      background: transparent;
+    }
+
+    .p1-active { border-left-color: var(--p1); }
+    .p2-active { border-left-color: var(--p2); }
+    .completed { border-left-color: var(--done); }
+
+    .row-line {
+      margin-bottom: 4px;
+    }
+
+    .project-name {
+      font-weight: 700;
+    }
+
+    .row-meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    ul {
+      margin-left: 18px;
+      margin-top: 6px;
+      margin-bottom: 8px;
+    }
+
+    li { margin-bottom: 3px; }
+
+    @media (max-width: 740px) {
+      body { padding: 12px; }
+      th, td { font-size: 12px; }
+      .project-row { padding: 7px 9px 7px 10px; }
+    }
+  </style>
+  <link rel="stylesheet" href="breadcrumbs.css">
+  <link rel="stylesheet" href="meeting-notes-widget.css">
+  <link rel="stylesheet" href="page-counter.css">
+
+</head>
+<body>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="index.php">Home</a><span>&rsaquo;</span><a href="centralHub.html">Final Project Central Hub</a>
+  </nav>
+  <div class="page">
+    <h1>Engineering Tech Weekly Preparation Notes - April 27, 2026</h1>
+    <div class="meta">Monday, Week 18 | Author: Lester</div>
+
+    <div class="section-title">At-a-Glance Summary</div>
+    <table aria-label="At-a-glance summary table">
+      <thead>
+        <tr>
+          <th>Priority</th>
+          <th>Project Name</th>
+          <th>Status</th>
+          <th>Pending / Progress</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>P1</td><td>Diatomite Dirt Patterns Conversion</td><td>Active</td><td>Next conversion target; waiting on final closeout handoff from New_ProdCentered_Daily2.</td></tr>
+        <tr><td>P2</td><td>New_ProdCentered_Daily2 / New_InjCentered_Daily2</td><td>Active</td><td>Injection runbook complete; production-centered conversion still in progress.</td></tr>
+        <tr><td>P2</td><td>Phase 2 Outsourcing Proposal</td><td>Active</td><td>Validation outreach sent; collecting replies; roadmap and phase docs structured.</td></tr>
+        <tr><td>P2</td><td>AWS Structuring Coordination</td><td>Active</td><td>Coordination continues with Mario and Nora on AWS-to-ODW scope and next steps.</td></tr>
+        <tr><td>P2</td><td>VS Code / AI Team Enablement</td><td>Open</td><td>Support offer made; pending teammate requests for onboarding help.</td></tr>
+        <tr><td>P3</td><td>Formation Pressure Report</td><td>Closed</td><td>Published; incremental refresh automation deployed; waiting on formula feedback.</td></tr>
+        <tr><td>P3</td><td>UIC Wells Spotfire Report</td><td>Closed</td><td>No pending actions; requester moved to Python web approach.</td></tr>
+        <tr><td>P3</td><td>Wellbore Diagrams / Data Validation</td><td>Closed</td><td>Deliverables completed; no outstanding requests.</td></tr>
+        <tr><td>P3</td><td>Claude AI Adoption</td><td>Closed</td><td>Adopted in daily workflow; configuration updates complete.</td></tr>
+        <tr><td>P2</td><td>AI Workgroup Proposals</td><td>Active</td><td>Four proposals drafted; pending distribution and discussion.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">Weekly Synthesis (Email + Calendar)</div>
+    <p>Coverage note: Calendar events and email signals were reviewed for the week. Teams chat search returned endpoint errors, so this synthesis does not include full Teams DM and channel coverage.</p>
+    <ul>
+      <li>Dominant workstream was Tableau to Spotfire migration validation through stakeholder review across multiple reports.</li>
+      <li>AWS retirement and migration pressure increased with requests and follow-up activity across teams.</li>
+      <li>AI Jarvis pilot time investment was material, with two working sessions completed in one week.</li>
+      <li>Execution load remained high with concurrent CMBS Company Made By Student delivery and class obligations.</li>
+    </ul>
+    <p>Data gap and risk: Because Teams chat capture failed, decisions made in DMs or channels may be missing. Mitigation is to validate Graph/MCP Teams chat scopes before the next weekly pull.</p>
+
+    <div class="section-title">Priority This Week</div>
+
+    <div class="project-row p1-active">
+      <p class="row-line"><span class="project-name">1. Diatomite Dirt Patterns Production and Injection Monitor</span> - Active and top priority for this week.</p>
+      <p class="row-meta">Start date: Apr 16, 2026</p>
+      <p>This conversion was directly tasked in DA Weekly and is positioned as the next AWS-related Tableau-to-Spotfire migration. Validation outreach happening under the proposal workstream is feeding discovery for any additional report dependencies. Work remains in active execution as New_ProdCentered_Daily2 transitions out of closeout.</p>
+    </div>
+
+    <div class="section-title">In Progress</div>
+
+    <div class="project-row p2-active">
+      <p class="row-line"><span class="project-name">2. New_ProdCentered_Daily2 / New_InjCentered_Daily2 Conversion</span> - Active with injection-centered runbook complete and production work continuing.</p>
+      <p class="row-meta">Start date: Mar 23, 2026</p>
+      <p>The Apr 20 update reported 60 percent completion for the production-centered conversion. During this week, the companion New_InjCentered_Daily2 workbook was extracted, and Prod.sql/Inj.sql logic was documented into a full Spotfire rebuild runbook. The migration path also captures a key fix to avoid the historical data loss behavior tied to cmpl_dmn_key in the Tableau workbook.</p>
+    </div>
+
+    <div class="project-row p2-active">
+      <p class="row-line"><span class="project-name">3. Spotfire Phase 2 / Outsourcing Proposal</span> - Active with responses now coming in from business validation outreach.</p>
+      <p class="row-meta">Start date: Apr 9, 2026</p>
+      <p>The proposal scope is being anchored to direct end-user confirmation rather than assumed need, per alignment with Mario and Nora. First validation responses confirmed active business dependence on targeted reports, and additional response tracking is in place. AWS discovery artifacts and full proposal phase documentation were built this week, along with an auto-updating roadmap process in Task Scheduler.</p>
+    </div>
+
+    <div class="project-row p2-active">
+      <p class="row-line"><span class="project-name">4. AWS Structuring Coordination</span> - Active with cross-functional coordination ongoing.</p>
+      <p>This thread remains focused on shaping AWS-to-ODW scope that is too large for a single owner. Current progress is continued working alignment with Nora and Mario on migration structure and sequencing. Pending work is final scope convergence and integration with the surveillance tool pathway.</p>
+    </div>
+
+    <div class="project-row p2-active">
+      <p class="row-line"><span class="project-name">5. VS Code / AI Team Enablement Offer</span> - Open and waiting on teammate requests.</p>
+      <p>Following demonstration of Claude Code and Codex extensions, support was offered for installation and onboarding. No blocking issue exists, but this stream is demand-triggered by teammate requests. Pending action is activation once requests arrive.</p>
+    </div>
+
+    <div class="section-title">Completed</div>
+
+    <div class="project-row completed">
+      <p class="row-line"><span class="project-name">6. Casing Pressure and Fluid Level (Formation Pressure)</span> - Closed with post-publish automation delivered.</p>
+      <p>The Spotfire report was published and communicated to geologists and reservoir engineers. Post-publish engineering work delivered incremental refresh automation for engsb.tbx_g_e1_e2_fact, replacing a full rebuild with a 14-day rolling refresh pattern. Remaining pending item is formula-definition feedback from engineering users.</p>
+    </div>
+
+    <div class="project-row completed">
+      <p class="row-line"><span class="project-name">7. UIC Wells Spotfire Report</span> - Closed with no remaining tasks.</p>
+      <p>The requester shifted approach to a Python web report using direct database queries. Because the implementation path changed, no additional deliverables remain on this Spotfire request.</p>
+    </div>
+
+    <div class="project-row completed">
+      <p class="row-line"><span class="project-name">8. Wellbore Diagrams / Data Validation</span> - Closed with deliverables complete.</p>
+      <p>Requested actions were delivered to the designated team and no additional asks were raised. Prior Document AI exploration remains available as supplemental context, but no open task is currently pending.</p>
+    </div>
+
+    <div class="project-row completed">
+      <p class="row-line"><span class="project-name">9. Claude AI Adoption</span> - Closed and integrated into daily workflow.</p>
+      <p>Installation and onboarding are complete, with recurring follow-up established with the Jarvis project team. This week also included MCP/config updates in the workspace, confirming operational use in the day-to-day VS Code workflow.</p>
+    </div>
+
+    <div class="project-row p2-active">
+      <p class="row-line"><span class="project-name">10. AI Workgroup Proposals</span> - Active with draft package complete.</p>
+      <p>Four proposals were drafted covering Claude in VS Code, Zoom AI Companion usage, Google Document AI well-data extraction study, and Tableau logic extraction acceleration. The core content is prepared and consolidated with an email draft. Pending action is distribution and team discussion.</p>
+    </div>
+  </div>
+  <script src="meeting-notes-widget.js"></script>
+  <script src="page-counter.js"></script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,661 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eng Tech &mdash; Preparation Notes &mdash; April 13, 2026</title>
+  <style>
+    :root {
+      --bg-a: #f4f1e8;
+      --bg-b: #e5efe9;
+      --ink: #1b2a2f;
+      --muted: #5b6a6f;
+      --card: #ffffffcc;
+      --line: #c8d5cf;
+      --radius: 13px;
+      --shadow: 0 8px 24px rgba(16,24,32,0.10);
+      --accent: #1f6f8b;
+      --active: #2f7d32;
+      --closed: #5b6a6f;
+      --on-hold: #a76600;
+      --blocked: #b23a48;
+      --priority: #c8a415;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition-duration: 0s !important; }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      color: var(--ink);
+      font-family: "Trebuchet MS", "Gill Sans", Candara, sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, #fff6dd 0%, transparent 35%),
+        radial-gradient(circle at 95% 90%, #d5ede0 0%, transparent 40%),
+        linear-gradient(140deg, var(--bg-a), var(--bg-b));
+      min-height: 100vh;
+    }
+
+    .wrapper {
+      width: min(1200px, 95vw);
+      margin: 28px auto 52px;
+    }
+
+    /* -- HERO -- */
+    .hero {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px 36px 26px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(31,111,139,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+    }
+    .hero h1 {
+      font-size: 1.7rem;
+      margin: 0 0 8px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .hero-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* -- SECTION HEADERS -- */
+    .section-header {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin: 28px 0 12px;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-header .section-icon {
+      width: 18px;
+      height: 18px;
+      fill: var(--muted);
+      flex-shrink: 0;
+    }
+    .section-header.priority { color: var(--priority); }
+    .section-header.priority .section-icon { fill: var(--priority); }
+    .section-header.in-progress { color: var(--accent); }
+    .section-header.in-progress .section-icon { fill: var(--accent); }
+    .section-header.completed { color: var(--closed); }
+    .section-header.completed .section-icon { fill: var(--closed); }
+
+    /* -- STATUS OVERVIEW -- */
+    .status-bar {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+    .status-pill {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 40px;
+      padding: 0.45rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      box-shadow: 0 2px 8px rgba(16,24,32,0.06);
+    }
+    .status-pill .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .status-pill.priority .dot { background: var(--priority); }
+    .status-pill.active .dot { background: var(--active); }
+    .status-pill.closed .dot { background: var(--closed); }
+
+    .calendar-panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px 24px;
+      margin-bottom: 22px;
+    }
+    .calendar-intro {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .calendar-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+    .calendar-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .year-calendar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .month-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.7);
+      padding: 12px;
+    }
+    .month-card.current {
+      border-color: var(--accent);
+      box-shadow: inset 0 0 0 1px rgba(31,111,139,0.15);
+    }
+    .month-name {
+      font-size: 0.86rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 0.65rem;
+    }
+    .month-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    .month-table th,
+    .month-table td {
+      text-align: center;
+      vertical-align: top;
+      padding: 3px 1px;
+    }
+    .month-table th {
+      font-size: 0.64rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .month-table td.empty {
+      color: transparent;
+    }
+    .day-cell {
+      min-height: 34px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 3px;
+    }
+    .day-number {
+      font-size: 0.74rem;
+      line-height: 1;
+      color: var(--ink);
+    }
+    .marker-row {
+      min-height: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 3px;
+    }
+    .note-marker {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      border: 1px solid rgba(27,42,47,0.18);
+      text-decoration: none;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+    .note-marker:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 0 2px rgba(31,111,139,0.16);
+    }
+    .type-eng { background: var(--accent); }
+    .type-prep { background: var(--priority); }
+    .type-da { background: var(--active); }
+    .type-vp { background: var(--blocked); }
+
+    /* -- GRID -- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, max(10rem, calc(100% / 4))), 1fr));
+      gap: 16px;
+    }
+
+    /* -- CARDS -- */
+    .card {
+      contain: layout;
+      overflow: hidden;
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px 26px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(16,24,32,0.14);
+    }
+    .card.featured {
+      order: -1;
+      grid-column: 1 / -1;
+      font-size: 110%;
+      border-left: 4px solid var(--priority);
+    }
+    .card.featured:hover {
+      transform: none;
+    }
+
+    .card .topic-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-bottom: 0.8rem;
+    }
+    .card.featured .topic-num {
+      background: var(--priority);
+      color: #fff;
+      width: 30px;
+      height: 30px;
+      font-size: 0.85rem;
+    }
+
+    .card h2 {
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.2;
+      font-size: 1rem;
+      margin-bottom: 0.7rem;
+    }
+    .card.featured h2 {
+      font-size: 1.15rem;
+    }
+
+    .card .status-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 2px 10px;
+      border-radius: 10px;
+      margin-bottom: 0.9rem;
+    }
+    .status-tag.active     { background: #e8f5e9; color: var(--active); }
+    .status-tag.closed     { background: #eceff1; color: var(--closed); }
+    .status-tag.on-hold    { background: #fff3e0; color: var(--on-hold); }
+    .status-tag.blocked    { background: #fce4ec; color: var(--blocked); }
+    .status-tag.priority-tag { background: #fdf6e3; color: var(--priority); }
+
+    .card p, .card li {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+    .card p {
+      margin-bottom: 0.6rem;
+    }
+
+    .field-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      margin-top: 0.8rem;
+    }
+    .field-label:first-of-type {
+      margin-top: 0;
+    }
+
+    .card ul {
+      margin: 0.4rem 0 0.6rem 1.2rem;
+      padding: 0;
+    }
+    .card ul li {
+      margin-bottom: 0.3rem;
+    }
+
+    .sub-task {
+      background: #f6f9f7;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+    }
+    .sub-task .field-label {
+      font-size: 0.6rem;
+      margin-top: 0;
+    }
+
+    strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    /* -- COLLAPSIBLE DETAILS INSIDE CARDS -- */
+    .card details {
+      margin-top: 0.6rem;
+    }
+    .card details summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .card details summary::-webkit-details-marker { display: none; }
+    .card details summary::before {
+      content: "\25B8 ";
+      font-size: 0.7rem;
+      color: var(--accent);
+      transition: transform 0.15s;
+    }
+    .card details[open] summary::before {
+      content: "\25BE ";
+    }
+    .card details .detail-body {
+      margin-top: 0.5rem;
+    }
+
+    /* -- RESPONSIVE -- */
+    @media (max-width: 600px) {
+      .wrapper { padding: 1rem; }
+      .grid { gap: 1rem; }
+      .card.featured { font-size: 100%; }
+    }
+  </style>
+  <link rel="stylesheet" href="breadcrumbs.css">
+  <link rel="stylesheet" href="meeting-notes-widget.css">
+  <link rel="stylesheet" href="page-counter.css">
+
+</head>
+<body>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="index.php">Home</a><span>&rsaquo;</span><a href="centralHub.html">Final Project Central Hub</a>
+  </nav>
+
+<div class="wrapper">
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow">Engineering Tech &middot; Preparation Notes</p>
+    <h1>Meeting Prep &mdash; April 13, 2026</h1>
+    <div class="hero-meta">Monday &middot; Week 16 &middot; Author: Lester</div>
+  </div>
+
+  <div class="section-header">
+    <svg class="section-icon" viewBox="0 0 448 512"><path d="M152 64c0-17.7 14.3-32 32-32s32 14.3 32 32V96H344V64c0-17.7 14.3-32 32-32s32 14.3 32 32V96h8c22.1 0 40 17.9 40 40V472c0 22.1-17.9 40-40 40H32c-22.1 0-40-17.9-40-40V136c0-22.1 17.9-40 40-40h8V64c0-17.7 14.3-32 32-32s32 14.3 32 32V96h48V64zm264 128H32V472H416V192z"/></svg>
+    2026 Notes Calendar
+  </div>
+
+  <div class="calendar-panel">
+    <p class="calendar-intro">Dates with meeting notes are marked by linked circles. Multiple circles on one day mean multiple note pages exist for that date.</p>
+    <div class="calendar-legend">
+      <span class="calendar-legend-item"><span class="legend-dot type-eng"></span>Engineering Tech Weekly</span>
+      <span class="calendar-legend-item"><span class="legend-dot type-prep"></span>Preparation</span>
+      <span class="calendar-legend-item"><span class="legend-dot type-da"></span>DA Weekly</span>
+      <span class="calendar-legend-item"><span class="legend-dot type-vp"></span>VP Meetings</span>
+    </div>
+
+    <div class="year-calendar">
+      <div class="month-card"><div class="month-name">January</div><table class="month-table"><thead><tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr></thead><tbody><tr><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td><div class="day-cell"><span class="day-number">1</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">2</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">3</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">4</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">5</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">6</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">7</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">8</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">9</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">10</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">11</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">12</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">13</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">14</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">15</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">16</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">17</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">18</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">19</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">20</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">21</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">22</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">23</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">24</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">25</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">26</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">27</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">28</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">29</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">30</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">31</span><span class="marker-row"></span></div></td></tr></tbody></table></div>
+      <div class="month-card"><div class="month-name">February</div><table class="month-table"><thead><tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr></thead><tbody><tr><td><div class="day-cell"><span class="day-number">1</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">2</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">3</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">4</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">5</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">6</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">7</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">8</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">9</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">10</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">11</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">12</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">13</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">14</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">15</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">16</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">17</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">18</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">19</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">20</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">21</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">22</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">23</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">24</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">25</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">26</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">27</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">28</span><span class="marker-row"></span></div></td></tr></tbody></table></div>
+      <div class="month-card"><div class="month-name">March</div><table class="month-table"><thead><tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr></thead><tbody><tr><td><div class="day-cell"><span class="day-number">1</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">2</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">3</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">4</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">5</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">6</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">7</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">8</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">9</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">10</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">11</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">12</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">13</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">14</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">15</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">16</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">17</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">18</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">19</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">20</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">21</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">22</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">23</span><span class="marker-row"><a class="note-marker type-eng" href="2026-03-23_EngineeringTech_Weekly.html" title="Engineering Tech Weekly"></a></span></div></td><td><div class="day-cell"><span class="day-number">24</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">25</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">26</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">27</span><span class="marker-row"><a class="note-marker type-vp" href="2026-03-27_AssetDev_Q1Townhall.html" title="Asset Development Q1 Town Hall"></a></span></div></td><td><div class="day-cell"><span class="day-number">28</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">29</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">30</span><span class="marker-row"><a class="note-marker type-eng" href="2026-03-30_EngineeringTech_Weekly.html" title="Engineering Tech Weekly"></a></span></div></td><td><div class="day-cell"><span class="day-number">31</span><span class="marker-row"></span></div></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr></tbody></table></div>
+      <div class="month-card current"><div class="month-name">April</div><table class="month-table"><thead><tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr></thead><tbody><tr><td class="empty"></td><td class="empty"></td><td class="empty"></td><td><div class="day-cell"><span class="day-number">1</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">2</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">3</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">4</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">5</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">6</span><span class="marker-row"><a class="note-marker type-eng" href="2026-04-06_EngineeringTech_Weekly.html" title="Engineering Tech Weekly"></a><a class="note-marker type-prep" href="2026-04-06_Preparation.html" title="Preparation Notes"></a></span></div></td><td><div class="day-cell"><span class="day-number">7</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">8</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">9</span><span class="marker-row"><a class="note-marker type-da" href="2026-04-09_DA_Weekly.html" title="DA Weekly"></a></span></div></td><td><div class="day-cell"><span class="day-number">10</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">11</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">12</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">13</span><span class="marker-row"><a class="note-marker type-eng" href="2026-04-13_EngineeringTech_Weekly.html" title="Engineering Tech Weekly"></a><a class="note-marker type-prep" href="2026-04-13_Preparation.html" title="Preparation Notes"></a></span></div></td><td><div class="day-cell"><span class="day-number">14</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">15</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">16</span><span class="marker-row"><a class="note-marker type-da" href="2026-04-16_DA_Weekly.html" title="DA Weekly"></a></span></div></td><td><div class="day-cell"><span class="day-number">17</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">18</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">19</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">20</span><span class="marker-row"><a class="note-marker type-prep" href="2026-04-20_Preparation.html" title="Preparation Notes"></a></span></div></td><td><div class="day-cell"><span class="day-number">21</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">22</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">23</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">24</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">25</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">26</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">27</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">28</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">29</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">30</span><span class="marker-row"></span></div></td><td class="empty"></td><td class="empty"></td></tr></tbody></table></div>
+      <div class="month-card"><div class="month-name">May</div><table class="month-table"><thead><tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr></thead><tbody><tr><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td><div class="day-cell"><span class="day-number">1</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">2</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">3</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">4</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">5</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">6</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">7</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">8</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">9</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">10</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">11</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">12</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">13</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">14</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">15</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">16</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">17</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">18</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">19</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">20</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">21</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">22</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">23</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">24</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">25</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">26</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">27</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">28</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">29</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">30</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">31</span><span class="marker-row"></span></div></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr></tbody></table></div>
+      <div class="month-card"><div class="month-name">June</div><table class="month-table"><thead><tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr></thead><tbody><tr><td class="empty"></td><td><div class="day-cell"><span class="day-number">1</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">2</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">3</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">4</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">5</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">6</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">7</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">8</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">9</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">10</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">11</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">12</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">13</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">14</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">15</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">16</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">17</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">18</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">19</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">20</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">21</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">22</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">23</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">24</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">25</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">26</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">27</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">28</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">29</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">30</span><span class="marker-row"></span></div></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr></tbody></table></div>
+      <div class="month-card"><div class="month-name">July</div><table class="month-table"><thead><tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr></thead><tbody><tr><td class="empty"></td><td class="empty"></td><td class="empty"></td><td><div class="day-cell"><span class="day-number">1</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">2</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">3</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">4</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">5</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">6</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">7</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">8</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">9</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">10</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">11</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">12</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">13</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">14</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">15</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">16</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">17</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">18</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">19</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">20</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">21</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">22</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">23</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">24</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">25</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">26</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">27</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">28</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">29</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">30</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">31</span><span class="marker-row"></span></div></td><td class="empty"></td></tr></tbody></table></div>
+      <div class="month-card"><div class="month-name">August</div><table class="month-table"><thead><tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr></thead><tbody><tr><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td><div class="day-cell"><span class="day-number">1</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">2</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">3</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">4</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">5</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">6</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">7</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">8</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">9</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">10</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">11</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">12</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">13</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">14</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">15</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">16</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">17</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">18</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">19</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">20</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">21</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">22</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">23</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">24</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">25</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">26</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">27</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">28</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">29</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">30</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">31</span><span class="marker-row"></span></div></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr></tbody></table></div>
+      <div class="month-card"><div class="month-name">September</div><table class="month-table"><thead><tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr></thead><tbody><tr><td class="empty"></td><td class="empty"></td><td><div class="day-cell"><span class="day-number">1</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">2</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">3</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">4</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">5</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">6</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">7</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">8</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">9</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">10</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">11</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">12</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">13</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">14</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">15</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">16</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">17</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">18</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">19</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">20</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">21</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">22</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">23</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">24</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">25</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">26</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">27</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">28</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">29</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">30</span><span class="marker-row"></span></div></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr></tbody></table></div>
+      <div class="month-card"><div class="month-name">October</div><table class="month-table"><thead><tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr></thead><tbody><tr><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td><div class="day-cell"><span class="day-number">1</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">2</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">3</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">4</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">5</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">6</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">7</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">8</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">9</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">10</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">11</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">12</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">13</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">14</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">15</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">16</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">17</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">18</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">19</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">20</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">21</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">22</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">23</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">24</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">25</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">26</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">27</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">28</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">29</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">30</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">31</span><span class="marker-row"></span></div></td></tr></tbody></table></div>
+      <div class="month-card"><div class="month-name">November</div><table class="month-table"><thead><tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr></thead><tbody><tr><td><div class="day-cell"><span class="day-number">1</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">2</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">3</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">4</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">5</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">6</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">7</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">8</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">9</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">10</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">11</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">12</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">13</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">14</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">15</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">16</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">17</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">18</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">19</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">20</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">21</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">22</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">23</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">24</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">25</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">26</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">27</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">28</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">29</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">30</span><span class="marker-row"></span></div></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr></tbody></table></div>
+      <div class="month-card"><div class="month-name">December</div><table class="month-table"><thead><tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr></thead><tbody><tr><td class="empty"></td><td class="empty"></td><td><div class="day-cell"><span class="day-number">1</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">2</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">3</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">4</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">5</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">6</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">7</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">8</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">9</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">10</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">11</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">12</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">13</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">14</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">15</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">16</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">17</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">18</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">19</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">20</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">21</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">22</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">23</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">24</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">25</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">26</span><span class="marker-row"></span></div></td></tr><tr><td><div class="day-cell"><span class="day-number">27</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">28</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">29</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">30</span><span class="marker-row"></span></div></td><td><div class="day-cell"><span class="day-number">31</span><span class="marker-row"></span></div></td><td class="empty"></td><td class="empty"></td></tr></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- STATUS OVERVIEW -->
+  <div class="status-bar">
+    <div class="status-pill priority"><span class="dot"></span>1 Priority</div>
+    <div class="status-pill active"><span class="dot"></span>1 In Progress</div>
+    <div class="status-pill closed"><span class="dot"></span>5 Completed</div>
+  </div>
+
+  <!-- =================================== -->
+  <!-- PRIORITY THIS WEEK                 -->
+  <!-- =================================== -->
+  <div class="section-header priority">
+    <svg class="section-icon" viewBox="0 0 576 512"><path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg>
+    Priority This Week
+  </div>
+
+  <div class="grid">
+    <!-- 1 &mdash; FEATURED -->
+    <div class="card featured">
+      <div class="topic-num">1</div>
+      <h2>New_ProdCentered_Daily2 &mdash; Tableau-to-Spotfire Conversion</h2>
+      <span class="status-tag priority-tag">Highest Priority</span>
+
+      <p class="field-label">Thread</p>
+      <p>Originally tracked as "meet with Raul to grow the report" (Mar 23). Met with Raul &mdash; the meeting led to the conversion of the <strong>New_ProdCentered_Daily2</strong> Tableau report to Spotfire. Scope shifted from a report spec discussion to an active conversion deliverable. This report is one of the items already included in the Tableau-to-Spotfire conversion program.</p>
+
+      <p class="field-label">Update</p>
+      <p>Currently converting the report, which includes the horizontal wells of Raul's interest. This is a direct Tableau-to-Spotfire conversion tied to the Phase 2 effort.</p>
+    </div>
+  </div>
+
+  <!-- =================================== -->
+  <!-- IN PROGRESS                        -->
+  <!-- =================================== -->
+  <div class="section-header in-progress">
+    <svg class="section-icon" viewBox="0 0 512 512"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>
+    In Progress
+  </div>
+
+  <div class="grid">
+    <!-- 2 -->
+    <div class="card">
+      <div class="topic-num">2</div>
+      <h2>Spotfire Phase 2 / Outsourcing Proposal</h2>
+      <span class="status-tag active">Active</span>
+
+      <p class="field-label">Thread</p>
+      <p>Reporting tool development and outsourcing exploration. Tracked since Mar 23; outsourcing eval since Mar 30.</p>
+
+      <p class="field-label">Update</p>
+      <p>Reviewed candidate profiles Elena shared and sent an evaluation email recommending the best single-contractor option. Also identified <strong>Ramon Perez</strong> &mdash; a former Tableau contractor from Aera &mdash; as a potential lead, recently available.</p>
+
+      <details>
+        <summary>DA Weekly Action Items (Apr 9)</summary>
+        <div class="detail-body">
+          <p>Tasked with creating a formal outsourcing proposal together with <strong>Mario</strong> and <strong>Nora</strong>. The proposal must include:</p>
+          <ul>
+            <li>Scenarios for one and two additional resources</li>
+            <li>Expected duration and specific tasks</li>
+            <li>Benefits to the organization</li>
+            <li>AWS-to-ODW conversion work (Elena is setting up a meeting to review AWS reports and scope this)</li>
+          </ul>
+          <p>The proposal needs to be framed concisely and meaningfully for <strong>Victor's</strong> review.</p>
+        </div>
+      </details>
+
+      <div class="sub-task">
+        <p class="field-label">Sub-task &mdash; AWS Reports / CMBS Company Made By Student Surveillance Tool (ET-018)</p>
+        <p><strong>Mario</strong> is researching the AWS-based CMBS Company Made By Student surveillance tool and AWS-to-ODW conversion scope for inclusion in the proposal. Elena is also scheduling a meeting to review AWS reports. Previously tracked separately, now folded into this proposal effort.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================================== -->
+  <!-- COMPLETED                          -->
+  <!-- =================================== -->
+  <div class="section-header completed">
+    <svg class="section-icon" viewBox="0 0 512 512"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/></svg>
+    Completed
+  </div>
+
+  <div class="grid">
+    <!-- 3 -->
+    <div class="card">
+      <div class="topic-num">3</div>
+      <h2>UIC Wells Spotfire Report</h2>
+      <span class="status-tag closed">Closed</span>
+
+      <p class="field-label">Thread</p>
+      <p>Originally a Spotfire report request from Ruben. Tracked since Mar 23.</p>
+
+      <p class="field-label">Update</p>
+      <p>Met with Ruben. He shifted direction to build a web report using <strong>Python</strong> with direct database queries, so the creation of a new Spotfire report is no longer a high priority. No further action items.</p>
+    </div>
+
+    <!-- 4 -->
+    <div class="card">
+      <div class="topic-num">4</div>
+      <h2>Casing Pressure &amp; Fluid Level Report</h2>
+      <span class="status-tag closed">Closed</span>
+
+      <p class="field-label">Thread</p>
+      <p>Report development with full historical data integration. Tracked since Mar 23.</p>
+
+      <p class="field-label">Update</p>
+      <p>Tableau-to-Spotfire conversion completed. Published as <strong>Formation Pressure</strong> in the Spotfire library (Library &gt; AD - Data and Analytics &gt; Published &gt; Formation Pressure). Sent announcement email to geologists and reservoir engineers.</p>
+
+      <details>
+        <summary>What Was Delivered</summary>
+        <div class="detail-body">
+          <ul>
+            <li><strong>Level 1:</strong> Filter-based well identification by field and common attributes. Some wells still lack field assignments (in progress with the team).</li>
+            <li><strong>Level 2:</strong> On-demand query per well retrieving formation picks (deduplicated), historical fluid level and casing pressure data with qualifiers, preliminary visualizations, and pressure calculation placeholders.</li>
+            <li>Data framework built on ~16M rows (engsb.tbx_g_e1_e2_fact). Performance improved through targeted Oracle indexing.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>Pending From Others</summary>
+        <div class="detail-body">
+          <p>Requested feedback from geologists/reservoir engineers on pressure formula definitions for four cases (no fluid level/no casing pressure, missing one, missing the other, both available). Placeholder visualizations ready to be finalized once formulas are defined.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Notes</summary>
+        <div class="detail-body">
+          <ul>
+            <li>ETL integration pending &mdash; may require formal business justification.</li>
+            <li>Pressure gradient data is limited, partially sourced from CalGEM PDFs with no formal digitization project in place.</li>
+            <li>Spotfire Web Player uses HTTP (not HTTPS), generating session-based tokens &mdash; direct hyperlinks not feasible.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- 5 -->
+    <div class="card">
+      <div class="topic-num">5</div>
+      <h2>Claude AI &mdash; Adoption</h2>
+      <span class="status-tag closed">Closed</span>
+
+      <p class="field-label">Thread</p>
+      <p>Claude AI tool integration. Tracked since Mar 23.</p>
+
+      <p class="field-label">Update</p>
+      <p>Installation and onboarding complete. The Jarvis Project team has established monthly follow-up meetings &mdash; no direct action items remaining.</p>
+
+      <details>
+        <summary>How Claude Is Used</summary>
+        <div class="detail-body">
+          <p>Claude is integrated into my daily workflow as an agentic, AI-assisted development environment within VS Code. I interact with it conversationally by describing tasks, providing context, or pasting content. The model operates as a tool-augmented agent, capable of reading, generating, and modifying files directly in the workspace.</p>
+          <p>It supports generating meeting notes and HTML reports, writing and refining SQL queries, processing data, and maintaining documentation &mdash; all driven through natural language instructions (intent-driven development) rather than manual editing.</p>
+          <p>The system is connected to the ODW via the MCP provided by the CMBS Company Made By Student Jarvis Program, enabling direct database interaction. This creates a closed-loop workflow where Claude can generate queries, execute them, evaluate results, and iteratively refine outputs within the same environment.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- 6 -->
+    <div class="card">
+      <div class="topic-num">6</div>
+      <h2>Wellbore Diagrams / Data Validation</h2>
+      <span class="status-tag closed">Closed</span>
+
+      <p class="field-label">Thread</p>
+      <p>Extracting wellbore diagram data from PDFs; AI-powered approach. Tracked since Mar 23.</p>
+
+      <p class="field-label">Update</p>
+      <p>Delivered the requested action items to the team in charge. No further requests. Independent research into Google Document AI completed as supplementary context.</p>
+    </div>
+
+    <!-- 7 -->
+    <div class="card">
+      <div class="topic-num">7</div>
+      <h2>Well Field Assignments</h2>
+      <span class="status-tag closed">Closed</span>
+
+      <p class="field-label">Thread</p>
+      <p>Orphan wells lacking field assignments. Tracked since Mar 23, closed Apr 6.</p>
+
+      <p class="field-label">Update</p>
+      <p>Resolved using <strong>Camila's</strong> query, which clarified production-unit ambiguity. Data incorporated into the Casing Pressure and Fluid Level Spotfire report.</p>
+    </div>
+  </div>
+
+</div>
+
+  <script src="meeting-notes-widget.js"></script>
+  <script src="page-counter.js"></script>
+
+</body>
+</html>
+
+
+
+

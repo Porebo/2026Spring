@@ -1,0 +1,537 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eng Tech &mdash; Preparation Notes &mdash; April 20, 2026</title>
+  <style>
+    :root {
+      --bg-a: #f4f1e8;
+      --bg-b: #e5efe9;
+      --ink: #1b2a2f;
+      --muted: #5b6a6f;
+      --card: #ffffffcc;
+      --line: #c8d5cf;
+      --radius: 13px;
+      --shadow: 0 8px 24px rgba(16,24,32,0.10);
+      --accent: #1f6f8b;
+      --active: #2f7d32;
+      --closed: #5b6a6f;
+      --on-hold: #a76600;
+      --blocked: #b23a48;
+      --priority: #c8a415;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition-duration: 0s !important; }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      color: var(--ink);
+      font-family: "Trebuchet MS", "Gill Sans", Candara, sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, #fff6dd 0%, transparent 35%),
+        radial-gradient(circle at 95% 90%, #d5ede0 0%, transparent 40%),
+        linear-gradient(140deg, var(--bg-a), var(--bg-b));
+      min-height: 100vh;
+    }
+
+    .wrapper {
+      width: min(1200px, 95vw);
+      margin: 28px auto 52px;
+    }
+
+    /* -- HERO -- */
+    .hero {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px 36px 26px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(31,111,139,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+    }
+    .hero h1 {
+      font-size: 1.7rem;
+      margin: 0 0 8px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .hero-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .hero-headline {
+      margin-top: 18px;
+      padding: 14px 18px;
+      background: #fdf6e3;
+      border-left: 4px solid var(--priority);
+      border-radius: 8px;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+    .hero-headline strong {
+      color: var(--priority);
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .meta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 0.6rem;
+    }
+    .meta-row .field-label {
+      margin-top: 0;
+    }
+    .meta-row p {
+      margin: 0;
+      font-size: 0.85rem;
+    }
+
+    /* -- SECTION HEADERS -- */
+    .section-header {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin: 28px 0 12px;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-header .section-icon {
+      width: 18px;
+      height: 18px;
+      fill: var(--muted);
+      flex-shrink: 0;
+    }
+    .section-header.priority { color: var(--priority); }
+    .section-header.priority .section-icon { fill: var(--priority); }
+    .section-header.in-progress { color: var(--accent); }
+    .section-header.in-progress .section-icon { fill: var(--accent); }
+    .section-header.completed { color: var(--closed); }
+    .section-header.completed .section-icon { fill: var(--closed); }
+
+    /* -- STATUS OVERVIEW -- */
+    .status-bar {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+    .status-pill {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 40px;
+      padding: 0.45rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      box-shadow: 0 2px 8px rgba(16,24,32,0.06);
+    }
+    .status-pill .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .status-pill.priority .dot { background: var(--priority); }
+    .status-pill.active .dot { background: var(--active); }
+    .status-pill.closed .dot { background: var(--closed); }
+
+    /* -- GRID -- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, max(10rem, calc(100% / 4))), 1fr));
+      gap: 16px;
+    }
+
+    /* -- CARDS -- */
+    .card {
+      contain: layout;
+      overflow: hidden;
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px 26px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(16,24,32,0.14);
+    }
+    .card.featured {
+      order: -1;
+      grid-column: 1 / -1;
+      font-size: 110%;
+      border-left: 4px solid var(--priority);
+    }
+    .card.featured:hover {
+      transform: none;
+    }
+
+    .card .topic-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-bottom: 0.8rem;
+    }
+    .card.featured .topic-num {
+      background: var(--priority);
+      color: #fff;
+      width: 30px;
+      height: 30px;
+      font-size: 0.85rem;
+    }
+
+    .card h2 {
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.2;
+      font-size: 1rem;
+      margin-bottom: 0.7rem;
+    }
+    .card.featured h2 {
+      font-size: 1.15rem;
+    }
+
+    .card .status-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 2px 10px;
+      border-radius: 10px;
+      margin-bottom: 0.9rem;
+    }
+    .status-tag.active     { background: #e8f5e9; color: var(--active); }
+    .status-tag.closed     { background: #eceff1; color: var(--closed); }
+    .status-tag.on-hold    { background: #fff3e0; color: var(--on-hold); }
+    .status-tag.blocked    { background: #fce4ec; color: var(--blocked); }
+    .status-tag.priority-tag { background: #fdf6e3; color: var(--priority); }
+
+    .card p, .card li {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+    .card p {
+      margin-bottom: 0.6rem;
+    }
+
+    .field-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      margin-top: 0.8rem;
+    }
+    .field-label:first-of-type {
+      margin-top: 0;
+    }
+
+    .card ul {
+      margin: 0.4rem 0 0.6rem 1.2rem;
+      padding: 0;
+    }
+    .card ul li {
+      margin-bottom: 0.3rem;
+    }
+
+    .sub-task {
+      background: #f6f9f7;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+    }
+    .sub-task .field-label {
+      font-size: 0.6rem;
+      margin-top: 0;
+    }
+
+    strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    /* -- COLLAPSIBLE DETAILS INSIDE CARDS -- */
+    .card details {
+      margin-top: 0.6rem;
+    }
+    .card details summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .card details summary::-webkit-details-marker { display: none; }
+    .card details summary::before {
+      content: "\25B8 ";
+      font-size: 0.7rem;
+      color: var(--accent);
+      transition: transform 0.15s;
+    }
+    .card details[open] summary::before {
+      content: "\25BE ";
+    }
+    .card details .detail-body {
+      margin-top: 0.5rem;
+    }
+
+    /* -- RESPONSIVE -- */
+    @media (max-width: 600px) {
+      .wrapper { padding: 1rem; }
+      .grid { gap: 1rem; }
+      .card.featured { font-size: 100%; }
+    }
+  </style>
+  <link rel="stylesheet" href="breadcrumbs.css">
+  <link rel="stylesheet" href="meeting-notes-widget.css">
+  <link rel="stylesheet" href="page-counter.css">
+
+</head>
+<body>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="index.php">Home</a><span>&rsaquo;</span><a href="centralHub.html">Final Project Central Hub</a>
+  </nav>
+
+<div class="wrapper">
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow">Engineering Tech &middot; Preparation Notes</p>
+    <h1>Meeting Prep &mdash; April 20, 2026</h1>
+    <div class="hero-meta">Monday &middot; Week 17 &middot; Author: Lester</div>
+  </div>
+
+  <!-- STATUS OVERVIEW -->
+  <div class="status-bar">
+    <div class="status-pill priority"><span class="dot"></span>1 Priority</div>
+    <div class="status-pill active"><span class="dot"></span>1 In Progress</div>
+    <div class="status-pill closed"><span class="dot"></span>4 Completed</div>
+  </div>
+
+  <!-- =================================== -->
+  <!-- PRIORITY THIS WEEK                 -->
+  <!-- =================================== -->
+  <div class="section-header priority">
+    <svg class="section-icon" viewBox="0 0 576 512"><path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg>
+    Priority This Week
+  </div>
+
+  <div class="grid">
+    <!-- 1 &mdash; FEATURED -->
+    <div class="card featured">
+      <div class="topic-num">1</div>
+      <h2>New_ProdCentered_Daily2 &mdash; Tableau-to-Spotfire Conversion</h2>
+      <span class="status-tag priority-tag">Highest Priority</span>
+
+      <div class="meta-row">
+        <div>
+          <p class="field-label">Start Date</p>
+          <p>Apr 13, 2026 (assigned as priority this week)</p>
+        </div>
+        <div>
+          <p class="field-label">Aging</p>
+          <p>7 days on priority</p>
+        </div>
+      </div>
+
+      <div class="hero-headline">
+        <strong>Status</strong>
+        <span style="font-size:1rem; color:var(--ink);">~60% complete &mdash; no problems, on track for completion this week.</span>
+      </div>
+
+      <p class="field-label">Thread</p>
+      <p>Originally tracked as "meet with Raul to grow the report" (Mar 23). Met with Raul &mdash; the meeting led to the conversion of the <strong>New_ProdCentered_Daily2</strong> Tableau report to Spotfire, including horizontal wells of Raul's interest. This is a direct Tableau-to-Spotfire conversion tied to the Phase 2 effort.</p>
+
+      <p class="field-label">Update</p>
+      <p>This was explicitly assigned as the priority for this week in the Apr 13 meeting. Active conversion in progress.</p>
+    </div>
+  </div>
+
+  <!-- =================================== -->
+  <!-- IN PROGRESS                        -->
+  <!-- =================================== -->
+  <div class="section-header in-progress">
+    <svg class="section-icon" viewBox="0 0 512 512"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>
+    In Progress
+  </div>
+
+  <div class="grid">
+    <!-- 2 -->
+    <div class="card">
+      <div class="topic-num">2</div>
+      <h2>Spotfire Phase 2 / Outsourcing Proposal</h2>
+      <span class="status-tag active">Active</span>
+
+      <div class="meta-row">
+        <div>
+          <p class="field-label">Start Date</p>
+          <p>Apr 9, 2026 (DA Weekly tasking)</p>
+        </div>
+        <div>
+          <p class="field-label">Aging</p>
+          <p>11 days active</p>
+        </div>
+      </div>
+
+      <p class="field-label">Thread</p>
+      <p>Reporting tool development and outsourcing exploration. Tracked since Mar 23; outsourcing eval since Mar 30; formal proposal tasked Apr 9 DA Weekly.</p>
+
+      <p class="field-label">Update</p>
+      <p>Tasked with creating a formal outsourcing proposal together with <strong>Mario</strong> and <strong>Nora</strong>. The proposal must include scenarios for one and two additional resources, expected duration, specific tasks, benefits to the organization, and AWS-to-ODW conversion work.</p>
+      <p>Elena is setting up a meeting to review AWS reports and scope the conversion work. The proposal needs to be framed concisely and meaningfully for <strong>Victor's</strong> review.</p>
+
+      <details>
+        <summary>Coordination Note</summary>
+        <div class="detail-body">
+          <p><strong>From Apr 13 meeting:</strong> Mario mentioned he had not yet discussed the proposal with Lester. This conversation needs to happen this week to keep the proposal on track.</p>
+        </div>
+      </details>
+
+      <div class="sub-task">
+        <p class="field-label">Sub-task &mdash; AWS Reports / CMBS Company Made By Student Surveillance Tool</p>
+        <p><strong>Mario</strong> is researching the AWS-based CMBS Company Made By Student surveillance tool and AWS-to-ODW conversion scope for inclusion in the proposal. Elena is also scheduling a meeting with Lester to review AWS reports. Previously tracked separately, now folded into this proposal effort.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================================== -->
+  <!-- COMPLETED                          -->
+  <!-- =================================== -->
+  <div class="section-header completed">
+    <svg class="section-icon" viewBox="0 0 512 512"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/></svg>
+    Completed
+  </div>
+
+  <div class="grid">
+    <!-- 3 -->
+    <div class="card">
+      <div class="topic-num">3</div>
+      <h2>Casing Pressure &amp; Fluid Level Report</h2>
+      <span class="status-tag closed">Closed</span>
+
+      <p class="field-label">Thread</p>
+      <p>Report development with full historical data integration. Tracked since Mar 23.</p>
+
+      <p class="field-label">Update</p>
+      <p>Tableau-to-Spotfire conversion completed. Published as <strong>Formation Pressure</strong> in the Spotfire library (Library &gt; AD - Data and Analytics &gt; Published &gt; Formation Pressure). Sent announcement email to geologists and reservoir engineers.</p>
+
+      <details>
+        <summary>What Was Delivered</summary>
+        <div class="detail-body">
+          <ul>
+            <li><strong>Level 1:</strong> Filter-based well identification by field and common attributes</li>
+            <li><strong>Level 2:</strong> On-demand query per well retrieving formation picks (deduplicated), historical fluid level and casing pressure data with qualifiers, preliminary visualizations, and pressure calculation placeholders</li>
+            <li>Data framework built on ~16M rows (engsb.tbx_g_e1_e2_fact). Performance improved through targeted Oracle indexing.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>Pending From Others</summary>
+        <div class="detail-body">
+          <p>Awaiting feedback from geologists/reservoir engineers on pressure formula definitions for four cases. Placeholder visualizations ready to be finalized once formulas are defined.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- 4 -->
+    <div class="card">
+      <div class="topic-num">4</div>
+      <h2>UIC Wells Spotfire Report</h2>
+      <span class="status-tag closed">Closed</span>
+
+      <p class="field-label">Thread</p>
+      <p>Originally a Spotfire report request from Ruben. Tracked since Mar 23.</p>
+
+      <p class="field-label">Update</p>
+      <p>Ruben shifted direction to build a web report using <strong>Python</strong> with direct database queries. No further action items.</p>
+    </div>
+
+    <!-- 5 -->
+    <div class="card">
+      <div class="topic-num">5</div>
+      <h2>Wellbore Diagrams / Data Validation</h2>
+      <span class="status-tag closed">Closed</span>
+
+      <p class="field-label">Thread</p>
+      <p>Extracting wellbore diagram data from PDFs; AI-powered approach. Tracked since Mar 23.</p>
+
+      <p class="field-label">Update</p>
+      <p>Delivered the requested action items to the team in charge. No further requests. Independent research into Google Document AI completed as supplementary context.</p>
+    </div>
+
+    <!-- 6 -->
+    <div class="card">
+      <div class="topic-num">6</div>
+      <h2>Claude AI &mdash; Adoption</h2>
+      <span class="status-tag closed">Closed</span>
+
+      <p class="field-label">Thread</p>
+      <p>Claude AI tool integration. Tracked since Mar 23.</p>
+
+      <p class="field-label">Update</p>
+      <p>Installation and onboarding complete. Monthly follow-up meetings established with the Jarvis Project team. Claude is integrated into daily workflow as an agentic, AI-assisted development environment within VS Code.</p>
+    </div>
+  </div>
+
+</div>
+
+  <script src="meeting-notes-widget.js"></script>
+  <script src="page-counter.js"></script>
+
+</body>
+</html>
+
+
+

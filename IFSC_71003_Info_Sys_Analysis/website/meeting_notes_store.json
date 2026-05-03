@@ -1,0 +1,45 @@
+{
+    "notes": [
+        {
+            "id": "note-1777411420088-79583",
+            "meetingId": "hub",
+            "meetingLabel": "Meeting Notes Hub - Asset Development",
+            "tag": "",
+            "text": "This is note 1",
+            "createdAt": "2026-04-28T21:23:40.088Z"
+        },
+        {
+            "id": "note-1777411515061-84608",
+            "meetingId": "hub",
+            "meetingLabel": "Meeting Notes Hub - Asset Development",
+            "tag": "Counter",
+            "text": "Hey, the counter for visits is quite small. Change the bubble to a different color and the font size to +5px",
+            "createdAt": "2026-04-28T21:25:15.061Z"
+        },
+        {
+            "id": "note-1777411590023-8896",
+            "meetingId": "hub",
+            "meetingLabel": "Meeting Notes Hub - Asset Development",
+            "tag": "town hall",
+            "text": "Add the date for the next townhall and prep 2 questions",
+            "createdAt": "2026-04-28T21:26:30.023Z"
+        },
+        {
+            "id": "note-1777411708337-22166",
+            "meetingId": "hub",
+            "meetingLabel": "Meeting Notes Hub - Asset Development",
+            "tag": "edit this page",
+            "text": "Remove the bubble for Capture, Parse, Assign... those are not needed as I did not implement the JS for that type of summary. But since it is a good idea, we do not have room for ideas. We may need a category in the meeting notes for category. Cook this up",
+            "createdAt": "2026-04-28T21:28:28.337Z"
+        },
+        {
+            "id": "note-1777414047811-53871",
+            "meetingId": "2026-04-20",
+            "meetingLabel": "2026-04-20 Engineering Tech Weekly",
+            "tag": "action1",
+            "text": "very important point!",
+            "createdAt": "2026-04-28T22:07:27.811Z"
+        }
+    ],
+    "drafts": []
+}

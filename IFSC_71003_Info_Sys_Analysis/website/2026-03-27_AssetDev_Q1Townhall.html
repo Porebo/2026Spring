@@ -1,0 +1,729 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asset Development Q1 Town Hall &mdash; March 27, 2026</title>
+  <style>
+    :root {
+      --bg-a: #f4f1e8;
+      --bg-b: #e5efe9;
+      --ink: #1b2a2f;
+      --muted: #5b6a6f;
+      --card: #ffffffcc;
+      --line: #c8d5cf;
+      --radius: 13px;
+      --shadow: 0 8px 24px rgba(16,24,32,0.10);
+      --Diana:   #7b2d5e;
+      --Tomas:    #4a7c59;
+      --Bruno:     #1a3c5e;
+      --Lucia:      #9b6b1a;
+      --allteam:   #546e7a;
+      --datateam:  #00838f;
+      --accent:    #1f6f8b;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; padding: 0;
+      color: var(--ink);
+      font-family: "Trebuchet MS", "Gill Sans", Candara, sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, #fff6dd 0%, transparent 35%),
+        radial-gradient(circle at 95% 90%, #d5ede0 0%, transparent 40%),
+        linear-gradient(140deg, var(--bg-a), var(--bg-b));
+      min-height: 100vh;
+    }
+
+    /* -- LAYOUT -- */
+    .layout {
+      display: grid;
+      grid-template-columns: 178px 1fr;
+      gap: 18px;
+      width: min(1340px, 97vw);
+      margin: 28px auto 52px;
+      align-items: start;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    /* -- CALENDAR SIDEBAR -- */
+    .cal-sidebar {
+      position: sticky;
+      top: 20px;
+      max-height: calc(100vh - 50px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--line) transparent;
+    }
+    .cal-sidebar::-webkit-scrollbar { width: 4px; }
+    .cal-sidebar::-webkit-scrollbar-thumb { background: var(--line); border-radius: 2px; }
+    .cal-sidebar::-webkit-scrollbar-track { background: transparent; }
+
+    .cal-legend {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      font-size: 0.63rem;
+      color: var(--muted);
+      padding: 2px 4px 4px;
+    }
+    .cal-legend-sq {
+      width: 9px; height: 9px;
+      background: var(--accent);
+      border-radius: 2px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .cal-month-block {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 6px 7px 7px;
+      box-shadow: 0 2px 8px rgba(16,24,32,0.07);
+    }
+    .cal-month-block.current {
+      border: 2px solid var(--accent);
+    }
+
+    .cal-month-name {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    .cal-month-block.current .cal-month-name {
+      color: var(--accent);
+    }
+
+    .cal-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .cal-table th,
+    .cal-table td {
+      text-align: center;
+      padding: 1px 1px;
+      font-size: 0.63rem;
+      line-height: 1.55;
+    }
+    .cal-table thead th {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.6rem;
+    }
+    .wk-col {
+      color: var(--muted) !important;
+      font-size: 0.57rem !important;
+      text-align: right !important;
+      padding-right: 3px !important;
+      border-right: 1px solid var(--line);
+      min-width: 15px;
+    }
+    .cal-table td.empty {
+      color: transparent;
+    }
+    .cal-table td.meeting {
+      background: var(--accent);
+      color: #fff !important;
+      border-radius: 2px;
+      font-weight: 700;
+    }
+
+    /* -- HERO -- */
+    .hero {
+      background: linear-gradient(130deg, #ffffffee, #f2f6f4ee);
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 4px);
+      padding: 22px 26px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute; right: -40px; top: -40px;
+      width: 180px; height: 180px; border-radius: 100%;
+      background: radial-gradient(circle, #6fa8bf44, transparent 68%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.35rem, 3vw, 1.9rem);
+      letter-spacing: 0.01em;
+    }
+    .hero-meta {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* -- SECTION LABEL -- */
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      font-weight: 700;
+      margin: 0 0 10px;
+      padding-left: 2px;
+    }
+
+    /* -- RECAP -- */
+    .recap-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      box-shadow: var(--shadow);
+      line-height: 1.65;
+      font-size: 0.97rem;
+    }
+
+    /* -- NEXT STEPS -- */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 13px;
+    }
+    .person-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .person-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 15px;
+      border-bottom: 1px solid var(--line);
+    }
+    .avatar {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .person-name { font-weight: 700; font-size: 1rem; }
+    .task-count {
+      margin-left: auto;
+      font-size: 0.78rem;
+      color: var(--muted);
+      background: #eef1f3;
+      border-radius: 999px;
+      padding: 2px 9px;
+      font-weight: 700;
+    }
+    .person-tasks {
+      list-style: none;
+      margin: 0;
+      padding: 10px 15px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .person-tasks li {
+      font-size: 0.91rem;
+      line-height: 1.5;
+      padding-left: 18px;
+      position: relative;
+      color: var(--ink);
+    }
+    .person-tasks li::before {
+      content: "&rsaquo;";
+      position: absolute;
+      left: 4px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .Diana   .avatar { background: var(--Diana); }
+    .Tomas    .avatar { background: var(--Tomas); }
+    .Bruno     .avatar { background: var(--Bruno); }
+    .Lucia      .avatar { background: var(--Lucia); }
+    .allteam   .avatar { background: var(--allteam); }
+    .datateam  .avatar { background: var(--datateam); }
+    .Diana   .person-header { border-left: 4px solid var(--Diana); }
+    .Tomas    .person-header { border-left: 4px solid var(--Tomas); }
+    .Bruno     .person-header { border-left: 4px solid var(--Bruno); }
+    .Lucia      .person-header { border-left: 4px solid var(--Lucia); }
+    .allteam   .person-header { border-left: 4px solid var(--allteam); }
+    .datateam  .person-header { border-left: 4px solid var(--datateam); }
+
+    /* -- SUMMARY TOPICS -- */
+    .topics { display: flex; flex-direction: column; gap: 10px; }
+    details {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    details[open] summary { border-bottom: 1px solid var(--line); }
+    summary {
+      cursor: pointer;
+      padding: 14px 18px;
+      font-weight: 700;
+      font-size: 0.97rem;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      user-select: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before { content: ">"; font-size: 0.8rem; color: var(--muted); flex-shrink: 0; }
+    details[open] summary::before { content: "v"; }
+    .topic-body {
+      padding: 14px 20px 16px;
+      font-size: 0.94rem;
+      line-height: 1.68;
+    }
+
+    /* -- FOOTER -- */
+    .page-footer {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding-top: 4px;
+    }
+
+    /* -- RESPONSIVE -- */
+    @media (max-width: 700px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .cal-sidebar {
+        position: static;
+        max-height: none;
+        overflow-y: visible;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .cal-month-block { min-width: 140px; }
+    }
+  </style>
+  <link rel="stylesheet" href="breadcrumbs.css">
+  <link rel="stylesheet" href="meeting-notes-widget.css">
+  <link rel="stylesheet" href="page-counter.css">
+
+</head>
+<body>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="index.php">Home</a><span>&rsaquo;</span><a href="centralHub.html">Final Project Central Hub</a>
+  </nav>
+<div class="layout">
+
+  <!-- ============== CALENDAR SIDEBAR ============== -->
+  <aside class="cal-sidebar">
+
+    <div class="cal-legend">
+      <span class="cal-legend-sq"></span> Meeting day
+    </div>
+
+    <!-- JANUARY -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">January</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">1</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td>1</td><td>2</td><td>3</td></tr>
+          <tr><td class="wk-col">2</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+          <tr><td class="wk-col">3</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td></tr>
+          <tr><td class="wk-col">4</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+          <tr><td class="wk-col">5</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FEBRUARY -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">February</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">6</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+          <tr><td class="wk-col">7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+          <tr><td class="wk-col">8</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+          <tr><td class="wk-col">9</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MARCH (current) -->
+    <div class="cal-month-block current">
+      <div class="cal-month-name">March</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">10</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+          <tr><td class="wk-col">11</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+          <tr><td class="wk-col">12</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+          <tr><td class="wk-col">13</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td class="meeting">27</td><td>28</td></tr>
+          <tr><td class="wk-col">14</td><td>29</td><td>30</td><td>31</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- APRIL -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">April</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">14</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+          <tr><td class="wk-col">15</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+          <tr><td class="wk-col">16</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+          <tr><td class="wk-col">17</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+          <tr><td class="wk-col">18</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td class="empty"></td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MAY -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">May</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">18</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td>1</td><td>2</td></tr>
+          <tr><td class="wk-col">19</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+          <tr><td class="wk-col">20</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+          <tr><td class="wk-col">21</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>
+          <tr><td class="wk-col">22</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
+          <tr><td class="wk-col">23</td><td>31</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- JUNE -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">June</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">23</td><td class="empty"></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+          <tr><td class="wk-col">24</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
+          <tr><td class="wk-col">25</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
+          <tr><td class="wk-col">26</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+          <tr><td class="wk-col">27</td><td>28</td><td>29</td><td>30</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- JULY -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">July</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">27</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+          <tr><td class="wk-col">28</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+          <tr><td class="wk-col">29</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+          <tr><td class="wk-col">30</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+          <tr><td class="wk-col">31</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- AUGUST -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">August</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">31</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td>1</td></tr>
+          <tr><td class="wk-col">32</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+          <tr><td class="wk-col">33</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr>
+          <tr><td class="wk-col">34</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td></tr>
+          <tr><td class="wk-col">35</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td></tr>
+          <tr><td class="wk-col">36</td><td>30</td><td>31</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SEPTEMBER -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">September</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">36</td><td class="empty"></td><td class="empty"></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+          <tr><td class="wk-col">37</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+          <tr><td class="wk-col">38</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+          <tr><td class="wk-col">39</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
+          <tr><td class="wk-col">40</td><td>27</td><td>28</td><td>29</td><td>30</td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- OCTOBER -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">October</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">40</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td>1</td><td>2</td><td>3</td></tr>
+          <tr><td class="wk-col">41</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+          <tr><td class="wk-col">42</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td></tr>
+          <tr><td class="wk-col">43</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+          <tr><td class="wk-col">44</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- NOVEMBER -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">November</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">45</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+          <tr><td class="wk-col">46</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+          <tr><td class="wk-col">47</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+          <tr><td class="wk-col">48</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+          <tr><td class="wk-col">49</td><td>29</td><td>30</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- DECEMBER -->
+    <div class="cal-month-block">
+      <div class="cal-month-name">December</div>
+      <table class="cal-table">
+        <thead><tr>
+          <th class="wk-col">Wk</th>
+          <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="wk-col">49</td><td class="empty"></td><td class="empty"></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+          <tr><td class="wk-col">50</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+          <tr><td class="wk-col">51</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+          <tr><td class="wk-col">52</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
+          <tr><td class="wk-col">53</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td class="empty"></td><td class="empty"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </aside>
+
+  <!-- ============== MAIN CONTENT ============== -->
+  <main class="content">
+
+    <!-- HERO -->
+    <section class="hero">
+      <p class="hero-eyebrow">Asset Development &middot; Q1 Town Hall</p>
+      <h1>Meeting Notes &mdash; March 27, 2026</h1>
+      <div class="hero-meta">Friday, 8:31 AM &middot; Week 13 &middot; Source: Zoom AI Summary</div>
+    </section>
+
+    <!-- QUICK RECAP -->
+    <section>
+      <p class="section-label">Quick Recap</p>
+      <div class="recap-card">
+        The Q1 Asset Development Town Hall was held in a new webinar format, focusing on business plan updates, team member moves, and upcoming opportunities. <strong>Diana</strong> announced several rotational roles opening soon, including positions in planning, investor relations, and strategic initiatives reservoir engineering. The team reviewed CMBS Company Made By Student's positive reserves growth trends and low decline rates, highlighted in recent earnings calls. The 2026 development budget was discussed at $282 million, with aggressive drilling and workover targets. Updates were provided on the Golden Hammer exploration well and AI initiatives, including tools for automating wellbore diagrams and surveillance processes. The meeting covered office space relocations to buildings 9500 and 9600, and concluded with discussion of major goals including water treatment for beneficial use, asset development advisory committees, and a 20% PUD conversion target.
+      </div>
+    </section>
+
+    <!-- NEXT STEPS -->
+    <section>
+      <p class="section-label">Next Steps &mdash; by Person</p>
+      <div class="steps-grid">
+
+        <div class="person-card Diana">
+          <div class="person-header">
+            <div class="avatar">MM</div>
+            <div class="person-name">Diana</div>
+            <div class="task-count">4 tasks</div>
+          </div>
+          <ul class="person-tasks">
+            <li>Post details and open application process for the planning rotational role (expected week after next)</li>
+            <li>Post details and open application process for the Strategic Initiatives RE role (expected in about 2 weeks)</li>
+            <li>Schedule and announce a monthly 30-minute business plan update call for the team</li>
+            <li>Provide a more detailed answer offline regarding the specifics of current hedges (percentage, price)</li>
+          </ul>
+        </div>
+
+        <div class="person-card Tomas">
+          <div class="person-header">
+            <div class="avatar">JU</div>
+            <div class="person-name">Tomas</div>
+            <div class="task-count">1 task</div>
+          </div>
+          <ul class="person-tasks">
+            <li>Start looking at 10-year development sprint at Bell Ridge, including water forecasts, to support water reclamation investment analysis</li>
+          </ul>
+        </div>
+
+        <div class="person-card Bruno">
+          <div class="person-header">
+            <div class="avatar">BH</div>
+            <div class="person-name">Bruno Hom</div>
+            <div class="task-count">1 task</div>
+          </div>
+          <ul class="person-tasks">
+            <li>Continue organizing the office space situation for moves to buildings 9500 and 9600; team members with concerns or questions should reach out to Bruno</li>
+          </ul>
+        </div>
+
+        <div class="person-card Lucia">
+          <div class="person-header">
+            <div class="avatar">LW</div>
+            <div class="person-name">Lucia Wang</div>
+            <div class="task-count">1 task</div>
+          </div>
+          <ul class="person-tasks">
+            <li>Continue supporting geothermal work from a reservoir engineering standpoint, including life of field plans</li>
+          </ul>
+        </div>
+
+        <div class="person-card datateam">
+          <div class="person-header">
+            <div class="avatar">DA</div>
+            <div class="person-name">Data &amp; Analytics</div>
+            <div class="task-count">1 task</div>
+          </div>
+          <ul class="person-tasks">
+            <li>Continue supporting data migration and integration for Berry assets, systems, geodata, and engineering data into CMBS Company Made By Student standard toolset</li>
+          </ul>
+        </div>
+
+        <div class="person-card allteam">
+          <div class="person-header">
+            <div class="avatar">AT</div>
+            <div class="person-name">All Team</div>
+            <div class="task-count">1 task</div>
+          </div>
+          <ul class="person-tasks">
+            <li>Inform your manager if interested in serving on Asset Development Advisory Committees (rotating small groups advising on competency matrices, data governance, and tool selection)</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DETAILED SUMMARY -->
+    <section>
+      <p class="section-label">Detailed Summary</p>
+      <div class="topics">
+
+        <details>
+          <summary>Q1 Asset Development Team Updates</summary>
+          <div class="topic-body">Since the last town hall, several team members joined from Berry: Brandon Clark, Adam Cox, Ken Crabtree, Bruno Cunningham, Band Deaton, Jonathan Eagleson, Oscar Fu, Robert Newton, George Norton, Lucia Wang, Christy Whitaker, and Jacob Wright. Notable transitions include Bruno Cunningham flexing half-time to the Uinta project, Lucia Wang returning from CTV to Gihaw while supporting geothermal, and Oscar Fu moving from Gihaw to Thermal. Three rotational opportunities are opening soon: a one-year planning rotation (posting expected week after next), an investor relations rotation (details coming in April), and a strategic initiatives reservoir engineering role backfilling Pablo who moved to Director of Planning (expected in about two weeks). The strategic initiatives RE role involves coordinating life and field planning and handling enterprise-level initiatives that span multiple RMTs.</div>
+        </details>
+
+        <details>
+          <summary>Reserves Growth Strategy Discussion</summary>
+          <div class="topic-body">Diana shared slides from the Q4 earnings call highlighting CMBS Company Made By Student's oil and gas opportunity set, now featured prominently in public disclosures for the first time in years. Since the asset development team reformed in 2023, reserves have grown consistently through life of field plan work adding inventory, shallowing PDP decline from surveillance efforts, and growth through acquisition of ARA assets and Berry. Despite a 20&ndash;25% oil price drop between 2024 and 2025, CMBS Company Made By Student still achieved significant reserves growth &mdash; unusual since price declines typically trigger large negative revisions. Andres highlighted this along with CMBS Company Made By Student's low decline rates at the earnings call. The team has changed the narrative from a shrinking reserves base to a compelling growth story that is now central to CMBS Company Made By Student's investor-facing communications.</div>
+        </details>
+
+        <details>
+          <summary>Development Budget and Workover Plans</summary>
+          <div class="topic-body">The 2026 development budget is $282 million &mdash; one of the largest in CMBS Company Made By Student history &mdash; split between approximately $200M for drilling and $85M for workovers (up from ~$55M last year). There is no slack in the plan; falling behind on drilling or time to market will be difficult to recover from given the pace of the program. The team is currently tracking slightly behind plan due to changes in rig move logistics that shifted well ordering, but expects to catch up later in the year if time to market is maintained. Weekly tracking sessions with Victor monitor drilling activity and wells brought on each week. The workover program got off to a slow start in January and February; 50 workovers are targeted for March to recover. Despite the aggressive targets, every well entry carries inherent risk of unexpected issues &mdash; maintaining high volumes (shots on goal) is essential to hitting the budget.</div>
+        </details>
+
+        <details>
+          <summary>Well Operations and AI Updates</summary>
+          <div class="topic-body">Golden Hammer, CMBS Company Made By Student's first exploration well in many years, faced extremely challenging drilling conditions &mdash; lost returns, kicks, up to 16-lb mud weight, and multiple cement plugs required. After TD-ing in early March, the team could not complete the well as planned and perforated two bottom objectives open hole. The first completion interval returned high-pressure water and gas with possible cross-flow concerns. The plan is to plug back and test a new objective in the intermediate casing string within the next few weeks, with results expected at the next town hall. On AI, two initiatives are underway: SLB's P&A tool is being evaluated for wellboard diagram automation, with the team finalizing its recommendations on a path forward; and the Jarvis AI assistant pilot is being kicked off to make surveillance and UIC processes more efficient. Diana emphasized that leveraging technology is essential given growing workloads without proportional headcount increases.</div>
+        </details>
+
+        <details>
+          <summary>Reservoir Regulatory Requirements Discussion</summary>
+          <div class="topic-body">The team discussed California's 11.37 regulations affecting Long Beach operations. Progress has been made through grassroots efforts, securing exceptions for injection work and, most recently, the first producer project exception. Long Beach's unique subsidence and voidage issues provide a strong health and safety argument for continued exceptions. The regulatory wiggle room lies in how "sensitive receptors" are defined &mdash; whether a beach with transient visitors qualifies as a sensitive receptor is still an open question under the original vague legislative language. Diana noted that 11.37 will likely remain in some form, and the team will continue pressing on definitional boundaries while maintaining its record of securing exceptions at the grassroots level.</div>
+        </details>
+
+        <details>
+          <summary>Key Initiatives and Data Governance</summary>
+          <div class="topic-body">Major 2026 initiatives discussed include identifying AI use cases to augment surveillance workflows; evaluating water treatment for beneficial use with a centralized plant at Elk Hills near the power plant; launching asset development advisory committees (small rotating groups of individual contributors advising on technical competency matrices, data governance, and tool selection &mdash; tell your manager if interested); renewing the Saga online training platform for another year with 120 active users (highly cost-effective versus in-person courses); and supporting the Pacific Section AAPG/SPE regional conference in April, where multiple team members are presenting as CMBS Company Made By Student revives its technical discourse on oil and gas.</div>
+        </details>
+
+        <details>
+          <summary>Oil Field Drilling Expansion Plans</summary>
+          <div class="topic-body">Key 2026 goals include integrating Berry assets (systems, geodata, and engineering data into CMBS Company Made By Student's standard toolset), supporting geothermal from a reservoir engineering standpoint with Lucia Wang leading, delivering a Midway Sunset Life of Field Plan as the major new effort this year, and updating earlier life of field plans &mdash; Long Beach is receiving a rig at mid-year after previously being considered inactive for drilling. The 20% PUD conversion target requires vigilance as rig schedules shift, ensuring PUDs actually get drilled. The current program includes four active rigs in California with a potential fifth California rig and sixth Utah rig being evaluated, and workover inventory continues to depend on frontline surveillance generating new opportunities.</div>
+        </details>
+
+        <details>
+          <summary>Drilling Pad and Production Plans</summary>
+          <div class="topic-body">CMBS Company Made By Student is currently building a drilling pad in the Uinta Basin to support four horizontal wells. Capital commitment is still pending from senior leadership and the board. If commitment aligns with rig availability, frac crews, and water disposal logistics, the target is first production in 2026 while oil prices are favorable. If logistics cannot be aligned in time, the fallback is first production in Q1 2027. Diana noted that at CMBS Company Made By Student, when timing is uncertain, the team assumes sooner rather than later and works accordingly. The pad construction is underway regardless, positioning the team to move quickly once commitment is received.</div>
+        </details>
+
+        <details>
+          <summary>Elk Hills Water Reclamation Plans</summary>
+          <div class="topic-body">Water disposal is the biggest risk across most life of field plans, with constraints or near-capacity conditions almost everywhere. A centralized water reclamation plant near the Elk Hills power plant is under evaluation, leveraging existing power infrastructure for the energy-intensive treatment process. CMBS Company Made By Student is the largest water producer among domestic oil and gas companies. Treated water would move from the west side of the San Joaquin Valley to agricultural or industrial off-take points. Bell Ridge growth is specifically constrained by water disposal capacity, and a 10-year development sprint analysis has been requested from Tomas to build the investment case. Diana drew parallels to other major CMBS Company Made By Student infrastructure investments &mdash; the Elk Hills acquisition, the power plant, CGP1 &mdash; each seen as a huge lift at the time but now foundational to the business.</div>
+        </details>
+
+      </div>
+    </section>
+
+    <p class="page-footer">Asset Development Q1 Town Hall &middot; March 27, 2026 &middot; Source: Zoom AI Summary</p>
+
+  </main>
+</div>
+  <script src="meeting-notes-widget.js"></script>
+  <script src="page-counter.js"></script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,445 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eng Tech &mdash; Preparation Notes &mdash; April 6, 2026</title>
+  <style>
+    :root {
+      --bg-a: #f4f1e8;
+      --bg-b: #e5efe9;
+      --ink: #1b2a2f;
+      --muted: #5b6a6f;
+      --card: #ffffffcc;
+      --line: #c8d5cf;
+      --radius: 13px;
+      --shadow: 0 8px 24px rgba(16,24,32,0.10);
+      --accent: #1f6f8b;
+      --lester: #2f7d32;
+      --closed: #6b7c72;
+      --active: #2f7d32;
+      --on-hold: #a76600;
+      --blocked: #b23a48;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; padding: 0;
+      color: var(--ink);
+      font-family: "Trebuchet MS", "Gill Sans", Candara, sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, #fff6dd 0%, transparent 35%),
+        radial-gradient(circle at 95% 90%, #d5ede0 0%, transparent 40%),
+        linear-gradient(140deg, var(--bg-a), var(--bg-b));
+      min-height: 100vh;
+    }
+
+    .wrapper {
+      width: min(900px, 95vw);
+      margin: 28px auto 52px;
+    }
+
+    /* -- HERO -- */
+    .hero {
+      background: linear-gradient(130deg, #ffffffee, #f2f6f4ee);
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 4px);
+      padding: 22px 26px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+    .hero::after {
+      content: "";
+      position: absolute; right: -40px; top: -40px;
+      width: 180px; height: 180px; border-radius: 100%;
+      background: radial-gradient(circle, #6fa8bf44, transparent 68%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.35rem, 3vw, 1.9rem);
+      letter-spacing: 0.01em;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .hero h1 .title-text {
+      text-decoration: line-through;
+      text-decoration-color: #b23a48;
+      text-decoration-thickness: 3px;
+    }
+    .hero h1 .cancelled-tag {
+      font-size: 0.75em;
+      color: #fff;
+      background: #b23a48;
+      padding: 2px 12px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      white-space: nowrap;
+    }
+    .hero-meta {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* -- SECTION LABEL -- */
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      font-weight: 700;
+      margin: 0 0 10px;
+      padding-left: 2px;
+    }
+
+    /* -- STATUS OVERVIEW -- */
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .status-box {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(16,24,32,0.06);
+    }
+    .status-box .count {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+    .status-box .label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .status-box.active .count { color: var(--active); }
+    .status-box.on-hold .count { color: var(--on-hold); }
+    .status-box.blocked .count { color: var(--blocked); }
+    .status-box.closed .count { color: var(--closed); }
+
+    /* -- TOPIC CARDS -- */
+    .topics {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    details {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(16,24,32,0.06);
+      overflow: hidden;
+    }
+    details[open] {
+      box-shadow: var(--shadow);
+    }
+
+    summary {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      cursor: pointer;
+      list-style: none;
+      font-weight: 600;
+      font-size: 1.02rem;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "\25B8";
+      font-size: 0.85rem;
+      color: var(--muted);
+      transition: transform 0.15s;
+      flex-shrink: 0;
+    }
+    details[open] > summary::before {
+      content: "\25BE";
+    }
+
+    .status-tag {
+      margin-left: auto;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 3px 10px;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+    .status-tag.closed     { background: #e8ecea; color: var(--closed); }
+    .status-tag.active     { background: #e4f2e5; color: var(--active); }
+    .status-tag.on-hold    { background: #fef3e0; color: var(--on-hold); }
+    .status-tag.blocked    { background: #fde8ea; color: var(--blocked); }
+    .status-tag.exploratory { background: #e8eff8; color: #3a5fa0; }
+
+    .topic-body {
+      padding: 0 22px 18px;
+      font-size: 0.93rem;
+      line-height: 1.65;
+    }
+    .topic-body p { margin: 0 0 10px; }
+    .topic-body strong { color: var(--ink); }
+    .topic-body ol {
+      margin: 8px 0 10px 18px;
+      padding: 0;
+    }
+    .topic-body ol li {
+      margin-bottom: 4px;
+    }
+
+    .field-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .ack {
+      background: #f0f7f1;
+      border-left: 3px solid var(--active);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 10px;
+      font-size: 0.88rem;
+      color: #2a5a2d;
+    }
+
+    .topic-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* -- RESPONSIVE -- */
+    @media (max-width: 600px) {
+      .wrapper { margin: 14px auto 30px; }
+      .hero { padding: 16px 18px; }
+      summary { padding: 14px 16px; font-size: 0.95rem; }
+      .topic-body { padding: 0 16px 14px; }
+      .status-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+  <link rel="stylesheet" href="breadcrumbs.css">
+  <link rel="stylesheet" href="meeting-notes-widget.css">
+  <link rel="stylesheet" href="page-counter.css">
+
+</head>
+<body>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="index.php">Home</a><span>&rsaquo;</span><a href="centralHub.html">Final Project Central Hub</a>
+  </nav>
+
+<div class="wrapper">
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">Engineering Tech &middot; Preparation Notes</p>
+    <h1><span class="title-text">Meeting Prep &mdash; April 6, 2026</span><span class="cancelled-tag">Cancelled</span></h1>
+    <div class="hero-meta">Monday &middot; Week 15 &middot; Author: Lester</div>
+  </section>
+
+  <!-- STATUS OVERVIEW -->
+  <p class="section-label">Status Overview</p>
+  <div class="status-grid">
+    <div class="status-box active"><div class="count">3</div><div class="label">Active</div></div>
+    <div class="status-box on-hold"><div class="count">2</div><div class="label">On Hold</div></div>
+    <div class="status-box blocked"><div class="count">1</div><div class="label">Blocked</div></div>
+    <div class="status-box closed"><div class="count">2</div><div class="label">Closed</div></div>
+  </div>
+
+  <!-- TOPIC CARDS -->
+  <p class="section-label">Topics</p>
+  <div class="topics">
+
+    <!-- 1 -->
+    <details>
+      <summary>
+        <span class="topic-num">1</span>
+        Well Field Assignments
+        <span class="status-tag closed">Closed</span>
+      </summary>
+      <div class="topic-body">
+        <p class="field-label">Thread</p>
+        <p>Orphan wells lacking field assignments (tracked since Mar 23)</p>
+
+        <p class="field-label">Update</p>
+        <p>The query provided by <strong>Camila</strong> brought clarity over several production units. Her information was incorporated into the <strong>Casing Pressure and Fluid Level Spotfire report</strong>.</p>
+
+        <div class="ack">Grateful to Camila for the query &mdash; it was instrumental in resolving the production-unit ambiguity and completing this work.</div>
+      </div>
+    </details>
+
+    <!-- 2 -->
+    <details>
+      <summary>
+        <span class="topic-num">2</span>
+        Wellbore Diagrams / Data Validation
+        <span class="status-tag on-hold">On Hold</span>
+      </summary>
+      <div class="topic-body">
+        <p class="field-label">Thread</p>
+        <p>Extracting wallboard diagram data from PDFs; Claude AI potential involvement (tracked since Mar 23)</p>
+
+        <p class="field-label">Update</p>
+        <p>No requests have come my way since last meeting. Awaiting direction.</p>
+
+        <p class="field-label">Independent Exploration</p>
+        <p>Investigated <strong>Google Document AI</strong>, a paid service that combines AI-powered OCR and vision to extract data from scanned PDF documents. Applied to the wellbore diagrams use case, the process would be:</p>
+        <ol>
+          <li><strong>Split</strong> the large PDF into individual reporting sections (one per well/diagram).</li>
+          <li><strong>Process</strong> each section through Document AI to extract structured data.</li>
+          <li><strong>Output</strong> results as JSON files.</li>
+          <li><strong>Parse</strong> the JSON to extract specific details such as wellbore construction, casing specifications, and other completion attributes.</li>
+        </ol>
+        <p>This could complement or inform the team's approach to the wellbore diagrams project.</p>
+      </div>
+    </details>
+
+    <!-- 3 -->
+    <details>
+      <summary>
+        <span class="topic-num">3</span>
+        Claude AI &mdash; Installation &amp; Adoption
+        <span class="status-tag active">Active</span>
+      </summary>
+      <div class="topic-body">
+        <p class="field-label">Thread</p>
+        <p>Claude AI tool integration (tracked since Mar 23)</p>
+
+        <p class="field-label">Update</p>
+        <p>Attended the intro/installation session and successfully installed Claude. Currently actively using it across multiple interfaces: <strong>desktop app</strong>, <strong>VS Code extension</strong>, and <strong>command line</strong>. Have been able to query the ODW directly through the MCP connection.</p>
+        <p>Currently completing <strong>Anthropic's Claude 101 online course</strong> to build a solid foundation on its full feature set.</p>
+      </div>
+    </details>
+
+    <!-- 4 -->
+    <details>
+      <summary>
+        <span class="topic-num">4</span>
+        Spotfire Phase 2 / Tableau-to-Spotfire Conversion
+        <span class="status-tag active">Active</span>
+      </summary>
+      <div class="topic-body">
+        <p class="field-label">Thread</p>
+        <p>Reporting tool development and outsourcing exploration (tracked since Mar 23)</p>
+
+        <p class="field-label">Update</p>
+        <p>Reviewed the candidate profiles <strong>Elena</strong> shared for external support. Sent an email report with an evaluation of the best candidate in case only one contractor is brought on.</p>
+
+        <p class="field-label">Additional Lead</p>
+        <p>Learned that <strong>Ramon Perez</strong>, a contractor who previously worked with me on Tableau at Aera, was recently let go. He has relevant experience and may be available &mdash; worth reaching out.</p>
+      </div>
+    </details>
+
+    <!-- 5 -->
+    <details>
+      <summary>
+        <span class="topic-num">5</span>
+        Casing Pressure and Fluid Level Report &mdash; Version 2
+        <span class="status-tag active">Active</span>
+      </summary>
+      <div class="topic-body">
+        <p class="field-label">Update</p>
+        <p>Version 2 is progressing well. The customer requested all available historical data, which resulted in a large dataset. All necessary queries have been completed and data integration into Spotfire is underway. The 18 validation tasks identified in the <strong>Nora</strong> meeting are part of this effort.</p>
+
+        <p class="field-label">Pending</p>
+        <p>Have not yet met with <strong>Raul</strong> to discuss "growing up" the report. Need to schedule that meeting.</p>
+
+        <p class="field-label">Expected Completion</p>
+        <p>End of this week or early next week.</p>
+      </div>
+    </details>
+
+    <!-- 6 -->
+    <details>
+      <summary>
+        <span class="topic-num">6</span>
+        UIC Wells Spotfire Report (Ruben's Request)
+        <span class="status-tag on-hold">On Hold</span>
+      </summary>
+      <div class="topic-body">
+        <p class="field-label">Update</p>
+        <p>Met with <strong>Ruben</strong>. He has shifted direction and is pursuing the creation of a custom app to accomplish what he originally envisioned for the Spotfire report. He has been actively programming the app, and I have been providing guidance on data queries, connections, and logic.</p>
+        <p>The Spotfire report may no longer be needed, but keeping the ticket open in case Ruben changes course.</p>
+      </div>
+    </details>
+
+    <!-- 7 -->
+    <details>
+      <summary>
+        <span class="topic-num">7</span>
+        Database Connections for Ruben
+        <span class="status-tag closed">Closed</span>
+      </summary>
+      <div class="topic-body">
+        <p class="field-label">Thread</p>
+        <p>Jia, Ruben; Asset Dev Asset Strategy &mdash; assistance with database connections (ad-hoc request)</p>
+
+        <p class="field-label">Update</p>
+        <p>From my Oracle SQL Developer, exported connections as a JSON file with password. Shared the file with <strong>Ruben</strong> and the password. Provided guidance on how to import the connections.</p>
+
+        <p class="field-label">Details</p>
+        <p><strong>Bucket:</strong> Business Intelligence &middot; Reporting/Tools<br>
+        <strong>Priority:</strong> Urgent<br>
+        <strong>Timeline:</strong> Started 04/02/2026 &middot; Completed 04/06/2026</p>
+      </div>
+    </details>
+
+    <!-- 8 -->
+    <details>
+      <summary>
+        <span class="topic-num">8</span>
+        CMBS Company Made By Student Surveillance Tool Review
+        <span class="status-tag blocked">Blocked</span>
+      </summary>
+      <div class="topic-body">
+        <p class="field-label">Thread</p>
+        <p>Review existing AWS-based CMBS Company Made By Student surveillance tool to consider merging with current reporting/tool development (assigned Mar 30)</p>
+
+        <p class="field-label">Update</p>
+        <p>No progress. Need a lead or point of contact for the AWS platform to get started.</p>
+      </div>
+    </details>
+
+  </div>
+
+</div>
+
+  <script src="meeting-notes-widget.js"></script>
+  <script src="page-counter.js"></script>
+
+</body>
+</html>
+
+
+

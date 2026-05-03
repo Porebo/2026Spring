@@ -1,0 +1,618 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DA Weekly Meeting Notes &mdash; April 9, 2026</title>
+<style>
+:root {
+  --bg-a: #f4f1e8;
+  --bg-b: #e5efe9;
+  --ink: #1b2a2f;
+  --muted: #5b6a6f;
+  --card: #ffffffcc;
+  --line: #c8d5cf;
+  --radius: 13px;
+  --shadow: 0 8px 24px rgba(16,24,32,0.10);
+  --accent: #1f6f8b;
+  --Elena: #7b3fa0;
+  --Camila: #1f6f8b;
+  --lester: #2f7d32;
+  --Mario: #a76600;
+  --Sofia: #b23a48;
+  --Valeria: #3a5fa0;
+  --Nora: #6b5b3a;
+  --Diego: #c44607;
+  --Julia: #8b6b8a;
+  --arin: #2a7a6b;
+  --Bruno: #4a6fa5;
+  --josue: #7a5230;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  line-height: 1.55;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(31,111,139,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(123,63,160,0.06) 0%, transparent 60%),
+    linear-gradient(135deg, var(--bg-a) 0%, var(--bg-b) 100%);
+  min-height: 100vh;
+}
+.outer {
+  max-width: min(1340px, 97vw);
+  margin: 28px auto 52px;
+  display: grid;
+  grid-template-columns: 178px 1fr;
+  gap: 28px;
+}
+/* SIDEBAR */
+.sidebar {
+  position: sticky;
+  top: 20px;
+  max-height: calc(100vh - 50px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cal-legend {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 10px; color: var(--muted); margin-bottom: 4px; padding-left: 2px;
+}
+.cal-legend span {
+  width: 12px; height: 12px; background: var(--accent); border-radius: 2px; display: inline-block;
+}
+.cal-month-block {
+  background: var(--card);
+  border-radius: 8px;
+  padding: 5px 4px 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.cal-month-block.current {
+  border: 2px solid var(--accent);
+}
+.cal-month-block .month-name {
+  font-size: 10px; font-weight: 700; text-align: center; margin-bottom: 2px; color: var(--ink);
+}
+.cal-month-block.current .month-name { color: var(--accent); }
+.cal-month-block table {
+  width: 100%; border-collapse: collapse; font-size: 8.5px; text-align: center;
+}
+.cal-month-block th { color: var(--muted); font-weight: 600; padding: 1px 0; font-size: 7.5px; }
+.cal-month-block td { padding: 1px 0; width: 14%; }
+.cal-month-block td.wk { font-size: 7px; color: var(--muted); width: 14%; font-style: italic; }
+.cal-month-block td.empty { color: transparent; }
+.cal-month-block td.meeting {
+  background: var(--accent); color: #fff; border-radius: 2px; font-weight: 700;
+}
+
+/* MAIN */
+.main { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #ffffffee 60%, #e0f0f8cc 100%);
+  border-radius: var(--radius);
+  padding: 36px 40px 30px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute; top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(31,111,139,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero-eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); font-weight: 600; margin-bottom: 6px; }
+.hero h1 { font-size: 28px; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+.hero-meta { font-size: 13px; color: var(--muted); }
+
+/* CARDS */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+}
+.card h2 { font-size: 18px; font-weight: 700; margin-bottom: 14px; color: var(--ink); }
+
+/* ATTENDANCE */
+.attendance-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.attendance-grid .card ul { list-style: none; columns: 1; font-size: 13px; line-height: 1.8; }
+.attendance-grid .card li { padding-left: 12px; position: relative; }
+.attendance-grid .card li::before { content: ''; position: absolute; left: 0; top: 50%; width: 5px; height: 5px; background: var(--accent); border-radius: 50%; transform: translateY(-50%); }
+
+/* ACTION ITEMS */
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 16px;
+}
+.person-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: 0 4px 14px rgba(16,24,32,0.07);
+}
+.person-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+  padding-bottom: 10px;
+}
+.person-card.lester .person-header { border-left: 4px solid var(--lester); padding-left: 10px; }
+.person-card.Mario .person-header { border-left: 4px solid var(--Mario); padding-left: 10px; }
+.person-card.Nora .person-header { border-left: 4px solid var(--Nora); padding-left: 10px; }
+.person-card.Elena .person-header { border-left: 4px solid var(--Elena); padding-left: 10px; }
+.person-card.Diego .person-header { border-left: 4px solid var(--Diego); padding-left: 10px; }
+.person-card.Sofia .person-header { border-left: 4px solid var(--Sofia); padding-left: 10px; }
+.person-card.Julia .person-header { border-left: 4px solid var(--Julia); padding-left: 10px; }
+.person-card.Camila .person-header { border-left: 4px solid var(--Camila); padding-left: 10px; }
+.person-card.arin .person-header { border-left: 4px solid var(--arin); padding-left: 10px; }
+.person-card.all .person-header { border-left: 4px solid var(--accent); padding-left: 10px; }
+
+.avatar {
+  width: 36px; height: 36px; border-radius: 50%; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; flex-shrink: 0;
+}
+.person-card.lester .avatar { background: var(--lester); }
+.person-card.Mario .avatar { background: var(--Mario); }
+.person-card.Nora .avatar { background: var(--Nora); }
+.person-card.Elena .avatar { background: var(--Elena); }
+.person-card.Diego .avatar { background: var(--Diego); }
+.person-card.Sofia .avatar { background: var(--Sofia); }
+.person-card.Julia .avatar { background: var(--Julia); }
+.person-card.Camila .avatar { background: var(--Camila); }
+.person-card.arin .avatar { background: var(--arin); }
+.person-card.all .avatar { background: var(--accent); }
+
+.person-name { font-weight: 700; font-size: 14px; flex: 1; }
+.task-count { font-size: 11px; color: var(--muted); white-space: nowrap; }
+.person-tasks { padding-left: 18px; font-size: 13px; }
+.person-tasks li { margin-bottom: 6px; line-height: 1.5; }
+
+/* RECAP */
+.recap-text { font-size: 14px; line-height: 1.7; }
+.recap-text strong { font-weight: 700; }
+
+/* DETAILS */
+.topic-section details {
+  background: var(--card);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(16,24,32,0.06);
+  overflow: hidden;
+}
+.topic-section summary {
+  padding: 14px 20px 14px 36px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  user-select: none;
+}
+.topic-section summary::-webkit-details-marker { display: none; }
+.topic-section summary::before {
+  content: '\25B6';
+  position: absolute;
+  left: 14px;
+  top: 15px;
+  font-size: 10px;
+  color: var(--accent);
+  transition: transform 0.2s;
+}
+.topic-section details[open] summary::before { transform: rotate(90deg); }
+.topic-section .detail-body { padding: 0 20px 16px 36px; font-size: 13px; line-height: 1.7; color: var(--ink); }
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .outer { grid-template-columns: 1fr; }
+  .sidebar { position: static; max-height: none; }
+  .attendance-grid { grid-template-columns: 1fr; }
+  .hero { padding: 24px 20px 20px; }
+  .hero h1 { font-size: 22px; }
+}
+</style>
+  <link rel="stylesheet" href="breadcrumbs.css">
+  <link rel="stylesheet" href="meeting-notes-widget.css">
+  <link rel="stylesheet" href="page-counter.css">
+
+</head>
+<body>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="index.php">Home</a><span>&rsaquo;</span><a href="centralHub.html">Final Project Central Hub</a>
+  </nav>
+<div class="outer">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+<div class="cal-legend"><span></span> Meeting day</div>
+
+<!-- JAN 2026: Jan 1 = Thu (idx 4) -->
+<div class="cal-month-block">
+<div class="month-name">January</div>
+<table><tr><th></th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+<tr><td class="wk">1</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td>1</td><td>2</td><td>3</td></tr>
+<tr><td class="wk">2</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+<tr><td class="wk">3</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td></tr>
+<tr><td class="wk">4</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+<tr><td class="wk">5</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td></tr>
+</table></div>
+
+<!-- FEB 2026: Feb 1 = Sun (idx 0) -->
+<div class="cal-month-block">
+<div class="month-name">February</div>
+<table><tr><th></th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+<tr><td class="wk">6</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+<tr><td class="wk">7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+<tr><td class="wk">8</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+<tr><td class="wk">9</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+</table></div>
+
+<!-- MAR 2026: Mar 1 = Sun (idx 0) -->
+<div class="cal-month-block">
+<div class="month-name">March</div>
+<table><tr><th></th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+<tr><td class="wk">10</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+<tr><td class="wk">11</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+<tr><td class="wk">12</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+<tr><td class="wk">13</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+<tr><td class="wk">14</td><td>29</td><td>30</td><td>31</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td></tr>
+</table></div>
+
+<!-- APR 2026: Apr 1 = Wed (idx 3) -->
+<div class="cal-month-block current">
+<div class="month-name">April</div>
+<table><tr><th></th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+<tr><td class="wk">14</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+<tr><td class="wk">15</td><td>5</td><td>6</td><td>7</td><td>8</td><td class="meeting">9</td><td>10</td><td>11</td></tr>
+<tr><td class="wk">16</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+<tr><td class="wk">17</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+<tr><td class="wk">18</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td class="empty">.</td><td class="empty">.</td></tr>
+</table></div>
+
+<!-- MAY 2026: May 1 = Fri (idx 5) -->
+<div class="cal-month-block">
+<div class="month-name">May</div>
+<table><tr><th></th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+<tr><td class="wk">18</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td>1</td><td>2</td></tr>
+<tr><td class="wk">19</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+<tr><td class="wk">20</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+<tr><td class="wk">21</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>
+<tr><td class="wk">22</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
+<tr><td class="wk">23</td><td>31</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td></tr>
+</table></div>
+
+<!-- JUN 2026: Jun 1 = Mon (idx 1) -->
+<div class="cal-month-block">
+<div class="month-name">June</div>
+<table><tr><th></th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+<tr><td class="wk">23</td><td class="empty">.</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+<tr><td class="wk">24</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
+<tr><td class="wk">25</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
+<tr><td class="wk">26</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+<tr><td class="wk">27</td><td>28</td><td>29</td><td>30</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td></tr>
+</table></div>
+
+<!-- JUL 2026: Jul 1 = Wed (idx 3) -->
+<div class="cal-month-block">
+<div class="month-name">July</div>
+<table><tr><th></th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+<tr><td class="wk">27</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+<tr><td class="wk">28</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+<tr><td class="wk">29</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+<tr><td class="wk">30</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+<tr><td class="wk">31</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td class="empty">.</td></tr>
+</table></div>
+
+<!-- AUG 2026: Aug 1 = Sat (idx 6) -->
+<div class="cal-month-block">
+<div class="month-name">August</div>
+<table><tr><th></th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+<tr><td class="wk">31</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td>1</td></tr>
+<tr><td class="wk">32</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+<tr><td class="wk">33</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr>
+<tr><td class="wk">34</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td></tr>
+<tr><td class="wk">35</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td></tr>
+<tr><td class="wk">36</td><td>30</td><td>31</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td></tr>
+</table></div>
+
+<!-- SEP 2026: Sep 1 = Tue (idx 2) -->
+<div class="cal-month-block">
+<div class="month-name">September</div>
+<table><tr><th></th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+<tr><td class="wk">36</td><td class="empty">.</td><td class="empty">.</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+<tr><td class="wk">37</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+<tr><td class="wk">38</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+<tr><td class="wk">39</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
+<tr><td class="wk">40</td><td>27</td><td>28</td><td>29</td><td>30</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td></tr>
+</table></div>
+
+<!-- OCT 2026: Oct 1 = Thu (idx 4) -->
+<div class="cal-month-block">
+<div class="month-name">October</div>
+<table><tr><th></th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+<tr><td class="wk">40</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td>1</td><td>2</td><td>3</td></tr>
+<tr><td class="wk">41</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+<tr><td class="wk">42</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td></tr>
+<tr><td class="wk">43</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+<tr><td class="wk">44</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td></tr>
+</table></div>
+
+<!-- NOV 2026: Nov 1 = Sun (idx 0) -->
+<div class="cal-month-block">
+<div class="month-name">November</div>
+<table><tr><th></th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+<tr><td class="wk">45</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+<tr><td class="wk">46</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+<tr><td class="wk">47</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+<tr><td class="wk">48</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+<tr><td class="wk">49</td><td>29</td><td>30</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td><td class="empty">.</td></tr>
+</table></div>
+
+<!-- DEC 2026: Dec 1 = Tue (idx 2) -->
+<div class="cal-month-block">
+<div class="month-name">December</div>
+<table><tr><th></th><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+<tr><td class="wk">49</td><td class="empty">.</td><td class="empty">.</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+<tr><td class="wk">50</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+<tr><td class="wk">51</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
+<tr><td class="wk">52</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
+<tr><td class="wk">53</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td class="empty">.</td><td class="empty">.</td></tr>
+</table></div>
+
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+<!-- 1. HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Data Analytics &middot; Weekly Team Meeting</p>
+  <h1>Meeting Notes &mdash; April 9, 2026</h1>
+  <div class="hero-meta">Thursday, 11:20 AM &middot; Week 15 &middot; Source: Zoom AI Summary</div>
+</section>
+
+<!-- 2. ATTENDANCE -->
+<section>
+  <div class="attendance-grid">
+    <div class="card">
+      <h2>Invited</h2>
+      <ul>
+        <li>Martinez Elena J</li>
+        <li>Aburto Ivan A</li>
+        <li>Albuja Valeria (AppleOne)</li>
+        <li>Barnes Camila</li>
+        <li>Borrego Mario Andres R</li>
+        <li>Carcamo Lester</li>
+        <li>Coodey Rasa (Julia)</li>
+        <li>Delgadillo Sofia</li>
+        <li>Green Arin</li>
+        <li>Hom Bruno</li>
+        <li>Mather Charles B</li>
+        <li>Mattey Nora</li>
+        <li>Molina Rosalba</li>
+        <li>Montejo Celia</li>
+        <li>Olson Matthew A</li>
+        <li>Peters Steven</li>
+        <li>Rosas Granados Josue</li>
+        <li>Ryan Jessica</li>
+        <li>Salinas Diego</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Participants</h2>
+      <ul>
+        <li>Elena</li>
+        <li>Lester</li>
+        <li>Mario</li>
+        <li>Nora</li>
+        <li>Camila</li>
+        <li>Sofia</li>
+        <li>Diego</li>
+        <li>Julia</li>
+        <li>Arin</li>
+        <li>Bruno</li>
+        <li>Irene (guest)</li>
+        <li>Josue</li>
+        <li>Darcy (mentioned)</li>
+        <li>Diana (mentioned)</li>
+        <li>Mateo (mentioned)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 3. ACTION ITEMS -->
+<section class="card">
+  <h2>Action Items</h2>
+  <div class="action-grid">
+
+    <div class="person-card lester">
+      <div class="person-header">
+        <div class="avatar">LE</div>
+        <div class="person-name">Lester</div>
+        <div class="task-count">2 tasks</div>
+      </div>
+      <ul class="person-tasks">
+        <li>Create a proposal (with Mario and Nora) for outsourcing Tableau to Spotfire conversion work, including scenarios for one and two additional resources, expected duration, specific tasks, and benefits to the organization</li>
+        <li>Frame the outsourcing proposal in a concise, meaningful way for Victor's review</li>
+      </ul>
+    </div>
+
+    <div class="person-card Mario">
+      <div class="person-header">
+        <div class="avatar">JU</div>
+        <div class="person-name">Mario</div>
+        <div class="task-count">1 task</div>
+      </div>
+      <ul class="person-tasks">
+        <li>Create a proposal (with Lester and Nora) for outsourcing Tableau to Spotfire conversion work, including scenarios for one and two additional resources, expected duration, specific tasks, and benefits to the organization</li>
+      </ul>
+    </div>
+
+    <div class="person-card Nora">
+      <div class="person-header">
+        <div class="avatar">PR</div>
+        <div class="person-name">Nora</div>
+        <div class="task-count">2 tasks</div>
+      </div>
+      <ul class="person-tasks">
+        <li>Create a proposal (with Lester and Mario) for outsourcing Tableau to Spotfire conversion work, including scenarios for one and two additional resources, expected duration, specific tasks, and benefits to the organization</li>
+        <li>Reach out to Nancy to inquire if enterprise data models are available for potential use in improving AI tool data queries</li>
+      </ul>
+    </div>
+
+    <div class="person-card Elena">
+      <div class="person-header">
+        <div class="avatar">MA</div>
+        <div class="person-name">Elena</div>
+        <div class="task-count">3 tasks</div>
+      </div>
+      <ul class="person-tasks">
+        <li>Set up a meeting with Lester to review AWS reports and evaluate how to handle AWS to ODW conversions for inclusion in the outsourcing proposal</li>
+        <li>Propose to Matt Mastro that his team take over K2 form data entry, with a 30-day transition period</li>
+        <li>Reiterate in roundtable the complexity and process requirements for ODW and LEGO setup, and consider visual aids to illustrate dependencies</li>
+      </ul>
+    </div>
+
+    <div class="person-card Diego">
+      <div class="person-header">
+        <div class="avatar">AZ</div>
+        <div class="person-name">Diego</div>
+        <div class="task-count">1 task</div>
+      </div>
+      <ul class="person-tasks">
+        <li>Test IP performance on CMBS Company Made By Student laptop (in office) and report results to Bruno regarding VDI vs. wired network performance</li>
+      </ul>
+    </div>
+
+    <div class="person-card Sofia">
+      <div class="person-header">
+        <div class="avatar">AM</div>
+        <div class="person-name">Sofia</div>
+        <div class="task-count">1 task</div>
+      </div>
+      <ul class="person-tasks">
+        <li>Meet with engineering team to finalize engineering analysis requirements for survey loader project</li>
+      </ul>
+    </div>
+
+    <div class="person-card Julia">
+      <div class="person-header">
+        <div class="avatar">KA</div>
+        <div class="person-name">Julia</div>
+        <div class="task-count">1 task</div>
+      </div>
+      <ul class="person-tasks">
+        <li>Follow up with relevant parties to get access to older limit strives data for Ventura Central project</li>
+      </ul>
+    </div>
+
+    <div class="person-card Camila">
+      <div class="person-header">
+        <div class="avatar">LY</div>
+        <div class="person-name">Camila</div>
+        <div class="task-count">1 task</div>
+      </div>
+      <ul class="person-tasks">
+        <li>Complete loading well notes into RAW by tomorrow and note in comments that pattern notes will be handled at a later date</li>
+      </ul>
+    </div>
+
+    <div class="person-card arin">
+      <div class="person-header">
+        <div class="avatar">AR</div>
+        <div class="person-name">Arin</div>
+        <div class="task-count">1 task</div>
+      </div>
+      <ul class="person-tasks">
+        <li>Stay in contact with Hector regarding long-term GIS/enterprise layer integration and communicate updates to the team when available</li>
+      </ul>
+    </div>
+
+    <div class="person-card all">
+      <div class="person-header">
+        <div class="avatar">ALL</div>
+        <div class="person-name">All Team Members</div>
+        <div class="task-count">2 tasks</div>
+      </div>
+      <ul class="person-tasks">
+        <li>For any new IT requests, ensure to CC Diana and Elena on all communications</li>
+        <li>Be prepared in June to reevaluate the frequency and structure of the roundtable meetings based on project status</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- 4. QUICK RECAP -->
+<section class="card">
+  <h2>Quick Recap</h2>
+  <p class="recap-text">This staff meeting focused on reviewing project updates and discussing ongoing initiatives across engineering and geo teams. The team discussed the status of various projects including the Schlumberger AI project which was put on hold for 3 months, with the team exploring alternative tools like Claude and ChatGPT for potential cost savings. They reviewed challenges with data integration in ODW, including missing volumes in general tables and ongoing issues with North data that are preventing asset development migration. The team also discussed plans to outsource some reporting work, with <strong>Lester</strong> and <strong>Mario</strong> tasked with creating a proposal for outsourcing both Spotfire and AWS conversion projects. Additionally, the group addressed network connectivity issues, with <strong>Bruno</strong> gathering feedback on wired vs VDI connections for various applications like ArcPro and Interactive Petrophysics. The conversation ended with a review of project status updates across different teams, including progress on Berry asset data loading and various geo-related projects.</p>
+</section>
+
+<!-- 5. DETAILED SUMMARY -->
+<section class="card topic-section">
+  <h2>Detailed Summary</h2>
+
+  <details>
+    <summary>AI Project Status Review</summary>
+    <div class="detail-body">The team discussed the status of various AI projects, including the Schlumberger AI project which has been put on hold for three months while they explore more cost-effective alternatives like Claude and ChatGPT. Irene's testing with ChatGPT showed promising results, particularly for creating wellbore diagrams. The team is also evaluating Lean Solutions as a potential option, though progress on this is limited. Darcy was mentioned as a third-party consultant who will help evaluate and minimize the noise from various AI companies seeking partnerships, as there has been pressure to implement AI solutions faster.</div>
+  </details>
+
+  <details>
+    <summary>Data Query Tool Effectiveness</summary>
+    <div class="detail-body">The team discussed challenges with a data querying tool, focusing on its effectiveness for users with varying levels of data model knowledge. Lester shared his positive experience using the tool but acknowledged that users need to understand the underlying data structure to get accurate results. Mario and Nora suggested testing the tool with a more complete data model and reaching out to Nancy about enterprise data models. The discussion highlighted concerns about users not understanding data definitions, particularly around terms like "active," and potential issues with query discrepancies when the tool is used by less experienced users.</div>
+  </details>
+
+  <details>
+    <summary>Centralized Reporting Team Proposal Discussion</summary>
+    <div class="detail-body">Elena discussed the need for a centralized reporting team, particularly for corporate side support, and proposed outsourcing some work including the Spotfire project. Lester agreed to work with Mario and Nora to create a proposal outlining the specific needs, benefits, and costs of bringing in additional resources, including the potential for handling AWS Spotfire conversions. The team needs to determine the duration and specific responsibilities of any new resources, with Elena noting that one report currently takes about a month to complete.</div>
+  </details>
+
+  <details>
+    <summary>Data Migration and Project Planning</summary>
+    <div class="detail-body">The team discussed migrating queries and views from AWS and Tableau, which will be discontinued at the end of the year. Lester requested Mario to set up a meeting to review Spotfire reports and evaluate them for inclusion in a proposal. Mario suggested prioritizing easier migrations and potentially outsourcing them in phases. The team also discussed the need for a strong project manager for a centralized team of five contractors. Bruno confirmed the next earnings call is scheduled for May 6th, with expectations for strong quarterly performance despite some delays due to PSCs. Lester raised concerns about missing well volumes in the general ODW tables, which Elena explained was due to integration issues, particularly with North data.</div>
+  </details>
+
+  <details>
+    <summary>Data Integration and Outsourcing Discussion</summary>
+    <div class="detail-body">The team discussed data integration issues, particularly regarding missing Meric ID associations in EKPSPP but not ODW. Elena explained that IT and Diana had differing views on responsibility for integration failures, with IT claiming it's the team's responsibility despite being end users. The team discussed potential outsourcing of tasks, including K2 forms processing, with Camila and Nora agreeing that Matt's team could take over the K2 forms maintenance. Camila also reported that new oil and gas account screens were implemented the previous day, eliminating the need to email IT for backend updates.</div>
+  </details>
+
+  <details>
+    <summary>Network Connection Options Discussion</summary>
+    <div class="detail-body">The team discussed network connection options, with Bruno exploring whether wired connections or VDIs would be more beneficial. Elena reported minimal performance differences between wired and wireless connections, while Mateo experienced issues with VDI persistence. The group identified that VPN connectivity was the main reason for needing persistent connections, particularly for overnight processes like data loading in IP and Studio. Diego agreed to test IP performance on a CMBS Company Made By Student laptop in Elena's office to compare with VDI performance. The conversation ended with a reminder from Diana that all IT requests should be copied to her for tracking purposes.</div>
+  </details>
+
+  <details>
+    <summary>Bridge Project Implementation Challenges</summary>
+    <div class="detail-body">The team discussed ongoing challenges with the bridge project implementation, where Bakersfield explained that the estimated cost for berry-related work was considered expensive compared to the previous CMBS Company Made By Student approach. They reviewed action items from the previous month, including addressing CalGem name discrepancies (missing hyphens) and concerns about duplicated effort with the IOCC team. The discussion concluded with a review of 30-day accomplishments, though the specific details were not fully captured in the transcript.</div>
+  </details>
+
+  <details>
+    <summary>Data Integration Projects Status Update</summary>
+    <div class="detail-body">The team discussed the status of various data integration projects. Arin confirmed that the GIS integration for data analytics is complete, with all asset development data loaded into Studio, though enterprise layer integration remains a longer-term IT project. The team marked the water disposal project as complete and applicable to all assets, not just Nicolas. For the Tableau to Spotfire project, Lester confirmed it remains at 45% completion. Regarding the WellView to Open Wells project, Camila indicated she hasn't started work on it yet and suggested scoping as the next step.</div>
+  </details>
+
+  <details>
+    <summary>Geo and Engineering Projects Progress</summary>
+    <div class="detail-body">The team discussed progress on various geo and engineering projects, including survey loader for Berry Assets, EarthCOP Open Projects, and data integration efforts. Sofia reported that engineering analysis needs to be finalized, with a meeting scheduled to address this. Arin noted that once temperature survey automations are complete, many major projects will be finished, and suggested removing the EarthCOP Open Projects slide from future meetings. The team also reviewed updates on data loading progress, with Josue reporting that additional steps have been identified and a meeting with Adam provided guidance on next steps. The conversation ended with a discussion about potentially moving the roundtable meeting to a quarterly format after the integration with Berry is complete.</div>
+  </details>
+
+</section>
+
+</main>
+</div>
+  <script src="meeting-notes-widget.js"></script>
+  <script src="page-counter.js"></script>
+
+</body>
+</html>
+
+
