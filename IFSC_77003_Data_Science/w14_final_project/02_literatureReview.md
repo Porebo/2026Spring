@@ -1,25 +1,81 @@
 # Part 2 — Literature Review
 
-## 2.1 Business Intelligence Infrastructure and Enterprise Data Strategy
+## 2.1 Balakrishnan et al. (2020): Data Strategy as the Foundation for BI Value
 
-Business intelligence tools occupy a specific layer within a broader enterprise data architecture. Zierz and Lordsleem Junior (2026) describe BI as a set of methods and technologies that transform data from multiple sources — including spreadsheets, databases, management systems, and cloud services — into dashboards, dynamic reports, and accessible analytical views. Major platforms such as Tableau™, Spotfire™, Power BI, and Qlik sit at this visualization layer and derive their usefulness from curated data environments rather than from their software features alone. Balakrishnan et al. (2020) reinforce this point by arguing that organizations create data-enabled value through coordinated stages: data extraction, transformation, centralization, and delivery, all supported by appropriate governance and architecture. Together, these perspectives show that a BI migration is not only a software replacement but a transition within a larger enterprise data-to-value process. Challenges such as data standardization, infrastructure compatibility, and user resistance — identified by Zierz and Lordsleem Junior (2026) — are organizational and technical in nature, not merely cosmetic.
+Balakrishnan et al. (2020) argue that organizations create value from data through connected stages: extraction, transformation, centralization, governance, and delivery. Their framework is important to this project because it positions dashboards as downstream products of a larger data architecture rather than standalone tools. In the Aera-to-CRC case, this supports the interpretation that Tableau™ reports depended on curated warehouse structures and established business rules, not only on visualization choices.
 
-## 2.2 Dashboards as Decision-Support and Knowledge Artifacts
+For the primary research question, this paper supports the need to preserve upstream logic (data definitions, transformations, governance assumptions) when migrating reports to Spotfire™. For the secondary question, it implies that reports with heavier dependence on complex upstream transformations will carry higher migration labor and risk.
 
-Research across several fields converges on the view that dashboards are more than visual outputs. Caglar (2016) found that administrators valued dashboards as a "one-stop shop" for monitoring progress, sharing information, and supporting timely decisions, treating them as practical working environments embedded in daily workflow rather than passive reporting screens. Banerjee et al. (2025) extend this argument to show that dashboards can serve as repositories of organizational knowledge, supporting evidence-driven decision-making and long-term continuity across personnel changes. Cogan et al. (2025) add a design dimension, demonstrating that dashboards encode stakeholder needs, interpretive conventions, and workflow logic through iterative, user-centered development. In this synthesis, the professional expertise embedded in a dashboard resides not only in its backend SQL and formulas but also in its visual organization, filter logic, and interaction patterns — all of which guide how users understand and act on information. Pham et al. (2013) further show that interactive visual analysis enables professionals to explore complex data, generate hypotheses, and develop understanding in ways that static charts cannot support. Taken together, these studies establish that dashboards are knowledge artifacts as much as they are technical tools, and that losing access to them without structured preservation risks losing the accumulated analytical meaning they carry.
+## 2.2 Zierz and Lordsleem Junior (2026): BI Platform Adoption and Migration Friction
 
-## 2.3 Tacit and Explicit Knowledge in Organizational Settings
+Zierz and Lordsleem Junior (2026) describe BI tools as organizational systems for integrating heterogeneous data into decision-ready outputs. They also identify common implementation barriers, including interoperability issues, standardization gaps, infrastructure constraints, and user resistance.
 
-A critical theoretical lens for this project comes from knowledge management literature on the distinction between tacit and explicit knowledge. Schreiber et al. (2011) explain that explicit knowledge can be codified, communicated systematically, and stored in documents, repositories, and formal systems, while tacit knowledge is intuitive, experience-based, and context-specific — often transmitted through mentorship, observation, and informal interaction rather than through documentation. In large operational organizations, significant portions of domain expertise exist only tacitly, moving through professional relationships and accumulating in the judgment of experienced workers. Tableau™ dashboards at an organization like Aera Energy occupied an interesting middle position: they were artifacts through which portions of tacit domain knowledge had been converted into explicit organizational form. SQL queries, calculations, filters, data relationships, and display conventions that engineers and geologists once carried in their heads were partially codified into dashboard logic over years of iterative development. This makes platform migration a knowledge-preservation challenge, not merely a software conversion task — because the explicit layer of expertise encoded in reports must be transferred alongside the reconstruction of visual interfaces.
+This paper strengthens the business case by showing that migration challenges are usually socio-technical, not just technical. For this study, it reinforces that preserving institutional knowledge requires handling both report logic and organizational adoption realities. It also supports the view that migration effort rises when reports depend on non-standard integrations or when user workflows are tightly coupled to legacy platform behavior.
 
-## 2.4 Platform Migration: Technical and Organizational Risk
+## 2.3 Caglar (2016): Dashboards as Operational Decision Environments
 
-Literature on system migration confirms that the technical complexity of moving between platforms is regularly underestimated. Panichelli (2022) describes migration as a multi-stage effort requiring data assessment, workflow review, validation, user preparation, and post-migration monitoring. His experience report highlights that hidden problems emerge most often from inconsistent data, poorly understood workflows, incomplete historical information, and insufficient preparation rather than from technology alone. This finding is directly applicable to BI platform migration, where the hidden logic of source-system reports — embedded calculations, custom filters, data source dependencies, and interaction behaviors — must be understood before successful reconstruction can begin. Panichelli's (2022) emphasis on pre-migration discovery aligns with the core challenge described in this study: that each Tableau™ report required substantial reverse engineering before rebuilding in Spotfire™ could begin, because the embedded knowledge was not documented and could not be extracted without deliberate analysis.
+Caglar (2016) finds that users value dashboards as a centralized environment for monitoring, sharing, and decision-making. Although the context is education, the core insight is transferable: dashboard value comes from workflow utility, not only from visual output.
 
-## 2.5 AI-Assisted Knowledge Extraction and the Role of Prompting
+Applied to this project, the finding supports treating Tableau™ assets as operational infrastructure for engineers and analysts. For the primary research question, this means preservation must include usability intent and decision pathways, not only data fields. For the secondary question, reports that are deeply embedded in daily workflow likely create higher transition risk if recreated without equivalent interaction patterns.
 
-Emerging research on AI use in technical and analytical domains suggests that AI can support complex knowledge-extraction tasks but only when deployed with domain awareness and structured guidance. Sherman et al. (2025) demonstrate that fine-tuned large language models substantially outperform baseline models on domain-specific analytical tasks, using a geospatial case in which specialized training and structured prompting enabled reliable translation of natural language into executable Python code. This finding supports the broader claim that AI is most effective not as a generic tool but as a domain-grounded assistant shaped for a specific workflow. Bhatti (2026) reinforces this view from a prompt-engineering perspective, showing that AI output quality depends heavily on how prompts are designed, refined, and aligned with a clear purpose. In both studies, the implication is the same: AI becomes useful for specialized extraction tasks when paired with disciplined, domain-aware prompting and human oversight rather than when applied casually.
+## 2.4 Cogan et al. (2025): User-Centered Design Encodes Domain Expertise
 
-## 2.6 Research Gap
+Cogan et al. (2025) show that dashboards evolve through iterative collaboration with stakeholders and that this process embeds interpretive logic into the final artifact. The study highlights that dashboard meaning is co-produced through layout, emphasis, sequencing, and interaction design.
 
-The literature reviewed here establishes a strong foundation for understanding BI dashboards as knowledge artifacts, organizational memory tools, and technically complex migration targets. It also confirms that AI can support knowledge-extraction workflows when appropriately structured. However, no study identified in this review directly addresses the problem of extracting, documenting, and preserving the institutional knowledge embedded in enterprise BI dashboards during a post-acquisition platform migration in an operational industrial setting. Existing migration literature focuses primarily on database and records systems rather than on analytical reporting platforms. Knowledge management research addresses tacit-to-explicit conversion in general organizational terms but does not examine how BI dashboard artifacts specifically carry and risk losing that knowledge during migration. This gap justifies the present study, which uses a real-world practitioner case to examine how AI-assisted discovery processes can support knowledge preservation during Tableau™-to-Spotfire™ migration in a post-acquisition upstream oil production environment.
+This paper is directly useful for the migration problem because it broadens what counts as “knowledge” in a report. Knowledge includes not only SQL and formulas but also design choices that guide interpretation. For migration risk, this implies reports with more custom interactions, specialized layouts, or domain-specific storytelling are more labor-intensive to reproduce with analytical fidelity.
+
+## 2.5 Banerjee et al. (2025): Dashboards as Organizational Memory Mechanisms
+
+Banerjee et al. (2025) frame web-based dashboards as mechanisms for organizational monitoring, knowledge sharing, and innovation continuity. Their work supports the argument that dashboards can preserve institutional memory beyond staff turnover.
+
+For this project, the implication is clear: retiring a legacy BI platform without extraction protocols can produce knowledge loss, not just software replacement cost. This paper strengthens the business relevance of the study by linking dashboard continuity to enterprise performance and decision stability.
+
+## 2.6 Pham et al. (2013): Interactive Visualization as Sense-Making Infrastructure
+
+Pham et al. (2013) demonstrate that interactive visual analysis supports exploratory reasoning, hypothesis generation, and pattern discovery more effectively than static reporting. Interactivity is therefore a core part of analytical value.
+
+In this migration context, the study supports evaluating whether reconstructed Spotfire™ reports preserve exploratory capabilities that existed in Tableau™. For migration labor and risk, reports with high interaction density (filters, drill paths, linked views) are likely to require more reverse engineering and more user validation cycles.
+
+## 2.7 Schreiber et al. (2011): Tacit vs Explicit Knowledge in Organizational Transfer
+
+Schreiber et al. (2011) distinguish explicit knowledge (codified and transferable) from tacit knowledge (experience-based and difficult to formalize). This distinction provides a theoretical lens for interpreting report migration.
+
+In this study, Tableau™ reports can be viewed as partial codifications of tacit domain expertise. The implication for the primary research question is that preservation must target explicit artifacts (queries, calculations, structures) while acknowledging residual tacit knowledge that requires expert interpretation. For migration risk, reports built on highly contextual business logic are more vulnerable when original authors are unavailable.
+
+## 2.8 Panichelli (2022): Migration Failure Risk from Incomplete Discovery
+
+Panichelli (2022), writing on CMMS migration, emphasizes that failures typically arise from poor discovery, unclear workflows, inconsistent historical data, and weak validation planning. Although the domain differs, the migration principles map closely to BI platform transitions.
+
+This paper strongly supports the need for a pre-migration discovery phase in the Tableau™-to-Spotfire™ workflow. It also provides practical support for the secondary research question: labor and risk increase when report internals are poorly documented, when dependencies are opaque, and when validation criteria are not defined before rebuild work starts.
+
+## 2.9 Sherman et al. (2025): Domain-Tuned AI for Technical Translation Tasks
+
+Sherman et al. (2025) show that domain-tuned LLM workflows can substantially improve technical translation tasks compared with generic baselines. Their geospatial example demonstrates that structure, domain context, and constrained prompting improve output reliability.
+
+For this project, the paper supports using AI-assisted extraction to scale discovery across many reports, especially for parsing logic patterns and documenting technical components. It also cautions that performance depends on domain grounding, so AI must be embedded in a controlled workflow with human review.
+
+## 2.10 Bhatti (2026): Strategic Prompting as a Quality Control Mechanism
+
+Bhatti (2026) argues that AI quality is strongly determined by prompt design, iteration discipline, and alignment to task intent. The paper is not about BI directly, but it is highly relevant methodologically.
+
+For this study, Bhatti supports the proposition that AI-assisted migration discovery should use repeatable prompt templates, scoped objectives, and verification checkpoints. This is important for preserving analytical fidelity and for reducing inconsistency across extracted report documentation.
+
+## 2.11 Integrative Synthesis, Research Questions, and Gap
+
+Taken together, these ten papers support the following conclusions and implications:
+
+1. BI reports are organizational knowledge assets embedded in enterprise data architecture and user workflows (Balakrishnan et al., 2020; Zierz & Lordsleem Junior, 2026; Caglar, 2016; Cogan et al., 2025; Banerjee et al., 2025; Pham et al., 2013).
+2. Knowledge preservation during migration requires both technical extraction and interpretation of tacit context (Schreiber et al., 2011; Panichelli, 2022).
+3. AI can improve extraction scale and consistency when domain-tuned and prompt-disciplined (Sherman et al., 2025; Bhatti, 2026).
+
+### 2.11.1 Relation to Research Questions
+
+1. **Primary Research Question**: The literature indicates that institutional knowledge preservation during Tableau™-to-Spotfire™ migration requires four linked actions: discovery of embedded report logic, extraction and documentation of dependencies, reconstruction that preserves workflow intent, and validation with domain experts.
+2. **Secondary Research Question**: The literature indicates that migration effort and failure risk are shaped by report characteristics, especially calculation complexity, interaction density, hidden data dependencies, and context-specific business rules that are difficult to infer without expert input.
+
+### 2.11.2 Remaining Gap
+
+The remaining gap is specific and practical:
+
+1. Current literature does not directly examine post-acquisition migration of large enterprise Tableau™ inventories to Spotfire™ in an upstream oil production environment where workforce turnover and platform standardization pressures occur simultaneously.
+2. This project addresses that gap with a practitioner-grounded analysis focused on preserving decision-support capability while reducing institutional knowledge loss.
