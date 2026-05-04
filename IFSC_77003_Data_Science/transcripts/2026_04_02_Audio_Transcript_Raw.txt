@@ -1,0 +1,400 @@
+IFSC 77003 - Audio Transcript (Raw)
+Date: 2026-04-02
+Topic: IOT Career Prep
+Duration: 01:11:31
+Source: Zoom transcript panel DOM
+
+Elizabeth Pierce00:00:04Well, welcome, everybody! We're going to continue our talk of, IoT, which is a great example of streaming, data, and I…
+I have a couple of resources here under our instructional materials that I wanted to share with you.
+And, the first one I found, which I thought was good, was just a little, article, and it's got a lot of advertisements, but what I like about it is it talks about, so…
+what if you want to get into the IoT field? What are some of the skills that you need to bring together? And, the… you…
+at this list, you'll see that with IoT, it's, I want to say, very interdisciplinary. There's lots of different things that, you need to know. But, excuse me.
+But you can see that, just learning, some programming languages, whether it's JavaScript, Python, or C,
+is a very useful, skill to, to have. And then, getting to know, some things about hardware. So, not only things like the, the sensors.
+But how, you could, use a microcontroller, like an Arduino or Raspberry Pi, to help
+Direct, how you want your, sensor system to operate, in terms of, how you're going to get the information off the sensors, what you want to process or do with the sensor information, and how you want to direct it.
+Of course, another useful thing, and we kind of saw that, last time, is, you know, once you get the IoT data, what do you do with it? And certainly, this could be, could be going into a,
+a server application that's going to use this information to make decisions, but a lot of times we like to visualize that sensor information. So we saw last time the idea, well, you might want to build a dashboard and have some visualization graphics so you can
+Actually kind of, visualize, what's going on, with, with the, with the sensor readings.
+And, as I mentioned, yeah, there's some nice examples of, of that. Right there, yeah, is what we mean by, yeah, having some facility,
+With how to, work with dashboard tools, or, whether you're… well, you could be doing this from scratch, but a lot of people, will use, software to help them, easily, create, dashboards.
+Networking, that makes sense, because, you know, you're collecting the sensor data in one location, and you gotta figure out how you're gonna get that data, uploaded to the cloud, or some, server, so you can, collect that information. And typically, you're often collecting that data
+might be, out in an agricultural field, or you're trying to, collect that information, you know, in a hospital environment, or you may be out in the woods. So, trying to figure out,
+How, is there a network available, or do you need to essentially, create your own hotspot
+So that you can get the information.
+And then, data management, and of course, that makes sense because, you're gonna be…
+Generating this, streaming data. And so, figuring out how you're going to
+Store this information, if you're going to store it.
+But even if you're just processing it, you know, in real time, still, there's going to be a certain amount of time that you do have to either keep it in memory or keep it in storage.
+And, security, that is becoming,
+Of course, a big thing for really everything we do in IT. Do we need to encrypt these sensor readings? How do we secure? How do we prevent our stream of data from being, jammed, from being disruptive?
+So it's not just unauthorized access, it could be malicious attacks if somebody wants to essentially disrupt our sensor network by basically jamming, corrupting the sensor signals.
+Getting to know cloud computing, is very helpful, because, of course, most of this stuff now is, while it eventually ends up on some physical machine,
+More and more, we use… we'll use some sort of cloud service, to basically, so that we can scale with the sensor signals, and so that,
+we'd be able to, more easily, build out our IoT applications.
+But certainly, you know, it could start off as simply as you're getting the data to your own personal machine, but for scalability reasons, you know, having a cloud service certainly handles the idea that as you grow, you can then
+Purchase or acquire more cloud resources.
+And then it fits in very nicely with, the data science, because, when you
+Generate and collect all that streaming data, figuring out how to process and analyze it.
+And, and then, experimenting with the, raspberry, pie. This kind of goes back to, you want to kind of practice, saying, well, how would I build
+an IoT system, and that means that you're going to have to have, some type of microcontroller.
+Now, those, 11 things are sort of the, the different,
+knowledge, bases that you need to acquire. But I'm gonna show you, if you go to, like, Amazon.
+and you just Google Raspberry Pi, IoT Kit, if you might say, well, how do I get started? Well, if we just go and look at… let's grab the first one from, Sun Founder. You know, this is a nice example where, you know.
+for 70 bucks, you know, what you, you get here is, well, here's, this is pretty good here. Let me see,
+You basically get, like, a science kit. It's got, yeah, it's got, everything, to, to set up various types of IoT, experiments.
+It comes with one of these raspberry Pi, and it comes with, you know, online tutorials, and usually, check this out, it has a… it comes with recipes for 117 different types of projects.
+It comes so you can practice coding with what they call MicroPython, or, and CC+. And, notice here, it's,
+as they say, this is… if you say, well, how, how did I get to,
+get some IoT hands-on skills. Well, this is a nice example of how, you might start off simply as a hobbyist, saying, hey, I'm gonna buy, one of these, IoT kits.
+And just start getting ideas, you know, just following the tutorials.
+Oh, here they have some, you can set up a plant monitor, an IoT web app, and so they've got these different, advanced projects.
+And, give you some exposure, and, notice they have, different types of,
+Of sensors, that you can, and, and pieces of equipment that you can play around with.
+And they come in multiple, let me put it this way, the kits come in multiple sizes, you know, in terms of, what you want to play around with. But,
+But this is, like, if you're asking, well, where would I find a kit that has a bunch of the stuff that I need to, to get started? This is,
+yeah, this is kind of where, where you, where you could get, get, get started.
+Okay?
+And we're gonna just close down, these at a moment. Okay.
+All right.
+The other thing that is readily available online are just some basic tutorials, and Tutorial Point is kind of one of my favorite sites for tutorials.
+And this covers a lot of things. I'll just kind of quickly glaze over this, because a lot of these things we talked about on Tuesday.
+But it's the idea that,
+IoT, is kind of linked with, with AI, because when you think about it, as, we are trying to move from
+just… Traditional, you know, analytics, machine learning, kind of what we thought was, you know,
+I want to say old-school AI, which has been around for a while, and now we're moving to generative AI and agentic AI, and now we're trying to look
+to, you know, where would AI go to the future? You know, one of the limitations of AI is that if you really want to make it
+you know, smarter and smarter, it really needs the ability to collect data. Like, when you think a human being, we have our senses. You know, we don't need somebody, to…
+put the information into us, we can use our eyes, our ears, our sense of taste and smell and touch to gather information and, to make decisions. So, this idea that,
+needing to have sensors, to collect data and be able to feed it, you know, into systems. That's essential for making the systems smart.
+As they say, the conductivity, this is a really interesting area that, you know, they talk about how the world is getting noisier because we have all these devices that need to send, signals.
+And, of course, the, the, designing different types of sensors to, collect, different types of measurements.
+And then, the idea that,
+Having the… the ability to interact.
+It means that now we're not just passively collecting, we can maybe have systems that we can interact with, and so they can dynamically, maybe adjust, or allow us to, you know, maybe ask to focus on it more on a different part of our sensor network, because we want to collect more information from that area.
+And, and as you can see from those kits, you know, a lot of the devices are really quite small. I mean, we can put sensors in all kinds of different places.
+And, yeah, and we talked about a number of ways that,
+IoT can be used, and we'll talk about the disadvantages in a moment,
+But in particular, the security and privacy.
+the complexity, in some ways, means, yeah, there's going to be a lot more jobs, you know, maintaining these types of systems. And,
+design issues? You know, how do we, you know, as we
+you know, as we build these IoT systems, how do we make sure that we can mix and match and connect them? That becomes an issue. And again, kind of related to the security and privacy and ethics is the compliance.
+So some of the other things that they have here… so we talked about the connectivity, of course, identity of things, you know, if we're getting information from a sensor that's, you know.
+We really need to know who it is we're talking to. So, being able to identify, so is this information coming from one of our sensors? Is that sensor, still attached to the thing that we want to be, measuring? So,
+And so this idea of giving, yes, all these devices have to, you know, have a… have an identity, and yes, we do have to have a means of authenticating them, because otherwise, anybody could get onto our sensor network and start
+Feeding us, you know, all kinds of information that may or may not be correct.
+Okay, try to make the systems smarter, try to make them more, dynamic, adaptable. The idea of scalability is an issue.
+how can we, make sure that the IoT system can update itself?
+Then the, of course, then, you know, what kind of architecture, that we, that we need in order to build… build the system and keep all the devices, all the different technologies and protocols working.
+Again, security is an issue, the network is an issue, and then the, you know, the data, you know, is an issue.
+And, some of the,
+Hardware, of course, is, is, you know, is, is the sensors, and, you know, here's an example of one.
+But some of the different things that we can try to,
+sense. This gives you an idea, accelerometers, gives us, the magnetometers, gyroscopes, acoustic sensors, for sound, pressure sensors, humidity, temperature, proximity sensors, image sensors, light sensors, gas RFID sensors.
+micro flow, sensors. So here's just some of the different types of things that we can be capturing, and then the question is, you know, if you have temperature, if you have humidity, if you have proximity,
+Okay, what…
+what do you do with that… that information? How can you use it to… to make decisions?
+Of course, when you think about IoT, your phone is an example of an IoT device, and then all those wearables, and
+We just had, Dr. Michael Greer, who's interviewing for a position, and he was talking about his area is the,
+the biomedical informatics, and so all the medical, equipment, you know, pacemakers now are, examples now of a, essentially a wearable, device. And,
+You know, modern pacemakers, you can go into your doctor's office, and your doctor, can adjust your pacemaker, essentially remotely.
+Does not have to operate or, or, or,
+or, you know, does not have to physically touch the pacemaker to adjust it. But again, the question comes, you know, could somebody
+Assassinate somebody, you know, if they could mess up their, their, their pacemaker.
+But we're seeing everything from, helmets, glasses, jewelry, collars,
+Watches, wristband, rings, clothing, backpacks, socks, shoes, these are all examples of, where,
+an opportunity for an IoT device.
+And,
+And then in terms of being able to interface with your system, you might be using a desktop computer, you might use your cell phone and an app on your phone.
+to interact with your IoT system, you might have a tablet. And then, of course,
+Interfacing with, network, devices.
+And then, generally, there's,
+particular, IoT, software that makes it, you know,
+Easy for you to then, you know, design the instructional,
+programming code, for what you'd like to have done. There are the various protocols that, will… that you can,
+make use of in order to, to transmit, and then, and certainly, there are tools available for, analyzing, your data, for, designing dashboards, or for, doing various other,
+machine learning or AI applications on the data that you're harvesting.
+Let's see… Let's see, what else here?
+Okay, so, somewhat… what are some of the examples of those,
+Major, protocols, and,
+So, some of these are, RFID technology, which is the two-way radio transmitter receivers to identify and track tags associated with objects.
+And, there's also NFFC, which is communication protocols for electronic devices, typically between a mobile device and another device.
+a low-energy, Bluetooth, you know, for being able to,
+get your different parts of your system to talk to each other. Of course, you know, we mentioned, you know, often you're in areas where you're not going to be able to physically plug into a network, so you've got to think about how
+First of all, one, what is going to be your energy source? Are you going to have a battery? Is this going to be a solar
+chargeable, type of cell. But then, making sure that whatever communications, that you're doing, that you've got a…
+try to make sure it's as low energy as possible, because generally, yeah, usually when you're using, IoT, you don't have access to, you know, a standard, you know, outlet.
+So, you got, radio, protocols, that, might be a possibility, for being able to, hook your devices together,
+And, some of the, let me see,
+There's something called LTEA, and, Wi-Fi, direct.
+So, you know, there's, there's sort of, some, you know, specialized, networking.
+and communication, protocols.
+Let's see if I can get this page to come up.
+And then on,
+Okay.
+And this is the typical, schematic, is that, you know, if you think of this in terms of, of layers, you've got, the…
+The sensing layer, where you're trying to figure out how to set up a sensor network, so that the sensors are able to, to, collect their data, and then essentially be able to transmit their, information, you know, to,
+that,
+You know, a sensor communication point, so that data can then go through the network, and that you could then process the data, and then it ends up where some application can start making use of that information.
+Okay.
+So we see here, yeah, first stage is sensors, devices, the actuators, which collect data from the physical environment, process it, and then sends it over the network.
+Then you've got the network, which is the gateways, the data acquisitions that convert the data collected from the sensors into digital data, and also at this layer, you could do some malware detection and some basic data management.
+And then… This stage is where you've got to do any pre-processing data, and
+Then, send it on to, data centers, and then this is the stage at the application layer, where now you've got your, you're at the cloud, and you can start,
+Using this data, for various, applications.
+And you'll notice here, one of the things they do in this tutorial, and is to just go through, look at all the different applications here.
+here.
+So, they have some of the, the, the…
+The, the, the common uses is, engineering, industry, manufacture, putting it into infrastructure, like, like bridges to detect, you know, when a bridge component might be, wearing,
+smart cities, government and, and safety, home and office, health and medicine. But notice, it's getting used in, in media, marketing and advertising, environmental, monitoring,
+Manufacturing, energy, we talked about the healthcare, building, transportation, education, law enforcement, consumer, applications,
+And then, it also takes a look here at, oh, it goes into some…
+Additional, topics, than, looking at some of the different,
+IoT, applications. Let me just take a look at these.
+Yeah, so now it kind of finishes off the tutorial looking at a bunch of, of different, IoT, types of, of systems, that,
+people can, can purchase when they're trying to build, their, their IoT, networks.
+So that is a, A tutorial that you can go through, just to get an idea of
+again, just… that… I want to say, a basic feel for what goes into building an IoT system.
+And also, Dr. Dagtas, next week was going to, go into, some examples of, of the, of, of the, IoT.
+Okay.
+And,
+The last thing in this area that I wanted to show you are some of the challenges with IoT.
+So,
+probably the two biggest area is the privacy and the security. Lots of examples now where, what was it? Was it… it was the Apple, the Apple, tags?
+That, you know, people could put on their luggage to track their luggage, but then people were taking those Apple tags and putting it on people's vehicles. So it kind of gives a whole new aspect to the ability to… to stalk someone, or to be able to track
+someone and their, their movements. And so, one big concern with, with the IoT, particularly, you know,
+you've got somebody that have a wearable device, probably one thing that's getting transmitted is their… the time, the location, what's going on in the environment around that person, and you can imagine
+As you collect more and more of that information, I mean, it's really…
+kind of like that big brother, that folks can be, getting to know who you are, who you associate with, who you hang out with, and can build this very, detailed, book.
+really, not just your digital footprint, but everything about you can be captured and correlated. And I think that's one of the big concerns now, even as we move into AI, is…
+now we're generating a lot of information, but we really don't have the time and the resources, except if you're, like, the CIA, and there's a particular person that you're really interested in. We don't have the resources to pull all those different things together.
+But as we move into AI, the idea that, oh, you know, we can start looking at anybody, and
+Taking all of that sensor data, their cell phone, how they're using, you know, their digital wallet, their wearable devices, and now we're building all of this information about them, correlating them with, you know.
+images of, webcams that are, as they, you know, walk down the street. This is something that, a lot of ethicists are, are, are concerned about.
+And of course, we've got the, the,
+advances in the cloud and the networking technologies. So, yeah, so this is an area.
+In terms of the legal field, trying to keep up with, how do you… Create, enforce,
+The, good practices.
+When it comes to the collection, use, and disclosure of IoT data, that's… that's gonna be a… a big issue.
+Is there a way to do de-identification of IoT data?
+Dr. Greer, who spoke today, said, well, that's a big thing in the healthcare area, because a lot of times we want to use this data for research,
+But we don't necessarily need to know the person's exact, you know, name, social security number. We just need to know information about patient A, patient B, to do
+to look for patterns and trends in their health related to their treatment. And so a big thing that he works with, when he's doing, working with doctors to analyze clinical data is to say, yeah, let's, let's, let's take out the…
+the personal identifiable information, because all we need is really the rest of the information, but we don't need to know it's exactly that person. And so this is what's going on with IoT. You know, if you're a city, and you're looking at traffic patterns.
+You really just need to know, hey.
+there are these vehicles, or, you know, these objects traveling at this rate a speed at this time of day. We really don't need to get down to, well, it's so-and-so driving at that time.
+So this, so how do we, de-identify, as, of this information.
+Consent is an issue.
+As we're collecting all this information, yeah, how, yeah, is… are there situations where we may be, picking up these signals, but we really, don't have the people's, consent?
+Capacity is an issue, too, because, they're putting IoT devices into toys. Well, who gets the toys? Little kids. Little kids are not considered capable of, of, at that, if they're 5 or 6 years old, they don't have the capacity
+To, to give, consent. So, so this is an issue, Because,
+Could you get yourself into trouble where, you know, you have little kids wearing wearable devices? Again, that's a… that's a… that's a question.
+The idea of whether, it is, a genuine, choice,
+And, this… this voluntary couldn't…
+could it be a big issue, meaning, if…
+I'll give you an example, if I have to, if, like, this way, if…
+If you have a store using IoT,
+And they say, well, you have to consent
+to being part of our IoT you know…
+application in order to shop at our store. Well, you might say, well, gosh, I have to get my food for the week, this is the only supermarket
+available to me. So, so this is the idea that, and you see this in the California Consumer Protection Act.
+One of their,
+parts of that Protection Act is you cannot discriminate someone from opting out or refusing to give their consent to using their data. So this is this idea that you can't
+say, well, it's voluntary in the sense that, you know, if you don't want to share your data, well, then go someplace else. Sometimes people don't have a choice, in terms of, for example, think of emergency rooms, think of,
+Being able to attend a university, think about, being able to, shop or, or enter certain areas,
+may not be easy for you to deny your consent, so,
+This is kind of also showing up,
+This is actually kind of ties in. We had a meeting with the department chairs, met with the dean, and we met with the,
+Chief Technology Officer at UALR. And think about it,
+if you want to access the UAR network, you have to be able to multi-authenticate. That means you have to have a phone, or if not a phone, you have to have some type of device that can be used to authenticate.
+And so, this is,
+You know, so one of the questions is, you know, that we came up is, is, you know,
+Should, you know, who should… you know, if you need a phone to work, should not the university be, your employer, be, compensating you for part of the cost of
+Having the phone, since you need the phone in order to be able to
+to do your job. And, at some companies now, they're taking the viewpoint that if you're going to work, here's the company phone, this is what you use for your company's stuff, and then if you want to have your own phone for your own personal business, that's
+That's fine. And so it's… that's a very interesting question. You know, do, you allow employees to do both… to mix both their business and personal on the same phone? Do you require different devices? Well, how many devices
+is it convenient to carry around in your pocket? Most folks, if they want to separate, then you have the inconvenience of having a personal phone and a…
+a business phone. And what if you have… what if you're working for two employers? Would you have, you know, a phone for employee A, a phone for employee B, and another device for your home stuff?
+So this is, I think, going to be very interesting. I think, coming up with,
+new types of devices that allow you to more easily segment. You know, here's a device, and
+here's your business mode, and here's your personal mode, and if you work for multiple employers, you might have multiple business modes. And if you could somehow separate or segment, so you can have one device, but
+you know, you switch, and you have those firewalls that keep your personal stuff from being viewed by your employer A, and the stuff you're doing with employer A can't be viewed by Employer B. So this, I think,
+This is one of the things that, even at ULR, they're talking about how do our… how do we segment our network?
+And, and say, you know, hey, this, this stuff in this part of the network is very open, can be very relaxed, we don't have any sensitive financial information, however, this part of the network, is very sensitive, and…
+you know, it's a different set of… set of rules for being able to access. But again, kind of trying to.
+figure out the architecture for that is pretty, Complex.
+Another issue you have with IoT is, this idea that, it makes it easy for people to forget, they are there, or what they are doing, and so,
+And watches, doorbells, billboards can blend in the background, so we're not even maybe necessarily aware that they're using or sharing our information. And, we may also
+Forget that, we have this device on us as we're going about
+Our lives that maybe, again, we don't necessarily want to share.
+Also, this idea about, you know, what happens if
+the IoT vendor gets acquired, and you don't feel the same way about the new vendor as you did about the old vendor, again, how do we manage, how consent may change over time, updates,
+What we do,
+With how the sensors may change, whether they become inactive, or whether sensors are then updated to include features and capabilities that
+We didn't realize when we first set up the sensor network that they were going to have this, and so all of these things make, consent a very dynamic,
+area. So because things are changing, the consent you made under one set of circumstances can change very quickly. And then the question is, how often do you need to ask people, well, do you still consent, or do you still agree? And from the consumer's point of view, you can see how they could get very overwhelmed
+You know, every time there's an update.
+you have to check consent. Well, you know how that goes. It's doing updates all the time. So,
+So how, amending that is, is an issue. And again, there are certain aspects of…
+what we agree to with an IoT system, or really any computer system, but it's often, you know, it's okay for this purpose, but not for this purpose. It's okay under this situation, but not this other situation. So again,
+Trying to figure out how people would have some ability to have control over this.
+And,
+So it really comes down to thinking about what information is being collected, what is the purpose, how is that information going to be used, and
+Who's going to have access to that information, and who controls what they can do with it?
+And,
+And some of the challenges they mention is the fact that, you know, a lot of what we're doing, it's not like you're dealing with a government system where you might have some control through elected officials. Typically, you know, as we saw with that Internet of Things tutorials, usually we're going through vendors, you know, we're buying our sensors from a vendor…
+Abdul Latheef Mohammad00:43:52I've grown little cowels now.
+Elizabeth Pierce00:43:54Oh, and we got…
+Abdul Latheef Mohammad00:43:55escondro.
+Elizabeth Pierce00:43:56Oh!
+And if we have someone who doesn't realize they're not on mute.
+Oh, I think we're good now. Yeah, no, that happens.
+Yeah, so yeah, so the vendors are an issue, and the fact that these,
+And look at some of the things that you have to worry about when you build an IoT network. You have to think about the vendors, what software they use, what is their financial stability, are they going to be around, are they going to get acquired?
+Can they seek support for an IoT device?
+how often does the software get, updated? And so, knowing that you have,
+vendors and products you can trust in building your network. Yeah, that… that is… is an issue. So thinking about, hey, what's the life cycle of this
+system, you know? And, you know, is it 3 years? Is it 10 years? Is it 20 years? How often do we need to go and be replacing components of this system?
+And that, of course, gets us into interoperability. So you can see one challenge in this area is, you know, figuring out,
+how I can…
+Particularly if you're switching from one vendor to another vendor, or you're interfacing with different systems, how can you make it easy to kind of plug and play and be able to interoperate
+So, thinking about, the data formats, the types of APIs,
+Trying to figure out, you know, how can we, build a system so that we're not, you know.
+I mean… One good thing about being with one vendor is we know everything interoperates, but
+If something happens to that vendor, could that leave us without any part of our system working?
+Managing these devices, trying to figure out how to, you know.
+You know, what do we need to change about the default, configuration?
+Some of the standardization issues they mention, with this article.
+And, and, that affects privacy, security, flexibility. Accountability, if we're using a sensor system and something goes wrong and somebody gets hurt, who's responsible? Is it, you know, you know, is…
+you know, this comes down to, well, was it a problem with the sensors? Was it a problem with the network? Was it a problem with the application? Was it a problem with the data layer? And so,
+So, you can see with these… these systems, there's so many different parts, because it's… it's not just you or the vendor, but of course, you might be,
+you know, going over a, using satellite, or you're using a cloud service. So you may be using a lot of different telecom services
+to make your IoT system work, and you can see that,
+you know, if something goes wrong, it could be in part of a system that you have no control over, yet, you know, this is where, okay, so what was the liability or the disclaimers? Who's responsible in that case?
+This is also one of the things we were talking about at this morning's meeting, is, you know, increasingly, you know, when people come to campus, whether they're students, faculty, staff, guests, family members, they're bringing a lot of IoT. They're bringing their smartwatches, they're bringing their phone, they're bringing, their
+Their personal devices, and all of these things are, you know.
+can interface in, you know, through the UALR Wi-Fi.
+Okay.
+And as I say, this article, look at that, we're only about halfway through, but I'll move along here, but, because you can, look at this article itself, but some of the issues is, yeah, transparency.
+How do we make these things explicit so people are aware of them?
+You know, they do try to put up signs, but you can kind of know, if folks recall last year that, that CEO Kiss Cam.
+scandal. We had, an executive, and he went with, some of his employees to a,
+A Coldplay concert, yes. And, you know, they have signs up that, yes, we are… we have,
+you know, cameras. And, you know, they, they say we're, you know, we're, we're taking pictures, and we're, you know, putting them on the Jumbotron, and, but,
+it's easy, you know, when you're going to a concert, you know, you're not really maybe paying attention or thinking about, what that really means, in terms of, having your image, captured. So,
+And, also the, you know, being aware if you're in a public space, technically, if you're in a public space, your picture can be taken, because you're out, you know, in, in public. So,
+So kind of, kind of informing people of, of when they have privacy rights and when they, when they, do not is, is an issue.
+And anyway, this is,
+This is coming from the Office of the Victorian, Information, Commissioner. I wonder if this is, Canadian.
+Yep, Office of the Privacy Commission in Canada. But I think this is a really nice article that explains,
+Just the, the, the challenges in this, this area.
+But it really is, an area that…
+Whether we like it or not, we are moving in this direction, because the ability to take,
+people, places, and things, and make them smart, so that, we can use that information is pretty, irresistible. I mean, there are cities that you can put, sensors on a, parking spot.
+And now, the… it's just a simple light sensor.
+If it's… if it's… if the sensor is dark,
+and it's during daylight hours, that's generally a sign that there's a car parked over the sensor, which means the parking space is taken. If it is…
+A light. That generally means that the parking space is free.
+And so, you know, folks are saying, wow, I can take now a parking space, and I can make… I can digitize. I can now be collecting information as to which parking spaces are occupied, and which parking spaces are free. And now I can build an app around that. I can build an app so as people are coming into the city.
+They, you know, I take their location and where they want to go, and find the nearest available parking space, and, basically give them directions right to it, saving them gas, saving them time.
+and better utilizing, you know, available parking spaces. So this idea of being able to digitize everything.
+even just a, you know, a parking space, and turn it into, information about the status of that parking space. It just opens up so many different,
+I want to say new applications, new opportunities, so it's pretty irresistible.
+And… And so it… it is something that,
+Wanted to spend time on today because, you know, as
+You know, so often when people are talking about AI, you know, maybe there's a sense that jobs are going to go away, but when you start talking about IoT, you're like, wow, there are so many different opportunities here, for folks
+to develop some really interesting applications, you know, based around having, IoT skills.
+And I think a lot of IoT, yes, you may be feeding some of this information into an AI system, but when you look at all the issues about designing and developing and deploying and managing.
+an IoT network, Yo,
+I don't see, you know, until they really get to the point of, you know, having thinking intelligent robots, I just can't imagine, this really being able to function without, human intervention.
+So that got me thinking that, so how do you get into, the IoT field?
+So if you're looking at some of these things and saying, wow, this is a really interesting unit, I think I would really enjoy the challenges of being an IoT,
+career or professional. And, so I said, you know, we mentioned that there's a lot of tutorials out there, and certainly there are some IoT kits that you can get started as a hobbyist.
+The interesting thing is, I said, huh,
+What about finding internships, or finding jobs?
+And, one of the things that I did find is there are jobs with IoT in the,
+in the title. So, I just happened to find this one. This is an IoT solutions architect.
+and it's, for, Voda Home, it's based in Mountain Home, Arkansas. One thing that attracted my attention… now, this is not an entry-level position, IoT solution architect, but it is good to see that
+if you go into IoT, the careers are pretty, the salaries are pretty impressive, in terms of, depending on the skills and experience.
+They're looking between roughly $124 and $170K, a year. And, let's see,
+So, the position title is IoT Solution Architect. What are they… let me just see, what's the job descriptions? You'll apply your detailed technical, know-how in cellular communications and telecom network technology
+to design and implement connectivity solutions for enterprise customers for many different IoT applications and industries.
+You'll work hand-in-hand with solution architects in the team to design solutions
+Based on Vodafone's IoT-managed connectivity portfolio. You'll support customers at the pre-sale stage through implementation and deployment, and make sure the solution is appropriately tested and accepted by the customer.
+Okay, Doo-do-do, so, so they talk… there's training, design, development,
+Coming up with the requirements, the testing, the deployments,
+And so this one is,
+So, looking at, some of the, the,
+Looking at some of the performance and, and the,
+the qualifications. One thing I noticed about this ad is, it looks like, of course, this is a consulting company, and so they often… the reason they don't have details about, well, we're developing an IoT solution for this, is I think they, you know, that is part of what they do. Somebody calls them up and says, hey.
+I'm in this area, I need a solution for this, and then they need a team of folks to come out and kind of look over the situation and propose an appropriate IoT solution.
+So,
+And one of the things, as I say, this was one of the few advertisements I found that actually had IoT in the title.
+And I kind of googled around, and I saw a very interesting Reddit post. And the thing about Reddit is they said, well, they said, when it comes to IoT, think of IoT as more of a tool.
+So, if you, for example, think of it like a hammer. If you were looking for a job, you probably wouldn't find jobs with hammer in the title.
+But if you think about, applications where you would be using a hammer, that's where you're going to find opportunities to put your, you know, expertise with a hammer to use. So it's the idea that you don't find jobs with,
+hammer in the title, but you do find, jobs that mention construction, carpentry, you know, think about all the things where you would use a hammer.
+And they said, actually, in the Reddit post, they were mentioning, if you're interested in
+an IoT career, you probably kind of go back to that, Internet of Things,
+Tutorial. And you probably start thinking about, an application.
+So, for example, if you were interested in IoT for healthcare, you'd probably want to start maybe getting a job at Children's Hospital, or UAMS as an entry level in their IT department.
+and then be developing your interest in IoT, and letting your manager know that you're interested, if, in helping on any IoT projects. And that's probably how you would get your foot in the door in this area, is probably starting with an area that you're interested in.
+Whether it is agriculture, or, you know, environmental, or, you know, working for the city, or, working for a construction firm.
+And basically, a lot of the skills that we saw, the programming, the database, the networking, the user interface, those are really good, just general IT skills.
+And those are the, I think, developing those basic IT skills so you can get that entry-level job in the IT area, and then, looking for opportunities to develop an IoT project
+And then using things like, you know, getting to know, well, you know.
+as a hobbyist, to get to know, you know, you know, building small IoT networks, for yourself.
+And then, just being on the lookout, for things like, you know, are there any, IoT,
+hackathons, coming up.
+So this is an area where you say, so, okay, so I'm getting my IT skills developed, I'm developing my skills as an IoT hobbyist.
+How can I kind of take it to the next level? Well, you know, finding employers that are into IoT projects, and then, doing, hackathons.
+I can tell you, what was the company? This is… oh, JB Hunt.
+Jb Hunt is in Arkansas.
+Yeah, so… so to give you an example, where… where could you get into IoT? J.p. Hunt is in northwest Arkansas, and they are a logistics, trucking company. So you may, on the highway, you may see their, their trucks, J.P. Hunt.
+And, J.D. Hunt, you think trucking company? They are big time into IoT devices and sensors.
+And, they are, very interested in,
+They use sensors for a lot of different things. For example, if they're transporting something that needs to be kept refrigerated.
+This can be, a real problem if the refrigerating, if the, the cargo, if there's a problem with the refrigeration, and it starts to get too warm.
+Because typically, that's a separate refrigerating system than the air conditioner in the… in the cab. So,
+And, how do you alert the driver that there's something wrong with the humidity inside the cargo, or there's a problem with the temperature? The other thing is the cargo location.
+They were mentioning, just the other day on the news that, cargo, thefts. There are whole examples of,
+Oh, what was it? It was, it was,
+KitKat, bars.
+Did you… did anyone hear this? Kit Kat bars weighing 12 tons of stolen major European cargo, theft.
+And, and this is the thing,
+You might say, well, how did they steal 400,000 stolen candy bars? Well,
+It is,
+What it was, is it was a whole truck, that was… that was stolen, and
+And this is not only happening to trucks, but even real cars are getting, hijacked.
+And so you can understand if you're J.B. Hunt, you're thinking, well, how can we,
+You know, how can we, deter, you know, this type of,
+of, of crime. And, so for J.B. Hunt, you know, you can imagine having sensors, so that you're able to track where your cargo is and what's going on with it can help,
+You know.
+help catch, these, these thieves. But yeah, so J.B. Hunt, you know, trucking company, big time into IoT, big time into, developing transportation, IoT applications.
+And so…
+this is just something just to be aware of. I think if you're interested in this area, and this may be something you may want to use your data science project to kind of investigate, let me just see, Amazon.com.
+That's not the one I want.
+Yeah.
+So, you know, one thing you might, want to start, you may want to,
+And notice, you know, some of these sensor kits start very, very inexpensively, you know, but one of the things you may want to,
+play around with is, you know, you get started with, you know, finding just, a,
+A small, inexpensive,
+a sensor kit, and you start playing, you do the online tutorials, start developing yourself as a hobbyist, develop your basic IT skills, networking, database, programming,
+And, You know.
+And then, yeah, look for a job in a company whose industry is doing a lot of IoT applications.
+And that would include healthcare, is really big now, with all those wearable devices. And then you've got, you know, logistics companies, maybe it could be manufacturing, there's a lot of different areas, but look for a company where, you know, researching that, that company or that industry, they have a lot of, opportunities for IoTI.
+applications, and that's where I think you would get your foot in the door, maybe just doing entry-level IT, but finding opportunities where they're doing IoT projects to get involved, so you can get your career going in that area.
+And then, as your… as your expertise grows, then you have the opportunity, to eventually maybe get to the point where you're not only,
+setting up IoT systems and doing the operational side, maybe you get into the area where you're doing consulting, design. You've acquired enough IoT knowledge that you can go out and, you know, be the type of person that helps companies, you know.
+design, IoT, solutions from
+from the very requirements stage, from the planning, the obtaining, the storing, the sharing, the managing, making use of the data, and then figuring out how to archive, sunset, handle privacy, security issues. So, you can see this is a really rich area, and it uses
+you know, data science, it uses hardware, it uses networking, it uses data, it has the ethics component. So it's, as I say, it is a very interesting area to take a look at.
+Okay.
+So, again, the main thing I'd like students to do this week is definitely read over the materials.
+And then there's a little IoT assessment that you can take to see, how much you know already, about this field, or how quickly you can look up information, about this field. And then,
+as I say, next week, Dr. Dactus will talk,
+about some of his experiences with IoT, but, the other thing we can talk about next week is,
+One of the aspects, of talking about IoT was making use of cloud computing resources. So, we gotta talk a little bit more about that as well, so you can see, really how easy it is
+To be able to, make use of the cloud for storing your data, for doing your computations on your data, and for supporting your applications that you want people to use, based on your data.
+So with that, I think we're at a really good stopping point. Any questions or concerns?
+Okay, if not, we'll wrap it up here.

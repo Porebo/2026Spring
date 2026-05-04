@@ -1,0 +1,448 @@
+IFSC 77003 - Audio Transcript (Raw)
+Date: 2026-04-23
+Topic: Some Case Studies Related to Data Science Ethics
+Duration: 01:13:24
+Source: Zoom transcript panel DOM
+
+Elizabeth Pierce00:00:03Oh, welcome, everyone!
+This is going to be, I think, our last official structured class. So, next week, we… let me put it this way, I will be in the class session.
+And I will be just hanging out for additional class project office hours. So if anyone, you know, has questions, or concerns, or, would like some guidance, please, drop by,
+And as I say, I will just keep monitoring the class session for the entire, you know, 140 to 255.
+But, certainly, if you stop by early, if you get your questions answered and you're done, definitely, you know, you're welcome to
+To leave, you don't have to stay for the whole office hours, and definitely use the time to work on your report.
+So what I wanted to do today is, on Tuesday, we talked a lot about, different types of, I want to say ethical issues, but I thought it would be interesting to see some actual cases
+to be able to kind of see how some of the things that we talked about on Tuesday, how they can kind of get manifested in real life.
+So, one of my favorite sites when it comes to ethics is this Santa Clara Marquula Center for Applied Ethics.
+And, they have a very nice website.
+And you can find case studies and scenarios on a variety of areas, from, you notice here, bioethics, business, engineering, government, immigration, internet, technology.
+And these cases are very interesting. They do have a list of all their cases, so… and…
+I picked out 3 that I thought were very relevant to the area of data, and AI, and machine learning algorithms.
+But they're always adding new cases, so if you're ever looking, I think there's a lot of good lessons to be learned.
+From these ethical cases, and as you can see, you could spend a whole semester, and every day, you know, you could look at, you know, virtual reality, motion data privacy.
+You could look at prompt privacy, meeting avatars, chatbots and agency, environmental impact.
+kids, exercise, and technology. In fact, I think, so much of this is,
+I mean, it's just so interesting. What a, as we're… Developing these technologies,
+What about, you know, when people use AI in company? Is there, you know, what could be the potential, problems? So,
+AI writing detectors. And you might say, well, you know, some of these are not necessarily technology or data, because again, they kind of span the whole scope of
+EPIC's getting applied in real life, from business to engineering, but it's very,
+Some of the things, like in business ethics, this, this is an interesting case, you know, there's a whole bunch of laws on whistleblowing, and what protects you and what does not protect you, but it can be very thorny of business. So, they,
+you know, look at some of the… I think they tell, very good stories, and a lot of times there's no definitive answer.
+Things like whistleblowing, yeah, it's a very tough call.
+And so there's… there's no easy answer. Should you do it, should you not do it? But I will say, reading these cases gives you a much better idea of what that environment is, and it's…
+It's something that…
+it really lends itself to getting a group of people together, and like, almost like a book study, and talking about these cases, and asking, well, you know, what would I have done, or what… or, and I think it is maybe fine… it is fine in a lot of cases to say, well, I don't think I would handle it this way.
+Meaning, you may decide, I'm not gonna whistleblow, but there may be other avenues that you might pursue,
+To try to address the, the issue.
+Okay. But anyway, there's… they're looking at, you know, smart cities, and you can see it just goes on and on and on and on. I mean, they've got, pages and pages of… of… of these, so…
+Oh, crap.
+So let's,
+That's a terrific resource that you may, if you're for summer reading, you may want to take a look at this. In some cases, you know, folks belong to a group, could be Boy Scouts, could be a church group.
+Maybe you have an opportunity where people, want to pro…
+present a lesson and get some discussion. And this… you might find an applicable case that is appropriate for your audience that
+This might be a nice way of, of,
+being able to be a teacher and sharing. Okay.
+So the, the three cases that I have, picked out is, this one.
+So this is, it has to do with, implementing a, a machine learning algorithm.
+And I thought this was very applicable to our data science course, because the whole idea of data science and technology is not just using it for research purposes or academic purposes, but it's the idea that if you get a very good model for predicting something.
+or predicting a classification of something. The idea is that you would take it to work in practice. And, in fact, there's a whole area of…
+machine learning, DevOps, ML DevOps, where you're taking these algorithms and putting them into production so that businesses or
+Governments or, agencies can use these algorithms to help
+make predictions, make, classifications. And,
+This is the… what we're going to take a look at. So this is an actual case. The, this particular system, ran for about 2 years, 2013 to 2015. This was in the state of Michigan, and,
+and…
+They have estimate that somewhere in the neighborhood, at least 20,000 Michigan residents, and it could be higher, they're not exactly sure quite as… how many, could even be as high as twice that number.
+Were wrongly accused of fraud based on determinations made by a computer system that the state implemented, without sufficient human supervision.
+And this system, they estimate, had an error rate as high as 93%, which is… yeah. But, and this is even before AI, so we're talking just what we would…
+called Traditional Machine Learning Models.
+So, and, those residents that were accused of fraud, many of them were hit with penalties, some had their wages garnished, or their tax refunds seized by the state.
+And, and,
+this, this case, and you might say, oh, that was 2013 to 2015, that's, like, over 10 years ago. But,
+the ramifications of this case really, continue, because even as of a few years ago, there were still lawsuits, there were still settlements, being made, and the state of Michigan was still,
+You know, wrestling with not only,
+Returning refunds, returning penalty payments.
+But, they were also, in some cases, having to, because there was a class action lawsuit, they were having to reimburse people, for the fact that, because of the penalties or taking away refunds, people, for example, had their credit ratings hurt, or maybe they had to file for bankruptcy.
+Or, you know, maybe they had other, expenses that occurred, because of this system.
+Okay, so what, what was this, this, what was this, system? So, there's, Okay.
+So… Do you have the, case in…
+the, Markula, but if you click on one of the links, you get, you get a very nice article that, that Time, did about this. So let me just…
+kind of skipped through, and let's, let's talk a little bit about what was the, the, the, the background. So,
+Okay, so let's go back to the, the,
+the beginning of, of this story. So, it turns out, and many, many folks may not even remember now, we had a really big, recession, and a rural, housing, you know, market, debacle, back in the, around 2008.
+And, Michigan was a state, that was having, financial trouble. Unemployment was hovering over 6%.
+And incomes were stagnating, and as a result of issues with unemployment and, you know, Michigan was a state that was highly industrialized, and so they were needing to, you know, kind of switch to the new economy.
+And, of course, you know, that's not an easy thing to do, and then you had the recession came along.
+And so the state was really short of cash.
+And so you can imagine, what does that mean? That means that the state is cutting budgets, it's cutting employees. And at the same time, there are certain
+Things that are… have greater demand. So, you have the unemployment insurance agency, and,
+For folks, a little background, so often, if you are working and you lose your job, many states have some form of unemployment insurance.
+That provides you with payments, to help you get by until you can get yourself a new job.
+And you can imagine, you had these two factors going on. You had a recession where a lot of people were becoming unemployed, and so they were applying and asking for their unemployment insurance benefits, and then you had the state
+who had, you know, budgets, you know, they weren't getting in enough money, so they, they, you know, had to start cutting their budgets and letting people go, so they're understaffed. So you have two forces going on.
+More people applying for unemployment insurance
+And, fewer people, to handle the caseload.
+And so, one of the things that, the state said is, hey, you know, we're doing a lot of things manually, we're doing it by paper, people have to physically, you know, come into the office, we need to modernize.
+And so,
+And by the way, a number of states were doing this at the same time. It wasn't just Michigan. It was the idea of, can we, you know, modernize, do things, more efficiently, more streamlined, raise the, productivity? And, the other thing I think you should kind of know is,
+it's not that,
+using data science or machine learning algorithms is… is bad. That's not the message here. It's that, it's just kind of like, you know, money isn't…
+in itself bad, but it might be used in bad ways. And that's the thing to remember about data science and machine learning.
+When you implement it, well, it can be really terrific, and it can be very helpful. And, you know, one of the things that happened, during the Great Recession is even states like Arkansas,
+They were having a lot of issues with bad actors,
+Trying to apply for unemployment insurance, often in other people's names, because, they were, you know, trying to gain the system, take advantage of the system.
+So, as I say, this was a, was a big problem, and so Michigan said, well, let's, try to, go with a group of,
+private tech vendors, and notice, these systems come with a big price tag. You know, $47 million.
+And, the idea of the system, it was supposed to help the state.
+Help to determine unemployment eligibility.
+So, you know, help to streamline, are you eligible or not? Track the case files, and
+And, it was also, in tracking the case, files, it was supposed to, help the state kind of figure out if there was something fraudulent, you know,
+Going on. And, if it…
+And, you know, if… if there were fraudulent payments, the idea was, well, we gotta stop that as soon as possible, and we need to get our money back. So, they were even tying this so it would…
+Intercept income tax refunds, for those
+individuals who are flagged by the system as having, fraudulently or inappropriately receiving their uninsurance, benefits, okay?
+Okay.
+So, so, one of the things that,
+That happened when they, launched this, a new system.
+Is that, they started to notice
+One, that the system was actually… was generating a lot of new fraud cases. And, of course, at first, they didn't know what that meant. Did that mean that this system was really, really good, much better than humans at spotting fraud?
+Or, was it having a lot of false positives? And,
+And in fact, to give you an idea, this system, once it was first implemented, it was having 5 times the typical number of fraud cases. And again, it's… you have to say, you know.
+in the real-world environment, particularly when the recession hit, there was an uptick in fraud cases. Even Arkansas, you know, had to bring in extra people and tell people, you know, it's going to take us extra long to verify your unemployment claims.
+Because we're getting so many Cases that are fraud, we're having to spend extra time scrutinizing.
+So, so certainly.
+You have that, well, you know, you have your usual fraud, and then you have the circumstances that you have extra fraud, but this was, like, 5 times the typical, number.
+And, the other thing that they were running into is, remember, The, unemployment,
+insurance agency, you know, they were… the reason they got this system was that they were overworked. They did not really have the capacity. And so you can imagine, with all these fraud cases,
+Some of the folks were saying, hey, I want to appeal this.
+And, it was really hard to get their, appeals, heard. And, eventually, folks got frustrated and starting, you know, started to call their state legislators, you know, started to turn to legal-assisted groups.
+And the, it was actually a lot of the, of course, the attorneys
+Working on this case, they soon discovered that when they were talking to the,
+to the folks to say, hey, can you verify what this system is saying? Well, one of the things you have probably learned about AI models and a lot of the machine learning models, a lot of times they're a black box.
+They simply say, well, we took in this information and we produced this result.
+And that, and, and…
+For the, the human auditors,
+They were having, well, basically, when they looked at that black box, they were having, trouble. And, you know, I was going to say.
+That, oh, and by the way, the system… let me persuade, the state
+They say they started to, you know, it was launched in 2013, you know, they started to hear problems.
+Things kind of reached a crescendo, and… but, you know, once, you know, once the locomotive… once the train had pulled out of the station, it takes a while to get that train stopped and put onto a different track.
+So, the state.
+had the system in place, 2 years, before they finally said, we have to pull the plug on this system. And again.
+people here, you know, I'm sure the folks in the state were trying to work to say, can we fix things? Can the vendors make it better? You know, what can we do? And it takes a while sometimes to know, you know, how bad the problem is.
+Okay.
+So that was, so that is, and so in 2015, they stopped the system, and they basically have been spending, sort of, the last 10 years, you know, trying to compensate and make things right, for the folks who were, falsely accused. Okay.
+So this,
+So that's basically the story, but, you know, when you tell a story, it's like, what can we learn from this story? And, I was thinking about this.
+What are some of the lessons learned, from this particular case?
+And it kind of reminded me, you know, if you look at the field of auditing, auditors, you know, when they go and they look at a company's controls, like, for example, their financial controls, there's sort of 3 areas that they look at.
+In one area, is, is prevention. So what they, they…
+When auditors go and look at a financial system, the first thing they look at, and they say, well.
+What sort of policies, best practices, what are the things that you do, to prevent problems?
+So, and, you know, in this case, what do, what do we have a problem with? So, this is the… the… so what is the problem? Is,
+implementing a, you know, whether it's a, a machine learning or AI, algorithm that,
+That is, is that, that produces,
+I want to say an unreasonable… number.
+of… of,
+a false, a positive, or it could be false, negative results. In other words, so, so what we're saying, you know.
+i.e, An algorithm that, has, inaccuracies.
+Oh, right.
+So, prevention is, of course, is, you know, what steps, could an organization, take, to, prevent such an algorithm?
+Or it could be, you know, part of a system, from, being, implemented
+In the first place.
+Okay.
+So, and, folks, you're welcome, we can put it into the chat.
+Yeah, we're in the class, so…
+Yeah, so, and you can think about it as, as you're, you know, maybe developing a prediction model or a classification model,
+What are some of the things that you might do, to try to, make sure that that model, you know, produces as many true positives and true negatives, as,
+as you can.
+So what are some basic things that you can do?
+And there's no right or wrong answer, so just… and there's not one thing. So what are just some ideas for things that… that…
+It's good practices.
+Tim Reardon00:25:44I would say one thing would be,
+Having set roles for employees with access And need to know.
+Elizabeth Pierce00:25:53And, and, not, and, elaborate on that, how would that help with prevention?
+Tim Reardon00:26:07I'm not sure if it would necessarily prevent the false results, but it, it kind of is more of a cybersecurity thing, I guess.
+But the false negative results, a lot of times it's from the hallucinations, so sometimes you want a model that won't give an answer
+To somebody who hasn't…
+had experience, prompting, or someone who doesn't know exactly how to prompt yet, you would sit there and say, hey, for this individual.
+Elizabeth Pierce00:26:37Okay.
+Tim Reardon00:26:40Like, Claude, for instance, is very good at asking follow-up questions before answering.
+your question.
+Elizabeth Pierce00:26:51Oh, I like that! So maybe you're saying, sure, you have people, you said, with, like, the right roles and, and, and training, to, evaluate and, question, the,
+the, the, I want to say, the, the model's, results.
+plus, being able to, to use the, the system, correctly.
+I think that's, that's very valid. You know, you're going to implement something. How can you prevent errors if the people who are supposed to be using it aren't in the right roles, don't have the right training?
+They're not in the right position to understand how the model is supposed to work, what its limitations could be.
+as Tim was saying, maybe they don't know how to use the right prompts, they might not know,
+What, you know, how they're supposed to evaluate the results of the model.
+Okay, very good.
+And, and certainly, and some of the things are so obvious that you're thinking, well, surely people would do that, but certainly, yes, evaluating, how the, the model performs in, training and, and, and testing,
+Yeah.
+And we certainly saw that in some cases, you have to test for biasness.
+maybe, more groups, certain groups are, are disproportionately maybe being classified one way versus yes. So now we're seeing, yes, testing for, biases,
+issues with the data that could impair the ability of the model to perform.
+I don't think I need this here.
+Yeah, okay.
+Yeah!
+And then you also have… and then you also mentioned is, you know, one of the things,
+You know, we, we, talked, about, this was in the bonus materials, is the fact that, while those 20,000 to 40,000… 20 to 40,000 cases, sounds to us, well, that sounds like a lot.
+But if you think of the, the fact, and I can Google it really quick, what is the, the, the population?
+ovulation of the, state of Michigan.
+Okay? Okay. So, so, Michigan has over 10 million people, so, you know, that…
+so when you do your, your, you know, you do your calculator, let's say you divide, you know, let's say 20,000 cases, divided by, you know, 10 million.
+Yeah, so let's just do… I'm going to do this because it's, my caffeine from this morning has worn off, so, let's, like, make sure, so if we… if we take $20,000 into… to 10 million, yeah, 20,000 into, 10 million, you know, even if you say, well, take out the… the children and da-da-da.
+Yeah, still, we're talking,
+We're talking it's less than 1%.
+So, you know, that is always the problem, when you're trying to test for fraud. Even though you may…
+Sounds like a lot. Oh, 20,000, 30,000, 40,000 fraud cases. In a state of 10 million, you're probably still… that amounts to less than 1% of the unemployment, you know, insurance cases.
+So we talked about the fact that when you're working with unbalanced data, so certainly one thing is, you know,
+Yeah, when, dealing with un… with unbalanced
+data, you know, example, you know, fraud cases. Yeah, you need to, take
+extra, precautions, when,
+when, developing models. So, generally, what we need… end up having to do is, is try to figure out ways of, you know, we mentioned,
+You have to do various forms of undersampling of the majority population and oversampling of the minority,
+you know, synthetic data, I was going to say, you have to use various, oh, the other thing you can do is you can use weighting schemes. That's, that's the other thing. There's another technique where rather than trying to mess around with adjusting the
+A sample, sampling composition is maybe, awaiting, false, positives as, as, more, serious, than,
+Dan, Than, you know,
+Yeah, as a, as a, as a more serious… serious error, to basically, to,
+To, to force the, the model to, take,
+To take, this into its, predictive, modeling.
+Yeah.
+And as I say, this is… this is very challenging, because, you know, there's, you know, we worry about the false positives. There's also the false negative. There are people committing fraud, and we're not catching that.
+And what makes it very challenging is often, you know, if you try to minimize the false positives, that means you're going to have more false negatives. And if you try to minimize the false negatives, you probably are going to have the false… more false positives. And so, this kind of gets back, you know, when Tim was mentioning.
+hey, This is important to understand. If you have a, a model,
+That, you know, people have said, well, we really want to make sure we catch the fraud cases. And by the way, credit card companies
+run into this all the time. Same issue, you know, as a percentage, fraud cases are very small, but they still add up to a significant
+loss. So, I have this on my credit card, I bet you do too, that, you know, the algorithms, they're looking at your usage patterns, and when they detect something that's suspicious, you know, they want to catch the fraud, so they want to minimize the false negatives.
+But, they know
+that that's going to raise the chance of a false positive. So what do they do? I am very… I've been very impressed with my credit card, because I'll be right there at the cash register. It will come up right up on my phone.
+This charge is, has, you know, is being held up, because we think it might be fraudulent,
+Could you confirm or deny?
+And all you have to do is tap your phone, and the clerk says, Charges are now going through.
+So, you know,
+So part of good prevention is going back, I think, you know, what folks are saying, you know, you gotta have the people in the right roles and training to, I'm gonna put in to help develop.
+Evaluate.
+test and question, and, I think also, you have to, also with prevention, is, you know,
+have, plans in, place to ensure a, a successful deployment. So you can kind of think, yeah,
+Probably, they needed to have, plans in place for, dealing with, both, both false positives.
+You know, you know, you know, incorrect, fraud, classifications. Yeah.
+Yeah, so just like, you know, Citi, you know, they had to design a system where, you know, typically they really want people to have their mobile phone, so that… because they know that thieves might get ahold of your credit card number, but they probably aren't holding on to your phone. So if they can call you and verify, that might, you know.
+Help mitigate, you know, 99% of the false positives.
+And you may also want to think about, maybe a phased-in, approach, because, you know, part of the problem when you kind of
+cut over, and you say, okay, now the system is doing this for all the unemployment claims in the state. Yeah, that's a lot of… let me put this way, if the system has problems, that could be a lot of issues. But you might say, we're just going to deploy it
+You know, for a fraction.
+So you might say, you know, we're only going to use this system maybe just for this city, or for just this county, or just for, this type.
+You know, maybe, you know, only for, like, a random sampling, we're only going to do this for the first, you know, 10% of the population that are applying for unemployment, and we're going to test and evaluate and see if there are problems.
+Other things to kind of figure out is, you know, this whole question of,
+Of, of model, transparency.
+And, certainly, Dan, I think one of the issues in this case is I think…
+Nowadays, people…
+probably, are more aware of biases, and they're more aware of these problems, and they've seen more of these, cases, coming up. So, I think,
+you know, that we've gotten better at putting in these preventative practices, and I think people also have, in terms of the requirements, you know, some folks are saying, look.
+We're gonna need to have a model that is able to be explainable.
+So, in some cases, you know, one of the requirements may be that it has to be an explainable model. And that is to help, you know.
+This is… this is…
+I saw this the other day, and it was very interesting, because, you know, we worry about AI
+Taking away work.
+Well, there's another problem with AI, and that is…
+and when I say AI, it really could apply to any sort of machine learning model.
+These models can actually end up creating more work. And, think about it this way.
+Okay?
+So think about it this way. Let's try a true positive.
+a true positive. A model predicts fraud, And there is fraud.
+Okay!
+Think about that. There's two implications… let me put this way. When a model
+correctly predicts there's fraud, meaning there really is fraud. First of all, we know that that's going to imply, there is, a,
+I'll just say a probability.
+That a, humor… human examiner can find the fraud.
+So, and, and…
+It may be that the human examiner can't find the fraud, but let me put it this way. If there is fraud, there's now at least a possibility that if we go looking for it, that we're also going to find the fraud.
+plus, But we have a stopping rule.
+Alright.
+once we find the fraud.
+we can, move on to the penalty phase. All right.
+Okay, but think about what happens with a false positive. Okay.
+A false positive, means the model predicts fraud, and there is no fraud. Think about it.
+What's the probability of finding something that doesn't exist?
+Yeah, yeah!
+I mean, so we have, so, yeah, so it's hard to, find, something that does not exist.
+Plus… What is… what is the stopping rule?
+Yeah, how long do you search? Yeah, how long do you, search, before you, before you, before you give up?
+Yeah!
+So this is the concern, when these models produce,
+false information, that it is a cost, because then if they end up in a human examiner's lab,
+Yeah, how long do you search before you conclude that, hey, we can't find anything? So,
+So,
+And, and you can kind of play around with this same, experience, you know, with the, the…
+The true negative, okay, that's probably good to, to, to go. But what about a false negative? Yeah, there's a cost with that there. That's… in that case, this is the, the, the cost that, that, actual fraud.
+goes undetected, yeah. So, yeah, so we've… we've got these various costs involved.
+Hi.
+But if you're an auditor, prevention, that is the cheapest place.
+to prevent these types of problems. So, if you're an auditor, you spend a lot of time working with organizations to say.
+Do we have sufficient prevention in place?
+Now, auditors will also say that no prevention is 100%. The environment changes, thrusters come up with new techniques, different strategies we're going to have to think about, and even
+Here's the thing, all of these fraud preventions come with their own costs. So you have that balance between, you know.
+you know, we gotta balance the cost of the fraud with the cost of the prevention measures. And you want that sweet spot where, you know, your prevention measures are doing a good job of catching as much fraud without breaking the bank.
+So, and, you know, that's what, you know, that's for the credit card companies.
+They do live with a certain amount of fraud,
+And they make that up in their, you know, card fees and other… in their business model. But they know if they… if they made the prevention too stringent, people would get frustrated with not being able to… to use their credit cards as often as they wanted to. So, okay.
+So the next line of defense is the stuff that gets faster prevention.
+Now, the next phase is, is detection. So, how quickly, can you spot that you have a, problem? And the general rule is, is, the, the quicker, the, the better.
+So it's, it's the idea that, if you detect you have a problem, and you…
+move on to correction within a day. Then you only have a day's worth of complaints, or unhappy people, or things that you have to mitigate and fix. But if you're like the state of Michigan, and you let this go on for over 2 years.
+You have a lot more that you have to fix and clean up.
+So, the next thing the auditors will look at is, and again, I think a lot of that probably comes in sort of an extension of the prevention techniques,
+Basically, you know, once a model is, is, is deployed.
+You know, what, what, what basically we call it, you know, what, what controls or activities, do you have in, place, to, monitor
+And, and, yeah, base… and, track, how the, the, the algorithms
+are performing. And, you know, one of the things that we're learning with these algorithms is that even if it was a terrific algorithm, things change, and these algorithms will go out of date, and just because the environment changes,
+things that work well as predictors, you know, may no longer be working so well. So the idea, you know, that's why we now have this whole field of machine learning DevOps.
+You know, Amazon is continually, tinkering and adjusting and fine-tuning its algorithms, and so, there's a whole area about, yeah, how do we just, on a regular basis, be, deploying updates
+To our algorithms.
+So this assumes, you know, even after, you know, you've done your initial testing and deployment, yeah,
+what controls or activities do you have in place to monitor and track? and it's the idea that,
+Heh.
+again, this was very tough for Michigan, again, because they were, short-staffed, and because, when you're an early adopter,
+you can have, these issues. And if you read this article, they do mention some other states, including Arkansas, who had issues, not necessarily with the unemployment, I think in Arkansas.
+it was, let me just see, if we look at that article, I believe,
+Yeah, if we take a look at Arkansas, they had something, in 2016,
+Oh, yeah. Well, this was a case in Arkansas. There was a cerebral palsy condition that was incorrectly… incorrectly coded in the system, and the software employed didn't account,
+For, for that condition. And, and basically, you know, it, it has been, has been fixed.
+So, and, but,
+And, one of the things, though, as they say, they mentioned some,
+let me push weight,
+Yeah, what they do want to mention is that,
+Let me push away. Basically, what this article is trying to say, yeah, there have been some implementations that did not go well. However, they do stress
+that there… in other places, the systems have functioned as intended. They have delivered that… the right mix of benefits, and, and, certainly,
+let me put it this way. When implemented, well, it's terrific, and,
+One of the reasons we're having this discussion is so that you can be part of the group that is consistently implementing systems that do well, and avoiding some of these issues. So…
+Okay.
+So, yeah, so we'll just leave that at detection, and we'll take a look at one other one here. So, what's your last line of defense, okay? If you're an auditor, prevention is where you put a lot of effort.
+send detection, because the quicker you can spot you have a problem, the quicker you can, you know, you know, the quicker you can start doing, you know, root cause analysis to quickly, you know, diagnose the problem. But certainly, you know, you can't do that until you get
+A warning or an indication.
+So the last line of defense is correction. And again, it's the idea, that,
+Can't prevent everything, so some things are going to get through prevention, so then your next lane of defense is detecting as many of these things that get by as possible, and then correction is, how, quickly, you know, once, detected.
+Can you, fix the problem?
+Okay.
+And I think the moral here is so often we're kind of focused on deploying these systems, that it's sometimes hard to think about once they go into operations, that there's still a job to be done in terms of monitoring,
+and, thinking, how can we make things easier to, correct? And I think it kind of goes back to,
+A lot of the interest in making models explainable is the more the model can explain what we're… what it's doing, that can help with detection, and certainly, may even help with, with,
+With… with correction. But yeah, this might be… this is an interesting thing, to think about. Yeah,
+This whole question is,
+at,
+Yeah.
+So, yeah, so this kind of says, you know,
+what people, tools, knowledge, skills, resources
+Do you need to have in place to, handle, corrections in a timely fashion?
+And I suspect, you know, part of the problem for the state of Michigan was, they,
+didn't, you know, they hadn't really thought about detection and correction. So once these problems started occurring, they really didn't have a system in place, or a protocol, or a procedure to follow.
+And, these systems, by the way, are very complex. So, some of the things here… yeah, so one of the things when you look at this article, one of the things to take a look at is,
+Is once the,
+One of the things to take a look at is, you know, how many people or groups were involved, with the,
+With the, with the lawsuit. And, and the reason this is interesting is, let's take a look,
+Who, who was getting,
+who was named in the lawsuit? So to show you how complicated these systems can be. So,
+The, the first was the technology vendors.
+Fast Enterprises, and they were the ones who came up with the algorithm.
+That was going to be used in this system.
+Interestingly enough, another vendor was SAS Institute. So, many people may be familiar with SAS,
+They're very famous in the enterprise resource, let me just see, oh, SAS, SAS Institute. I'm thinking SAP. But, SAS is very, famous for its, its data analytics.
+And it turns out that for the state of Michigan, one of their other vendors was, SAS,
+And,
+Yeah, so,
+So this is interesting. So SAP, very well known for ERP. This was SAS, very well known for its analytical software. Turns out the state of Michigan was also using SAS, and SAS
+Apparently helped provide the data that was used to help develop the algorithm.
+And, SAS was very unhappy to be included in this, lawsuit, because it said, well, we were just asked to provide data. You know, we didn't develop and test the algorithm. And then the other, folks that were,
+involved. Of course, there was the,
+the… the state of Michigan, so anyone who was in, you know, any, all the groups in the state of Michigan who were involved, you know.
+in the unemployment insurance agency, and who were involved in building and testing, the system. And, and certainly because the unemployment agency, you know, yes, they were working with Michigan IT Services, but Michigan IT Services, you know, they were reaching out not only to a machine learning vendor.
+for the machine learning algorithm, and they were reaching out to SAS,
+for help with data, but they had actually, contracted with a management consultant group to help with the implementation. This is, by the way, is very common. When the UA system
+Decided to implement, Workday. Workday was the vendor.
+But, to help all the different IT groups to implement Workday on their campuses, many of them engaged consultants. I think UAR engaged Deloitte.
+to help them with the Workday implementation, including the UA system putting together its own special IT group, Project One, to help with the Workday implementation. So these big, big systems have a lot of players, in terms of the in-house resources and the external, resources.
+And there's multiple groups, because you have the vendors, you have the consultants to the vendors, you may be bringing in additional IT, resources, and then you've got your in-house people, both technical and business. So, yeah. So, very…
+That's another thing to realize. These systems are getting to be very, Very complex.
+Okay.
+All right.
+So that is,
+I was going to say, we'll move on, because we've kind of beat that guy, but that, as I say, hopefully gives you a sense of, yeah,
+This is why it's kind of big business. You know, you know, when you think about taking what you're doing in your data science project and say, yeah, if I wanted to implement this in real life, yeah, these are some of the things that you're gonna watch out for.
+Now, this other one, and we'll do the other two, more, more quickly here, but this was kind of interesting. So, this is,
+This is a case about,
+you can do with the data that, that you, collect. So this was kind of interesting. This was, this was, something that got
+was sort of, I guess, in the news in 2022.
+So, this is… there was a non-profit called Crisis Text Line, and they offered support via text messages for people who were going through mental health crises.
+And for years, this nonprofit had been collecting a database of the messages exchanged.
+And they used the data, to help, improve, the training of their counselors, to improve the software that they were using.
+And, and basically to do a better job of triage the incoming calls for help, and to help their volunteers and staffers, to better manage their difficult conversations with people who are going through emotional distress.
+So, all good things, all good things.
+So, and so,
+This nonprofit, which has… was launched in 2013, had been using data science tools and machine learning, to,
+basically build off of the largest mental health database in the world that they had assembled. And again, they were using it all,
+in-house, because what they wanted to do is they wanted to use their data, you know, for better research, policy, community, and again, to help improve training, to help, better identify, oh, this person, they, they need, you know, they need to go right away to a suicide counselor, you know, they can't be…
+It's not like they're upset about, you know, You know, something,
+you know, that having a little minor distress, I'm having kind of a bad day, I think I want to talk to someone, versus someone who's, you know, really in deep distress.
+So, everything was good, but then… They said, oh.
+We would like to now do a for-profit spinoff.
+So everything was good, they were a non-profit, they were collecting this data, but they were using it all in-house. So the data was just being used, you know, for specific business purposes. And,
+But then they said, well,
+why don't we do a for-profit spin-off, and it was going to be called loris.ai.
+And it was going to use the crisis text line data, and by the way, they were going to say, we're going to anonymize. Anonymize, yeah, anonymize. Yeah, yeah, they're basically going to make the data anonymous. And then, they wanted it to turn into a customer support software product.
+And then, in addition, some of the profits would be then shared with the crisis text line, because being a non-profit, you know, they were relying on donations, and so this would be really nice if they had
+Stream of revenue to support their non-profit activities.
+So… this is where the… the backlash started. Some… some folks were concerned that that…
+The data, even though they had tried to de-identify it, couldn't be possible that…
+It still could be traced back to individuals who could then be stigmatized or otherwise harmed by being outed as dealing with severe mental health issues.
+And… and then the question is, you know, the folks who were using this non-profit service, how much did they understand
+That all their conversations were being stored, and were being used
+For training, for research, and how much did they realize that years later, these conversations would then be put to a for-profit group?
+And, and, and would that have,
+So you get… that's an issue of consent.
+Did these folks who were having mental health distress, did they fully understand how this data was going to be stored, shared, and used? And even so,
+If someone is
+emotionally distressed. Could you argue they're really too impaired at that point to legally give consent?
+Now, this is interesting. You've probably seen this,
+What the organization said is, well, everybody did give consent, because, everybody got an automated text that said, by texting further with us, you agree to our terms, and it links them to a 50-page agreement.
+And a lot of people said, oh, come on, you're in… you're dealing with folks who are mentally distressed.
+who's gonna take time to say, okay, I'm about ready to throw myself off a bridge, let me step back, read your 50-page document.
+And then I'm ready to continue my text with you. So, a lot of folks kind of questioned whether that was even,
+Within the realm of possibilities.
+Also, some of the…
+The staff and the volunteers, were greatly concerned, because they said, look, particularly the volunteers, they said, you know, we were volunteering because this was non-profit.
+And now you're telling us that the conversations, because again, it wasn't just the clients, but it was the conversations of the volunteers. Now you're going to be making a profit on us. So, you know.
+What's up with that?
+And, and,
+So, yes, so that was another issue. so they started saying, look, they, they did not want, the data to… I mean, the volunteers were fine with it being used internally, but once the company said, we're gonna… once the nonprofit said, we're gonna start
+seeing if we can make money off of this. The volunteers said, yeah, that's…
+That's not what,
+That's not what we understood. So, so anyway, after there was… this was kind of exposed, the… the,
+The, the, individuals, at,
+The Crisis Text Line, basically announced that they were not going to go through with the data sharing agreement, and,
+So, and said, yeah. So basically, because of the controversy, they backed off.
+But,
+And, and so, this is very interesting, because it kind of deals into, one, yeah, sometimes,
+Comes to how do you recognize when you're running into an ethical
+issue. And certainly in their case, you know, the leaders thought they had a good plan.
+And as I say, the leaders, again, this is not about bad versus good. The leaders of the crisis text line, they really thought they had a good plan for anonymizing the data. They had, you know, they did ask people, you know, if they consented to, you know.
+They're the conversations being, recorded and, and, and used for, you know, mental health research.
+They said, you know, there would have been benefits, you know, for the work that we're doing, if we could have, you know, this source of some income.
+and, and, and this is basically one of the things that
+The chief researchers were balancing is, what is the best way to balance the implicit consent of users in crisis with other
+potentially beneficial uses of data, which they likely will not have intentionally consented to, but which can help them or others. And so this is one of the things that we
+wrestle with as we're collecting all of this data,
+There may be things that we're going to want to do with this data in the future, and how do we decide what's good, what's bad,
+you know, and… and usually there's these gray areas, because it's not binary, you know. Usually, you know, even… even, you know, every medical treatment that's out there
+that… that is successful. Some cases there are side effects, some cases there are risks, and… and so balancing all of that is… is very,
+And so, you know, one of the things they're kind of asking is, you know, is there any way we could have done this differently, or is there any way that we can, come up with a model so it is possible, you know, for this data to be put to, of good use?
+So…
+But anyway, that's an interesting case. And the last one, because we're running out of time, but this one is very short. This one simply mentions that in December 2023,
+that the, that the use of AI, is that, they do have an environmental, impact.
+And it's very interesting, you know, usually we think of electricity. We think of the data centers, and we think, yeah, you know, there's a lot of things in the news with people angry about rising electrical prices.
+But also, because a lot of times it's water that's used to cool the data centers.
+This is now becoming also an environmental issue on the water. So, particularly for areas that are in drought or have short supplies of water, yeah, people kind of question, should we be putting that into a data center?
+And again, that's not to say there isn't alternative ways of cooling, but this just goes back into, you know, we want data centers, we love, generating those AI images, so, again, this is going to be a future source of
+of, need for innovation and new solutions to figure out how we can have our AI images, and at the same time, balance the,
+The efforts required to create those images.
+So with that, I think we're out of time.
+So, I hope everyone has a good end of the semester.
+Please continue to explore those ethical issues, because those aren't going away, and those are thornier than some of the technical, issues. And, yes, and feel free to drop by for class next week if you have any questions or issues at all about your projects.
+Okie doke! So, yeah, here, I better… before I leave, I better end the recording here.

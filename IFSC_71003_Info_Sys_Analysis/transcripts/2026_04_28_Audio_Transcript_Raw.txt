@@ -1,0 +1,60 @@
+IFSC 71003 - Audio Transcript (Raw)
+Date: 2026-04-28
+Source: Zoom transcript panel DOM (audio transcript)
+Recording page: https://ualr-edu.zoom.us/rec/play/N0O3_5VpmzZsmRuahdjElRi7CgCwrVvJApp2joMzvRL8lLvKm--DhG_gYpqY8V_0xanFN-lYSuXk4Jnu.8swcvOHV6-BhTG9k
+
+Daniel Berleant00:03Alright, so, there's no final…
+exam. There is one last homework to be due on the day of the final. That's homework 14.
+And let's take a look at homework 14.
+Okay, so it's basically to finish up the projects, and basically just continuing to continue to develop your project website.
+generate content. Content is really, you know, you can generate a lot of
+Quite a bit of content in a pretty short amount of time.
+And, you know, you can add complexity to it with, you know, JavaScript and so on, if you like.
+just, you know, have a… try to have a good time and come up with a good website. And, you know, you can always maybe use it for applying for a job or something. You could say you did this for a class project, and you can
+Explain that, you know.
+If asked, you could explain the JavaScript, or the PHP, or the HTML, or all three, whatever.
+So, just be warned, though, that the, if you don't… Touch your,
+Infinity Free account for a long time, they'll… they'll,
+They'll take it away, they'll just recycle the memory and use it for somebody else.
+So if you… don't leave it for a year and then expect it to be there when you come back.
+You have to log into it every now… every now and then.
+Let's see, so… so to develop your project website, obviously you're going to use AI. You can use ChatGPT, Quad.
+Gemini, DeepSea, you know, whatever you want. Use it as a website development tool. You know, as you know, these AIs will output complete web pages and so on. You may have some… have to do some manual,
+You know, patching in of links and so on to get pages to link together, which is one of the virtues of
+having people build websites is the AI can't do absolutely everything.
+It's…
+you know, I think you probably don't need to see this video tutorial. I made it, like, 3 years ago for this class, and it's a… it's an explanation of how people can use AI to develop their websites. But at this point, I mean, you're welcome to… certainly, you're welcome to check it out. It's a… it's on YouTube.
+And it says…
+12 minutes, 41 seconds long. It's just an explanation of a demo of using ChatGPT to build a website.
+And I built a, you know, in an hour, I'm doing that video, or…
+less than an hour, I, I made a pretty reasonable website as a prototype, I guess.
+But like I said, this is 3 years old, and you know, AI hasn't changed that much, but people have changed a lot, and people are a lot more familiar with AI, and so you may…
+find that the tutorial is a little old. That's why I,
+That's why I said it's getting old. But it's still valid.
+So, but yeah, you're probably gonna need to make some manual changes to the various pages to get them to link together, and so on.
+But you know how to do that, because you've been doing your, homepage for the course.
+Right? And that'll be due,
+The day of the final exam, which we're not having.
+Thursday the 7th.
+Should be a week and two days from now.
+So…
+Any questions about that?
+Alright,
+Naturally, there should be, as I've said before, there should be a link in your homepage that goes to your project site.
+We'll, you know, we'll be following it, so you want to make sure it works.
+Make freakin' backups, because especially when you're doing a lot of development, they might suspend the account, or something like that.
+So… We hope that won't happen.
+We're using Infinity Free, which is better than 000webhostapp.com, but… So, be careful.
+I have a Homework 14 answer page where you explain what you did for, you know, what you did on the site.
+Give a link to the project website.
+The homepage has a link, your homework has a link.
+Kidding.
+So, that said, that's the remaining homework.
+After today. Some of you, of course, are going to present on Thursday, but hopefully you're ready today. So any… any questions about
+That.
+Okay?
+Yeah, alright, well, let's go ahead and do the demos.
+I'm gonna… see, Anusha said she didn't want to go first, but…
+So she'll go second. So, Safa, why don't we start with you? I'm going to bring up your, your,
+Oh, actually, I'm gonna, S… And I'm recording here.
+Pass.

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture: Data Science Ethics Case Studies - April 23, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(0.98rem, 0.94rem + 0.12vw, 1.08rem);
+            line-height: 1.68;
+            color: #1a1a1a;
+            background-color: #fafaf8;
+        }
+
+        .top-nav {
+            background: #004a99;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .top-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+
+        .top-nav a:hover { opacity: 1; text-decoration: underline; }
+        .top-nav .sep { color: rgba(255,255,255,0.4); }
+
+        article {
+            width: clamp(1120px, 93vw, 1720px);
+            margin: 0 auto;
+            padding: clamp(28px, 2.8vw, 44px) clamp(16px, 2.4vw, 36px) clamp(38px, 4vw, 64px);
+        }
+
+        .masthead {
+            border-bottom: 3px solid #004a99;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .masthead .kicker {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #004a99;
+            margin-bottom: 14px;
+        }
+
+        .masthead h1 {
+            font-size: clamp(2rem, 1.55rem + 1.5vw, 2.85rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: #0d0d0d;
+            margin-bottom: 16px;
+        }
+
+        .masthead .byline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #666;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .chip {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: #e7f0fb;
+            color: #004a99;
+            border: 1px solid #b8d0f0;
+            border-radius: 20px;
+            padding: 3px 12px;
+            text-decoration: none;
+        }
+
+        .chip:hover {
+            background: #dceafd;
+            border-color: #9fc2ea;
+        }
+
+        h2 {
+            font-size: clamp(1.35rem, 1.16rem + 0.65vw, 1.85rem);
+            font-weight: 700;
+            color: #0d0d0d;
+            margin: 34px 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #ddd;
+            scroll-margin-top: 16px;
+        }
+
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #004a99;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin: 22px 0 8px;
+        }
+
+        p { margin-bottom: 1.05em; }
+
+        blockquote.pull-quote {
+            border: none;
+            margin: 30px 0;
+            padding: 0 22px;
+            text-align: center;
+        }
+
+        blockquote.pull-quote p {
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.5;
+            color: #004a99;
+            margin-bottom: 0;
+        }
+
+        blockquote.pull-quote footer {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .section-rule {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 30px 0;
+        }
+
+        .callout {
+            border-left: 4px solid #004a99;
+            background: #f0f5fc;
+            padding: 14px 18px;
+            margin: 18px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .callout.alert {
+            border-left-color: #c0392b;
+            background: #fdf2f1;
+        }
+
+        .callout.tip {
+            border-left-color: #27ae60;
+            background: #f0faf4;
+        }
+
+        .callout p,
+        .callout li {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .callout strong {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
+            color: #004a99;
+        }
+
+        .callout.alert strong { color: #c0392b; }
+        .callout.tip strong { color: #27ae60; }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.87rem;
+            margin: 16px 0 22px;
+        }
+
+        .data-table th {
+            background: #004a99;
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        .data-table td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #e8e8e8;
+            vertical-align: top;
+            color: #333;
+        }
+
+        .data-table tr:nth-child(even) td { background: #f7f7f5; }
+
+        ul, ol {
+            padding-left: 1.4em;
+            margin-bottom: 1em;
+        }
+
+        li { margin-bottom: 0.5em; }
+
+        footer.page-footer {
+            border-top: 1px solid #ddd;
+            padding: 28px 24px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+            background: #fff;
+        }
+
+        footer.page-footer a {
+            color: #004a99;
+            text-decoration: none;
+        }
+
+        footer.page-footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<nav class="top-nav">
+    <a href="index.html">IFSC 77003 Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Transcript Hub</a>
+    <span class="sep">/</span>
+    <a href="#">April 23, 2026</a>
+</nav>
+
+<article>
+    <header class="masthead">
+        <div class="kicker">IFSC 77003 Data Science &amp; Technologies</div>
+        <h1>Data Science Ethics Case Studies</h1>
+        <div class="byline">
+            <span>April 23, 2026</span>
+            <span>Dr. Elizabeth Pierce</span>
+            <span>Topic: Ethics Case Studies</span>
+            <span>Duration: 01:13:24</span>
+        </div>
+        <div class="chip-row">
+            <a class="chip" href="#opening">Opening</a>
+            <a class="chip" href="#markkula">Markkula Center</a>
+            <a class="chip" href="#michigan">Michigan Case</a>
+            <a class="chip" href="#amazon">Amazon Case</a>
+            <a class="chip" href="#compas">COMPAS Case</a>
+            <a class="chip" href="#lessons">Lessons</a>
+        </div>
+    </header>
+
+    <section id="opening">
+        <h2>Opening and Final Structured Class Notes</h2>
+        <p>Dr. Pierce opened by noting this was the final fully structured lecture session. The following week would be project-focused office hours only, running from 11:40 to 2:55, where students could come for guidance and leave once their questions were addressed.</p>
+
+        <blockquote class="pull-quote">
+            <p>"Next week is support time for your projects: come in, get help, then continue building."</p>
+            <footer>Class Logistics</footer>
+        </blockquote>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="markkula">
+        <h2>Santa Clara Markkula Center for Applied Ethics</h2>
+        <p>The lecture recommended the Markkula Center as a high-quality ethics resource for case-based learning and team discussion. The site includes materials spanning multiple applied domains rather than only technical AI topics.</p>
+
+        <ul>
+            <li>Bioethics</li>
+            <li>Business ethics</li>
+            <li>Engineering and technology ethics</li>
+            <li>Government and public-interest ethics</li>
+        </ul>
+
+        <div class="callout tip">
+            <strong>Class Recommendation</strong>
+            <p>Use case studies as discussion tools in teams. Ethical analysis gets stronger when multiple perspectives evaluate the same decision context.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="michigan">
+        <h2>Case Study 1: Michigan Unemployment Fraud Algorithm (2013-2015)</h2>
+        <p>A machine-learning system used by Michigan flagged roughly 20,000 residents for unemployment fraud, with reported error rates as high as 93%. The case emerged in the post-2008 recession environment, where unemployment was high and agencies were understaffed.</p>
+
+        <h3>Impacts Discussed</h3>
+        <ul>
+            <li>Wage garnishments</li>
+            <li>Tax refund seizures</li>
+            <li>Credit damage and bankruptcies</li>
+            <li>Extended legal disputes and settlements</li>
+        </ul>
+
+        <div class="callout alert">
+            <strong>Core Lesson</strong>
+            <p>Automated decisions in high-stakes systems require meaningful human oversight. Speed gains do not justify large-scale wrongful harm.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="amazon">
+        <h2>Case Study 2: Amazon Hiring Algorithm</h2>
+        <p>Amazon trained a resume-screening model on approximately ten years of hiring data. Because historical data reflected male-dominated hiring patterns, the model learned to downgrade indicators associated with women, including resumes containing terms like "women's" (for example, women's chess club).</p>
+
+        <ul>
+            <li>Historical training data encoded existing organizational bias.</li>
+            <li>Model output inherited and operationalized that bias.</li>
+            <li>Amazon eventually discontinued the system.</li>
+        </ul>
+
+        <div class="callout">
+            <strong>Modeling Principle</strong>
+            <p>Biased input data produces biased model behavior. "Garbage in, garbage out" remains true even in sophisticated ML pipelines.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="compas">
+        <h2>Case Study 3: COMPAS Recidivism Algorithm</h2>
+        <p>The COMPAS risk score, used in criminal-justice settings, became a major fairness controversy after ProPublica's 2016 analysis reported disparate error rates by race. According to the class summary, the tool was about twice as likely to falsely flag Black defendants as high risk and about twice as likely to falsely clear white defendants.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Perspective</th>
+                    <th>Main Claim</th>
+                    <th>Ethics Implication</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ProPublica</td>
+                    <td>Error rates were racially disparate in harmful ways.</td>
+                    <td>Equal overall accuracy can still mask unequal harm across groups.</td>
+                </tr>
+                <tr>
+                    <td>Northpointe (Vendor)</td>
+                    <td>Overall predictive accuracy was comparable across groups.</td>
+                    <td>Different fairness metrics can produce conflicting conclusions.</td>
+                </tr>
+                <tr>
+                    <td>Courts/Policy Context</td>
+                    <td>Admissibility and use of algorithmic scores remain debated.</td>
+                    <td>Transparency and accountability are crucial in public-sector AI.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="lessons">
+        <h2>General Lessons and Class Discussion</h2>
+        <p>The closing discussion tied all three cases back to recurring ethical obligations for data scientists and system designers.</p>
+
+        <ol>
+            <li><strong>Human oversight matters:</strong> automated tools should not replace accountable review in high-impact decisions.</li>
+            <li><strong>Training data carries values:</strong> models reflect the assumptions and biases embedded in source datasets.</li>
+            <li><strong>Fairness is multidimensional:</strong> a system can be "accurate" yet still unfair depending on which error metrics are examined.</li>
+            <li><strong>Transparency is essential:</strong> public trust depends on explainable models, especially in benefits, hiring, and criminal justice.</li>
+            <li><strong>Ethics is a professional duty:</strong> data science decisions create real material consequences for people and communities.</li>
+        </ol>
+    </section>
+</article>
+
+<footer class="page-footer">
+    <p>IFSC 77003 Data Science &amp; Technologies Transcript Archive</p>
+    <p><a href="index.html">Return to the transcript hub</a></p>
+</footer>
+</body>
+</html>

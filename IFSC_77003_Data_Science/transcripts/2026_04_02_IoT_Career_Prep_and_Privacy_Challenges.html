@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture: IoT Career Prep and Privacy Challenges - April 2, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(0.98rem, 0.94rem + 0.12vw, 1.08rem);
+            line-height: 1.68;
+            color: #1a1a1a;
+            background-color: #fafaf8;
+        }
+
+        .top-nav {
+            background: #004a99;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .top-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+
+        .top-nav a:hover { opacity: 1; text-decoration: underline; }
+        .top-nav .sep { color: rgba(255,255,255,0.4); }
+
+        article {
+            width: clamp(1120px, 93vw, 1720px);
+            margin: 0 auto;
+            padding: clamp(28px, 2.8vw, 44px) clamp(16px, 2.4vw, 36px) clamp(38px, 4vw, 64px);
+        }
+
+        .masthead {
+            border-bottom: 3px solid #004a99;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .masthead .kicker {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #004a99;
+            margin-bottom: 14px;
+        }
+
+        .masthead h1 {
+            font-size: clamp(2rem, 1.55rem + 1.5vw, 2.85rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: #0d0d0d;
+            margin-bottom: 16px;
+        }
+
+        .masthead .byline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #666;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .chip {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: #e7f0fb;
+            color: #004a99;
+            border: 1px solid #b8d0f0;
+            border-radius: 20px;
+            padding: 3px 12px;
+            text-decoration: none;
+        }
+
+        .chip:hover {
+            background: #dceafd;
+            border-color: #9fc2ea;
+        }
+
+        h2 {
+            font-size: clamp(1.35rem, 1.16rem + 0.65vw, 1.85rem);
+            font-weight: 700;
+            color: #0d0d0d;
+            margin: 34px 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #ddd;
+            scroll-margin-top: 16px;
+        }
+
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #004a99;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin: 22px 0 8px;
+        }
+
+        p { margin-bottom: 1.05em; }
+
+        blockquote.pull-quote {
+            border: none;
+            margin: 30px 0;
+            padding: 0 22px;
+            text-align: center;
+        }
+
+        blockquote.pull-quote p {
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.5;
+            color: #004a99;
+            margin-bottom: 0;
+        }
+
+        blockquote.pull-quote footer {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .section-rule {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 30px 0;
+        }
+
+        .callout {
+            border-left: 4px solid #004a99;
+            background: #f0f5fc;
+            padding: 14px 18px;
+            margin: 18px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .callout.alert {
+            border-left-color: #c0392b;
+            background: #fdf2f1;
+        }
+
+        .callout.tip {
+            border-left-color: #27ae60;
+            background: #f0faf4;
+        }
+
+        .callout p,
+        .callout li {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .callout strong {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
+            color: #004a99;
+        }
+
+        .callout.alert strong { color: #c0392b; }
+        .callout.tip strong { color: #27ae60; }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.87rem;
+            margin: 16px 0 22px;
+        }
+
+        .data-table th {
+            background: #004a99;
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        .data-table td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #e8e8e8;
+            vertical-align: top;
+            color: #333;
+        }
+
+        .data-table tr:nth-child(even) td { background: #f7f7f5; }
+
+        ul, ol {
+            padding-left: 1.4em;
+            margin-bottom: 1em;
+        }
+
+        li { margin-bottom: 0.5em; }
+
+        footer.page-footer {
+            border-top: 1px solid #ddd;
+            padding: 28px 24px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+            background: #fff;
+        }
+
+        footer.page-footer a {
+            color: #004a99;
+            text-decoration: none;
+        }
+
+        footer.page-footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<nav class="top-nav">
+    <a href="index.html">IFSC 77003 Home</a>
+    <span class="sep">/</span>
+    <a href="index.html">Transcript Hub</a>
+    <span class="sep">/</span>
+    <a href="#">April 2, 2026</a>
+</nav>
+
+<article>
+    <header class="masthead">
+        <div class="kicker">IFSC 77003 Data Science &amp; Technologies</div>
+        <h1>IoT Career Prep and Privacy Challenges</h1>
+        <div class="byline">
+            <span>April 2, 2026</span>
+            <span>Dr. Elizabeth Pierce</span>
+            <span>Topic: IoT Career Prep</span>
+            <span>Duration: 01:11:31</span>
+        </div>
+        <div class="chip-row">
+            <a class="chip" href="#iot-skills">IoT Skills</a>
+            <a class="chip" href="#iot-tutorials">IoT Layers</a>
+            <a class="chip" href="#iot-protocols">Protocols</a>
+            <a class="chip" href="#privacy-security">Privacy &amp; Security</a>
+            <a class="chip" href="#career-paths">Career Paths</a>
+            <a class="chip" href="#next-steps">Next Steps</a>
+        </div>
+    </header>
+
+    <section id="iot-skills">
+        <h2>IoT Skills Overview</h2>
+        <p>The lecture opened with a practical map of interdisciplinary skills for IoT-focused data science work. Dr. Pierce emphasized that IoT combines software, hardware, networking, analytics, and experimentation rather than fitting into a single narrow specialty.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Skill Area</th>
+                    <th>Examples from Lecture</th>
+                    <th>Why It Matters</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Programming</td>
+                    <td>Python, JavaScript, C</td>
+                    <td>Core logic for sensors, automation, APIs, and analytics workflows.</td>
+                </tr>
+                <tr>
+                    <td>Hardware</td>
+                    <td>Sensors, microcontrollers, Raspberry Pi</td>
+                    <td>IoT systems start with physical data collection and device control.</td>
+                </tr>
+                <tr>
+                    <td>Data Visualization</td>
+                    <td>Dashboards and monitoring interfaces</td>
+                    <td>Turns raw streams into interpretable operational signals.</td>
+                </tr>
+                <tr>
+                    <td>Infrastructure</td>
+                    <td>Networking, data management, cloud computing</td>
+                    <td>Enables reliable transmission, storage, and scaling of device data.</td>
+                </tr>
+                <tr>
+                    <td>Protection &amp; Analysis</td>
+                    <td>Security and data science methods</td>
+                    <td>Protects systems while extracting useful insights for decisions.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout tip">
+            <strong>Starter Resource</strong>
+            <p>Dr. Pierce highlighted the SunFounder IoT kit (about $70) with 117 projects as an affordable way to build hands-on confidence across the IoT skill stack.</p>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="iot-tutorials">
+        <h2>IoT Tutorials and Layered Architecture</h2>
+        <p>Using TutorialPoint as a reference, the class reviewed a layered IoT model: sensing, network transport, pre-processing, and application/cloud. This framing helps students understand where tools and roles differ within the same IoT deployment.</p>
+
+        <h3>Application Domains Discussed</h3>
+        <ul>
+            <li>Healthcare and remote monitoring</li>
+            <li>Logistics and shipment tracking</li>
+            <li>Smart-city infrastructure</li>
+            <li>Manufacturing and equipment telemetry</li>
+            <li>Agriculture and environmental sensing</li>
+            <li>Education and training labs</li>
+        </ul>
+
+        <blockquote class="pull-quote">
+            <p>"IoT is not just devices. It is an end-to-end flow from sensing to decision-making."</p>
+            <footer>Lecture Focus</footer>
+        </blockquote>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="iot-protocols">
+        <h2>IoT Protocols and Connectivity Options</h2>
+        <p>The class covered multiple communication technologies and when each might be practical depending on range, power, throughput, and deployment constraints.</p>
+
+        <ul>
+            <li>RFID for identification and object tracking</li>
+            <li>NFC for short-range contact interactions</li>
+            <li>Bluetooth Low Energy for low-power local connectivity</li>
+            <li>Radio-based protocols for distributed device communication</li>
+            <li>LTEA for wider-area mobile data support</li>
+            <li>Wi-Fi Direct for peer device communication</li>
+        </ul>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="privacy-security">
+        <h2>Privacy and Security Challenges in IoT Deployment</h2>
+        <p>Dr. Pierce shifted from technical architecture to social and legal risk. IoT convenience frequently introduces surveillance concerns, consent problems, and accountability disputes across employers, vendors, and governments.</p>
+
+        <div class="callout alert">
+            <strong>Risk Themes</strong>
+            <ul>
+                <li>Apple AirTag stalking scenarios as a misuse case for consumer devices.</li>
+                <li>"Big Brother" concerns around continuous wearable data collection.</li>
+                <li>CCPA principle that organizations cannot force data consent through coercive defaults.</li>
+                <li>Special consent expectations for children using connected toys.</li>
+                <li>Employer device and MFA compensation debate raised at UALR.</li>
+                <li>Vendor lifecycle and reliability problems when products lose support.</li>
+                <li>Interoperability gaps and blurred accountability among vendors.</li>
+                <li>Transparency concerns illustrated by the CEO "Kiss Cam" concert scandal.</li>
+            </ul>
+        </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="career-paths">
+        <h2>IoT Career Paths and Entry Strategies</h2>
+        <p>The lecture framed IoT as a capability used inside many careers rather than a single fixed job title. Dr. Pierce used a "hammer" analogy: IoT is a toolset applied in many industries.</p>
+
+        <ul>
+            <li>Potential entry sectors include healthcare, logistics, and manufacturing.</li>
+            <li>Class examples included J.B. Hunt refrigerated cargo sensors and cargo theft incidents (including a high-profile 12-ton KitKat theft case).</li>
+            <li>Students were advised to target companies already integrating sensor and streaming data into operations.</li>
+            <li>Hobbyist kits and hackathons were recommended for portfolio building.</li>
+            <li>Salary signal shared in class: IoT Solutions Architect role around $124K-$170K at Voda Home (Mountain Home, AR).</li>
+        </ul>
+    </section>
+
+    <hr class="section-rule">
+
+    <section id="next-steps">
+        <h2>Next Steps</h2>
+        <ol>
+            <li>Complete the IoT assessment.</li>
+            <li>Prepare for Dr. Dagtas's guest session next week.</li>
+            <li>Continue into upcoming cloud-computing discussion and integration topics.</li>
+        </ol>
+    </section>
+</article>
+
+<footer class="page-footer">
+    <p>IFSC 77003 Data Science &amp; Technologies Transcript Archive</p>
+    <p><a href="index.html">Return to the transcript hub</a></p>
+</footer>
+</body>
+</html>
