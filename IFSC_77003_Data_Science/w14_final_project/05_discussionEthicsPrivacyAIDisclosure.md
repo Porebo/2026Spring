@@ -1,4 +1,4 @@
-# Part 7 — Discussion, Ethics, Privacy, and AI Disclosure
+# Part 5 — Discussion, Ethics, Privacy, and AI Disclosure
 
 **Status:** Missing
 **Target length:** about 2 to 3 pages

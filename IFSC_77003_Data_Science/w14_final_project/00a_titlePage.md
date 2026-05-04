@@ -1,4 +1,4 @@
-# Part 1 — Title Page
+# Title Page
 
 **Status:** Missing
 **Target length:** about half a page

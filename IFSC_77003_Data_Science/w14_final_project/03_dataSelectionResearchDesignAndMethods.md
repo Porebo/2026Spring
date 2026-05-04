@@ -1,3 +1,5 @@
+# Part 3 — Data Selection, Research Design, and Methods
+
 ## Solution Statement
 
 This project proposes an AI-assisted solution for preserving the institutional knowledge embedded in Tableau reports during migration to Spotfire after organizational transition. The central problem is not only the replacement of one visualization platform with another, but the risk of losing years of technical, operational, and decision-support knowledge encoded inside Tableau workbooks.

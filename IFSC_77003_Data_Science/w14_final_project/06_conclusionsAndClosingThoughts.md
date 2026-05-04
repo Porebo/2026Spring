@@ -1,4 +1,4 @@
-# Part 8 — Conclusions and Closing Thoughts
+# Part 6 — Conclusions and Closing Thoughts
 
 **Status:** Missing
 **Target length:** about 1 page

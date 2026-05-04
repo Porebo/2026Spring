@@ -1,4 +1,4 @@
-# Part 2 — Table of Contents
+# Table of Contents
 
 **Status:** Optional / Skip
 
