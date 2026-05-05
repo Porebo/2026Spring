@@ -4,44 +4,85 @@ This file integrates the current markdown project components in order.
 
 ---
 
-# Title Page
+<div style="text-align: center; margin-top: 4em;">
 
-**Status:** Missing
-**Target length:** about half a page
+**Data-Driven Migration of Enterprise Analytical Assets: A Case Study in Tableau-to-Spotfire Conversion at a Major Oil and Gas Producer**
 
-## What this Part contains
-- Project title
-- Author
-- Supervisor
-- Institution or department
-- Course
-- Semester
+&nbsp;
 
-## Feeds from
-None. This stage can be built directly once the wording is finalized.
+&nbsp;
 
-## Still needed
-- Final title decision
-- Exact institution or department wording
+IFSC 77003 — Data Science and Technologies
+
+University of Arkansas at Little Rock
+
+&nbsp;
+
+May 2026
+
+</div>
 
 ---
-
-_Draft content goes below this line._
 
 ---
 
 # Table of Contents
 
-**Status:** Optional / Skip
+**Part 1: Introduction**
+&nbsp;&nbsp;&nbsp;&nbsp;1.1 Background and Motivation
+&nbsp;&nbsp;&nbsp;&nbsp;1.2 Problem Statement
+&nbsp;&nbsp;&nbsp;&nbsp;1.3 Practitioner Perspective and Study Scope
+&nbsp;&nbsp;&nbsp;&nbsp;1.4 Research Questions
+&nbsp;&nbsp;&nbsp;&nbsp;1.5 Significance
+&nbsp;&nbsp;&nbsp;&nbsp;1.6 Paper Organization
 
-The assignment allows this Part to be omitted unless the final report grows beyond roughly 15 pages.
+**Part 2: Literature Review**
+&nbsp;&nbsp;&nbsp;&nbsp;2.1 Balakrishnan et al. (2020): Data Strategy as the Foundation for BI Value
+&nbsp;&nbsp;&nbsp;&nbsp;2.2 Zierz and Lordsleem Junior (2026): BI Platform Adoption and Migration Friction
+&nbsp;&nbsp;&nbsp;&nbsp;2.3 Caglar (2016): Dashboards as Operational Decision Environments
+&nbsp;&nbsp;&nbsp;&nbsp;2.4 Cogan et al. (2025): User-Centered Design Encodes Domain Expertise
+&nbsp;&nbsp;&nbsp;&nbsp;2.5 Banerjee et al. (2025): Dashboards as Organizational Memory Mechanisms
+&nbsp;&nbsp;&nbsp;&nbsp;2.6 Pham et al. (2013): Interactive Visualization as Sense-Making Infrastructure
+&nbsp;&nbsp;&nbsp;&nbsp;2.7 Schreiber et al. (2011): Tacit vs Explicit Knowledge in Organizational Transfer
+&nbsp;&nbsp;&nbsp;&nbsp;2.8 Panichelli (2022): Migration Failure Risk from Incomplete Discovery
+&nbsp;&nbsp;&nbsp;&nbsp;2.9 Sherman et al. (2025): Domain-Tuned AI for Technical Translation Tasks
+&nbsp;&nbsp;&nbsp;&nbsp;2.10 Bhatti (2026): Strategic Prompting as a Quality Control Mechanism
+&nbsp;&nbsp;&nbsp;&nbsp;2.11 Integrative Synthesis, Research Questions, and Gap
 
-## Decision rule
-- Skip unless the final PDF becomes long enough to justify navigation support.
+**Part 3: Data Selection, Research Design, and Methods**
+&nbsp;&nbsp;&nbsp;&nbsp;3.1 The Selection Pipeline
+&nbsp;&nbsp;&nbsp;&nbsp;3.2 The Conversion Pipeline
+&nbsp;&nbsp;&nbsp;&nbsp;3.3 Research Design
 
----
+**Part 4: Analysis Work**
+&nbsp;&nbsp;&nbsp;&nbsp;4.1 Analysis Scope and Dataset Snapshot
+&nbsp;&nbsp;&nbsp;&nbsp;4.2 Data Preparation and Cohort Construction
+&nbsp;&nbsp;&nbsp;&nbsp;4.3 Predictive Usage Sustainability Model
+&nbsp;&nbsp;&nbsp;&nbsp;4.4 Priority Scoring Implementation
+&nbsp;&nbsp;&nbsp;&nbsp;4.5 Selection Results
+&nbsp;&nbsp;&nbsp;&nbsp;4.6 Conversion Fidelity Findings
+&nbsp;&nbsp;&nbsp;&nbsp;4.7 Labor and Feasibility Analysis
+&nbsp;&nbsp;&nbsp;&nbsp;4.8 Integrated Findings Across Selection, Conversion, and Labor
+&nbsp;&nbsp;&nbsp;&nbsp;4.9 Limitations of the Analysis
+&nbsp;&nbsp;&nbsp;&nbsp;4.10 From Analysis to Governance
 
-_If the TOC becomes necessary, draft content goes below this line._
+**Part 5: Discussion, Ethics, Privacy, and AI Disclosure**
+&nbsp;&nbsp;&nbsp;&nbsp;5.1 Interpretation of Principal Findings
+&nbsp;&nbsp;&nbsp;&nbsp;5.2 Business Implications for Enterprise Analytics Migration
+&nbsp;&nbsp;&nbsp;&nbsp;5.3 Data Privacy and User Telemetry Considerations
+&nbsp;&nbsp;&nbsp;&nbsp;5.4 Security Boundaries and Data Stewardship
+&nbsp;&nbsp;&nbsp;&nbsp;5.5 Ethical Use of AI in Migration Decision-Making
+&nbsp;&nbsp;&nbsp;&nbsp;5.6 AI Assistance Disclosure
+
+**Part 6: Conclusions and Closing Thoughts**
+
+**Part 7: Appendix**
+&nbsp;&nbsp;&nbsp;&nbsp;7.1 Consolidated References (APA 7th)
+&nbsp;&nbsp;&nbsp;&nbsp;7.2 Project Hours Log
+
+**Part 8: Three-Minute Thesis**
+
+<div style="page-break-after: always;"></div>
 
 ---
 

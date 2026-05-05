@@ -1,0 +1,16 @@
+Note Regarding Data Files
+=========================
+
+The data underlying this project consists of proprietary operational telemetry from a Tableau Server
+environment at California Resources Corporation (CRC). This includes internal usage logs, workbook
+metadata, and organizational directory records generated during an active enterprise BI migration program.
+
+This data cannot be shared externally. It is confidential corporate information subject to data governance
+and confidentiality obligations. Sharing it would not be appropriate regardless of context.
+
+In place of raw data files, I am submitting the two SQL scripts that define the complete analytical
+pipeline — including all data transformations, feature engineering, scoring models, and selection outputs.
+These scripts reflect the actual logic used to produce the results in the report and can be reviewed to
+confirm that the findings are grounded in a real, reproducible process.
+
+The data was real, operational, and active at the time of analysis. It was not synthetic or AI-generated.
