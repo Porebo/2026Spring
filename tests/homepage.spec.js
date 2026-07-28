@@ -37,14 +37,11 @@ test("homepage includes key navigation links", async ({ page }) => {
   ).toBeVisible();
 });
 
-test("homepage links to external credentials site", async ({ page }) => {
+test("homepage links to credentials section", async ({ page }) => {
   await page.goto("/");
 
   const credentialsLink = page
     .getByRole("navigation", { name: "Main site links" })
     .getByRole("link", { name: /Credentials & Portfolio/i });
-  await expect(credentialsLink).toHaveAttribute(
-    "href",
-    "https://porebo.github.io/credentials/"
-  );
+  await expect(credentialsLink).toHaveAttribute("href", "credentials/index.html");
 });
