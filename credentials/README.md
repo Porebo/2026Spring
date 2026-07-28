@@ -13,6 +13,8 @@ This folder is kept separate from the coursework hub root so credential content 
 | File | Purpose |
 |------|---------|
 | `index.html` | Page shell and Skills Snapshot prose |
+| `ualr-academic-progress-raw.md` | Raw UALR degree audit capture (consult before edits) |
+| `ualr-academic-progress-raw.html` | Browser view of the same raw audit capture |
 | `education-components.js` | Education data and card rendering |
 | `styles.css` | Portfolio styling |
 | `images/` | Institution logos |

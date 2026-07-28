@@ -30,7 +30,8 @@ Academic credentials, the Skills Snapshot, and the education timeline live in [c
 
 1. Keep credential and portfolio content in `credentials/`, not in the hub root.
 2. Link to credentials with `credentials/index.html`.
-3. Preserve nav labels that match Playwright tests in `tests/homepage.spec.js`.
+3. Before changing education or degree status text, read `credentials/ualr-academic-progress-raw.md`.
+4. Preserve nav labels that match Playwright tests in `tests/homepage.spec.js`.
 4. Do not reintroduce `education-components.js` or education mount points into the hub root.
 
 ## Safe change workflow
