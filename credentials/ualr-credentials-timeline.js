@@ -13,7 +13,7 @@ const ualrCredentialTimeline = [
     displayStart: "Jan 2021",
     displayEnd: "Spring 2024",
     marker: "Spring 2024",
-    gpa: "4.00 program GPA"
+    gpa: "4.0 GPA"
   },
   {
     id: "ualr-ba-idst",
@@ -22,7 +22,7 @@ const ualrCredentialTimeline = [
     displayStart: "Jan 2021",
     displayEnd: "Fall 2024",
     marker: "Fall 2024",
-    gpa: "3.61 cumulative · 4.00 program GPA"
+    gpa: "3.61 GPA"
   },
   {
     id: "ualr-data-science-gc",
@@ -31,7 +31,7 @@ const ualrCredentialTimeline = [
     displayStart: "Jan 2025",
     displayEnd: "Spring 2026",
     marker: "Spring 2026",
-    gpa: "3.60 cumulative GPA"
+    gpa: "3.6 GPA"
   },
   {
     id: "ualr-ms-information-science",
@@ -40,7 +40,7 @@ const ualrCredentialTimeline = [
     displayStart: "Jan 2025",
     displayEnd: "Spring 2027 (planned)",
     marker: "Spring 2027",
-    gpa: "3.60 cumulative GPA"
+    gpa: "3.6 GPA"
   }
 ];
 
