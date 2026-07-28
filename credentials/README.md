@@ -17,7 +17,7 @@ This folder is kept separate from the coursework hub root so credential content 
 | `ualr-academic-progress-raw.html` | Browser view of degree audit capture |
 | `ualr-academic-record-raw.md` | Raw UALR academic record capture (term GPAs) |
 | `ualr-academic-record-raw.html` | Browser view of academic record capture |
-| `education-components.js` | Education data and card rendering |
+| `ualr-credentials-timeline.js` | UALR-only credential timeline data and renderer |
 | `styles.css` | Portfolio styling |
 | `images/` | Institution logos |
 | `prompts/ai_instruction_for_credentials.md` | Maintenance guide for AI-assisted edits |
