@@ -1,82 +1,41 @@
-# AI Instructions for Main Index (Action Directory: workspace root - index.html, education-components.js, styles.css)
+# AI Instructions for Main Index (Coursework Hub)
+
+Action directory: workspace root — `index.html`, `styles.css`
 
 ## Purpose
-This document defines how to maintain the main page architecture for [index.html](index.html) in this repository.
 
-Use this file as the source of truth before making edits to the main index.
+This document defines how to maintain the **coursework hub** at [index.html](index.html).
 
-## Current Architecture
-The main index now follows a component-driven pattern for repeated education content.
+Academic credentials, the Skills Snapshot, and the education timeline live in [credentials/index.html](../credentials/index.html).
 
-### Files involved
-- [index.html](index.html)
-- [education-components.js](education-components.js)
-- [styles.css](styles.css)
+## Current architecture
 
-### Separation of concerns
-- [index.html](index.html): page shell and mount points
-- [education-components.js](education-components.js): education data + reusable render logic
-- [styles.css](styles.css): styling only
+- `index.html`: coursework hub shell, navigation, and quick links
+- `styles.css`: hub-only styling (no education card styles)
+- `credentials/`: portfolio site (separate folder, same GitHub Pages deployment)
 
-## Implemented Component Pattern
+## What belongs here
 
-### 1) Mount-point rendering in HTML
-Education groups are rendered into containers that use `data-education-group`.
+- Links to IFSC 71003 and IFSC 77003 transcripts and project sites
+- Prompt Hub navigation
+- Brief intro text pointing visitors to the credentials section
 
-Current mount points:
-- `data-education-group="graduate"`
-- `data-education-group="undergraduate"`
-- `data-education-group="certificates"`
+## What does not belong here
 
-### 2) Data-driven cards
-Education entries are defined in `educationData` inside [education-components.js](education-components.js), grouped by key:
-- `graduate`
-- `undergraduate`
-- `certificates`
+- Education timeline data or card markup
+- Skills Snapshot / professional bio prose
+- Institution logos (they live in `credentials/images/`)
 
-Each item object uses this shape:
-- `logo`: image path
-- `alt`: image alt text
-- `institution`: heading text
-- `credential`: credential line
-- `period`: period line
-- `meta`: array of extra lines (for grade/notes), can be empty
+## Editing rules
 
-### 3) Reusable rendering functions
-Current render path:
-- `createEducationItem(item)` builds one card
-- `renderEducationGroup(groupName, container)` builds one group
-- query all `[data-education-group]` and render from `educationData`
+1. Keep credential and portfolio content in `credentials/`, not in the hub root.
+2. Link to credentials with `credentials/index.html`.
+3. Preserve nav labels that match Playwright tests in `tests/homepage.spec.js`.
+4. Do not reintroduce `education-components.js` or education mount points into the hub root.
 
-## Editing Rules
+## Safe change workflow
 
-### Always do this
-1. Keep [index.html](index.html) as a shell for repeated education content.
-2. Add or update education records in [education-components.js](education-components.js), not by duplicating HTML cards in [index.html](index.html).
-3. Preserve existing CSS class names used by cards unless there is a deliberate visual refactor.
-4. Keep semantic and accessibility attributes:
-   - `role="list"` on timeline containers
-   - `role="listitem"` on card articles
-   - meaningful image `alt` text
-
-### Avoid this
-1. Do not reintroduce large repeated `<article>` blocks directly into [index.html](index.html).
-2. Do not mix data and styling logic.
-3. Do not add timeline-specific legacy classes that were removed unless explicitly requested.
-
-## Safe Change Workflow
 1. Read this file.
-2. Read [index.html](index.html), [education-components.js](education-components.js), and [styles.css](styles.css).
-3. Apply changes first in [education-components.js](education-components.js) for content updates.
-4. Use [styles.css](styles.css) for visual changes.
-5. Validate:
-   - no syntax errors
-   - mount points still render content
-   - no duplicated education card markup added back into [index.html](index.html)
-
-## Optional Next Refactor (if requested)
-The same component pattern can be extended to:
-- Header/navigation links
-- Skills Snapshot section text blocks
-
-If extended, keep [index.html](index.html) as composition shell and move structured content to dedicated JS data objects.
+2. Read [index.html](index.html) and [styles.css](styles.css).
+3. Apply navigation or hub intro changes in `index.html`.
+4. Run `npm test` to confirm homepage expectations still pass.
