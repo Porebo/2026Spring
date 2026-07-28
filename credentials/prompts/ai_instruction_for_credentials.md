@@ -24,7 +24,7 @@ Each item object shape:
 ## Editing rules
 
 1. Update education records in `education-components.js`, not by duplicating HTML cards.
-2. Before changing degree status, GPA, or course completion text, read `ualr-academic-progress-raw.md`.
+2. Before changing degree status, GPA, or course completion text, read `ualr-academic-progress-raw.md` and `ualr-academic-record-raw.md`.
 3. Keep semantic attributes: `role="list"`, `role="listitem"`, meaningful `alt` text.
 3. When Skills Snapshot prose and structured data disagree, align them in the same change.
 4. Do not add coursework, transcript, or prompt-hub content to this repo.
