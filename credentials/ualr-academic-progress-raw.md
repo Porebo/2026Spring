@@ -572,10 +572,10 @@ A
 
 | Credential | Conferral |
 |------------|-----------|
-| Business Analytics Certificate of Proficiency | **May 2024** (conferred) |
+| Business Analytics Certificate of Proficiency | **Spring 2024** (conferred) |
 | B.A. Interdisciplinary Studies | **Fall 2024** (conferred) |
-| Data Science Graduate Certificate | **May 2026** (conferred) |
-| M.S. Information Science | **May 2027** (planned) |
+| Data Science Graduate Certificate | **Spring 2026** (conferred) |
+| M.S. Information Science | **Spring 2027** (planned) |
 
 ---
 

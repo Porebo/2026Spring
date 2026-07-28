@@ -11,8 +11,8 @@ const ualrCredentialTimeline = [
     credential: "Business Analytics Certificate of Proficiency",
     status: "completed",
     displayStart: "Jan 2021",
-    displayEnd: "May 2024",
-    marker: "May 2024",
+    displayEnd: "Spring 2024",
+    marker: "Spring 2024",
     gpa: "4.00 program GPA"
   },
   {
@@ -29,8 +29,8 @@ const ualrCredentialTimeline = [
     credential: "Graduate Certificate, Data Science",
     status: "completed",
     displayStart: "Jan 2025",
-    displayEnd: "May 2026",
-    marker: "May 2026",
+    displayEnd: "Spring 2026",
+    marker: "Spring 2026",
     gpa: "3.60 cumulative GPA"
   },
   {
@@ -38,8 +38,8 @@ const ualrCredentialTimeline = [
     credential: "M.S., Information Science",
     status: "in-progress",
     displayStart: "Jan 2025",
-    displayEnd: "May 2027 (planned)",
-    marker: "May 2027",
+    displayEnd: "Spring 2027 (planned)",
+    marker: "Spring 2027",
     gpa: "3.60 cumulative GPA"
   }
 ];
